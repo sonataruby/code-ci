@@ -1,0 +1,47 @@
+<div class="hbox">
+	<h3>Quản lý bài viết <a class="btn btn-primary float-right" href="/posts/enterprise/create" sn-link="true" parent-controller="#posts"><i class="fa fa-plus"></i> Add Posts</a></h3>
+	
+</div>
+<div class="hbox">
+	<div class="input-group">
+		<?php echo $catalog;?>
+	  <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+	  <div class="input-group-append">
+	    <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="fa fa-search"></i> Search</button>
+	  </div>
+	</div>
+	<br>
+	<table class="table">
+		<thead>
+			<th colspan="2">Name</th>
+			<th>Create Date</th>
+			<th>View</th>
+			<th>Comments</th>
+			<th></th>
+		</thead>
+		<tbody>
+			<?php foreach ($data as $key => $value) { ?>
+				
+			<tr>
+				<td width="2%">
+					<img src="<?php echo $value->image;?>" style="width:120px; height:60px;">
+				</td>
+				<td>
+					<b><?php echo $value->name;?></b>
+					<p>
+						<?php foreach ($value->catalog as $keyCat => $valueCat) { ?>
+						<a href="/catalog/<?php echo $valueCat->catalog_url;?>.html" target="_bank"><?php echo $valueCat->catalog_name;?></a>
+						<?php }?></p>
+				</td>
+				<td><?php echo $value->created_date;?></td>
+				<td><?php echo $value->views;?></td>
+				<td></td>
+				<td class="text-right">
+					<a class="btn btn-primary" href="/posts/enterprise/create/<?php echo $value->id;?>" sn-link="true" parent-controller="#posts">Edit</a>
+					<a class="btn btn-primary" href="/posts/enterprise/deletepost/<?php echo $value->id;?>" sn-link="true" parent-controller="#posts">Delete</a>
+				</td>
+			</tr>
+			<?php } ?>
+		</tbody>
+	</table>
+</div>

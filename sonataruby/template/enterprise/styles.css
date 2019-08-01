@@ -1,0 +1,38 @@
+.hbox{
+	box-shadow: 0 1px 15px rgba(0,0,0,.04),0 1px 6px rgba(0,0,0,.04);
+	min-height: 100px;
+	padding: 30px;
+	margin-bottom: 15px;
+}
+.placeholder{
+	padding: 30px;
+	border:1px dotted #ddd;
+	overflow: hidden;
+}
+.btn-icon{
+	color:#444;
+	width: 40px;
+	height: 40px;
+}
+
+.androi-mobile{
+	margin: auto;
+	width: 360px;
+	border:1px solid #ddd;
+	overflow-y: auto;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.androi-desktop{
+	margin: auto;
+	width: auto;
+}
+
+.androi-tablet{
+	margin: auto;
+	width: 768px;
+	border:1px solid #ddd;
+	overflow-y: auto;
+	padding-left: 10px;
+	padding-right: 10px;
+}
