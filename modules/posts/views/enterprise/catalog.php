@@ -66,7 +66,7 @@ function makeSortItem($arv=[]){
 
 			$.ajax({
                 type: "POST",
-                url: '/posts/enterprise/catalogjson/'+id,
+                url: '/posts/enterprise/catalog/catalogjson/'+id,
                 dataType : "json",
                 success: function(data){
                 	
@@ -83,7 +83,7 @@ function makeSortItem($arv=[]){
 			
 			$.ajax({
                 type: "POST",
-                url: '/posts/enterprise/createcatalog',
+                url: '/posts/enterprise/catalog/createcatalog',
                 data : {catalog_parent : parent_id, "catalog_name" : "Catalog Name"},
                 dataType : "json",
                 success: function(data){
@@ -97,7 +97,7 @@ function makeSortItem($arv=[]){
 
 			$.ajax({
                 type: "POST",
-                url: '/posts/enterprise/catalogdelete/'+catalog_id,
+                url: '/posts/enterprise/catalog/catalogdelete/'+catalog_id,
                 dataType : "json",
                 success: function(data){
 
@@ -115,7 +115,7 @@ function makeSortItem($arv=[]){
 			now_status = $(obj).attr("data-status");
 			$.ajax({
                 type: "POST",
-                url: '/posts/enterprise/catalogstatus/'+catalog_id,
+                url: '/posts/enterprise/catalog/catalogstatus/'+catalog_id,
                 data : {field : field, value : now_status},
                 dataType : "json",
                 success: function(data){
@@ -171,7 +171,7 @@ function makeSortItem($arv=[]){
 
 	        $.ajax({
                 type: "POST",
-                url: '/posts/enterprise/catalogsorts',
+                url: '/posts/enterprise/catalog/catalogsorts',
                 data : {data : data},
                 dataType : "json",
                 success: function(data){
@@ -197,7 +197,7 @@ function makeSortItem($arv=[]){
 			
 			$.ajax({
                 type: "POST",
-                url: '/posts/enterprise/catalogsavejson/' + catalog_id,
+                url: '/posts/enterprise/catalog/catalogsavejson/' + catalog_id,
                 data : data,
                 dataType : "json",
                 success: function(data){

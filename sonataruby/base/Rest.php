@@ -2,20 +2,7 @@
 namespace Sonata;
 use Exception;
 use stdClass;
-/**
- * CodeIgniter REST Class
- *
- * Make REST requests to RESTful services with simple syntax.
- *
- * @package         CodeIgniter
- * @subpackage      Libraries
- * @category        Libraries
- * @author          Philip Sturgeon
- * @author          Chris Kacerguis
- * @created         04/06/2009
- * @license         http://philsturgeon.co.uk/code/dbad-license
- * @link            http://getsparks.org/packages/restclient/show
- */
+
 
 class Rest
 {

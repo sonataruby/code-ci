@@ -1,5 +1,5 @@
 <div class="hbox">
-	<h3>Quản lý bài viết <a class="btn btn-primary float-right" href="/posts/enterprise/create" sn-link="true" parent-controller="#posts"><i class="fa fa-plus"></i> Add Posts</a></h3>
+	<h3>Quản lý bài viết <a class="btn btn-primary float-right" href="/posts/enterprise/posts/create" sn-link="true" parent-controller="#posts"><i class="fa fa-plus"></i> Add Posts</a></h3>
 	
 </div>
 <div class="hbox">
@@ -37,8 +37,8 @@
 				<td><?php echo $value->views;?></td>
 				<td></td>
 				<td class="text-right">
-					<a class="btn btn-primary" href="/posts/enterprise/create/<?php echo $value->id;?>" sn-link="true" parent-controller="#posts">Edit</a>
-					<a class="btn btn-primary" href="/posts/enterprise/deletepost/<?php echo $value->id;?>" sn-link="true" parent-controller="#posts">Delete</a>
+					<a class="btn btn-primary" href="/posts/enterprise/posts/create/<?php echo $value->id;?>" sn-link="true" parent-controller="#posts">Edit</a>
+					<a class="btn btn-primary" href="/posts/enterprise/posts/deletepost/<?php echo $value->id;?>" sn-link="true" parent-controller="#posts">Delete</a>
 				</td>
 			</tr>
 			<?php } ?>

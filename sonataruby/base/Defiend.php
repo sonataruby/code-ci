@@ -2,12 +2,13 @@
 define("CMS_ROOTPATH",str_replace('base','',__DIR__));
 define("CMS_BASEPATH",CMS_ROOTPATH . "base" . DIRECTORY_SEPARATOR);
 define("CMS_HMVCPATH",CMS_ROOTPATH . "third_party" . DIRECTORY_SEPARATOR . "MX". DIRECTORY_SEPARATOR);
-define("CMS_MODULESPATH",[CMS_ROOTPATH . "modules" . DIRECTORY_SEPARATOR => '../../sonataruby/modules/']);
+define("CMS_MODULESPATH",[FCPATH . "modules" . DIRECTORY_SEPARATOR => '../../modules/']);
 define("CMS_SHAREPATH",CMS_ROOTPATH . "libs" . DIRECTORY_SEPARATOR);
 define("CMS_THEMEPATH",FCPATH . "template" . DIRECTORY_SEPARATOR);
 define("CMS_THEME_ENTERPRISE_PATH",CMS_ROOTPATH . "template/enterprise/" . DIRECTORY_SEPARATOR);
 define("CMS_THEME_PERSONAL_PATH",CMS_ROOTPATH . "template/personal/" . DIRECTORY_SEPARATOR);
 define("UPLOAD_PATH", FCPATH . DIRECTORY_SEPARATOR . "upload" . DIRECTORY_SEPARATOR);
+
 if(!function_exists("template_url")){
 	function template_url($path="", $arv=[]){
 		if(!$path) return site_url();

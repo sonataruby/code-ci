@@ -10,6 +10,7 @@ class Enterprise extends Controller{
 	{
 		parent::__construct();
 		define("BASE_ENTERPRISE", true);
+		$this->setTitle("Administrator");
 	}
 
 	public function get_views($path=""){

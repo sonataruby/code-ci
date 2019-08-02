@@ -21,7 +21,7 @@
 			<button type="submit" class="btn btn-info"><i class="fa fa-save"></i> Public</button>
 			<button type="submit" class="btn btn-warning"><i class="fa fa-save"></i> Draff</button>
 		</div>
-		<div class="hbox border ">
+		<div class="">
 			<?php echo $this->forms->gallery([
 				"name" => "page_image[]",
 				"label" => "Page Layout",

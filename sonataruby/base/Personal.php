@@ -10,6 +10,7 @@ class Personal extends Controller{
 	{
 		parent::__construct();
 		define("BASE_PERSONAL", true);
+		$this->setTitle("Personal Controller");
 	}
 
 	public function get_views($path=""){

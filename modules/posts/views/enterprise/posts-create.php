@@ -21,13 +21,13 @@
 			<button type="submit" class="btn btn-info"><i class="fa fa-save"></i> Public</button>
 			<button type="submit" class="btn btn-warning"><i class="fa fa-save"></i> Draff</button>
 		</div>
-		<div class="hbox border ">
-			<?php echo $this->forms->gallery([
-				"name" => "post_image[]",
-				"label" => "Thumnail Image",
-				"value" => @$data->image
-			],[]);?>
-		</div>
+		
+		<?php echo $this->forms->gallery([
+			"name" => "post_image[]",
+			"label" => "Thumnail Image",
+			"value" => @$data->image
+		],[]);?>
+		
 		<div class="hbox border ">
 			<div class="btn-group" role="group" aria-label="Basic example">
 			  <button type="button" class="btn btn-primary" onclick="$('.fr-iframe').width('100%');"><i class="fa fa-desktop"></i></button>

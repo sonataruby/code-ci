@@ -9,7 +9,7 @@
 						    <img src="https://www.dhresource.com/fc/s009/homepage/062519/990x440_190618_sport.jpg" class="card-img-top" alt="...">
 						    <div class="card-body">
 						      <h5 class="card-title"><?php echo $value->name;?></h5>
-						      <p class="card-text"><a href="/posts/enterprise/gimage/<?php echo $value->id;?>" sn-link="true" parent-controller="#posts" class="btn btn-sm btn-info">Add Image</a> <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#exampleModalCenter" data-id="<?php echo $value->id;?>" data-name="<?php echo $value->name;?>">Edit</button></p>
+						      <p class="card-text"><a href="/posts/enterprise/gallery/gimage/<?php echo $value->id;?>" sn-link="true" parent-controller="#posts" class="btn btn-sm btn-info">Add Image</a> <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#exampleModalCenter" data-id="<?php echo $value->id;?>" data-name="<?php echo $value->name;?>">Edit</button></p>
 						      
 						    </div>
 						</div>
@@ -43,7 +43,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="/posts/enterprise/gallery" method="post">
+        <form action="/posts/enterprise/gallery/create" method="post">
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Gallery Name</label>
             <input type="text" name="gallery_name" class="form-control" id="recipient-name">

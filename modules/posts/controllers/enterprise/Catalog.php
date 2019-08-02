@@ -2,12 +2,16 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 use \Sonata\Enterprise as CPEnterprise;
 use \Sonata\Image;
-class Enterprise extends CPEnterprise {
+class Catalog extends CPEnterprise {
 
-	
+	public function __construct()
+	{
+	    parent::__construct();
+	   
+	}
 	public function index()
 	{
-		$this->view('welcome_message');
+		return $this->catalog();
 	}
 	public function catalog($id=false){
 
@@ -107,75 +111,5 @@ class Enterprise extends CPEnterprise {
 
 		}
 		$this->toJson(["status" => "false"]);
-	}
-
-
-
-
-	/*
-	Posts Interface
-	*/
-	public function posts(){
-		$data = $this->posts_model->getList();
-		$catalog = $this->catalog_model->dropdown();
-		$this->view($this->get_views('posts'),["catalog" => $catalog, "data" => $data]);
-	}
-
-	public function create($id=false){
-		$data = $this->posts_model->getData(false, $id);
-		if($this->isPost()){
-			$image = new Image;
-			$arv = [];
-			$arv["post_title"] = $this->input->post("post_title");
-			$arv["post_image"] = $image->saveImageUpload($this->input->post("post_image"), "image",@$data->post_image);
-			$arv["post_content"] = $this->input->post("content");
-			$arv["post_tag"] = $this->input->post("post_tag");
-			$arv["language"] = $this->config->item("language");
-
-			$this->posts_model->create($id, $arv, $this->input->post("catalog"));
-			$this->go("posts/enterprise/posts");
-		}
-
-		$catalog_id = [];
-		if(isset($data->catalog)){
-			foreach ($data->catalog as $key => $value) {
-				$catalog_id[] = $value->catalog_id;
-			}
-		}
-		
-
-		$catalog = $this->catalog_model->dropdown(false,"checkbox",$catalog_id);
-
-		$this->view($this->get_views('posts-create'),["catalog" => $catalog, "data" => $data]);
-	}
-
-
-	/*
-	Gallery
-	*/
-
-
-	public function gallery($id=false){
-		if($this->isPost()){
-			$arv = [];
-			$arv["gallery_name"] = $this->input->post("gallery_name");
-			$id = $this->posts_model->create_gallery($id, $arv);
-			$this->toJson(["id" => $id]);
-			exit();
-		}
-		$data = $this->posts_model->getListGallery();
-		$this->view($this->get_views('gallery'),["data" => $data]);
-	}
-
-	public function gimage($gid=false){
-		$data = $this->posts_model->getInfoGallery(false, $gid);
-		$this->view($this->get_views('gallery-image'),["data" => $data]);
-	}
-
-	/*
-	Video
-	*/
-	public function video(){
-		$this->view($this->get_views('video'),[]);
 	}
 }

@@ -9,14 +9,14 @@ use \Sonata\Forms;
 class Controller extends MX_Controller {
 
 	public $setLayout = "default";
-	public $header = ["title" => "", "description" => "Advanced cloud hosting platform with 24/7 Expert Support &amp; 8 Datacenter Locations. We will handle caching, transfers, security, updates.", "keyword" => "", "image" => ""];
+	public $header = ["title" => "CMS Blockchain 4.0", "description" => "Advanced cloud hosting platform with 24/7 Expert Support &amp; 8 Datacenter Locations. We will handle caching, transfers, security, updates.", "keyword" => "", "image" => ""];
 	function __construct()
 	{
 		parent::__construct();
 		
 		$this->load->helper(['url','form','string','text']);
 		$this->load->library(['session','email','user_agent','form_validation']);
-		$this->load->model(['pages/pages_model','posts/catalog_model','posts/posts_model']);
+		$this->load->model(['account/account_model','pages/pages_model','posts/catalog_model','posts/posts_model','posts/gallery_model']);
 		$this->forms = new Forms;
 		$this->domain = str_replace(['http://','https://','www.','/'],'', base_url());
 		define("TEMPLATE_ACTIVE","default");
