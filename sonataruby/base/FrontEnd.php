@@ -9,6 +9,6 @@ class FrontEnd extends Controller{
 	function __construct()
 	{
 		parent::__construct();
-		
+		define("IS_FRONTEND",true);
 	}
 }

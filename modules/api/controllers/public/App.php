@@ -49,4 +49,16 @@ class App extends Services {
 		$this->response(["server" => "http://192.168.1.10","data" => $data]);
 	}
 
+	public function imagemanager_get(){
+		$arv = [];
+		$arv[] = [
+			"url" => "http://exmaple.com/images/photo1.jpg",
+			"thumb" => "http://exmaple.com/thumbs/photo1.jpg",
+			"tag" => "flower",
+			"name" => "Photo 1 Name",
+    		"id" => "103454285"
+			];
+		$this->response($arv);
+	}
+
 }

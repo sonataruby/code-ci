@@ -16,7 +16,7 @@ class Controller extends MX_Controller {
 		
 		$this->load->helper(['url','form','string','text']);
 		$this->load->library(['session','email','user_agent','form_validation']);
-		$this->load->model(['account/account_model','pages/pages_model','posts/catalog_model','posts/posts_model','posts/gallery_model']);
+		$this->load->model(['account/account_model','pages/layout_model', 'pages/pages_model','posts/catalog_model','posts/posts_model','posts/gallery_model']);
 		$this->forms = new Forms;
 		$this->domain = str_replace(['http://','https://','www.','/'],'', base_url());
 		if(file_exists(CONFIG_LOCAL . $this->domain.".json")){

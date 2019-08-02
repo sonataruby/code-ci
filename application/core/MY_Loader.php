@@ -37,8 +37,10 @@ class MY_Loader extends MX_Loader {
         }
 
         /*Load template*/
-        $settemplate = CMS_THEMEPATH . TEMPLATE_ACTIVE . DIRECTORY_SEPARATOR;
-        if(is_dir($settemplate)) $this->_ci_view_paths[$settemplate] = true;
+        if(defined("IS_FRONTEND") ){
+            $settemplate = CMS_THEMEPATH . TEMPLATE_ACTIVE . DIRECTORY_SEPARATOR;
+            if(is_dir($settemplate)) $this->_ci_view_paths[$settemplate] = true;
+        }
         $this->_setups = true;
     }
 

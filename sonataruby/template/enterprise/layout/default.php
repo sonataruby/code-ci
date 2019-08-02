@@ -74,7 +74,7 @@
 
           <ul class="nav flex-column">
             <li class="nav-item">
-              <a class="nav-link bannerHeader text-white" href="#"><i class="fab fa-accusoft fa-2x"></i> <span>Dashboard</span></a>
+              <a class="nav-link bannerHeader text-white" href="/home/enterprise"><i class="fab fa-accusoft fa-2x"></i> <span>Dashboard</span></a>
               
               <div id="multiCollapseExample2" class="slidebar">
                 <div class="menuHeader">
@@ -89,6 +89,17 @@
             <li class="nav-item" id="pages">
               <a class="nav-link active" href="#"><i class="fa fa-file-word"></i> <span>Pages</span></a>
               <div id="multiCollapseExample2" class="slidebar">
+                <div class="menuHeader">
+                  <h4>Layout <a class="btn btn-primary btn-sm float-right" href="/pages/layout/create" sn-link="true" parent-controller="#pages"><i class="fa fa-plus"></i> Add</a></h4>
+                  <p>Quản lý trang giao diện</p>
+
+                </div>
+                 <?php
+                  $data = get_instance()->pages_model->getList();
+                  foreach ($data as $key => $value) { ?>
+                    <a class="dropdown-item" href="/pages/enterprise/create/<?php echo $value->id;?>" sn-link="true" parent-controller="#pages"><i class="<?php echo ($value->icoin ? $value->icoin : "fa fa-file-word");?>"></i> <?php echo $value->name;?></a>
+                  <?php } ?>
+
                 <div class="menuHeader">
                   <h3>Pages <a class="btn btn-primary btn-sm float-right" href="/pages/enterprise/create" sn-link="true" parent-controller="#pages"><i class="fa fa-plus"></i> Add</a></h3>
                   <p>Quản lý trang</p>
@@ -155,8 +166,8 @@
               <a class="nav-link" href="#"><i class="fa fa-tasks"></i> <span>Task</span></a>
             </li>
 
-            <li class="nav-item">
-              <a class="nav-link" href="#"><i class="fa fa-cogs"></i> <span>Settings</span></a>
+            <li class="nav-item" id="settings">
+              <a class="nav-link" href="/settings/enterprise/configs" sn-link="true" parent-controller="#settings"><i class="fa fa-cogs"></i> <span>Settings</span></a>
             </li>
           </ul>
       </div>

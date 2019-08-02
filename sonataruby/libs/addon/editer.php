@@ -1,8 +1,32 @@
 <?php libs_url("editor/css/froala_editor.css");?>
 <?php libs_url("editor/css/froala_editor.pkgd.css");?>
+<style type="text/css">
+  .fr-qi-helper a.fr-btn.fr-floating-btn{
+    padding: 1px 10px;
+  }
+</style>
+<script type="text/html" id="makeTools">
+<div class="row">
+  <?php 
+  $libs = [
+    ["name" => "Section", "html" => '<section><div class="container"><div class="row"><div class="col-6">Text</div><div class="col-6">Text</div></div></div></section>'],
+    ["name" => "Container", "html" => '<div class="container"></div>'],
+    ["name" => "Row", "html" => '<div class="row"><div class="col-lg-6 col-sm-12">Text</div><div class="col-lg-6 col-sm-12">Text</div></div>'],
+    ["name" => "Text", "html" => 'Text'],
+  ];
+  foreach($libs as $key => $value){ ?>
+    <div class="col-6 mb-3">
+      <div class="border" style="padding: 10px;" data-item="true">
+        <?php echo $value["name"];?>
+        <dd style="display:none;"><?php echo $value["html"];?></dd>
+      </div>
+    </div>
+  <?php } ?>
+</div>
+</script>
 
 <script type="text/javascript">
-
+  var objEditer;
   function install(){
     var name = $("<?php echo $target;?>").attr("name");
   
@@ -12,19 +36,25 @@
     }
     
     
-    var editer = new FroalaEditor('<?php echo $target;?>',{
 
+    var editer = new FroalaEditor('<?php echo $target;?>',{
+      
       toolbarInline: true,
       charCounterCount: false,
       placeholderText: '<div class="placeholder">Click here add content</div>',
       iframe : false,
       videoAllowedProviders: ['youtube', 'vimeo'],
-      quickInsertButtons: ['image','video', 'table', 'ol', 'ul', 'myButton'],
-      pluginsEnabled: ['quickInsert', 'image', 'video','table', 'lists'],
+      quickInsertButtons: ['image','video', 'table', 'ol', 'ul'],
+      pluginsEnabled: ['quickInsert', 'image', 'video','table', 'lists','bootstrap'],
       //height : 550,//
+      bootstrapToolTarget : '<?php echo @$tools_desktop;?>',
+      bootstrapToolContent : $("#makeTools").html(),
       imageMove: false,
       imageOutputSize: false,
       imageResizeWithPercent: true,
+      imageManagerLoadURL: "/api/public/app/imagemanager",
+      imageManagerLoadMethod: "GET",
+      imageEditButtons: ['imageReplace', 'imageAlign', 'imageRemove', '|', 'imageLink', 'linkOpen', 'linkEdit', 'linkRemove', '-', 'imageDisplay', 'imageStyle', 'imageAlt', 'imageSize'],
       imageStyles: {
         "w-100": 'Full Width',
         "border": 'Border',
@@ -46,14 +76,24 @@
 
       },
       events: {
+        initialized: function () {
+          this.events.focus();
+        },
         contentChanged: function () {
           
           $("form<?php echo $form;?>").find('textarea[name="'+name+'"]').val(this.html.get());
+        },
+        'edit.on': function () {
+          // Do something here.
+          // this is the editor instance.
+          objEditer = this;
         }
       }
       //iframeStyleFiles : ['https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css']
     });
-
+    
+   
+   
 
     $("form<?php echo $form;?>").bind("submit", function(){
         $("form<?php echo $form;?>").find('textarea[name="'+name+'"]').val(editer.html.get());
@@ -62,7 +102,7 @@
 
 
 jQuery(document).ready(function(){
-  getScripts(["/libs/editor/js/froala_editor.min.js","/libs/editor/js/froala_editor.pkgd.min.js"], function () {
+  getScripts(["/libs/editor/js/froala_editor.min.js","/libs/editor/js/froala_editor.pkgd.min.js", "/libs/js/froala/bootstrap.js"], function () {
     install();
   });
   

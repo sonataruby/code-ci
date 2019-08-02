@@ -6,6 +6,7 @@ class Dashboard extends FrontEnd {
 	
 	public function index()
 	{
-		$this->view('welcome_message');
+		print_r("Khoa");
+		$this->view('home');
 	}
 }
