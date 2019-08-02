@@ -1,5 +1,7 @@
 config/*
 cache/*
+package-lock.json
+composer.lock
 develop
 vendor
 create.sh
