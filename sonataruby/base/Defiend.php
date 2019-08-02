@@ -8,6 +8,53 @@ define("CMS_THEMEPATH",FCPATH . "template" . DIRECTORY_SEPARATOR);
 define("CMS_THEME_ENTERPRISE_PATH",CMS_ROOTPATH . "template/enterprise/" . DIRECTORY_SEPARATOR);
 define("CMS_THEME_PERSONAL_PATH",CMS_ROOTPATH . "template/personal/" . DIRECTORY_SEPARATOR);
 define("UPLOAD_PATH", FCPATH . DIRECTORY_SEPARATOR . "upload" . DIRECTORY_SEPARATOR);
+define("CONFIG_LOCAL", FCPATH . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR);
+
+if(!function_exists("autoload_file")){
+	function autoload_file($path=""){
+		if(defined("BASE_ENTERPRISE")){
+            $spath = CMS_THEME_ENTERPRISE_PATH . $path;
+            if(file_exists($spath)){
+            	include_once $spath;
+            }
+        }
+        
+        if(defined("BASE_PERSONAL")){
+            
+            $spath = CMS_THEME_PERSONAL_PATH . $path;
+            if(file_exists($spath)){
+            	include_once $spath;
+            }
+            
+        }
+        $file = CMS_THEMEPATH . TEMPLATE_ACTIVE . DIRECTORY_SEPARATOR . $path;
+        if(file_exists($file)){
+        	include_once $file;
+        }
+        
+	}
+	if(file_exists(CONFIG_LOCAL . "localhost.json")){
+		
+
+		$base_url  = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") || (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' || !empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] == 'on')) ?  "https" : "http";
+        $base_url .= "://".$_SERVER['HTTP_HOST'];
+        $base_url .= str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']);
+        $base_url = str_replace(['http://','https://','www.','/'],'',$base_url);
+		
+		$json = json_decode(file_get_contents(CONFIG_LOCAL . $base_url.".json"));
+
+		if(!defined("TEMPLATE_ACTIVE")){
+			define("TEMPLATE_ACTIVE", $json->template);
+		}
+
+		if(!defined("DOMAIN")){
+			define("DOMAIN", $base_url);
+			define("BASE_URL", ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") || (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' || !empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] == 'on')) ?  "https" : "http" . "://".$base_url);
+		}
+
+	}
+	autoload_file("function.php");
+}
 
 if(!function_exists("template_url")){
 	function template_url($path="", $arv=[]){

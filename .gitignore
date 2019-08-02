@@ -1,3 +1,5 @@
-
+config/*
+cache/*
 develop
 vendor
+create.sh

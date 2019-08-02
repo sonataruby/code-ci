@@ -19,31 +19,46 @@ class Controller extends MX_Controller {
 		$this->load->model(['account/account_model','pages/pages_model','posts/catalog_model','posts/posts_model','posts/gallery_model']);
 		$this->forms = new Forms;
 		$this->domain = str_replace(['http://','https://','www.','/'],'', base_url());
-		define("TEMPLATE_ACTIVE","default");
+		if(file_exists(CONFIG_LOCAL . $this->domain.".json")){
+			$json = json_decode(file_get_contents(CONFIG_LOCAL . "localhost.json"));
+			
+			if(!defined("TEMPLATE_ACTIVE")){
+				define("TEMPLATE_ACTIVE", $json->template);
+			}
+			foreach ($json as $key => $value) {
+				$this->config->set_item($key, $value);
+			}
+
+			$this->setTitle(@$json->site_name);
+			$this->setDescription(@$json->description);
+			$this->setKeyword(@$json->keyword);
+			$this->setImage(@$json->image);
+		}
+		//define("TEMPLATE_ACTIVE","default");
 		
 	}
 
 	private function setLayout($layout=""){
-		$this->setLayout = $layout;
+		if($layout) $this->setLayout = $layout;
 		return $this;
 	}
 	public function setTitle($text){
-		$this->header["title"] = $text;
+		if($text) $this->header["title"] = $text;
 		return $this;
 	}
 
 	public function setKeyword($text){
-		$this->header["keyword"] = $text;
+		if($text) $this->header["keyword"] = $text;
 		return $this;
 	}
 
 	public function setDescription($text){
-		$this->header["description"] = $text;
+		if($text) $this->header["description"] = $text;
 		return $this;
 	}
 
 	public function setImage($text){
-		$this->header["image"] = $text;
+		if($text) $this->header["image"] = $text;
 		return $this;
 	}
 

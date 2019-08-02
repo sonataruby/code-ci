@@ -12,12 +12,8 @@ class MY_Loader extends MX_Loader {
     {
         parent::__construct();
         $this->_ci_view_paths = [];
-        $base_url  = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") || (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' || !empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] == 'on')) ?  "https" : "http";
-        $base_url .= "://".$_SERVER['HTTP_HOST'];
-        $base_url .= str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']);
-
-       
-        $this->config->set_item("base_url",$base_url);
+        
+        $this->config->set_item("base_url",BASE_URL);
         $this->config->set_item("index_page","");
         
 
