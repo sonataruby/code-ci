@@ -50,6 +50,8 @@ class MY_Loader extends MX_Loader {
         if(!$this->_setups) $this->_setups();
         list($path, $_view) = Modules::find($view, $this->_module, 'views/');
 
+        
+
         if ($path != FALSE)
         {
             if(defined("IS_ADMIN")){
@@ -60,8 +62,36 @@ class MY_Loader extends MX_Loader {
             
             $view = $_view;
         }
+
+        if(defined("IS_PLUGINS")){
+            foreach ($this->_ci_plugins as $key => $value) {
+                if($value == true){
+                    list($path, $_plugin) = explode('/', $key);
+                    $f_path = array_keys(CMS_MODULESPATH)[0];
+                    $plugin_view = $f_path.$path."/views/";
+                    $this->_ci_view_paths = array_merge($this->_ci_view_paths,array($plugin_view => TRUE)) ;
+                }
+            }
+        }
+
         if(is_dir(CMS_SHAREPATH)) $this->_ci_view_paths[CMS_SHAREPATH] = true;
         
         return $this->_ci_load(array('_ci_view' => $view, '_ci_vars' => ((method_exists($this,'_ci_object_to_array')) ? $this->_ci_object_to_array($vars) : $this->_ci_prepare_view_vars($vars)), '_ci_return' => $return));
     }
+
+
+    public function getPlugin($plugin, $options=[], $content=""){
+        
+        if(!$plugin) return "";
+
+        $this->plugin($plugin);
+        
+        $pluginData = ucfirst(basename($plugin))."_pi";
+        if(class_exists($pluginData)){
+            $pluginData = new $pluginData;
+            return $pluginData->data($options, $content);
+        }
+        return "";
+    }
+
 }

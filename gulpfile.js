@@ -51,7 +51,7 @@ gulp.task('less', function() {
 gulp.task('cssmin', function() {
     return gulp.src(['develop/css/*.css'])
         .pipe(cssmin())
-        .pipe(autoprefixer({browsers: AUTOPREFIXER_BROWSERS}))
+        //.pipe(autoprefixer({browsers: AUTOPREFIXER_BROWSERS}))
         .pipe(csso())
         .pipe(gulp.dest("libs/css"))
         .pipe(browserSync.stream());

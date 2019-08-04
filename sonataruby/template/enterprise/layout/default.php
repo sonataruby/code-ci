@@ -95,9 +95,9 @@
 
                 </div>
                  <?php
-                  $data = get_instance()->pages_model->getList();
+                  $data = get_instance()->layout_model->getList();
                   foreach ($data as $key => $value) { ?>
-                    <a class="dropdown-item" href="/pages/enterprise/create/<?php echo $value->id;?>" sn-link="true" parent-controller="#pages"><i class="<?php echo ($value->icoin ? $value->icoin : "fa fa-file-word");?>"></i> <?php echo $value->name;?></a>
+                    <a class="dropdown-item" href="/pages/layout/create/<?php echo $value->id;?>" sn-link="true" parent-controller="#pages"><i class="fa fa-file-word"></i> <?php echo $value->name;?></a>
                   <?php } ?>
 
                 <div class="menuHeader">
@@ -140,21 +140,23 @@
                   <h3>Template</h3>
                   <p>Menu controller posts</p>
                 </div>
-                <a class="dropdown-item" href="#" sn-link="true" parent-controller="#templates">Manager</a>
-                <a class="dropdown-item" href="#" sn-link="true" parent-controller="#templates">Search Templates</a>
-                <a class="dropdown-item" href="#" sn-link="true" parent-controller="#templates">Backup & Upload</a>
+                <a class="dropdown-item" href="/settings/enterprise/template/manager" sn-link="true" parent-controller="#templates">Manager</a>
+                <a class="dropdown-item" href="/settings/enterprise/template/search" sn-link="true" parent-controller="#templates">Search Templates</a>
+                <a class="dropdown-item" href="/settings/enterprise/template/backups" sn-link="true" parent-controller="#templates">Backup & Upload</a>
+                <a class="dropdown-item" href="/settings/enterprise/template/manager" sn-link="true" parent-controller="#templates">CSS Develop</a>
+                <a class="dropdown-item" href="/settings/enterprise/template/manager" sn-link="true" parent-controller="#templates">Item Develop</a>
               </div>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" id="apps">
               <a class="nav-link" href="#"><i class="fa fa-sitemap"></i> <span>Apps</span></a>
               <div id="multiCollapseExample2" class="slidebar">
                 <div class="menuHeader">
                   <h3>Apps</h3>
                   <p>Menu controller posts</p>
                 </div>
-                <a class="dropdown-item" href="#" sn-link="true" parent-controller="#templates">Manager</a>
-                <a class="dropdown-item" href="#" sn-link="true" parent-controller="#templates">Search Templates</a>
-                <a class="dropdown-item" href="#" sn-link="true" parent-controller="#templates">Backup & Upload</a>
+                <a class="dropdown-item" href="/settings/enterprise/addon/manager" sn-link="true" parent-controller="#apps">Manager</a>
+                <a class="dropdown-item" href="/settings/enterprise/addon/search" sn-link="true" parent-controller="#apps">Search Apps</a>
+                <a class="dropdown-item" href="/settings/enterprise/addon/backups" sn-link="true" parent-controller="#apps">Backup & Upload</a>
               </div>
             </li>
 
@@ -168,6 +170,15 @@
 
             <li class="nav-item" id="settings">
               <a class="nav-link" href="/settings/enterprise/configs" sn-link="true" parent-controller="#settings"><i class="fa fa-cogs"></i> <span>Settings</span></a>
+              <div id="multiCollapseExample2" class="slidebar">
+                <div class="menuHeader">
+                  <h3>Settings</h3>
+                  <p>Menu controller posts</p>
+                  
+                </div>
+                <a class="dropdown-item" href="/settings/enterprise/configs/api" sn-link="true" parent-controller="#settings"><i class="fa fa-api"></i> API Manager</a>
+                <a class="dropdown-item" href="/settings/enterprise/configs" sn-link="true" parent-controller="#settings"><i class="fa fa-cogs"></i> System Settings</a>
+              </div>
             </li>
           </ul>
       </div>

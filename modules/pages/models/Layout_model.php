@@ -5,31 +5,46 @@ class Layout_model extends Model{
 	private $table = "pages_layout";
 
 	public function create($id=false, $arv=[]){
-		$arv["page_url"] = $this->makeURL($arv["page_name"], $arv["page_url"], $id);
+		$arv["layout_url"] = $this->makeURL($arv["layout_name"], $arv["layout_url"], $id);
 		if($id){
-			$this->db->update($this->table, $arv,["page_id" => $id]);
+			$this->db->update($this->table, $arv,["layout_id" => $id]);
 		}else{
 			$this->db->insert($this->table, $arv);
 			$id = $this->db->insert_id();
 		}
+		$this->cacheLayout($id);
 		return $id;
+	}
+
+
+	private function cacheLayout($id){
+		$this->load->helper('file');
+		$settemplate = CMS_THEMEPATH . TEMPLATE_ACTIVE . DIRECTORY_SEPARATOR . "layout" . DIRECTORY_SEPARATOR;
+		if(!is_dir($settemplate)) mkdir($settemplate, 0775, true);
+		$data = $this->getData(false, $id);
+		$settemplate .= $data->url.".php";
+		write_file($settemplate, $data->content,'wb');
 	}
 
 
 
 	public function getData($url="", $id=false, $language=false){
-		if(!$url && !$id) return;
+		if(!trim($url) && !$id) return;
 		if($url){
-			$this->db->where("page_url", $url);
+			$this->db->where("layout_url", $url);
 		}
 		if($id){
-			$this->db->where("page_id", $id);
+			$this->db->where("layout_id", $id);
 		}
 		$language = ($language ? $language : $this->config->item("language"));
 		$this->db->where("language", $language);
 
-		$this->db->select("page_id as id, page_name as name, page_image as image, page_description as description, page_keyword as keyword, page_layout as layout, page_url as url, page_icoin as icoin, page_tag as tag, page_content as content, show_menu, show_header, status");
+		$this->db->select("layout_id as id, layout_name as name, layout_image as image, layout_description as description, layout_keyword as keyword, layout_url as url, layout_content as content");
 		$data = $this->db->get($this->table)->row();
+
+		//$data->content = $this->makeContent($data->content);
+		if(!$data) return;
+
 		if (is_object(json_decode($data->image))){
 			$data->image = json_decode($data->image);
 		}else{
@@ -38,10 +53,36 @@ class Layout_model extends Model{
 		return $data;
 	}
 
+	private function makeContent($text){
+		if(defined("BASE_ENTERPRISE")){
+			$search = ['{content}'];
+			$replace = ['<div class="plugins content"></div>'];
+			return str_replace($search, $replace, $text);
+		}
+		return $text;
+	}
+
+
 	public function getList($language=false){
 		$language = ($language ? $language : $this->config->item("language"));
 		$this->db->where("language", $language);
-		$this->db->select("page_id as id, page_name as name, page_image as image, page_description as description, page_keyword as keyword, page_layout as layout, page_url as url, page_icoin as icoin, page_tag as tag, show_menu, show_header, status");
+		$this->db->select("layout_id as id, layout_name as name, layout_image as image, layout_description as description, layout_keyword as keyword, layout_url as url, layout_content as content");
 		return $this->db->get($this->table)->result();
 	}
+
+
+	private function makeURL($name, $url, $id=false){
+		if(trim($url)){
+			$name = $url;
+		}
+		if($id > 0){
+			$this->db->where("layout_id !=",$id);
+		}
+		$url = url_title(convert_accented_characters($name),"_",true);
+		$this->db->where("layout_url", $url);
+		$count = $this->db->get($this->table)->num_rows();
+
+		return $url.($count > 0 ? "_".$count : "");
+	}
+
 }

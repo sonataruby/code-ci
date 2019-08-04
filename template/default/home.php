@@ -1,3 +1,3 @@
 <div class="container">
-	Con bo Dashboard	
+	<?php echo @$data->content;?>	
 </div>

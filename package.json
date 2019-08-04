@@ -14,6 +14,7 @@
     "animate.css": "^3.7.2",
     "bootstrap": "^4.3.1",
     "browser-sync": "^2.26.3",
+    "codemirror": "^5.48.2",
     "del": "^3.0.0",
     "froala-editor": "^3.0.3",
     "gulp": "^4.0.0",
@@ -31,10 +32,10 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "less" : "node ./node_modules/gulp/bin/gulp.js less",
-    "css" : "node ./node_modules/gulp/bin/gulp.js cssmin",
-    "js" : "node ./node_modules/gulp/bin/gulp.js js",
-    "sacss" : "node ./node_modules/gulp/bin/gulp.js sacss"
+    "less": "node ./node_modules/gulp/bin/gulp.js less",
+    "css": "node ./node_modules/gulp/bin/gulp.js cssmin",
+    "js": "node ./node_modules/gulp/bin/gulp.js js",
+    "sacss": "node ./node_modules/gulp/bin/gulp.js sacss"
   },
   "author": "",
   "license": "ISC"

@@ -10,13 +10,13 @@ class Forms{
     /**
      * Form Builder Theme By Class and other informations
      */
+    public $template = false;
     protected $theme_templates = [
         
         'bootstrap4' => [
             // input and textarea and dropdown and multiselect
             'group_class' =>  'form-group',
-            'group_class' =>  'form-group',
-            'label_class' =>  '',
+            'label_class' =>  'col-sm-2 col-form-label',
             'input_class' => 'form-control',
             'input_error_class' => 'is-invalid',
             'requried_text' => '<span style="color:red;">(*)</span>',
@@ -50,7 +50,7 @@ class Forms{
         $extract["id"] = isset($extract["id"]) ? $extract["id"] : "InputText".random_string('alnum', 16);
         $extract = array_merge($extract,["class" => "form-control"]);
 
-        $group = isset($extract["group"]) ? true : false;
+        $group = isset($extract["group"]) ? $extract["group"] : false;
 
         $help = isset($extract["help"]) ? $extract["help"] : false;
 
@@ -64,9 +64,9 @@ class Forms{
         }
         $input = $append_before || $append_after ? '<div class="input-group">'.$append_before.$input.$append_after.'</div>' : $input;
 
+        $layout = isset($extract["layout"]) ? $extract["layout"] : false;
         return  $this->group_start($group).
-                $this->label($label, $extract["id"], $extract).
-                $input.
+                $this->renderTemplate($this->label($label, $extract["id"], $extract),$input, $layout).
                 $this->validate($name, $label,$extract).
                 $this->help($help, $extract["id"]).
                 $this->group_end($group);
@@ -146,12 +146,12 @@ class Forms{
 
         $extract["id"] = isset($extract["id"]) ? $extract["id"] : "InputSelect".random_string('alnum', 16);
         $extract = array_merge($extract,["class" => "form-control custom-select"]);
-        $group = isset($extract["group"]) ? true : false;
+        $group = isset($extract["group"]) ? $extract["group"] : false;
         $help = isset($extract["help"]) ? $extract["help"] : false;
+        $layout = isset($extract["layout"]) ? $extract["layout"] : false;
 
         return  $this->group_start($group).
-                $this->label($label, $extract["id"], $extract).
-                form_dropdown($name, $item, $select, $extract).
+                $this->renderTemplate($this->label($label, $extract["id"], $extract),form_dropdown($name, $item, $select, $extract), $layout).
                 $this->help($help, $extract["id"]).
                 $this->group_end($group);
     }
@@ -253,13 +253,13 @@ class Forms{
         $extract["id"] = isset($extract["id"]) ? $extract["id"] : "InputTextarea".random_string('alnum', 16);
         $extract = array_merge($extract,["class" => "form-control"]);
 
-        $group = isset($extract["group"]) ? true : false;
+        $group = isset($extract["group"]) ? $extract["group"] : false;
 
         $help = isset($extract["help"]) ? $extract["help"] : false;
+        $layout = isset($extract["layout"]) ? $extract["layout"] : false;
 
         return  $this->group_start($group).
-                (@$extract["label"] !== false ? $this->label($label, $extract["id"], $extract) : "").
-                form_textarea($name, $value, $extract).
+                $this->renderTemplate((@$extract["label"] !== false ? $this->label($label, $extract["id"], $extract) : ""),form_textarea($name, $value, $extract), $layout).
                 $this->help($help, $extract["id"]).
                 $this->group_end($group);
     }
@@ -371,61 +371,29 @@ class Forms{
         return $thumb.$this->upload($params, $extract);
     }
 
+
+    public function template($set=""){
+        $this->template = $set;
+        return $this;
+    }
+    public function renderTemplate($label, $text, $layout=""){
+        if($layout == "inline"){
+            return $label.'<div class="col-sm-10">'.$text.'</div>';
+        }
+        return $label. $text;
+    }
+
     public function label($name, $id="", $extract=[], $append=[]){
         if(isset($extract["data-spance"])) $name = $name." <em data-spance-lable>".$extract["data-spance"]."</em>";
         if(isset($extract["required"])) $name = $name ." ". $this->style["requried_text"];
-        
+
+        if(isset($extract["layout"]) && $extract["layout"] == "inline"){
+            $append = array_merge($append, ["class" => $this->style["label_class"]]);
+        }
         return form_label($name, $id,$append);
     }
 
-    public function link($link, $label, $extract=[]){
-        $name = isset($extract["type"]) ? $extract["type"] : "";
-        $hide_text = isset($extract["hide"]) ? 1 : 0;
-        
-
-        if($name == "edit"){
-            $extract["class"] = isset($extract["class"]) ? "btn btn-success ".$extract["class"] : "btn btn-success";
-            $label = '<i class="la la-edit"></i> '.($hide_text == 0 ? $label : "");
-        }
-
-
-        if($name == "find"){
-            $extract["class"] = isset($extract["class"]) ? $extract["class"] : "btn btn-success";
-            $label = '<i class="la la-search"></i> '.($hide_text == 0 ? $label : "");
-        }
-
-        if($name == "create"){
-            $extract["class"] = isset($extract["class"]) ? "btn btn-primary ".$extract["class"] : "btn btn-primary";
-            $label = '<i class="la la-plus"></i> '.($hide_text == 0 ? $label : "");
-        }
-
-        if($name == "save"){
-            $extract["class"] = isset($extract["class"]) ? "btn btn-primary ".$extract["class"] : "btn btn-primary";
-            $label = '<i class="la la-save"></i> '.($hide_text == 0 ? $label : "");
-        }
-
-        if($name == "delete"){
-            $extract["class"] = isset($extract["class"]) ? "btn btn-danger ".$extract["class"] : "btn btn-danger";
-            $label = '<i class="la la-trash"></i> '.($hide_text == 0 ? $label : "");
-        }
-
-        if($name == "import"){
-            $extract["class"] = isset($extract["class"]) ? "btn btn-success ".$extract["class"] : "btn btn-success";
-            $label = '<i class="la la-file-excel-o"></i> '.($hide_text == 0 ? $label : "");
-        }
-
-        if($name == "export"){
-            $extract["class"] = isset($extract["class"]) ? "btn btn-warning ".$extract["class"] : "btn btn-warning";
-            $label = '<i class="la la-file-word-o"></i> '.($hide_text == 0 ? $label : "");
-        }
-
-
-        if(!isset($extract["class"])){
-            $extract["class"] = 'btn btn-primary';
-        }
-
-        return '<a href="'.site_url($link).'" '._stringify_attributes($extract).'>'.$label.'</a>';
-    }
+   
 
 
     public function help($text, $id=""){
@@ -440,10 +408,40 @@ class Forms{
     }
 
     public function group_start($on=false){
-        if($on) return '<div class="form-group">';
+        if($on) return '<div class="form-group '.$on.'">';
     }
 
     public function group_end($on=false){
         if($on) return '</div>';
+    }
+
+
+    public function contact(){
+        return '<div class="form-row">
+                    <div class="form-group col-md-6">
+                      '.$this->text(["name" => "firstname", "label" => "First Name"],["required" => true]).'
+                    </div>
+                    <div class="form-group col-md-6">
+                      '.$this->text(["name" => "lastname", "label" => "Last Name"],["required" => true]).'
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    '.$this->textarea(["name" => "address", "label" => "Address"],["rows" => 2,"required" => true]).'
+                  </div>
+                  <div class="form-group">
+                    '.$this->textarea(["name" => "address", "label" => "Address 2"],["rows" => 2]).'
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      '.$this->text(["name" => "city", "label" => "City"],["required" => true]).'
+                    </div>
+                    <div class="form-group col-md-4">
+                      '.$this->select(["name" => "country", "label" => "Country"],["required" => true]).'
+                    </div>
+                    <div class="form-group col-md-2">
+                      '.$this->text(["name" => "zipcode", "label" => "Zipcode"]).'
+                    </div>
+                  </div>
+                  ';
     }
 }

@@ -11,6 +11,6 @@ class Configs extends Enterprise {
 	}
 
 	public function index(){
-		
+		$this->view($this->get_views('config'));
 	}
 }

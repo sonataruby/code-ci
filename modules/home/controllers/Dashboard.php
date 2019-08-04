@@ -6,7 +6,11 @@ class Dashboard extends FrontEnd {
 	
 	public function index()
 	{
-		print_r("Khoa");
-		$this->view('home');
+		$layout = $this->layout_model->getData("home");
+		$data = [];
+		if($layout){
+			$layout->content = $this->parser->parse_string($this->shortcode->run($layout->content), $data, true);
+		}
+		$this->view('home',["data" => $layout]);
 	}
 }

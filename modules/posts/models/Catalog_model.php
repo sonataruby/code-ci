@@ -44,6 +44,7 @@ class Catalog_model extends Model{
 		}else{
 			$this->db->where("catalog_parent",0);
 			$data = $this->db->get($this->table)->result();
+			if(!$data) return;
 			$arv = [];
 			foreach ($data as $key => $value) {
 				$count = $this->db->get($this->table,["catalog_parent" => $value->id])->num_rows();

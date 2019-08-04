@@ -271,7 +271,8 @@ class MX_Loader extends CI_Loader
 
 		if ($path === FALSE && ! is_file($_plugin = APPPATH.'plugins/'.$_plugin.EXT))
 		{
-			show_error("Unable to locate the plugin file: {$_plugin}");
+			return $this;
+			//show_error("Unable to locate the plugin file: {$_plugin}");
 		}
 
 		Modules::load_file($_plugin, $path);
@@ -285,6 +286,8 @@ class MX_Loader extends CI_Loader
 		foreach ($plugins as $_plugin) $this->plugin($_plugin);
 		return $this;
 	}
+
+
 
 	/** Load a module view **/
 	public function view($view, $vars = array(), $return = FALSE)

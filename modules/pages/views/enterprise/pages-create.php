@@ -37,11 +37,18 @@
 
 			<hr>
 
-			<?php echo $this->forms->select([
+			<?php 
+			
+                  $pageArv=[];
+                  foreach (get_instance()->layout_model->getList() as $key => $value) {  
+                  	$pageArv[$value->url] = $value->name;
+                  }
+
+			echo $this->forms->select([
 				"name" => "page_layout",
 				"label" => "Page Layout",
 				"value" => @$data->layout,
-				"options" => ["_bank" => "Bank", "default" => "Default", "layout" => "Layout"]
+				"options" => $pageArv
 			],[]);?>
 
 

@@ -7,7 +7,17 @@ function getScripts(scripts, callback) {
     });
 }
 
-
+$(document).ajaxStart(function () {
+   $("#loader").show();
+}).ajaxStop(function () {
+	$(".modal-backdrop").remove();
+  	setTimeout(function(){
+       $("#loader").hide();
+   },1000);
+});
+$.ajaxPrefilter(function( options, originalOptions, jqXHR ) { 
+	options.async = true; 
+});
 
 jQuery(document).ready(function(){
 	var autoMakeContent = function(){
@@ -43,17 +53,7 @@ jQuery(document).ready(function(){
 		autoMakeContent();
 	}
 	
-	$(document).ajaxStart(function () {
-	   $("#loader").show();
-	}).ajaxStop(function () {
-		$(".modal-backdrop").remove();
-	  	setTimeout(function(){
-	       $("#loader").hide();
-	   },1000);
-	});
-	$.ajaxPrefilter(function( options, originalOptions, jqXHR ) { 
-		options.async = true; 
-	});
+	
 
 	$("header .switchClass").bind("click", function(){
 		$("body").toggleClass("layout-small");

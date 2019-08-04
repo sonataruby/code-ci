@@ -143,6 +143,7 @@ class CI_Parser {
 		$replace = array();
 		foreach ($data as $key => $val)
 		{
+
 			$replace = array_merge(
 				$replace,
 				is_array($val)
@@ -189,6 +190,7 @@ class CI_Parser {
 	 */
 	protected function _parse_single($key, $val, $string)
 	{
+		
 		return array($this->l_delim.$key.$this->r_delim => (string) $val);
 	}
 

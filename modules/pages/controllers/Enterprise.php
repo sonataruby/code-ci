@@ -23,7 +23,7 @@ class Enterprise extends CPEnterprise {
 				"page_content" => $this->clearContent($this->input->post("content")),
 				"page_icoin" => $this->input->post("page_icoin"),
 				"page_tag" => $this->input->post("page_tag"),
-				"page_image" => $image->saveImageUpload($this->input->post("page_image"), "image",@$data->page_image),
+				"page_image" => $image->saveImageUpload($this->input->post("page_image"), "image",@$data->image),
 				"language" => $this->config->item("language")
 			];
 			$id = $this->pages_model->create($id, $arv);

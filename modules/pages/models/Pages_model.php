@@ -30,6 +30,8 @@ class Pages_model extends Model{
 
 		$this->db->select("page_id as id, page_name as name, page_image as image, page_description as description, page_keyword as keyword, page_layout as layout, page_url as url, page_icoin as icoin, page_tag as tag, page_content as content, show_menu, show_header, status");
 		$data = $this->db->get($this->table)->row();
+		if(!$data) return;
+		
 		if (is_object(json_decode($data->image))){
 			$data->image = json_decode($data->image);
 		}else{

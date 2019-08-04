@@ -6,6 +6,8 @@ use Exception;
 use stdClass;
 use \MX_Controller;
 use \Sonata\Forms;
+use \Sonata\Shortcode;
+use \Sonata\Parser;
 class Controller extends MX_Controller {
 
 	public $setLayout = "default";
@@ -34,6 +36,8 @@ class Controller extends MX_Controller {
 			$this->setKeyword(@$json->keyword);
 			$this->setImage(@$json->image);
 		}
+		$this->shortcode = new Shortcode;
+		$this->parser = new Parser;
 		//define("TEMPLATE_ACTIVE","default");
 		
 	}
@@ -147,7 +151,26 @@ class Controller extends MX_Controller {
 	}
 
 	public function clearContent($text){
-		$text = str_replace('<p data-f-id="pbf" style="text-align: center; font-size: 14px; margin-top: 30px; opacity: 0.65; font-family: sans-serif;">Powered by <a href="https://www.froala.com/wysiwyg-editor?pb=1" title="Froala Editor">Froala Editor</a></p>','',$text);
+		$search = [
+			'<p data-f-id="pbf" style="text-align: center; font-size: 14px; margin-top: 30px; opacity: 0.65; font-family: sans-serif;">Powered by <a href="https://www.froala.com/wysiwyg-editor?pb=1" title="Froala Editor">Froala Editor</a></p>',
+			'<p><br></p>',
+			'<br></div>',
+			'fr-fic','fr-dib','fr-dii'
+		];
+		$replace = [
+			'',
+			'',
+			'</div>',
+			'','',''
+		];
+
+		$text = str_replace($search,$replace,$text);
+		$plugin = ['content'];
+		foreach ($plugin as $key => $value) {
+			$text = str_replace('<div class="plugins '.$value.'"></div>', '{'.$value.'}', $text);
+		}
 		return $text;
 	}
+
+	
 }

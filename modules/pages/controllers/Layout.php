@@ -12,28 +12,25 @@ class Layout extends CPEnterprise {
 
 	public function create($id=false){
 		$image = new Image;
-		$data = $this->pages_model->getData(false, $id);
+		$data = $this->layout_model->getData(false, $id);
 		
 		if($this->isPost()){
 			$arv = [
-				"page_name" => $this->input->post("page_name"),
-				"page_description" => $this->input->post("page_description"),
-				"page_keyword" => $this->input->post("page_keyword"),
-				"page_layout" => $this->input->post("page_layout"),
-				"page_url" => $this->input->post("page_url"),
-				"page_content" => $this->clearContent($this->input->post("content")),
-				"page_icoin" => $this->input->post("page_icoin"),
-				"page_tag" => $this->input->post("page_tag"),
-				"page_image" => $image->saveImageUpload($this->input->post("page_image"), "image",@$data->page_image),
+				"layout_name" => $this->input->post("layout_name"),
+				"layout_description" => $this->input->post("layout_description"),
+				"layout_image" =>  $image->saveImageUpload($this->input->post("layout_image"),"image",@$data->image),
+				"layout_keyword" => $this->input->post("layout_keyword"),
+				"layout_url" => $this->input->post("layout_url"),
+				"layout_content" => $this->clearContent($this->input->post("content")),
 				"language" => $this->config->item("language")
 			];
-			$id = $this->pages_model->create($id, $arv);
+			$id = $this->layout_model->create($id, $arv);
 			$this->go("/pages/layout/create/{$id}");
 		}
-
-		$data = [];
-		$settemplate = CMS_THEMEPATH . TEMPLATE_ACTIVE . DIRECTORY_SEPARATOR . "layout" . DIRECTORY_SEPARATOR;
 		
 		$this->view($this->get_views('layout-create'),["data" => $data]);
 	}
+
+
+	
 }

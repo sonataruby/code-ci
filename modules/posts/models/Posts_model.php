@@ -39,6 +39,7 @@ class Posts_model extends Model{
 		}
 		$this->db->select("post_id as id, post_title as name, post_url as url, post_tag as tag, post_content as content, post_image as image, created_date, views");
 		$data = $this->db->get($this->table)->row();
+		if(!$data) return;
 		if (is_object(json_decode($data->image))){
 			$data->image = json_decode($data->image);
 		}else{

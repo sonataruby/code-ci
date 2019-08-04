@@ -4,18 +4,26 @@
   .fr-qi-helper a.fr-btn.fr-floating-btn{
     padding: 1px 10px;
   }
+  .tools_desktop{
+    max-width: 900px;
+    min-width: 900px;
+    padding:15px;
+  }
 </style>
+
 <script type="text/html" id="makeTools">
 <div class="row">
   <?php 
   $libs = [
-    ["name" => "Section", "html" => '<section><div class="container"><div class="row"><div class="col-6">Text</div><div class="col-6">Text</div></div></div></section>'],
+    ["name" => "Section", "html" => '<section class=""><div class="container"><div class="row"><div class="col-lg-6 col-sm-12">Text</div><div class="col-lg-6 col-sm-12">Text</div></div></div></section>'],
     ["name" => "Container", "html" => '<div class="container"></div>'],
     ["name" => "Row", "html" => '<div class="row"><div class="col-lg-6 col-sm-12">Text</div><div class="col-lg-6 col-sm-12">Text</div></div>'],
-    ["name" => "Text", "html" => 'Text'],
+    ["name" => "Text", "html" => '<p>Text</p>'],
+    ["name" => "Image", "html" => '<img src="" />'],
+    ["name" => "Video", "html" => '<video src="" />'],
   ];
   foreach($libs as $key => $value){ ?>
-    <div class="col-6 mb-3">
+    <div class="col-3 mb-3">
       <div class="border" style="padding: 10px;" data-item="true">
         <?php echo $value["name"];?>
         <dd style="display:none;"><?php echo $value["html"];?></dd>
@@ -45,7 +53,7 @@
       iframe : false,
       videoAllowedProviders: ['youtube', 'vimeo'],
       quickInsertButtons: ['image','video', 'table', 'ol', 'ul'],
-      pluginsEnabled: ['quickInsert', 'image', 'video','table', 'lists','bootstrap'],
+      pluginsEnabled: ['quickInsert', 'image', 'video','table', 'lists','bootstrap','html'],
       //height : 550,//
       bootstrapToolTarget : '<?php echo @$tools_desktop;?>',
       bootstrapToolContent : $("#makeTools").html(),

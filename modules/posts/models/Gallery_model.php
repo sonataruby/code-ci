@@ -55,6 +55,7 @@ class Gallery_model extends Model{
 			$this->db->where("gallery_id", $id);
 		}
 		$data = $this->db->get($this->table_gallery)->row();
+		if(!$data) return;
 		$data->image = $this->db->get_where($this->table_gallery_image,["gallery_id" => $data->id])->result();
 		return $data;
 	}
