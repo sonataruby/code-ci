@@ -50,7 +50,7 @@ class Image extends \CI_Image_lib{
 	}
 
 
-	public function saveImageUpload($data, $path="", $oldImg=[], $name=""){
+	public function saveImageUpload($data, $path="", $oldImg=[], $name="", $resize=[]){
 		if(empty($data)) return "";
 		if(!is_dir(UPLOAD_PATH . $path)){
 			mkdir(UPLOAD_PATH . $path, 0775, true);
@@ -86,6 +86,9 @@ class Image extends \CI_Image_lib{
 		$files = [];
 		foreach ($file as $key => $value) {
 			$files[] = str_replace(FCPATH, '', $value);
+			if($resize && is_array($resize)){
+				$this->resizeImage($value,$resize);
+			}
 		}
 		if(count($files) > 1){
 			return json_encode($files);
@@ -110,6 +113,24 @@ class Image extends \CI_Image_lib{
 	    $imageData = base64_decode($imageData);
 	    file_put_contents($fileName, $imageData);
 	    return $fileName;
+	}
+
+
+	public function resizeImage($source, $size){
+		foreach ($size as $key => $value) {
+			list($w,$h) = explode('x', trim($value));
+			$config['image_library'] = 'gd2';
+		    $config['source_image'] = $source;
+		    $config['create_thumb'] = false;
+		    $config['maintain_ratio'] = false;
+		    $config['width']     = $w;
+		    $config['height']   = $h;
+		    $config['new_image']        = str_replace(basename($source), "size-".$w."-".$h."-".basename($source), $source);
+
+		    $this->clear();
+		    $this->initialize($config);
+		    $this->resize();
+		}
 	}
 
 }

@@ -87,7 +87,7 @@ class Forms{
         $extract["id"] = isset($extract["id"]) ? $extract["id"] : "InputText".random_string('alnum', 16);
         $extract = array_merge($extract,["class" => "form-control"]);
 
-        $group = isset($extract["group"]) ? true : false;
+        $group = isset($extract["group"]) ? $extract["group"] : false;
         $size = isset($extract["size"]) ? $extract["size"] : "480x250";
         $raito = isset($extract["raito"]) ? $extract["raito"] : false;
         if($raito){
@@ -97,8 +97,9 @@ class Forms{
         $previewID = random_string('alnum', 16);
 
         $preview = (@$extract["preview"] ? 'upload-image-preview="'.@$extract["preview"].'"' : 'upload-image-preview="#Preview'.$previewID.'"');
+        $layout = isset($extract["layout"]) ? $extract["layout"] : false;
         return  $this->group_start($group).
-                $this->label($label, $extract["id"], $extract).
+                $this->renderTemplate($this->label($label, $extract["id"], $extract),
                 '
                 <div class="media">
                     <div id="Preview'.$previewID.'" class="img-thumbnail mr-3" style="width:120px;"><img src="'.site_url($value).'" alt="..." style="max-width:100%;"></div>
@@ -115,7 +116,7 @@ class Forms{
                         </div>
                     </div>
                 </div>
-                '.
+                ', $layout).
                 $this->validate($name, $label,$extract).
                 $this->help($help, $extract["id"]).
                 $this->group_end($group);
@@ -158,13 +159,14 @@ class Forms{
 
 
     public function country(array $params=[], $extract=[]){
-        $this->CI->load->database();
-        $data = json_decode(file_get_contents(CATALOG . "share/json/country/country.json"));
         $options = [];
-        foreach ($data as $key => $value) {
-            $options[$value->code] = $value->name;
-        }
-
+        //if(file_exists(CMS_SHAREPATH . "country.json")){
+            $data = json_decode(file_get_contents(CMS_SHAREPATH . "country.json"));
+            
+            foreach ($data as $key => $value) {
+                $options[$value->code] = $value->name;
+            }
+        //}
         $params["options"] = array_merge(isset($params["options"]) && is_array($params["options"]) ? $params["options"] : [], $options);
         
         return $this->select($params, $extract);
@@ -416,30 +418,34 @@ class Forms{
     }
 
 
-    public function contact(){
+    public function contact(array $params=[], $extract=[], $append=[]){
+        $name = $params["name"];
+        $value = @$params["value"];
         return '<div class="form-row">
                     <div class="form-group col-md-6">
-                      '.$this->text(["name" => "firstname", "label" => "First Name"],["required" => true]).'
+                      '.$this->text(["name" => $name."[firstname]", "label" => "First Name","value" => @$value->firstname],["required" => true]).'
                     </div>
                     <div class="form-group col-md-6">
-                      '.$this->text(["name" => "lastname", "label" => "Last Name"],["required" => true]).'
+                      '.$this->text(["name" =>  $name."[lastname]", "label" => "Last Name","value" => @$value->lastname],["required" => true]).'
                     </div>
                   </div>
                   <div class="form-group">
-                    '.$this->textarea(["name" => "address", "label" => "Address"],["rows" => 2,"required" => true]).'
+                    '.$this->textarea(["name" =>  $name."[address]", "label" => "Address","value" => @$value->address],["rows" => 2,"required" => true]).'
                   </div>
                   <div class="form-group">
-                    '.$this->textarea(["name" => "address", "label" => "Address 2"],["rows" => 2]).'
+                    '.$this->textarea(["name" =>  $name."[address2]", "label" => "Address 2","value" => @$value->address2],["rows" => 2]).'
                   </div>
                   <div class="form-row">
-                    <div class="form-group col-md-6">
-                      '.$this->text(["name" => "city", "label" => "City"],["required" => true]).'
-                    </div>
                     <div class="form-group col-md-4">
-                      '.$this->select(["name" => "country", "label" => "Country"],["required" => true]).'
+                      '.$this->country(["name" =>  $name."[country]", "label" => "Country","value" => @$value->country],["required" => true]).'
                     </div>
+
+                    <div class="form-group col-md-6">
+                      '.$this->text(["name" =>  $name."[city]", "label" => "City","value" => @$value->city],["required" => true]).'
+                    </div>
+                    
                     <div class="form-group col-md-2">
-                      '.$this->text(["name" => "zipcode", "label" => "Zipcode"]).'
+                      '.$this->text(["name" =>  $name."[zipcode]", "label" => "Zipcode","value" => @$value->zipcode]).'
                     </div>
                   </div>
                   ';

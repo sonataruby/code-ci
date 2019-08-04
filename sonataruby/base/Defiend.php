@@ -33,26 +33,25 @@ if(!function_exists("autoload_file")){
         }
         
 	}
-	if(file_exists(CONFIG_LOCAL . "localhost.json")){
+	
 		
 
 		$base_url  = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") || (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' || !empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] == 'on')) ?  "https" : "http";
         $base_url .= "://".$_SERVER['HTTP_HOST'];
         $base_url .= str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']);
         $base_url = str_replace(['http://','https://','www.','/'],'',$base_url);
-		
-		$json = json_decode(file_get_contents(CONFIG_LOCAL . $base_url.".json"));
-
-		if(!defined("TEMPLATE_ACTIVE")){
-			define("TEMPLATE_ACTIVE", $json->template);
-		}
-
+		$base_url = strtolower($base_url);
 		if(!defined("DOMAIN")){
 			define("DOMAIN", $base_url);
 			define("BASE_URL", ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") || (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' || !empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] == 'on')) ?  "https" : "http" . "://".$base_url);
 		}
+		if(file_exists(CONFIG_LOCAL . $base_url.".json")){
+			$json = json_decode(file_get_contents(CONFIG_LOCAL . $base_url.".json"));
 
-	}
+			if(!defined("TEMPLATE_ACTIVE")){
+				define("TEMPLATE_ACTIVE", (@$json->template ? @$json->template : "default"));
+			}
+		}
 	autoload_file("function.php");
 }
 

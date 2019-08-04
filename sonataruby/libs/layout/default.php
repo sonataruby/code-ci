@@ -11,8 +11,17 @@
       <meta name="datetime" content="<?php echo date("r");?>">
       <meta name="token" content="<?php echo date("r");?>">
       <link rel="canonical" href="<?php echo site_url();?>"/>
-      <link rel="icon" href="<?php echo @get_instance()->apps->icoin;?>" type="image/x-icon" />
-      <link rel="shortcut icon" href="<?php echo @get_instance()->apps->icoin;?>" type="image/x-icon" />
+
+      <link rel="icon" href="<?php echo site_url(config_item("icon"));?>" type="image/png" />
+      <link rel="icon" href="<?php echo site_url('upload/image/size-32-32-favicon.png');?>" sizes="32x32" type="image/png">
+      <link rel="icon" href="<?php echo site_url('upload/image/size-16-16-favicon.png');?>" sizes="16x16" type="image/png">
+      <link rel="icon" href="<?php echo site_url('upload/image/size-64-64-favicon.png');?>" sizes="64x64" type="image/png">
+      <link rel="shortcut icon" href="<?php echo site_url(config_item("icon"));?>" type="image/x-icon" />
+      <link rel="manifest" href="<?php echo site_url("manifest.json");?>">
+      <link rel="icon" href="<?php echo site_url("favicon.ico");?>">
+      <meta name="msapplication-config" content="<?php echo site_url("browserconfig.xml");?>">
+
+
       <meta name="description" content="<?php echo @$header["description"];?>">
       <meta name="keywords" content="<?php echo @$header["keyword"];?>">
       <meta name="robots" content="index,follow"/>
