@@ -2,7 +2,7 @@
 namespace Sonata;
 use Exception;
 use stdClass;
-include BASEPATH . "libraries/image_lib.php";
+include BASEPATH . "libraries/Image_lib.php";
 class Image extends \CI_Image_lib{
 	function __construct()
 	{
