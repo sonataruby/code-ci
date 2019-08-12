@@ -1,6 +1,6 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
 namespace Sonata;
+defined('BASEPATH') OR exit('No direct script access allowed');
 use Exception;
 use stdClass;
 use \Sonata\Controller;
