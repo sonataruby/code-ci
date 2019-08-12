@@ -1,5 +1,7 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php 
 namespace Sonata;
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 /**
  * CodeIgniter Curl Class
  *

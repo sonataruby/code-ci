@@ -1,6 +1,6 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
 namespace Sonata;
+defined('BASEPATH') OR exit('No direct script access allowed');
 require_once CMS_HMVCPATH."Controller.php";
 use Exception;
 use stdClass;
