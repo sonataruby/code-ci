@@ -32,18 +32,21 @@ class Pages_model extends Model{
 		$data = $this->db->get($this->table)->row();
 		if(!$data) return;
 		
-		if (is_object(json_decode($data->image))){
-			$data->image = json_decode($data->image);
-		}else{
-			$data->image = [$data->image];
-		}
+		$data->image = isObject($data->image);
 		return $data;
 	}
 
-	public function getList($language=false){
+	public function getList($arv=[],$language=false){
+		
 		$language = ($language ? $language : $this->config->item("language"));
+		
 		$this->db->where("language", $language);
+		
+		if(isset($arv["in"])){
+			$this->db->where_in("page_id", $arv["in"]);
+		}
 		$this->db->select("page_id as id, page_name as name, page_image as image, page_description as description, page_keyword as keyword, page_layout as layout, page_url as url, page_icoin as icoin, page_tag as tag, show_menu, show_header, status");
+
 		return $this->db->get($this->table)->result();
 	}
 

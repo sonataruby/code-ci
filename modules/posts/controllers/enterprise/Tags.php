@@ -18,6 +18,6 @@ class Tags extends Enterprise {
 	Gallery
 	*/
 	public function video(){
-		$this->view($this->get_views('video'),[]);
+		$this->view('video',[]);
 	}
 }

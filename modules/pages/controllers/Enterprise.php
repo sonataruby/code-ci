@@ -31,6 +31,6 @@ class Enterprise extends CPEnterprise {
 		}
 
 		
-		$this->view($this->get_views('pages-create'),["data" => $data]);
+		$this->view('pages-create',["data" => $data]);
 	}
 }

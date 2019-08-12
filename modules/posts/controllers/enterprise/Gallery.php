@@ -37,7 +37,7 @@ class Gallery extends Enterprise {
 	}
 	public function gimage($gid=false){
 		$data = $this->gallery_model->getInfoGallery(false, $gid);
-		$this->view($this->get_views('gallery-image'),["data" => $data]);
+		$this->view('gallery-image',["data" => $data]);
 	}
 
 }

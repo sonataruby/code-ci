@@ -25,8 +25,8 @@
 		<?php echo $this->forms->gallery([
 			"name" => "post_image[]",
 			"label" => "Thumnail Image",
-			"value" => @$data->image
-		],[]);?>
+			"value" => is_string(@$data->image) ? [@$data->image] : @$data->image,
+		],["number" => 6]);?>
 		
 		<div class="hbox border ">
 			<div class="btn-group" role="group" aria-label="Basic example">

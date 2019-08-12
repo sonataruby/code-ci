@@ -13,8 +13,8 @@ class MY_Loader extends MX_Loader {
         parent::__construct();
         $this->_ci_view_paths = [];
         
-        $this->config->set_item("base_url",BASE_URL);
-        $this->config->set_item("index_page","");
+        //$this->config->set_item("base_url",BASE_URL);
+        //$this->config->set_item("index_page","");
         
 
     }
@@ -83,7 +83,17 @@ class MY_Loader extends MX_Loader {
     public function getPlugin($plugin, $options=[], $content=""){
         
         if(!$plugin) return "";
+        /*
+        Detach Plugins Install
+        */
+        $libplugin = array_keys((array)config_item("plugins"));
 
+        if(!in_array($plugin, $libplugin)) return false;
+
+
+        /*
+        Call Plugins Function
+        */
         $this->plugin($plugin);
         
         $pluginData = ucfirst(basename($plugin))."_pi";
@@ -92,6 +102,10 @@ class MY_Loader extends MX_Loader {
             return $pluginData->data($options, $content);
         }
         return "";
+    }
+
+    public function getModuleName(){
+        return $this->_module;
     }
 
 }

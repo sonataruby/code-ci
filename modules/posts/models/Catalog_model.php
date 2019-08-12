@@ -21,7 +21,7 @@ class Catalog_model extends Model{
 
 
 
-	public function getData($url="", $id=false){
+	public function getData($url="", $id=false, $loadpost=false, $loadList=false){
 		if(!$url && !$id) return;
 		if($url){
 			$this->db->where("catalog_url", $url);
@@ -30,14 +30,25 @@ class Catalog_model extends Model{
 			$this->db->where("catalog_id", $id);
 		}
 
-		return $this->db->get($this->table)->row();
+		$data = $this->db->get($this->table)->row();
+		if($loadpost && $data){
+			$data->posts = $this->posts_model->getList(["catalog" => $data->catalog_id]);
+		}
+		if($loadList && $data){
+			$data->listCatalog = $this->dropdown(false, "ul");
+		}
+		return $data;
 	}
 
-	public function getList($language=false, $relaytion=false){
+	public function getList($arv=[], $language=false, $relaytion=false){
 		$language = ($language ? $language : $this->config->item("language"));
 		$this->db->where("language", $language);
 		$this->db->order_by("catalog_sort","ASC");
 		$this->db->select("catalog_id as id, catalog_name as name, catalog_url as url, catalog_parent as parent, show_menu, show_header, show_dashboard, status");
+		
+		if(isset($arv["in"])){
+			$this->db->where_in("catalog_id", $arv["in"]);
+		}
 
 		if($relaytion == false){
 			return $this->db->get($this->table)->result();
@@ -75,11 +86,11 @@ class Catalog_model extends Model{
 	}
 
 	public function dropdown($language=false, $tag="select", $attr=[]){
-		$dataList = $this->getList($language, true);
+		$dataList = $this->getList([],$language, true);
 		if($tag == "select"){
 			$data = $this->dropdown_item($dataList);
 		}else if($tag == "ul"){
-			$data = $this->dropdown_item_ul($dataList);
+			$data = $this->dropdown_item_ul($dataList, false, array_merge($attr,["class" => "catalog-box list-group list-group-flush", "icon" => "fa fa-angle-double-right", "icon_pick" => "fa fa-chevron-right"]));
 		}else if($tag == "checkbox"){
 			$data = $this->dropdown_item_checkbox($dataList, $attr);
 		}
@@ -101,14 +112,22 @@ class Catalog_model extends Model{
 	}
 
 
-	private function dropdown_item_ul($arv=[], $prefix=false){
-		$html = '<ul class="list-group list-group-flush">';
+	private function dropdown_item_ul($arv=[], $prefix=false, $attr=["class" => "catalog-box list-group list-group-flush"]){
+		if(!$arv) return;
+
+		$icon = isset($attr["icon"]) ? '<i class="'.$attr["icon"].' icon-row"></i> ' : "";
+		$icon_pick = isset($attr["icon_pick"]) ? ' <i class="'.$attr["icon_pick"].' icon-pick"></i>' : "";
+
+		if($icon) unset($attr["icon"]);
+		if($icon_pick) unset($attr["icon_pick"]);
+
+		$html = '<ul '._stringify_attributes($attr).'>';
 		foreach ($arv as $key => $value) {
 			
 			
-			$html .= '<li class="list-group-item"><a href="'.site_url('catalog/'.$value->url.'.html').'" title="'.$value->name.'">'.$value->name.'</a>';
+			$html .= '<li class="list-group-item"><a href="'.site_url('catalog/'.$value->url.'.html').'" title="'.$value->name.'">'.$icon.$value->name.$icon_pick.'</a>';
 			if(isset($value->item)){
-				$html .= $this->dropdown_item($value->item, $prefix." - ");
+				$html .= $this->dropdown_item_ul($value->item, $prefix." - ", ["class" => "sub-catalog"]);
 			}
 			$html .= '</li>';
 		}

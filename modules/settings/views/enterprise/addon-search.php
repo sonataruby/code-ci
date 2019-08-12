@@ -8,5 +8,11 @@
 </div>
 
 <div class="hbox">
-	<h4>Apps on Location</h4>
+	<h4>Search form server</h4>
+	<div id="loadAddonServer"></div>
 </div>
+<script type="text/javascript">
+	$().ready(function(){
+		$("#loadAddonServer").load("<?php echo site_url("settings/enterprise/addon/searchitem");?>");
+	});
+</script>

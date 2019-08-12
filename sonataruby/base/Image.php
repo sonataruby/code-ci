@@ -117,6 +117,9 @@ class Image extends \CI_Image_lib{
 
 
 	public function resizeImage($source, $size){
+
+		$ext = ".".pathinfo($source, PATHINFO_EXTENSION);
+
 		foreach ($size as $key => $value) {
 			list($w,$h) = explode('x', trim($value));
 			$config['image_library'] = 'gd2';
@@ -125,7 +128,7 @@ class Image extends \CI_Image_lib{
 		    $config['maintain_ratio'] = false;
 		    $config['width']     = $w;
 		    $config['height']   = $h;
-		    $config['new_image']        = str_replace(basename($source), "size-".$w."-".$h."-".basename($source), $source);
+		    $config['new_image']        = str_replace($ext, "@".$w."x".$h.$ext, $source);
 
 		    $this->clear();
 		    $this->initialize($config);

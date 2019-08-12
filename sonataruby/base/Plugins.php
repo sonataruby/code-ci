@@ -10,7 +10,7 @@ class Plugins extends Controller{
 	{
 		parent::__construct();
 		if(!defined("IS_FRONTEND")) define("IS_FRONTEND",true);
-		define("IS_PLUGINS",true);
+		if(!defined("IS_PLUGINS")) define("IS_PLUGINS",true);
 	}
 
 	public function view($file, $data=[]){

@@ -6,6 +6,6 @@ class Enterprise extends CPEnterprise {
 	
 	public function index()
 	{
-		$this->view($this->get_views('home'));
+		$this->view("home");
 	}
 }

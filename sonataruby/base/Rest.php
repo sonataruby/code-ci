@@ -3,7 +3,7 @@ namespace Sonata;
 use Exception;
 use stdClass;
 
-
+use \Sonata\Curl;
 class Rest
 {
     protected $_ci;
@@ -53,7 +53,7 @@ class Rest
 
         
         */
-        $this->_ci->load->library('curl');
+        $this->_ci->curl = new Curl;
         // Load the cURL spark which this is dependant on
         //$this->_ci->load->spark('curl/1.2.1');
 
@@ -94,6 +94,7 @@ class Rest
 
         isset($config['ssl_verify_peer']) && $this->ssl_verify_peer = $config['ssl_verify_peer'];
         isset($config['ssl_cainfo']) && $this->ssl_cainfo = $config['ssl_cainfo'];
+
 
     }
 
@@ -233,7 +234,7 @@ class Rest
         // contributed by: https://github.com/paulyasi
         if ($this->ssl_verify_peer === FALSE)
         {
-            $this->_ci->curl->ssl(FALSE);
+            $this->_ci->curl->ssl(FALSE,0);
         }
         elseif ($this->ssl_verify_peer === TRUE)
         {
@@ -273,7 +274,7 @@ class Rest
 
         // Execute and return the response from the REST server
         $response = $this->_ci->curl->execute();
-
+        
         // Format and return
         return $this->_format_response($response);
     }

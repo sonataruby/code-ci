@@ -28,7 +28,7 @@ class Layout extends CPEnterprise {
 			$this->go("/pages/layout/create/{$id}");
 		}
 		
-		$this->view($this->get_views('layout-create'),["data" => $data]);
+		$this->view('layout-create',["data" => $data]);
 	}
 
 

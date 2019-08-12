@@ -20,7 +20,7 @@ class Posts extends Enterprise {
 	public function posts(){
 		$data = $this->posts_model->getList();
 		$catalog = $this->catalog_model->dropdown();
-		$this->view($this->get_views('posts'),["catalog" => $catalog, "data" => $data]);
+		$this->view('posts',["catalog" => $catalog, "data" => $data]);
 	}
 
 	public function create($id=false){
@@ -48,7 +48,7 @@ class Posts extends Enterprise {
 
 		$catalog = $this->catalog_model->dropdown(false,"checkbox",$catalog_id);
 
-		$this->view($this->get_views('posts-create'),["catalog" => $catalog, "data" => $data]);
+		$this->view('posts-create',["catalog" => $catalog, "data" => $data]);
 	}
 
 }

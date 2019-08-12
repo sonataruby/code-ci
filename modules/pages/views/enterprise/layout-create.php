@@ -70,8 +70,11 @@
 				      Plugin & Wingets
 				    </button>
 				    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-				      <a class="dropdown-item" href="#">Dropdown link</a>
-				      <a class="dropdown-item" href="#">Dropdown link</a>
+				    	<?php foreach (config_item("plugins") as $key => $value) { ?>
+				    		<a class="dropdown-item" data-item="text" data-append='[plugin name="<?php echo $key;?>"][/plugin]'><?php echo $value;?></a>
+				    	<?php } ?>
+				      
+				      
 				    </div>
 				  </div>
 				</div>

@@ -8,11 +8,38 @@
 
 <div class="hbox">
 	
+
+	<?php echo $this->forms->upload([
+		"name" => "config[navbar_icon][]",
+		"label" => "Navbar Icon",
+		"value" => @$data->navbar_icon
+	],[
+		"requied" => true,
+		"group" => 'row',
+		"layout" => "inline",
+		"size" => "48x48"
+	]);?>
+
 	<?php 
 	//$this->forms->template("inline");
+	
+
+	echo $this->forms->text([
+		"name" => "config[site_navbar]",
+		"label" => "Navbar",
+		"value" => @$data->site_navbar
+	],[
+		"required" => true,
+		"group" => 'row',
+		"layout" => "inline"
+	]);?>
+
+	<?php 
+	//$this->forms->template("inline");
+	
 	echo $this->forms->text([
 		"name" => "config[site_name]",
-		"label" => "Site Name",
+		"label" => "Site Title",
 		"value" => @$data->site_name
 	],[
 		"required" => true,

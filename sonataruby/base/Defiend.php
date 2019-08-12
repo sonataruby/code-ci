@@ -9,6 +9,7 @@ define("CMS_THEME_ENTERPRISE_PATH",CMS_ROOTPATH . "template/enterprise" . DIRECT
 define("CMS_THEME_PERSONAL_PATH",CMS_ROOTPATH . "template/personal" . DIRECTORY_SEPARATOR);
 define("UPLOAD_PATH", FCPATH . DIRECTORY_SEPARATOR . "upload" . DIRECTORY_SEPARATOR);
 define("CONFIG_LOCAL", FCPATH . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR);
+define("CACHE_LOCAL", FCPATH . DIRECTORY_SEPARATOR . "cache" . DIRECTORY_SEPARATOR);
 
 if(!function_exists("autoload_file")){
 	function autoload_file($path=""){
@@ -27,6 +28,7 @@ if(!function_exists("autoload_file")){
             }
             
         }
+        if(!defined("TEMPLATE_ACTIVE")) define("TEMPLATE_ACTIVE","default");
         $file = CMS_THEMEPATH . TEMPLATE_ACTIVE . DIRECTORY_SEPARATOR . $path;
         if(file_exists($file)){
         	include_once $file;
@@ -43,8 +45,10 @@ if(!function_exists("autoload_file")){
 		$base_url = strtolower($base_url);
 		if(!defined("DOMAIN")){
 			define("DOMAIN", $base_url);
-			define("BASE_URL", ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") || (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' || !empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] == 'on')) ?  "https" : "http" . "://".$base_url);
+			define("BASE_URL", ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") || (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' || !empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] == 'on')) ?  "https" . "://".$base_url : "http" . "://".$base_url);
 		}
+
+		
 		if(file_exists(CONFIG_LOCAL . $base_url.".json")){
 			$json = json_decode(file_get_contents(CONFIG_LOCAL . $base_url.".json"));
 
@@ -175,6 +179,44 @@ if(!function_exists("addon")){
 }
 
 
+if(!function_exists("post_api")){
+	function post_api($uri="", $arv=[]){
+		if(!$uri) return;
+		return get_instance()->postAPI($uri, $arv);
+	}
+}
+
+if(!function_exists("get_api")){
+	function get_api($uri="", $arv=[]){
+		if(!$uri) return;
+		return get_instance()->getAPI($uri, $arv);
+	}
+}
+
+
+if(!function_exists("put_api")){
+	function put_api($uri="", $arv=[]){
+		if(!$uri) return;
+		return get_instance()->putAPI($uri, $arv);
+	}
+}
+
+if(!function_exists("patch_api")){
+	function patch_api($uri="", $arv=[]){
+		if(!$uri) return;
+		return get_instance()->patchAPI($uri, $arv);
+	}
+}
+
+if(!function_exists("delete_api")){
+	function delete_api($uri="", $arv=[]){
+		if(!$uri) return;
+		return get_instance()->deleteAPI($uri, $arv);
+	}
+}
+
+
+
 if ( ! function_exists('lang'))
 {
 	
@@ -226,3 +268,45 @@ if ( ! function_exists('form_textarea'))
 			."</textarea>\n";
 	}
 }
+
+if(! function_exists("isObject")){
+	function isObject($text=""){
+		if(is_object($text) || is_array($text)) return $text;
+		if(empty($text)) return "";
+
+		$decode = json_decode($text);
+		if (is_object($decode) || is_array($decode)){
+			$text = count((array)$decode) > 1 ? $decode : (array)$decode[0];
+		}
+		return $text;
+	}
+}
+
+if(! function_exists("getDateSQL")){
+	function getDateSQL($date=false, $conver=false){
+		if(!$conver){
+			return date("Y-m-d h:i:s");
+		}
+	}
+}
+
+if( ! function_exists("post_url")){
+	function post_url($url){
+		return site_url("post/{$url}.html");
+	}
+}
+
+if( ! function_exists("catalog_url")){
+	function catalog_url($url){
+		return site_url("catalog/{$url}.html");
+	}
+}
+
+
+if( ! function_exists("page_url")){
+	function page_url($url){
+		return site_url("page/{$url}.html");
+	}
+}
+
+

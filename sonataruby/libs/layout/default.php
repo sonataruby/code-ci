@@ -13,9 +13,9 @@
       <link rel="canonical" href="<?php echo site_url();?>"/>
 
       <link rel="icon" href="<?php echo site_url(config_item("icon"));?>" type="image/png" />
-      <link rel="icon" href="<?php echo site_url('upload/image/size-32-32-favicon.png');?>" sizes="32x32" type="image/png">
-      <link rel="icon" href="<?php echo site_url('upload/image/size-16-16-favicon.png');?>" sizes="16x16" type="image/png">
-      <link rel="icon" href="<?php echo site_url('upload/image/size-64-64-favicon.png');?>" sizes="64x64" type="image/png">
+      <link rel="icon" href="<?php echo site_url('upload/image/favicon@32x32.png');?>" sizes="32x32" type="image/png">
+      <link rel="icon" href="<?php echo site_url('upload/image/favicon@16x16.png');?>" sizes="16x16" type="image/png">
+      <link rel="icon" href="<?php echo site_url('upload/image/favicon@64x64.png');?>" sizes="64x64" type="image/png">
       <link rel="shortcut icon" href="<?php echo site_url(config_item("icon"));?>" type="image/x-icon" />
       <link rel="manifest" href="<?php echo site_url("manifest.json");?>">
       <link rel="icon" href="<?php echo site_url("favicon.ico");?>">
@@ -34,13 +34,13 @@
       <meta property="og:title" content="<?php echo @$header["title"];?>"/>
       <meta property="og:description" content="<?php echo @$header["description"];?>"/>
       <meta property="og:url" content="<?php echo current_url();?>"/>
-      <meta property="og:image" content="<?php echo @$header["image"];?>"/>
+      <meta property="og:image" content="<?php echo site_url(@$header["image"]);?>"/>
       <meta property="og:type" content="website"/>
       <meta property="og:site_name" content="<?php echo @$header["title"];?>"/>
       
       <?php libs_url('css/bootstrap.css',['name' => "Bootstrap CSS"]);?>
       <?php libs_url('icoins/css/icoin.css',['name' => "Font Icoin CSS"]);?>
-
+      <?php libs_url('css/bs-theme.css',['name' => "Bootstrap CSS"]);?>
       <link rel="alternate" type="application/rss+xml" title="Sitemap Feed for <?php echo site_url();?>" href="<?php echo site_url("sitemap.xml");?>" />
       <link rel="alternate" type="application/rss+xml" title="RSS Feed for <?php echo site_url();?>" href="<?php echo site_url("feeds");?>" />
       
@@ -56,11 +56,11 @@
 
 
   <body class="app" itemscope itemtype="http://schema.org/WebPage">
-    <?php getfile("header.php"); ?>
+    <?php $this->components->header(); ?>
     <div class="app-content">
       <?php print_r($content);?>
     </div>
-    <?php getfile("footer.php"); ?>
+    <?php $this->components->footer(); ?>
   
   
   <?php echo template_url("app.js");?>

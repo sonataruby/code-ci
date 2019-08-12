@@ -30,7 +30,7 @@ class Catalog extends CPEnterprise {
 		}
 
 		$getList = $this->catalog_model->getList($this->config->item("language"), true);
-		$this->view($this->get_views('catalog'),["data" => $data, "ListNode" => $getList]);
+		$this->view('catalog',["data" => $data, "ListNode" => $getList]);
 	}
 
 	public function createcatalog(){

@@ -8,6 +8,8 @@ use \MX_Controller;
 use \Sonata\Forms;
 use \Sonata\Shortcode;
 use \Sonata\Parser;
+use \Sonata\Rest;
+use \Sonata\Components;
 class Controller extends MX_Controller {
 
 	public $setLayout = "default";
@@ -16,9 +18,18 @@ class Controller extends MX_Controller {
 	{
 		parent::__construct();
 		
-		$this->load->helper(['url','form','string','text']);
+		$this->load->helper(['date','cookie','url','form','string','text']);
 		$this->load->library(['session','email','user_agent','form_validation']);
-		$this->load->model(['settings/settings_model','account/account_model','pages/layout_model', 'pages/pages_model','posts/catalog_model','posts/posts_model','posts/gallery_model']);
+		$this->load->model([
+			'settings/menu_model',
+			'settings/settings_model',
+			'account/account_model',
+			'pages/layout_model', 
+			'pages/pages_model',
+			'posts/catalog_model',
+			'posts/posts_model',
+			'posts/gallery_model'
+		]);
 		$this->forms = new Forms;
 		$this->domain = strtolower(str_replace(['http://','https://','www.','/'],'', base_url()));
 
@@ -29,16 +40,18 @@ class Controller extends MX_Controller {
 				define("TEMPLATE_ACTIVE", $json->template);
 			}
 			foreach ($json as $key => $value) {
-				$this->config->set_item($key, $value);
+
+				$this->config->set_item($key, isObject($value));
 			}
 
 			$this->setTitle(@$json->site_name);
-			$this->setDescription(@$json->description);
-			$this->setKeyword(@$json->keyword);
-			$this->setImage(@$json->image);
+			$this->setDescription(@$json->site_description);
+			$this->setKeyword(@$json->site_keyword);
+			$this->setImage(@$json->banner);
 		}
 		$this->shortcode = new Shortcode;
 		$this->parser = new Parser;
+		$this->components = new Components;
 		//define("TEMPLATE_ACTIVE","default");
 		
 	}
@@ -173,5 +186,44 @@ class Controller extends MX_Controller {
 		return $text;
 	}
 
+
+	public function connectapi($server="https://localhost",$user="admin", $pass="1234"){
+		$rest = new Rest([
+			"server" => $server,
+			'http_user' => $user,
+	        'http_pass' => $pass,
+	        'http_auth' => 'basic', // or 'digest' 'basic'
+	        'api_name' => "",
+	        'api_key' => "",
+	        'ssl_verify_peer' => false,
+	        'ssl_cainfo' => false
+		]);
+		return $rest;
+	}
+	public function postAPI($uri, $arv=[]){
+		
+		return $this->connectapi()->post($uri, $arv);
+	}
+
+	public function getAPI($uri, $arv=[]){
+		return $this->connectapi()->get($uri, $arv, 'json');
+	}
 	
+	public function putAPI($uri, $arv=[]){
+		return $this->connectapi()->put($uri, $arv, 'json');
+	}
+
+	
+
+	public function patchAPI($uri, $arv=[]){
+		return $this->connectapi()->patch($uri, $arv, 'json');
+	}
+
+	public function deleteAPI($uri, $arv=[]){
+		return $this->connectapi()->delete($uri, $arv, 'json');
+	}
+
+
+
+
 }

@@ -24,7 +24,7 @@
 				
 			<tr>
 				<td width="2%">
-					<img src="<?php echo $value->image;?>" style="width:120px; height:60px;">
+					<img src="<?php echo (is_array($value->image) ? $value->image[0] : $value->image);?>" style="width:120px; height:60px;">
 				</td>
 				<td>
 					<b><?php echo $value->name;?></b>

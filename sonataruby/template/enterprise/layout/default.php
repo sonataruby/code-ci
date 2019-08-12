@@ -145,6 +145,14 @@
                 <a class="dropdown-item" href="/settings/enterprise/template/backups" sn-link="true" parent-controller="#templates">Backup & Upload</a>
                 <a class="dropdown-item" href="/settings/enterprise/template/manager" sn-link="true" parent-controller="#templates">CSS Develop</a>
                 <a class="dropdown-item" href="/settings/enterprise/template/manager" sn-link="true" parent-controller="#templates">Item Develop</a>
+
+                <div class="menuHeader">
+                  <h5>Custom Design</h5>
+                </div>
+                <a class="dropdown-item" href="/settings/enterprise/menu/manager" sn-link="true" parent-controller="#templates">Menu Manager</a>
+                <a class="dropdown-item" href="/settings/enterprise/template/header" sn-link="true" parent-controller="#templates">Header & Footer</a>
+                <a class="dropdown-item" href="/settings/enterprise/template/blocks" sn-link="true" parent-controller="#templates">Block Manager</a>
+
               </div>
             </li>
             <li class="nav-item" id="apps">
@@ -157,6 +165,8 @@
                 <a class="dropdown-item" href="/settings/enterprise/addon/manager" sn-link="true" parent-controller="#apps">Manager</a>
                 <a class="dropdown-item" href="/settings/enterprise/addon/search" sn-link="true" parent-controller="#apps">Search Apps</a>
                 <a class="dropdown-item" href="/settings/enterprise/addon/backups" sn-link="true" parent-controller="#apps">Backup & Upload</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/settings/enterprise/addon/plugins" sn-link="true" parent-controller="#apps">Plugins</a>
               </div>
             </li>
 
