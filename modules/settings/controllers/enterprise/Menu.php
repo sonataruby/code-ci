@@ -39,6 +39,7 @@ class Menu extends Enterprise {
 		$data = $this->pages_model->getList();
 		$arv = [];
 		$arv["home"] = "Home";
+		$arv["allcatalog"] = "All Catalog";
 		foreach ($data as $key => $value) {
 			$arv["page_".$value->id] = $value->name;
 		}

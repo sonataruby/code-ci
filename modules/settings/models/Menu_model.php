@@ -97,7 +97,7 @@ class Menu_model extends Model{
 		foreach ($data as $key => $value) {
 			$check = $this->db->get_where($this->table, ["parent_id" => $value->id])->num_rows();
 			$sup = explode(',', $value->url);
-			if($check > 0 || count($sup) > 1){
+			if($check > 0 || count($sup) > 1 || $value->url == "allcatalog"){
 				$classLI = "nav-item dropdown";
 				$classA = ["class" => "nav-link dropdown-toggle","role" => "button", "data-toggle"=> "dropdown", "aria-haspopup" => "true", "aria-expanded" => "false"];
 			}else{
@@ -109,6 +109,9 @@ class Menu_model extends Model{
 			$arv .= '<li class="'.$classLI.'"><a '._attributes_to_string($classA).' href="'.site_url(($value->url !== "home" ? $value->url : "/")).'">'.$value->name.'</a>';
 			if($check > 0 || count($sup) > 1){
 				$arv .= $this->renderItemULSorts($value->id,  $sup);
+			}
+			if($value->url == "allcatalog"){
+				$arv .= $this->getAllCatalog();
 			}
 			$arv .= '</li>';
 		}
@@ -166,6 +169,15 @@ class Menu_model extends Model{
 			foreach ($catalogInfo as $keyPage => $valuePage) {
 				$arv .= '<li class="dropdown-item"><a href="'.catalog_url($valuePage->url).'">'.$valuePage->name.'</a></li>';
 			}
+		}
+		return $arv;
+	}
+
+	public function getAllCatalog(){
+		$arv = '';
+		$catalogInfo = $this->catalog_model->getList();
+		foreach ($catalogInfo as $keyPage => $valuePage) {
+			$arv .= '<li class="dropdown-item"><a href="'.catalog_url($valuePage->url).'">'.$valuePage->name.'</a></li>';
 		}
 		return $arv;
 	}
