@@ -175,10 +175,12 @@ class Menu_model extends Model{
 
 	public function getAllCatalog(){
 		$arv = '';
+		$arv = '<ul class="dropdown-menu" aria-labelledby="navbarDropdown">';
 		$catalogInfo = $this->catalog_model->getList();
 		foreach ($catalogInfo as $keyPage => $valuePage) {
 			$arv .= '<li class="dropdown-item"><a href="'.catalog_url($valuePage->url).'">'.$valuePage->name.'</a></li>';
 		}
+		$arv .= '</ul>';
 		return $arv;
 	}
 
