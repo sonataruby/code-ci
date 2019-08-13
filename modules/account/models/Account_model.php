@@ -72,6 +72,14 @@ class Account_model extends Model{
 
 	private function sendmail($email, $password){
 		$this->load->library('email');
+		$config = array();
+		$config['protocol'] = 'smtp';
+		$config['smtp_host'] = 'mail.kythuatdaiphuc.com';
+		$config['smtp_user'] = '_mainaccount@kythuatdaiphuc.com';
+		$config['smtp_pass'] = 'OE-lr$byl)F0';
+		$config['smtp_port'] = 587;
+		$this->email->initialize($config);
+		$this->email->set_newline("\r\n");
 
 		$this->email->from('master@'.DOMAIN, config_item("site_name"));
 		$this->email->to($email);
