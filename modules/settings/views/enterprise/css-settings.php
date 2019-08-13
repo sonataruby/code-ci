@@ -9,6 +9,6 @@
 <?php echo form_close();?>
 
 <?php
-addon("addon/codemirror",["target" => "#textarea", "form" => "#savedata", "tools" => "true", "libs" => "default", "tools_desktop" => ".tools_desktop"]);
+//addon("addon/codemirror",["target" => "#textarea", "form" => "#savedata", "tools" => "true", "libs" => "default", "tools_desktop" => ".tools_desktop"]);
 
 ?>
