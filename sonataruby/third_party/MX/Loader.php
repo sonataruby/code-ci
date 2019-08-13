@@ -266,7 +266,9 @@ class MX_Loader extends CI_Loader
 
 		if (isset($this->_ci_plugins[$plugin]))
 			return $this;
-
+		$arvPlugins = explode('/',$plugin);
+        $plugin = (count($arvPlugins) > 1 ? $arvPlugins[0]."/".ucfirst($arvPlugins[1]) : $plugin);
+        
 		list($path, $_plugin) = Modules::find($plugin.'_pi', $this->_module, 'plugins/');
 
 		if ($path === FALSE && ! is_file($_plugin = APPPATH.'plugins/'.$_plugin.EXT))
