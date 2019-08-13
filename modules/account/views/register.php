@@ -43,11 +43,11 @@
 				]);?>
 
 				<div class="row">
-					<div class="col-6"><a href="<?php echo site_url("account/register");?>">Register</a></div>
-					<div class="col-6 text-right"><a href="<?php echo site_url("account/forget");?>">For get password</a></div>
+					<div class="col-6">Register</div>
+					<div class="col-6 text-right">For get password</div>
 				</div>
 				<hr>
-				<button class="btn btn-primary" type="submit">Login</button>
+				<button class="btn btn-primary" type="submit">Register</button>
 				<?php echo form_close();?>
 			</div>
 			<div class="col-lg-5 col-sm-12">
