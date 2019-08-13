@@ -6,3 +6,4 @@ develop
 vendor
 create.sh
 application/config/database.php
+upload/*

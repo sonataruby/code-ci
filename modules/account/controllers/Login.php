@@ -10,9 +10,11 @@ class Login extends FrontEnd {
 			$data = $this->account_model->setLogin($email, $password);
 			if($data){
 				$this->session->set_userdata('logininfo', $data);
-				$this->go("account/profile");
+				$ref = $this->input->post("ref");
+				$ref = ($ref ? $ref : "account/profile");
+				$this->go($ref);
 			}else{
-				$this->go("account/login");
+				$this->go("account/login?ref=".$this->input->get("ref"));
 			}
 		}
 		return $this->view("login");

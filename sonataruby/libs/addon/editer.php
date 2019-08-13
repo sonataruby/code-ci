@@ -58,9 +58,14 @@
       bootstrapToolTarget : '<?php echo @$tools_desktop;?>',
       bootstrapToolContent : $("#makeTools").html(),
       imageMove: false,
+      imageUploadParam : "userfile",
+      imageUploadURL : "/settings/enterprise/uploads/image",
+      imageUploadMethod: 'POST',
+      imageAllowedTypes: ['jpeg', 'jpg', 'png'],
+
       imageOutputSize: false,
       imageResizeWithPercent: true,
-      imageManagerLoadURL: "/api/public/app/imagemanager",
+      imageManagerLoadURL: "/settings/enterprise/uploads/imagemanager",
       imageManagerLoadMethod: "GET",
       imageEditButtons: ['imageReplace', 'imageAlign', 'imageRemove', '|', 'imageLink', 'linkOpen', 'linkEdit', 'linkRemove', '-', 'imageDisplay', 'imageStyle', 'imageAlt', 'imageSize'],
       imageStyles: {

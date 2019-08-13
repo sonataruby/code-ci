@@ -5,6 +5,7 @@
 				<h5>Login</h5>
 				<hr>
 				<?php echo form_open();?>
+				<input type="hidden" name="ref" value="<?php echo $this->input->get("ref");?>">
 				<?php echo $this->forms->text([
 					"name" => "email",
 					"label" => "Email",
