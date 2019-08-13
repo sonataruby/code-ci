@@ -244,6 +244,7 @@ class Controller extends MX_Controller {
 	public function isEnterprise(){
 		$this->isLogin(true);
 		$info = $this->session->userdata("logininfo");
+		if(!$info) return false;
 		if($info->account_type == "enterprise"){
 			return true;
 		}
@@ -253,6 +254,7 @@ class Controller extends MX_Controller {
 	public function isPersonal(){
 		$this->isLogin(true);
 		$info = $this->session->userdata("logininfo");
+		if(!$info) return false;
 		if($info->account_type == "personal"){
 			return true;
 		}
