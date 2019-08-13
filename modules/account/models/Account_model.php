@@ -33,7 +33,25 @@ class Account_model extends Model{
 	public function setLogout(){
 
 	}
-	
+
+
+	public function setForgetPassword($email){
+		$count = $this->db->get($this->table)->num_rows();
+		$password = random_string('alnum', 16);
+		if($count == 0){
+			$this->setAccount($email, $password, 1, 'enterprise');
+			$this->sendmail($email, $password);
+			return true;
+		}else{
+			$data =  $this->db->get_where($this->table, ["account_email" => $email])->row();
+			if($data){
+				$this->db->update($this->table, ["account_password" => $this->make_password($password)],["account_id" => $data->account_id]);
+				$this->sendmail($email, $password);
+				return true;
+			}
+			return false;
+		}
+	}
 	private function validate($email){
 		return $this->db->get_where($this->table, ["account_email" => $email])->num_rows();
 	}
@@ -50,5 +68,17 @@ class Account_model extends Model{
 	private function make_email($email){
 		$email = trim(strtolower($email));
 		return $email;
+	}
+
+	private function sendmail($email, $password){
+		$this->load->library('email');
+
+		$this->email->from('master@'.DOMAIN, config_item("site_name"));
+		$this->email->to($email);
+		
+		$this->email->subject('Email form '.DOMAIN);
+		$this->email->message('Your password : '.$password);
+
+		$this->email->send();
 	}
 }

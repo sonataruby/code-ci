@@ -6,8 +6,8 @@ class Forget extends FrontEnd {
 	public function index(){
 		if($this->isPost()){
 			$email = $this->input->post("email");
-			$password = $this->input->post("password");
-			$data = $this->account_model->setLogin($email, $password);
+			
+			$data = $this->account_model->setForgetPassword($email);
 			if($data){
 				$this->session->set_userdata('logininfo', $data);
 				$this->go("account/profile");
