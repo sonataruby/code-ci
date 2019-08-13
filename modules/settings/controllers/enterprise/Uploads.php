@@ -31,6 +31,22 @@ class Uploads extends Enterprise {
 	}
 
 	public function imagemanager(){
+		$path = directory_map(UPLOAD_PATH . "image/");
+		$arv = [];
+		foreach ($path as $key => $value) {
+			$src = site_url(str_replace(FCPATH,'',UPLOAD_PATH . "image/{$value}"));
+			$arv[] = [
+				"url" => $src,
+				"thumb" => $src,
+				"name" => $value,
+				"tag" => $value,
+				"id" => $value
+			];
+		}
+		$this->tojson($arv);
+	}
+
+	public function imageremove(){
 
 	}
 }

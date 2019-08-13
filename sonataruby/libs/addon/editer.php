@@ -53,20 +53,23 @@
       iframe : false,
       videoAllowedProviders: ['youtube', 'vimeo'],
       quickInsertButtons: ['image','video', 'table', 'ol', 'ul'],
-      pluginsEnabled: ['quickInsert', 'image', 'video','table', 'lists','bootstrap','html'],
+      pluginsEnabled: ['quickInsert', 'image','imageManager', 'video','table', 'lists','html'],
       //height : 550,//
       bootstrapToolTarget : '<?php echo @$tools_desktop;?>',
       bootstrapToolContent : $("#makeTools").html(),
       imageMove: false,
+      imageOutputSize: false,
+      imageResizeWithPercent: true,
+
       imageUploadParam : "userfile",
       imageUploadURL : "/settings/enterprise/uploads/image",
       imageUploadMethod: 'POST',
       imageAllowedTypes: ['jpeg', 'jpg', 'png'],
 
-      imageOutputSize: false,
-      imageResizeWithPercent: true,
+      
       imageManagerLoadURL: "/settings/enterprise/uploads/imagemanager",
       imageManagerLoadMethod: "GET",
+      imageManagerPageSize: 20,
       imageEditButtons: ['imageReplace', 'imageAlign', 'imageRemove', '|', 'imageLink', 'linkOpen', 'linkEdit', 'linkRemove', '-', 'imageDisplay', 'imageStyle', 'imageAlt', 'imageSize'],
       imageStyles: {
         "w-100": 'Full Width',
