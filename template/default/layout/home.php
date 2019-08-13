@@ -1,3 +1,8 @@
+<section>
+[plugin name="home/video" type="background" url="https://www.youtube.com/watch?v=rG9LMCL-HN0"]
+  <h1>Company Info</h1>
+[/plugin]
+</section>
 <section class="animated bounceIn" data-id="1" data-animated="true">
   <div class="container">
     <div class="row d-flex">

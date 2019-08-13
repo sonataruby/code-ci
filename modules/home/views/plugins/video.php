@@ -1,3 +1,4 @@
+<?php echo $type;?>
 <div id="link" style="position: relative;" data-playvideo>
     <img src="https://img.youtube.com/vi/<?php echo $video_id;?>/maxresdefault.jpg" class="w-100">
     <div style="position: absolute; width: 100%; height: 100%; line-height: 300px; top:0; text-align: center; vertical-align: middle; display: block; flex: 1;"><i class="fab fa-youtube fa-4x"></i></div>
