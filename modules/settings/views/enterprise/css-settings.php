@@ -1,7 +1,9 @@
 
 <?php echo form_open("",["id" => "savedata"]);?>
+<button type="submit" class="btn btn-primary">Save</button>
+<br>
 <div class="border">
-	<button type="submit" class="btn btn-primary">Save</button>
+	
 <textarea id="textarea" rows="32" class="form-control" name="content"><?php echo @$content;?></textarea>
 </div>
 <?php echo form_close();?>
