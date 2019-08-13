@@ -58,6 +58,13 @@
 		    });
 		    
 
+		    $(".dropdownImage").load("/settings/enterprise/uploads/imagecode", function(){
+				$('[data-item="image"]').on("click", function(){
+			    	editor.replaceSelection($(this).attr("data-append"));
+			    });
+			});
+
 		});
+		
 	});
   </script>

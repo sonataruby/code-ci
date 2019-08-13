@@ -54,7 +54,7 @@
 				    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				      Image
 				    </button>
-				    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+				    <div class="dropdown-menu dropdownImage" style="max-width:550px; min-width:550px; max-height: 450px; overflow: auto; padding:30px;" aria-labelledby="btnGroupDrop1">
 				      <a class="dropdown-item" href="#">Dropdown link</a>
 				      <a class="dropdown-item" href="#">Dropdown link</a>
 				    </div>
@@ -177,5 +177,5 @@ addon("addon/codemirror",["target" => "#textarea", "form" => "#savedata", "tools
 		}
 	}
 	
-
+	
 </script>

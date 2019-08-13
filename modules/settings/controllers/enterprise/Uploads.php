@@ -30,7 +30,7 @@ class Uploads extends Enterprise {
 		}
 	}
 
-	public function imagemanager(){
+	public function imagemanager($return=false){
 		$path = directory_map(UPLOAD_PATH . "image/");
 		$arv = [];
 		foreach ($path as $key => $value) {
@@ -43,10 +43,21 @@ class Uploads extends Enterprise {
 				"id" => $value
 			];
 		}
+		if($return) return $arv;
 		$this->tojson($arv);
 	}
 
 	public function imageremove(){
 
+	}
+
+	public function imagecode(){
+		$data = $this->imagemanager(true);
+		$arv[] = '<div class="row">';
+		foreach ($data as $key => $value) {
+			$arv[] = '<div class="col-lg-4 mb-2"><img data-item="image" data-append="'.$value["url"].'" src="'.$value["url"].'" class="w-100 border" style="max-height:100px;"></div>';
+		}
+		$arv[] = '</div>';
+		print_r(implode($arv, "\n"));
 	}
 }
