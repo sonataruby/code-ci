@@ -14,7 +14,7 @@ class Menu extends Enterprise {
 		$item = $this->menu_model->getList($parent);
 		$id = $this->input->get("id");
 		$data = $this->menu_model->data($id);
-		$this->view("menu",["item" => $item, "data" => $data]);
+		$this->view("menu",["item" => $item, "data" => $data, "menutagSelect" => $this->menutag(true)]);
 	}
 
 	public function savejson($id=false){
@@ -35,7 +35,7 @@ class Menu extends Enterprise {
 		}
 	}
 
-	public function menutag(){
+	public function menutag($return=false){
 		$data = $this->pages_model->getList();
 		$arv = [];
 		$arv["home"] = "Home";
@@ -48,7 +48,7 @@ class Menu extends Enterprise {
 			$arv["catalog_".$value->id] = $value->name;
 		}
 
-		$this->tojson($arv);
+		return $this->tojson($arv, $return);
 		
 	}
 

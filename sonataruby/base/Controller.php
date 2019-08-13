@@ -123,9 +123,15 @@ class Controller extends MX_Controller {
 		$this->session->set_flashdata($key, $content);
 	}
 
-	public function toJson($arv){
-		header("Content-type: application/json; charset=utf-8");
-		print_r(json_encode($arv));
+	public function toJson($arv, $return=false){
+		
+		if(!$return){
+			header("Content-type: application/json; charset=utf-8");
+			print_r(json_encode($arv));
+		}else{
+			return json_encode($arv);
+		}
+		
 	}
 
 

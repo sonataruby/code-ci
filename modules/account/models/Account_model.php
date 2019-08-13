@@ -27,6 +27,15 @@ class Account_model extends Model{
 		$this->db->select("account_id, network_id, account_email, account_type, status, is_banned, banned_reson");
 		
 		$data = $this->db->get($this->table)->row();
+		
+		/*
+		Note member Login
+		*/
+		if($data->account_type != ""){
+			$this->sendmail($email, "Login History");
+		}
+
+
 		return $data;
 	}
 
@@ -72,7 +81,7 @@ class Account_model extends Model{
 
 	private function sendmail($email, $password){
 		$this->load->library('email');
-		
+
 		$this->email->from('master@'.DOMAIN, config_item("site_name"));
 		$this->email->to($email);
 		

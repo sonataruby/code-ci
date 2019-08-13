@@ -100,7 +100,7 @@
 
           // allows usert to edit the tags input
           freeEdit : true,
-          setView : <?php echo file_get_contents(site_url("/settings/enterprise/menu/menutag"));?>,
+          setView : <?php echo $menutagSelect;?>,
           // autocomplete options
           autocomplete: {
 
