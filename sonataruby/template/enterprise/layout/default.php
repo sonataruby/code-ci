@@ -143,8 +143,7 @@
                 <a class="dropdown-item" href="/settings/enterprise/template/manager" sn-link="true" parent-controller="#templates">Manager</a>
                 <a class="dropdown-item" href="/settings/enterprise/template/search" sn-link="true" parent-controller="#templates">Search Templates</a>
                 <a class="dropdown-item" href="/settings/enterprise/template/backups" sn-link="true" parent-controller="#templates">Backup & Upload</a>
-                <a class="dropdown-item" href="/settings/enterprise/template/manager" sn-link="true" parent-controller="#templates">CSS Develop</a>
-                <a class="dropdown-item" href="/settings/enterprise/template/manager" sn-link="true" parent-controller="#templates">Item Develop</a>
+                
 
                 <div class="menuHeader">
                   <h5>Custom Design</h5>
@@ -152,6 +151,8 @@
                 <a class="dropdown-item" href="/settings/enterprise/menu/manager" sn-link="true" parent-controller="#templates">Menu Manager</a>
                 <a class="dropdown-item" href="/settings/enterprise/template/header" sn-link="true" parent-controller="#templates">Header & Footer</a>
                 <a class="dropdown-item" href="/settings/enterprise/template/blocks" sn-link="true" parent-controller="#templates">Block Manager</a>
+                <a class="dropdown-item" href="/settings/enterprise/template/css" sn-link="true" parent-controller="#templates">CSS Develop</a>
+                
 
               </div>
             </li>
