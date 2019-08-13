@@ -29,7 +29,7 @@ class Catalog extends CPEnterprise {
 			$this->go("/posts/enterprise/catalog");
 		}
 
-		$getList = $this->catalog_model->getList($this->config->item("language"), true);
+		$getList = $this->catalog_model->getList(0,$this->config->item("language"), true);
 		$this->view('catalog',["data" => $data, "ListNode" => $getList]);
 	}
 
