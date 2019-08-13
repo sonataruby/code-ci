@@ -141,8 +141,10 @@ if(!function_exists("is_home")){
 
 if(!function_exists("is_login")){
 	function is_login(){
-		if(defined("LOGIN_ID")){
-			return LOGIN_ID;
+		$data = get_instance()->session->userdata("logininfo");
+		if(!$data) return false;
+		if($data->account_id){
+			return true;
 		}
 		return false;
 	}

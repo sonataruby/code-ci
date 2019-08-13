@@ -17,4 +17,28 @@ class Dashboard extends FrontEnd {
 
 		
 	}
+
+	public function accessdenied(){
+		$this->setTitle("Access Denied");
+		$this->view("accessdenied");
+	}
+
+	public function show404(){
+		$this->setTitle("Error 404");
+		$this->view("404");
+	}
+
+
+
+	public function sitemap(){
+		$this->setTitle("Error 404");
+		$this->view("404");
+	}
+
+
+	public function feeds(){
+		$this->setTitle("Error 404");
+		$this->view("404");
+	}
+
 }

@@ -25,7 +25,9 @@ if(is_array($data)){ ?>
   </a>
 </div>
 <?php }else{ ?>
-	<img src="<?php echo site_url($data);?>" <?php echo _attributes_to_string($attr);?>/>
+  <div class="carousel">
+	   <img src="<?php echo site_url($data);?>" <?php echo _attributes_to_string($attr);?>/>
+  </div>
 <?php } ?>
 
   

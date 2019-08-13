@@ -224,6 +224,39 @@ class Controller extends MX_Controller {
 	}
 
 
+	public function urlactive(){
+		return str_replace(site_url(), '', current_url());
+	}
+	/*
+	Access Validate
+	*/
+	public function isLogin($return=false){
+		$info = $this->session->userdata("logininfo");
+		
+		if($return){
+			if(!$info) $this->go("account/login?ref=".$this->urlactive());
+		}else{
+			if(!$info) return false;
+		}
+		
+	}
 
+	public function isEnterprise(){
+		$this->isLogin(true);
+		$info = $this->session->userdata("logininfo");
+		if($info->account_type == "enterprise"){
+			return true;
+		}
+		return false;
+	}
+
+	public function isPersonal(){
+		$this->isLogin(true);
+		$info = $this->session->userdata("logininfo");
+		if($info->account_type == "personal"){
+			return true;
+		}
+		return false;
+	}
 
 }

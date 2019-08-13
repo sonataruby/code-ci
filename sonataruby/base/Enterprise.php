@@ -13,6 +13,9 @@ class Enterprise extends Controller{
 	function __construct()
 	{
 		parent::__construct();
+		if(!$this->isEnterprise()){
+			$this->go("access-denied.html?ref=".$this->urlactive());
+		}
 		define("BASE_ENTERPRISE", true);
 		$this->setTitle("Administrator");
 	}
@@ -20,6 +23,7 @@ class Enterprise extends Controller{
 	public function view($file, $arv=[]){
 		return parent::view("enterprise/{$file}", $arv);
 	}
+
 	public function get_views($path=""){
 		return "enterprise/{$path}";
 	}
