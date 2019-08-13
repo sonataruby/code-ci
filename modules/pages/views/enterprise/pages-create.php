@@ -40,6 +40,7 @@
 			<?php 
 			
                   $pageArv=[];
+                  $pageArv[] = "Default";
                   foreach (get_instance()->layout_model->getList() as $key => $value) {  
                   	$pageArv[$value->url] = $value->name;
                   }
