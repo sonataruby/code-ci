@@ -41,6 +41,12 @@
 		"options" => ["navbar-light" => "Light", "navbar-dark" => "Dark"]
 	],["group" => 'row', "layout" => 'inline']);?>
 
+	<?php echo $this->forms->text([
+		"name" => "config[height]",
+		"label" => "Height",
+		"value" => (@$data->height ? @$data->height : "55")
+	],["group" => 'row', "layout" => 'inline']);?>
+
 	<?php echo $this->forms->checkbox([
 		"name" => "config[scrolmenu]",
 		"label" => "Scrol Menu ",

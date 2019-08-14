@@ -34,3 +34,17 @@
     </div>
 </div>
 </header>
+<?php if(@config_item("header")->sticky_header == "fixed-top"){
+?>
+<div class="psFixHeight"></div>
+<?php
+}?>
+
+<style type="text/css">
+  .navbar-nav > li > a{
+    line-height : <?php echo @config_item("header")->height;?>px;
+  }
+  .psFixHeight{
+    height : <?php echo (@config_item("header")->height + 15);?>px;
+  }
+</style>
