@@ -99,11 +99,11 @@ class Components {
         $arv .= '<li class="dropdown-item">Profile</li>';
         $arv .= '<li class="dropdown-item">Change Password</li>';
 
-        if($data->account_type == "enterprise"){
+        if(@$data->account_type == "enterprise"){
             $arv .= '<li class="dropdown-item"><a href="/enterprise">Administrator</a></li>';
         }
 
-        if($data->account_type == "personal"){
+        if(@$data->account_type == "personal"){
             $arv .= '<li class="dropdown-item"><a href="/personal">Administrator</a></li>';
         }
 
