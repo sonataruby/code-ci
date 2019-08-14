@@ -6,6 +6,9 @@ class Settings_model extends Model{
 	public function save($arv=[]){
 		foreach ($arv as $key => $value) {
 			$data = $this->db->get_where($this->table,["config_name" => $key])->row();
+			
+			$value = is_array($value) ? json_encode($value) : $value;
+
 			if($data){
 				$this->db->update($this->table,["config_value" => $value],["config_id" => $data->config_id]);
 			}else{

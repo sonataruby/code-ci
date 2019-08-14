@@ -13,20 +13,24 @@ class Content extends FrontEnd {
 		$this->setTitle("All Posts")
 			->view('catalog',["data" => $data]);
 	}
-	public function info($url){
+	public function info($url,$channel=false){
 		
 		
 		$data = $this->posts_model->getData($url, false, true, true);
 		$catalog = $this->catalog_model->dropdown(false,"ul");
+
 		$this->setTitle($data->name)
+		 	->channel($data->channel)
 			->view('post',["data" => $data, "catalog" => $catalog]);
 	}
 
-	public function catalog($url){
+	public function catalog($url,$channel=false){
 
 		$data = $this->catalog_model->getData($url,false, true, true);
 		
+		
 		$this->setTitle($data->catalog_name)
+			->channel($data->channel)
 			->view('catalog',["data" => $data]);
 	}
 }

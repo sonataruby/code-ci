@@ -18,6 +18,7 @@ body section{
 	margin: 0;
 	border:0;
 	border-bottom: 1px solid #ddd;
+	position: relative;
 
 }
 .catalog-box > li a{
@@ -25,12 +26,15 @@ body section{
 	display: block;
 	padding-left: 15px;
 	position: relative;
+	white-space: nowrap;
 }
-.catalog-box > li a .icon-pick{
-	float: right;
+.catalog-box > li .icon-pick{
+	position: absolute;
 	margin: 15px 10px;
 	font-size: 10px;
 	color:#666;
+	top: 0;
+	right: 0px;
 }
 
 .catalog-box > li li a{

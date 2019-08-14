@@ -1,6 +1,15 @@
 <div class="hbox">
-	<h3>Quản lý bài viết <a class="btn btn-primary float-right" href="/posts/enterprise/posts/create" sn-link="true" parent-controller="#posts"><i class="fa fa-plus"></i> Add Posts</a></h3>
-	
+	<h3>Quản lý bài viết <a class="btn btn-primary float-right" href="/posts/enterprise/posts/create?channel=<?php echo $this->input->get("channel");?>" sn-link="true" parent-controller="#posts"><i class="fa fa-plus"></i> Add Posts</a></h3>
+	<hr>
+	<div class="row">
+	<?php foreach (config_item("channel") as $key => $value) { ?>
+		<div class="col-lg-2 col-sm-6"><div class="card card-body <?php echo ($value->url == $this->input->get("channel") ? "active" : "");?>">
+			<a href="/posts/enterprise/posts?channel=<?php echo $value->url;?>">
+				<?php echo $value->name;?>
+			</a>
+		</div></div>
+	<?php } ?>
+	</div>
 </div>
 <div class="hbox">
 	<div class="input-group">
@@ -37,8 +46,8 @@
 				<td><?php echo $value->views;?></td>
 				<td></td>
 				<td class="text-right">
-					<a class="btn btn-primary" href="/posts/enterprise/posts/create/<?php echo $value->id;?>" sn-link="true" parent-controller="#posts">Edit</a>
-					<a class="btn btn-primary" href="/posts/enterprise/posts/deletepost/<?php echo $value->id;?>" sn-link="true" parent-controller="#posts">Delete</a>
+					<a class="btn btn-primary" href="/posts/enterprise/posts/create/<?php echo $value->id;?>?channel=<?php echo $value->channel;?>" sn-link="true" parent-controller="#posts">Edit</a>
+					<a class="btn btn-primary" href="/posts/enterprise/posts/deletepost/<?php echo $value->id;?>?channel=<?php echo $value->channel;?>" sn-link="true" parent-controller="#posts">Delete</a>
 				</td>
 			</tr>
 			<?php } ?>

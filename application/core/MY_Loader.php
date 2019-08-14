@@ -44,7 +44,7 @@ class MY_Loader extends MX_Loader {
         $this->_setups = true;
     }
 
-    public function view($view, $vars = array(), $return = FALSE)
+    public function view($view, $vars = array(), $return = FALSE, $channel=false)
     {
         
         if(!$this->_setups) $this->_setups();
@@ -76,6 +76,19 @@ class MY_Loader extends MX_Loader {
 
         if(is_dir(CMS_SHAREPATH)) $this->_ci_view_paths[CMS_SHAREPATH] = true;
         
+        /*
+        Move to channel
+        */
+        if($channel){
+            foreach ($this->_ci_view_paths as $key => $value) {
+               
+                if(file_exists($key.$channel.".php")){
+                    $view = "channel/".$channel . $view;
+                }
+            }
+        }
+
+
         return $this->_ci_load(array('_ci_view' => $view, '_ci_vars' => ((method_exists($this,'_ci_object_to_array')) ? $this->_ci_object_to_array($vars) : $this->_ci_prepare_view_vars($vars)), '_ci_return' => $return));
     }
 
@@ -107,5 +120,8 @@ class MY_Loader extends MX_Loader {
     public function getModuleName(){
         return $this->_module;
     }
+
+
+
 
 }

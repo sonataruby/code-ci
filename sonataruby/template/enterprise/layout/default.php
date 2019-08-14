@@ -189,6 +189,8 @@
                 </div>
                 <a class="dropdown-item" href="/settings/enterprise/configs/api" sn-link="true" parent-controller="#settings"><i class="fa fa-api"></i> API Manager</a>
                 <a class="dropdown-item" href="/settings/enterprise/configs" sn-link="true" parent-controller="#settings"><i class="fa fa-cogs"></i> System Settings</a>
+                <a class="dropdown-item" href="/settings/enterprise/configs/channels" sn-link="true" parent-controller="#settings"><i class="fa fa-cogs"></i> Channel Settings</a>
+                
               </div>
             </li>
           </ul>

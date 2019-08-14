@@ -18,12 +18,14 @@ class Posts extends Enterprise {
 	Posts Interface
 	*/
 	public function posts(){
-		$data = $this->posts_model->getList();
-		$catalog = $this->catalog_model->dropdown();
+		$channel = $this->input->get("channel");
+		$data = $this->posts_model->getList(["channel" => $channel]);
+		$catalog = $this->catalog_model->dropdown(["channel" => $channel]);
 		$this->view('posts',["catalog" => $catalog, "data" => $data]);
 	}
 
 	public function create($id=false){
+		$channel = $this->input->get("channel");
 		$data = $this->posts_model->getData(false, $id);
 		if($this->isPost()){
 			$image = new Image;
@@ -33,9 +35,10 @@ class Posts extends Enterprise {
 			$arv["post_content"] = $this->input->post("content");
 			$arv["post_tag"] = $this->input->post("post_tag");
 			$arv["language"] = $this->config->item("language");
+			$arv["channel"] = $this->input->post("channel");
 
 			$this->posts_model->create($id, $arv, $this->input->post("catalog"));
-			$this->go("posts/enterprise/posts");
+			$this->go("posts/enterprise/posts?channel=".$this->input->post("channel"));
 		}
 
 		$catalog_id = [];
@@ -46,7 +49,7 @@ class Posts extends Enterprise {
 		}
 		
 
-		$catalog = $this->catalog_model->dropdown(false,"checkbox",$catalog_id);
+		$catalog = $this->catalog_model->dropdown(["channel" => $channel],false,"checkbox",$catalog_id);
 
 		$this->view('posts-create',["catalog" => $catalog, "data" => $data]);
 	}

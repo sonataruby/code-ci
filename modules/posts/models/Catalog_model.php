@@ -44,10 +44,14 @@ class Catalog_model extends Model{
 		$language = ($language ? $language : $this->config->item("language"));
 		$this->db->where("language", $language);
 		$this->db->order_by("catalog_sort","ASC");
-		$this->db->select("catalog_id as id, catalog_name as name, catalog_url as url, catalog_parent as parent, show_menu, show_header, show_dashboard, status");
+		$this->db->select("catalog_id as id, catalog_name as name, catalog_url as url, catalog_parent as parent, show_menu, show_header, show_dashboard, status, channel");
 		
 		if(isset($arv["in"])){
 			$this->db->where_in("catalog_id", $arv["in"]);
+		}
+
+		if(isset($arv["channel"])){
+			$this->db->where("channel", $arv["channel"]);
 		}
 
 		if($relaytion == false){
@@ -72,7 +76,7 @@ class Catalog_model extends Model{
 	private function mutile_res($catalog_parent){
 		$arv = [];
 		$this->db->order_by("catalog_sort","ASC");
-		$this->db->select("catalog_id as id, catalog_name as name, catalog_url as url, catalog_parent as parent, show_menu, show_header, show_dashboard, status");
+		$this->db->select("catalog_id as id, catalog_name as name, catalog_url as url, catalog_parent as parent, show_menu, show_header, show_dashboard, status, channel");
 		$this->db->where("catalog_parent",$catalog_parent);
 		$data = $this->db->get($this->table)->result();
 		foreach ($data as $key => $value) {
@@ -85,8 +89,8 @@ class Catalog_model extends Model{
 		return $arv;
 	}
 
-	public function dropdown($language=false, $tag="select", $attr=[]){
-		$dataList = $this->getList([],$language, true);
+	public function dropdown($arv=[], $language=false, $tag="select", $attr=[]){
+		$dataList = $this->getList($arv,$language, true);
 		if($tag == "select"){
 			$data = $this->dropdown_item($dataList);
 		}else if($tag == "ul"){
@@ -98,6 +102,7 @@ class Catalog_model extends Model{
 	}
 
 	private function dropdown_item($arv=[], $prefix=false, $attr=[]){
+		if(!$arv) return ;
 		$html = !$prefix ? '<select class="form-control custom-select" '._stringify_attributes($attr).'>' : "";
 		foreach ($arv as $key => $value) {
 			
@@ -125,7 +130,7 @@ class Catalog_model extends Model{
 		foreach ($arv as $key => $value) {
 			
 			
-			$html .= '<li class="list-group-item"><a href="'.site_url('catalog/'.$value->url.'.html').'" title="'.$value->name.'">'.$icon.$value->name.$icon_pick.'</a>';
+			$html .= '<li class="list-group-item"><a href="'.site_url('catalog/'.$value->url.'.html').'" title="'.$value->name.'">'.$icon.$value->name.'</a>'.$icon_pick;
 			if(isset($value->item)){
 				$html .= $this->dropdown_item_ul($value->item, $prefix." - ", ["class" => "sub-catalog"]);
 			}

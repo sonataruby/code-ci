@@ -22,14 +22,20 @@ class Catalog extends CPEnterprise {
 				"catalog_name" => $this->input->post("catalog_name"),
 				"catalog_url" => $this->input->post("catalog_url"),
 				"catalog_content" => $this->input->post("catalog_content"),
-				"language" => $this->config->item("language")
+				"language" => $this->config->item("language"),
+				"channel" => ($this->input->post("channel") ? $this->input->post("channel") : ""),
 			];
 		
 			$id = $this->catalog_model->create($id, $arv);
 			$this->go("/posts/enterprise/catalog");
 		}
 
-		$getList = $this->catalog_model->getList(0,$this->config->item("language"), true);
+		$query = [];
+		if($this->input->get("channel")){
+			$query["channel"] = $this->input->get("channel");
+		}
+		$getList = $this->catalog_model->getList($query,$this->config->item("language"), true);
+		
 		$this->view('catalog',["data" => $data, "ListNode" => $getList]);
 	}
 
@@ -39,7 +45,8 @@ class Catalog extends CPEnterprise {
 			$arv = [
 				"catalog_name" => ($this->input->post("catalog_name") ? $this->input->post("catalog_name") : "Catalog name"),
 				"catalog_parent" => ($this->input->post("catalog_parent") ? $this->input->post("catalog_parent") : 0),
-				"language" => $this->config->item("language")
+				"language" => $this->config->item("language"),
+				"channel" => ($this->input->post("channel") ? $this->input->post("channel") : ""),
 			];
 		
 			$id = $this->catalog_model->create(false, $arv);
@@ -69,6 +76,7 @@ class Catalog extends CPEnterprise {
 				"catalog_parent" => ($this->input->post("catalog_parent") > 0 ? $this->input->post("catalog_parent") : 0),
 				"catalog_content" => $this->input->post("catalog_content"),
 				"language" => $this->config->item("language"),
+				"channel" => ($this->input->post("channel") ? $this->input->post("channel") : ""),
 				
 			];
 		

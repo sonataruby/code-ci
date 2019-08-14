@@ -272,13 +272,19 @@ if ( ! function_exists('form_textarea'))
 }
 
 if(! function_exists("isObject")){
-	function isObject($text=""){
+	function isObject($text="", $debug=false){
 		if(is_object($text) || is_array($text)) return $text;
 		if(empty($text)) return "";
 
 		$decode = json_decode($text);
 		if (is_object($decode) || is_array($decode)){
-			$text = count((array)$decode) > 1 ? $decode : (array)$decode[0];
+			
+			$text = ($decode ? $decode : []);
+
+			
+		}
+		if($debug){
+			print_r($text);
 		}
 		return $text;
 	}

@@ -8,7 +8,7 @@ class Catalog_pi extends Plugins
 	
 	public function data($arv=[], $content=""){
 		$arv = $arv + ["item" => json_decode($content)];
-		$arv["data"] = $this->catalog_model->dropdown(false, "ul");
+		$arv["data"] = $this->catalog_model->dropdown([],false, "ul");
 		return $this->view("catalog", $arv);
 	}
 

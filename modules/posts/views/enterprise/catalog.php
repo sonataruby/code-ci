@@ -1,8 +1,20 @@
+<div class="hbox">
+	<h3>Channel <select class="form-control col-lg-3 col-sm-12 float-right" onchange="window.location.href='/posts/enterprise/catalog?channel='+this.value">
+		<option value="">Default</option>
+		<?php foreach (config_item("channel") as $key => $value) { ?>
+			<option value="<?php echo $value->url;?>" <?php echo ($value->url == $this->input->get("channel") ? "selected" : "");?>><?php echo $value->name;?></option>
+		<?php } ?>
+		
+	</select></h3>
+	
+</div>
+
 <div class="row">
 	<div class="col-lg-6 col-sm-12">
 		<div class="hbox">
 			<?php echo form_open(false, ["id" => "dataform"]);?>
 			<input type="hidden" name="catalog_id" value="">
+			<input type="hidden" name="channel" value="<?php echo $this->input->get("channel");?>">
 			<?php if($this->input->get("parent")){ ?>
 				<input type="hidden" name="catalog_parent" value="<?php echo $this->input->get("parent");?>">
 			<?php } ?>
@@ -44,6 +56,7 @@
 
 <?php 
 function makeSortItem($arv=[]){
+	if(!$arv) return;
 	$html = '<ol class="dd-list">';
 	foreach ($arv as $key => $value) {
 		$show_dashboard = ($value->show_dashboard == 1 ? "bg-success text-white" : "");
@@ -84,7 +97,7 @@ function makeSortItem($arv=[]){
 			$.ajax({
                 type: "POST",
                 url: '/posts/enterprise/catalog/createcatalog',
-                data : {catalog_parent : parent_id, "catalog_name" : "Catalog Name"},
+                data : {catalog_parent : parent_id, "catalog_name" : "Catalog Name", "channel" : "<?php echo $this->input->get("channel");?>"},
                 dataType : "json",
                 success: function(data){
                 	console.log(data);

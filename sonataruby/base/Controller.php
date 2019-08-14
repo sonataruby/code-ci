@@ -13,6 +13,7 @@ use \Sonata\Components;
 class Controller extends MX_Controller {
 
 	public $setLayout = "default";
+	public $channelLayout = false;
 	public $header = ["title" => "CMS Blockchain 4.0", "description" => "Advanced cloud hosting platform with 24/7 Expert Support &amp; 8 Datacenter Locations. We will handle caching, transfers, security, updates.", "keyword" => "", "image" => ""];
 	function __construct()
 	{
@@ -60,6 +61,13 @@ class Controller extends MX_Controller {
 		if($layout) $this->setLayout = $layout;
 		return $this;
 	}
+
+	public function channel($layout=""){
+		if($layout) $this->channelLayout = $layout;
+
+		return $this;
+	}
+
 	public function setTitle($text){
 		if($text) $this->header["title"] = $text;
 		return $this;
@@ -84,7 +92,9 @@ class Controller extends MX_Controller {
 		if(is_ajax()){
 			return $this->load->view("{$file}",$data);
 		}
-		$content = $this->load->view("{$file}",$data,true);
+		
+		$content = $this->load->view("{$file}",$data,true, $this->channelLayout);
+		
 		return $this->load->view("layout/".$this->setLayout,["content" => $content, "data" => $data, "header" => $this->header]);
 	}
 
