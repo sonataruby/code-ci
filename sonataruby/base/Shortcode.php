@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 use Exception;
 use stdClass;
-
+use \Sonata\Components;
 /**
      * API Shortcode do Wordpress adaptada para uma library do CI.
      *
@@ -99,6 +99,21 @@ class Shortcode {
             }
             
         });
+        $this->add("components", function($atts, $content=""){
+            extract($this->shortcode_atts(array(
+                       'name' => false
+               ), $atts));
+            if($name){
+                $components = new Components;
+                ob_start();
+                $components->{$name}($content, $atts);
+                $data = ob_get_contents();
+                ob_end_clean();
+                return $data;
+            }
+            
+        });
+
     }
 
     function add($tag, $func) {

@@ -1,4 +1,5 @@
 <section>
+  [components name="svg" style="height:500px;"/]
 [plugin name="home/video" type="background" url="https://www.youtube.com/watch?v=rG9LMCL-HN0"]
   <h1>Company Info</h1>
 [/plugin]
@@ -7,8 +8,8 @@
   <div class="container">
     <div class="row d-flex">
       
-      <div class="col-3 flex-box"><div class="border">[plugin name="posts/catalog"]limit=5&order=desc[/plugin]</div></div>
-      <div class="col-9">[plugin name=home/slider][
+      <div class="col-lg-3 hidden-xs flex-box"><div class="border">[plugin name="posts/catalog"]limit=5&order=desc[/plugin]</div></div>
+      <div class="col-lg-9 col-sm-12">[plugin name=home/slider][
 {"content" : "<h3>Con bo</h3>", "url" : "", "image" : "//wowslider.com/sliders/demo-77/data1/images/road220058.jpg"},
 {"content" : "", "url" : "", "image" : "//wowslider.com/sliders/demo-77/data1/images/road220058.jpg"},
 {"content" : "", "url" : "", "image" : "//wowslider.com/sliders/demo-77/data1/images/road220058.jpg"}

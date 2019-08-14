@@ -181,10 +181,10 @@ class Forms{
 
         $extract["id"] = isset($extract["id"]) ? $extract["id"] : "InputRadio".random_string('alnum', 16);
         $extract = array_merge($extract,["class" => "form-control"]);
-        $group = isset($extract["group"]) ? true : false;
+        $group = isset($extract["group"]) ? $extract["group"] : false;
         $help = isset($extract["help"]) ? $extract["help"] : false;
         $js = isset($extract["js"]) ? $extract["js"] : [];
-
+        $layout = isset($extract["layout"]) ? $extract["layout"] : false;
 
         $radio = '';
         if(is_array($item)){
@@ -204,8 +204,8 @@ class Forms{
         }
         
         return  $this->group_start($group).
-                (@$extract["label"] !== false ? $this->label($label, $extract["id"], $extract) : "").
-                $radio.
+                $this->renderTemplate((@$extract["label"] !== false ? $this->label($label, $extract["id"], $extract) : ""),
+                $radio, $layout).
                 $this->help($help, $extract["id"]).
                 $this->group_end($group);
     }
@@ -218,10 +218,10 @@ class Forms{
 
         $extract["id"] = isset($extract["id"]) ? $extract["id"] : "InputRadio".random_string('alnum', 16);
         $extract = array_merge($extract,["class" => "form-control"]);
-        $group = isset($extract["group"]) ? true : false;
+        $group = isset($extract["group"]) ? $extract["group"] : false;
         $help = isset($extract["help"]) ? $extract["help"] : false;
         $js = isset($extract["js"]) ? $extract["js"] : [];
-
+        $layout = isset($extract["layout"]) ? $extract["layout"] : false;
 
         $radio = '';
         if(is_array($item)){
@@ -241,8 +241,8 @@ class Forms{
         }
         
         return  $this->group_start($group).
-                (@$extract["label"] !== false ? $this->label($label, $extract["id"], $extract) : "").
-                $radio.
+                $this->renderTemplate((@$extract["label"] !== false ? $this->label($label, $extract["id"], $extract) : ""),
+                $radio, $layout).
                 $this->help($help, $extract["id"]).
                 $this->group_end($group);
 

@@ -67,7 +67,7 @@ class Components {
         
         $menu = $this->CI->menu_model->getDropdown();
         $data = array_merge($data, ["menu" => $menu]);
-        return $this->CI->load->view("components/header",["data" => $data, "attr" => $attr]);
+        return $this->CI->load->view("components/header",["data" => $data, "attr" => $attr, "usermenu" => $this->usermenu()]);
     }
 
     /*Footer*/
@@ -81,5 +81,33 @@ class Components {
     public function countdown($data="", $attr=["class" => "d-block w-100 no-radius"]){
         $data = isObject($data);
         return $this->CI->load->view("components/countdown",["data" => $data, "attr" => $attr]);
+    }
+
+    /*
+        SVG HTML DESIGN
+    */
+
+    public function svg($data="", $attr=["class" => "footer"]){
+        $data = isObject($data);
+        return $this->CI->load->view("components/svg",["data" => $data, "attr" => $attr]);
+    }
+
+
+    public function usermenu(){
+        $data = get_instance()->session->userdata("logininfo");
+        $arv = '';
+        $arv .= '<li class="dropdown-item">Profile</li>';
+        $arv .= '<li class="dropdown-item">Change Password</li>';
+
+        if($data->account_type == "enterprise"){
+            $arv .= '<li class="dropdown-item"><a href="/enterprise">Administrator</a></li>';
+        }
+
+        if($data->account_type == "personal"){
+            $arv .= '<li class="dropdown-item"><a href="/personal">Administrator</a></li>';
+        }
+
+        $arv .= '<li class="dropdown-item"><a href="/account/logout"><i class="fa fa-lock"></i> Logout</a></li>';
+        return $arv;
     }
 }

@@ -28,7 +28,7 @@ class Pages_model extends Model{
 		$language = ($language ? $language : $this->config->item("language"));
 		$this->db->where("language", $language);
 
-		$this->db->select("page_id as id, page_name as name, page_image as image, page_description as description, page_keyword as keyword, page_layout as layout, page_url as url, page_icoin as icoin, page_tag as tag, page_content as content, show_menu, show_header, status");
+		$this->db->select("page_id as id, page_name as name, page_image as image, page_description as description, page_keyword as keyword, page_layout as layout, page_url as url, page_icoin as icoin, page_tag as tag, page_content as content, show_menu, status, parent_id");
 		$data = $this->db->get($this->table)->row();
 		if(!$data) return;
 		
@@ -45,7 +45,17 @@ class Pages_model extends Model{
 		if(isset($arv["in"])){
 			$this->db->where_in("page_id", $arv["in"]);
 		}
-		$this->db->select("page_id as id, page_name as name, page_image as image, page_description as description, page_keyword as keyword, page_layout as layout, page_url as url, page_icoin as icoin, page_tag as tag, show_menu, show_header, status");
+		if(isset($arv["parent_id"])){
+			$this->db->where("parent_id", $arv["parent_id"]);
+		}else{
+			$this->db->where("parent_id", 0);
+		}
+
+		if(isset($arv["show_menu"])){
+			$this->db->where("show_menu", $arv["show_menu"]);
+		}
+
+		$this->db->select("page_id as id, page_name as name, page_image as image, page_description as description, page_keyword as keyword, page_layout as layout, page_url as url, page_icoin as icoin, page_tag as tag, show_menu, status, parent_id");
 
 		return $this->db->get($this->table)->result();
 	}
@@ -62,6 +72,17 @@ class Pages_model extends Model{
 		$count = $this->db->get($this->table)->num_rows();
 
 		return $url.($count > 0 ? "-".$count : "");
+	}
+
+
+	public function getDropdown($arv=[]){
+		$data = $this->getList($arv);
+		$arv = '<ul>';
+		foreach ($data as $key => $value) {
+			$arv .= '<li><a href="'.page_url($value->url).'" title="'.$value->name.'">'.$value->name.'</a></li>';
+		}
+		$arv .= '<ul>';
+		return $arv;
 	}
 
 }

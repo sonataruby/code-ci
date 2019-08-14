@@ -23,6 +23,7 @@ class Menu extends Enterprise {
 			$arv = [
 				"menu_name" => $this->input->post("name"),
 				"menu_link" => $this->input->post("url"),
+				"menu_icon" => $this->input->post("icon"),
 				"language" => $this->config->item("language")
 			];
 			if(!$id){

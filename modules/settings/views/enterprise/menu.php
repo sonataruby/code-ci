@@ -28,16 +28,21 @@
                 "name" => "name",
                 "label" => "Menu Name",
                 "value" => @$data->name
-            ],["data-inputicoin" => "true","requied" => true],[
+            ],["requied" => true]);?>
+
+            <?php echo $this->forms->text([
+                "name" => "icon",
+                "label" => "Menu Icoin",
+                "value" => @$data->icon
+            ],["data-inputicoin" => "true"],[
                
                 '<span class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" data-icon="'.(@$data->icoin ? @$data->icoin : "fa fa-file-word").'" data-placement="right" role="iconpicker"></button>
+                    <button class="btn btn-outline-secondary" type="button" data-icon="'.(@$data->icon ? @$data->icon : "fa fa-file-word").'" data-placement="right" role="iconpicker"></button>
                 </span>',
                  false
                 
             ]);?>
 
-            
             <?php echo $this->forms->text([
                 "name" => "url",
                 "label" => "Menu Link",
@@ -69,6 +74,10 @@
 
 <?php libs_url("js/tagcomplete.js");?>
 <?php libs_url("css/tagcomplete.css");?>
+<?php libs_url('js/bootstrap-iconpicker-iconset-all.js',['name' => "Font Icoin Picker"]);?>
+<?php libs_url('js/bootstrap-iconpicker.js',['name' => "Font Icoin Picker"]);?>
+<?php libs_url('css/bootstrap-iconpicker.css',['name' => "Font Icoin Picker"]);?>
+
 <style type="text/css">
     .tags_container{
         display: block;

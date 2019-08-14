@@ -1,4 +1,4 @@
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+<div id="carouselExampleIndicators" class="carousel slide masterSlider" data-ride="carousel">
   <ol class="carousel-indicators">
   	<?php foreach ($item as $key => $value) { ?>
     <li data-target="#carouselExampleIndicators" data-slide-to="<?php echo $key;?>" class="<?php echo ($key == 0 ? "active" : "");?>"></li>

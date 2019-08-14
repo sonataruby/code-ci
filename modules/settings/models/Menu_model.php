@@ -95,7 +95,9 @@ class Menu_model extends Model{
 		$data = $this->makeData(["parent_id" => $parent_id], $language);
 		$arv = '<ul class="navbar-nav mr-auto">';
 		foreach ($data as $key => $value) {
+			
 			$check = $this->db->get_where($this->table, ["parent_id" => $value->id])->num_rows();
+			$icon = ($value->icon ? '<i class="'.$value->icon.' fa-icon"></i> ' : "");
 			$sup = explode(',', $value->url);
 			if($check > 0 || count($sup) > 1 || $value->url == "allcatalog"){
 				$classLI = "nav-item dropdown";
@@ -106,7 +108,7 @@ class Menu_model extends Model{
 			}
 
 
-			$arv .= '<li class="'.$classLI.'"><a '._attributes_to_string($classA).' href="'.site_url(($value->url !== "home" ? $value->url : "/")).'">'.$value->name.'</a>';
+			$arv .= '<li class="'.$classLI.'"><a '._attributes_to_string($classA).' href="'.site_url(($value->url !== "home" ? $value->url : "/")).'">'.$icon.$value->name.'</a>';
 			if($check > 0 || count($sup) > 1){
 				$arv .= $this->renderItemULSorts($value->id,  $sup);
 			}
@@ -161,7 +163,8 @@ class Menu_model extends Model{
 		if($getPage){
 			$pageInfo = $this->pages_model->getList(["in" => implode(', ', $getPage)]);
 			foreach ($pageInfo as $keyPage => $valuePage) {
-				$arv .= '<li class="dropdown-item"><a href="'.page_url($valuePage->url).'">'.$valuePage->name.'</a></li>';
+				$icon = ($valuePage->icoin ? '<i class="'.$valuePage->icoin.' fasub-icon"></i> ' : "");
+				$arv .= '<li class="dropdown-item"><a href="'.page_url($valuePage->url).'">'.$icon.$valuePage->name.'</a></li>';
 			}
 		}
 		if($getCatalog){

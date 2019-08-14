@@ -73,7 +73,16 @@ class Template extends Enterprise {
 
 
 	public function header(){
-		$this->view("header-settings");
+		$dataRead = $this->settings_model->getData();
+
+		$data = isObject(@$dataRead->header);
+		if($this->isPost()){
+			$config = $this->input->post("config");
+			$json = $this->tojson($config, true);
+			$this->settings_model->save(["header" => $json]);
+			$this->go("/settings/enterprise/template/header");
+		}
+		$this->view("header-settings",["data" => $data]);
 	}
 
 
