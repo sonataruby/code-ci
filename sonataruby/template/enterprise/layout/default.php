@@ -97,7 +97,7 @@
                  <?php
                   $data = get_instance()->layout_model->getList();
                   foreach ($data as $key => $value) { ?>
-                    <a class="dropdown-item" href="/pages/layout/create/<?php echo $value->id;?>" sn-link="true" parent-controller="#pages"><i class="fa fa-file-word"></i> <?php echo $value->name;?></a>
+                    <a class="dropdown-item" href="/pages/layout/create/<?php echo $value->id;?>"><i class="fa fa-file-word"></i> <?php echo $value->name;?></a>
                   <?php } ?>
 
                 <div class="menuHeader">

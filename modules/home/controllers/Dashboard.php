@@ -8,8 +8,11 @@ class Dashboard extends FrontEnd {
 	{
 		$layout = $this->layout_model->getData("home");
 		$data = [];
+		$data["site_name"] = $this->config->item("site_name");
+		$data["hotline"] = $this->config->item("hotline");
+
 		if($layout){
-			$layout->content = $this->shortcode->run($this->parser->parse_string($layout->content, $data, true));
+			$layout->content = $this->parser->parse_string($this->shortcode->run($layout->content), $data, true);
 			$this->view('home-customs',["data" => $layout]);
 		}else{
 			$this->view('home',["data" => $data]);
