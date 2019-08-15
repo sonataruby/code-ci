@@ -1,7 +1,7 @@
 <?php if($type == "background"){ ?>
 <div style="height: <?php echo @$height;?>px; position: relative;">
     <div data-youtube="<?php echo @$url;?>"></div>
-    <?php if($mask){ ?>
+    <?php if(@$mask){ ?>
         <div style="position: absolute; top:0; height: 100%; display: flex; width: 100%; z-index: 998; opacity: <?php echo $mask;?>; background-color: <?php echo (@$bgcolor ? $bgcolor : "#FFF");?>;"></div>
     <?php } ?>
     <div style="position: absolute; top:0; height: 100%; display: flex; width: 100%; z-index: 999;"><?php echo $content;?></div>
