@@ -15,6 +15,7 @@ class FrontEnd extends Controller{
 	public function view($file, $data=[]){
 		
 		$data_pate = [];
+		$data_pate["full_address"] = get_address();
 		foreach ($this->lang->language as $key => $value) {
 			$data_pate["lang_".$key] = $value;
 		}
@@ -22,6 +23,7 @@ class FrontEnd extends Controller{
 		foreach ($this->settings as $key => $value) {
 			$data_pate[$key] = is_object($value) ? (array)$value : $value;
 		}
+		$data_pate["hotline"] = format_phone(config_item("hotline"));
 
 		if(is_ajax()){
 			$dataRender = $this->load->view("{$file}",$data, true);
@@ -72,7 +74,7 @@ class FrontEnd extends Controller{
 	    " ",
 	    "",
 	    " ",
-	    "><",
+	    "> <",
 	    "$1>",
 	    "=$1");
 

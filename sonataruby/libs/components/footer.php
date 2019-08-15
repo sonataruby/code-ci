@@ -2,9 +2,9 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-6 col-sm-12">
-				<h3><?php echo config_item("site_name");?></h3>
-				<p><?php echo config_item("address");?>, <?php echo config_item("address");?>, <?php echo config_item("address");?>, <?php echo config_item("country");?></p>
-				<p>Hotline : <?php echo config_item("hotline");?></p>
+				<h3>{site_name}</h3>
+				<p>{full_address}</p>
+				<p>Hotline : {hotline}</p>
 			</div>
 			<div class="col-lg-3 col-sm-12">
 				<h3>Infomation</h3>

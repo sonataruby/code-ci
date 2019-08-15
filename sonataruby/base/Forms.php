@@ -451,8 +451,12 @@ class Forms{
                     <div class="form-group col-md-4">
                       '.$this->country(["name" =>  $name."[country]", "label" => "Country","value" => @$value->country],["required" => true]).'
                     </div>
+                    <div class="form-group col-md-3">
+                      '.$this->text(["name" =>  $name."[region]", "label" => "Region","value" => @$value->region],["required" => true]).'
+                    </div>
+                    
 
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-3">
                       '.$this->text(["name" =>  $name."[city]", "label" => "City","value" => @$value->city],["required" => true]).'
                     </div>
                     

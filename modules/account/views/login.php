@@ -11,7 +11,7 @@
 				<p>{lang_welcome_login_description}</p> 
 				<h4>{site_name}</h4>
 				<p><i class="fa fa-phone fa-2x"></i> <a href="call:{hotline}">{hotline}</a></p>
-				<p><i class="fa fa-map fa-2x"></i> {address}</p>
+				<p><i class="fa fa-map fa-2x"></i> {full_address}</p>
 				<p><i class="fa fa-envelope fa-2x"></i> <a href="mailto:{site_email}?subject=Contact">{site_email}</a></p>
 
 			</div>

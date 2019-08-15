@@ -318,3 +318,47 @@ if( ! function_exists("page_url")){
 }
 
 
+
+if( ! function_exists("get_country")){
+	function get_country($code){
+		$ci = &get_instance();
+		if(!isset($ci->country)){
+			$ci->country = json_decode(file_get_contents(__DIR__ . "/../libs/country.json"));
+		}
+		foreach ($ci->country as $key => $value) {
+			if($value->code == $code){
+				return $value->name;
+			}
+		}
+	}
+}
+
+if( ! function_exists("get_address")){
+	function get_address(){
+		$arv = [];
+		$arv[] = config_item("address");
+		if(config_item("address2")){
+			$arv[] = config_item("address2");
+		}
+		$arv[] = config_item("city");
+		$arv[] = config_item("region");
+		$arv[] = get_country(config_item("country"));
+		return implode($arv, ", ");
+	}
+}
+
+if( ! function_exists("format_phone")){
+	function format_phone($number, $country="+"){
+		
+
+		$number = sprintf("%s-%s-%s",
+	              substr($number, 0, 4),
+	              substr($number, 4, 3),
+	              substr($number, 7));
+
+		return $number;
+	}
+}
+
+
+
