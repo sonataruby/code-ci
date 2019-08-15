@@ -8,3 +8,4 @@ create.sh
 application/config/database.php
 upload/*
 modules/tools
+templates/*/layout
