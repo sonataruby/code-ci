@@ -2,7 +2,7 @@
 	<?php
 	$first = array_pop($data);
 	?>
-	<div class="col-lg-4 col-sm-12">
+	<div class="col-lg-4 col-sm-12 flex-box">
 		<div class="card">
 		  <div class="card-header-top">
 		  <?php echo $this->components->image($first->image,["class" => "card-img-top", "alt" => $first->name]);?>
@@ -28,7 +28,7 @@
 					  <?php echo $this->components->image($value->image,["class" => "card-img-top", "alt" => $value->name]);?>
 					  </div>
 					  <div class="card-body">
-					    <h5 class="card-title"><a href="<?php echo post_url($value->url);?>"><?php echo $value->name;?></a></h5>
+					    <h5 class="card-title"><a href="<?php echo post_url($value->url, $value->channel);?>"><?php echo $value->name;?></a></h5>
 					    
 					  </div>
 					</div>

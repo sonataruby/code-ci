@@ -11,10 +11,7 @@ class Content extends FrontEnd {
 
 		$layout = $this->layout_model->getData($data->layout);
 
-		if($layout){
-			
-			$data->content = $this->parser->parse_string($this->shortcode->run($layout->content), $data, true);
-		}
+		
 		
 		$this->setTitle($data->name)
 			->setDescription($data->description)

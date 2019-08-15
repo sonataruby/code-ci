@@ -41,7 +41,7 @@
 				"name" => "channel[layout]",
 				"label" => "Layout",
 				"value" => @$edit->layout,
-				"options" => ["default" => "Default"]
+				"options" => ["default" => "Default","blogs" => "Blog's"]
 			],[
 				
 				"group" => 'outline-group',

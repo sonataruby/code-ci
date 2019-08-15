@@ -45,7 +45,7 @@ class Posts_model extends Model{
 		$data = $this->db->get($this->table)->row();
 		if(!$data) return;
 		$data->image = isObject($data->image);
-		$data->catalog = $this->db->select($this->postInCatalog.".post_id, ".$this->postInCatalog.".catalog_id, catalog.catalog_name as catalog_name, catalog.catalog_url as catalog_url")->join("catalog","catalog.catalog_id=".$this->postInCatalog.".catalog_id","left")->get_where($this->postInCatalog, ["post_id" => $data->id])->result();
+		$data->catalog = $this->db->select($this->postInCatalog.".post_id, ".$this->postInCatalog.".catalog_id, catalog.catalog_name as catalog_name, catalog.catalog_url as catalog_url, catalog.channel as channel")->join("catalog","catalog.catalog_id=".$this->postInCatalog.".catalog_id","left")->get_where($this->postInCatalog, ["post_id" => $data->id])->result();
 
 		if($prevnext){
 			$data->prev = @array_pop($this->getList(["limit" => 1, "prev" => $data->id]));

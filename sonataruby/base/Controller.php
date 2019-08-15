@@ -14,6 +14,7 @@ class Controller extends MX_Controller {
 
 	public $setLayout = "default";
 	public $channelLayout = false;
+	public $settings = [];
 	public $header = ["title" => "CMS Blockchain 4.0", "description" => "Advanced cloud hosting platform with 24/7 Expert Support &amp; 8 Datacenter Locations. We will handle caching, transfers, security, updates.", "keyword" => "", "image" => ""];
 	function __construct()
 	{
@@ -21,6 +22,7 @@ class Controller extends MX_Controller {
 		
 		$this->load->helper(['date','cookie','url','form','string','text']);
 		$this->load->library(['session','email','user_agent','form_validation']);
+		$this->lang->load("globals");
 		$this->load->model([
 			'settings/menu_model',
 			'settings/settings_model',
@@ -43,6 +45,7 @@ class Controller extends MX_Controller {
 			foreach ($json as $key => $value) {
 
 				$this->config->set_item($key, isObject($value));
+				$this->settings[$key] = isObject($value);
 			}
 
 			$this->setTitle(@$json->site_name);
@@ -89,17 +92,21 @@ class Controller extends MX_Controller {
 	}
 
 	public function view($file, $data=[]){
+		
 		if(is_ajax()){
 			return $this->load->view("{$file}",$data);
+			
 		}
 		
 		$content = $this->load->view("{$file}",$data,true, $this->channelLayout);
-		
+
 		return $this->load->view("layout/".$this->setLayout,["content" => $content, "data" => $data, "header" => $this->header]);
+
+		
 	}
 
 
-
+	
 	/*
 	Validate Method
 	*/

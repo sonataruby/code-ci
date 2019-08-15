@@ -18,7 +18,7 @@ class Content extends FrontEnd {
 		
 		$data = $this->posts_model->getData($url, false, true, true);
 		$catalog = $this->catalog_model->dropdown(false,"ul");
-
+		
 		$this->setTitle($data->name)
 		 	->channel($data->channel)
 			->view('post',["data" => $data, "catalog" => $catalog]);
@@ -28,6 +28,10 @@ class Content extends FrontEnd {
 
 		$data = $this->catalog_model->getData($url,false, true, true);
 		
+		if($data && count($data->posts) < 2 && count($data->posts) > 0){
+			$post = array_pop($data->posts);
+			$this->go(($post->channel ? $post->channel : "post")."/{$post->url}.html");
+		}
 		
 		$this->setTitle($data->catalog_name)
 			->channel($data->channel)

@@ -1,14 +1,3 @@
-<section>
-  
-[plugin name="home/video" type="background" url="https://www.youtube.com/watch?v=gxQ2cNYAfn8" height="420"]
-<div class="container text-center">
-  <div class="card card-body mt-3 col-lg-3 col-sm-12">
-    <h1>{site_name}</h1>
-    <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  </div>
-</div>
-[/plugin]
-</section>
 <section class="animated bounceIn" data-id="1" data-animated="true">
   <div class="container">
     <div class="row d-flex">

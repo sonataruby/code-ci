@@ -13,6 +13,7 @@ class Enterprise extends Controller{
 	function __construct()
 	{
 		parent::__construct();
+		$this->lang->load("admin");
 		if(!$this->isEnterprise()){
 			$this->go("access-denied.html?ref=".$this->urlactive());
 		}

@@ -113,6 +113,22 @@ class Shortcode {
             }
             
         });
+        
+        $this->add("social", function($atts, $content=""){
+            
+            $explode = explode('|', $content);
+            $arv = [];
+            foreach ($explode as $key => $value) {
+                list($type, $url) = explode(':', $value);
+                $arv[] = ["icon" => "fa fa-".$type,"url" => $url];
+                
+            }
+            $html = '';
+            foreach ($arv as $key => $value) {
+                $html .= '<a href="'.$value["url"].'" target="_bank"><i class="'.$value["icon"].'"></i></a>';
+            }
+            return $html;
+        });
 
     }
 

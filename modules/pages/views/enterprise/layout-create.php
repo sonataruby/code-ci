@@ -71,7 +71,7 @@
 				    </button>
 				    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
 				    	<?php foreach (config_item("plugins") as $key => $value) { ?>
-				    		<a class="dropdown-item" data-item="text" data-append='[plugin name="<?php echo $key;?>"][/plugin]'><?php echo $value;?></a>
+				    		<a class="dropdown-item"  data-item="text" data-append='[plugin name="<?php echo $key;?>"][/plugin]'><?php echo $value;?></a>
 				    	<?php } ?>
 				      
 				      

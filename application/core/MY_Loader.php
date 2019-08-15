@@ -81,10 +81,13 @@ class MY_Loader extends MX_Loader {
         */
         if($channel){
             foreach ($this->_ci_view_paths as $key => $value) {
-               
-                if(file_exists($key.$channel.".php")){
-                    $view = "channel/".$channel . $view;
+              
+                if(file_exists($key."channel/".$channel."/{$view}.php")){
+                    $view = "channel/".$channel ."/". $view;
+                    
                 }
+                 
+
             }
         }
 

@@ -15,6 +15,6 @@ class Register extends FrontEnd {
 				$this->go("account/register");
 			}
 		}
-		return $this->view("login");
+		return $this->setTitle('{lang_register}')->view("register");
 	}
 }

@@ -106,8 +106,8 @@
 		"size" => "640x420"
 	]);?>
 
-	<h4>Contact Infomation</h4>
-	<?php echo $this->forms->contact([
+	<h4>Company Infomation</h4>
+	<?php echo $this->forms->companyinfo([
 		"name" => "config",
 		"value" => @$data
 	],[

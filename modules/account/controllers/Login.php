@@ -17,6 +17,6 @@ class Login extends FrontEnd {
 				$this->go("account/login?ref=".$this->input->get("ref"));
 			}
 		}
-		return $this->view("login");
+		return $this->setTitle('{lang_login}')->view("login");
 	}
 }

@@ -419,17 +419,28 @@ class Forms{
     }
 
 
-    public function contact(array $params=[], $extract=[], $append=[]){
+    public function companyinfo(array $params=[], $extract=[], $append=[]){
         $name = $params["name"];
         $value = @$params["value"];
-        return '<div class="form-row">
+        return '
+                
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                      '.$this->text(["name" => $name."[hotline]", "label" => "Hotline","value" => @$value->hotline],["required" => true]).'
+                    </div>
+                    <div class="form-group col-md-6">
+                      '.$this->text(["name" =>  $name."[site_email]", "label" => "Email","value" => @$value->site_email],["required" => true]).'
+                    </div>
+                </div>
+
+                <div class="form-row">
                     <div class="form-group col-md-6">
                       '.$this->text(["name" => $name."[firstname]", "label" => "First Name","value" => @$value->firstname],["required" => true]).'
                     </div>
                     <div class="form-group col-md-6">
                       '.$this->text(["name" =>  $name."[lastname]", "label" => "Last Name","value" => @$value->lastname],["required" => true]).'
                     </div>
-                  </div>
+                </div>
                   <div class="form-group">
                     '.$this->textarea(["name" =>  $name."[address]", "label" => "Address","value" => @$value->address],["rows" => 2,"required" => true]).'
                   </div>

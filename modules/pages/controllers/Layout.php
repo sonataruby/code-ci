@@ -31,6 +31,9 @@ class Layout extends CPEnterprise {
 		$this->view('layout-create',["data" => $data]);
 	}
 
-
+	public function plugins(){
+		$plugins = $this->input->get("controller");
+		print_r($plugins);
+	}
 	
 }

@@ -19,11 +19,16 @@ class Components {
         return $this->CI->load->view("components/comments",["data" => $data]);
     }
 
-    public function breadcrumb(){
+    public function breadcrumb($arv=""){
        $data = [];
        $active = "";
+       if($arv) $active = $arv;
+
+        if(isset($this->CI->load->_ci_cached_vars["data"]->channel) && $this->CI->load->_ci_cached_vars["data"]->channel){
+            $data[] = json_decode('{"catalog_name" : "'.config_item("channel")->{$this->CI->load->_ci_cached_vars["data"]->channel}->name.'", "catalog_url" : "#"}');
+        }
     	if(isset($this->CI->load->_ci_cached_vars["data"]->catalog)){
-    		$data = $this->CI->load->_ci_cached_vars["data"]->catalog;
+    		$data = array_merge($data,$this->CI->load->_ci_cached_vars["data"]->catalog);
     	}
     	if(isset($this->CI->load->_ci_cached_vars["data"]->name)){
     		$active = $this->CI->load->_ci_cached_vars["data"]->name;
@@ -34,11 +39,12 @@ class Components {
             $active = $this->CI->load->_ci_cached_vars["data"]->catalog_name;
         }
 
-        
+       
         if(isset($this->CI->load->_ci_cached_vars["data"]->posts)){
             //$data[] = json_decode('{"catalog_name" : "Category", "catalog_url" : "'.$this->CI->load->_ci_cached_vars["data"]->catalog_url.'"}');
             $active = "All Posts";
         }
+
     	return $this->CI->load->view("components/breadcrumb",["data" => $data, "active" => $active]);
     }
 

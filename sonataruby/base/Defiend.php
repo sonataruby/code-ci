@@ -274,7 +274,7 @@ if ( ! function_exists('form_textarea'))
 if(! function_exists("isObject")){
 	function isObject($text="", $debug=false){
 		if(is_object($text) || is_array($text)) return $text;
-		if(empty($text)) return "";
+		if(empty(trim($text))) return "";
 
 		$decode = json_decode($text);
 		if (is_object($decode) || is_array($decode)){
@@ -299,14 +299,14 @@ if(! function_exists("getDateSQL")){
 }
 
 if( ! function_exists("post_url")){
-	function post_url($url){
-		return site_url("post/{$url}.html");
+	function post_url($url, $prefix=""){
+		return site_url("{$prefix}/post/{$url}.html");
 	}
 }
 
 if( ! function_exists("catalog_url")){
-	function catalog_url($url){
-		return site_url("catalog/{$url}.html");
+	function catalog_url($url, $prefix=""){
+		return site_url("{$prefix}/catalog/{$url}.html");
 	}
 }
 

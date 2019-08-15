@@ -40,9 +40,9 @@ class Configs extends Enterprise {
 		$data = [];
 		$dataRead = $this->settings_model->getData();
 
-		$channel = (array)isObject($dataRead->channel);
-
-		//$channel = (strlen(@$channel[0]) < 2 ? [] : $channel);
+		$channel = isObject(@$dataRead->channel);
+		
+		$channel = (empty($channel) ? [] : (array)$channel);
 		
 		if($this->isPost()){
 			$config = $this->input->post("channel");
