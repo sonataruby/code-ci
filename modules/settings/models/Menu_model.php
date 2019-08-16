@@ -82,6 +82,7 @@ class Menu_model extends Model{
 	private function makeData($arv=[], $language=false){
 		$language = !$language ? config_item("language") : $language;
 		$parent_id = isset($arv["parent_id"]) ? intval($arv["parent_id"]) : 0;
+		$this->db->order_by("menu_sort","ASC");
 		$this->db->where("parent_id",$parent_id);
 		$this->db->where("language", $language);
 		$this->db->select("menu_id as id, parent_id, menu_name as name, menu_icon as icon, menu_link as url, menu_sort as sorts");
