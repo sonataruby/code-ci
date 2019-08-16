@@ -17,6 +17,11 @@ class Posts_pi extends Plugins
 		if($catalog){
 			$arvInput["catalog"] = $catalog;
 		}
+		if(isset($arv["channel"])){
+			$arvInput["channel"] = $arv["channel"];
+			unset($arv["channel"]);
+		}
+		
 		$data = $this->posts_model->getList($arvInput);
 		$arv["data"] = $data;
 		return $this->view("posts".$theme, $arv);

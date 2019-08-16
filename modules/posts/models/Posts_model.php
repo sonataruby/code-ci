@@ -45,15 +45,15 @@ class Posts_model extends Model{
 		$data = $this->db->get($this->table)->row();
 		if(!$data) return;
 		$data->image = isObject($data->image);
-		$data->catalog = $this->db->select($this->postInCatalog.".post_id, ".$this->postInCatalog.".catalog_id, catalog.catalog_name as catalog_name, catalog.catalog_url as catalog_url, catalog.channel as channel")->join("catalog","catalog.catalog_id=".$this->postInCatalog.".catalog_id","left")->get_where($this->postInCatalog, ["post_id" => $data->id])->result();
+		$data->catalog = $this->db->select($this->postInCatalog.".post_id, ".$this->postInCatalog.".catalog_id, catalog.catalog_name as catalog_name, catalog.catalog_url as catalog_url, catalog.channel as channel")->join("catalog","catalog.catalog_id=".$this->postInCatalog.".catalog_id","left")->get_where($this->postInCatalog, ["post_id" => $data->id, "channel" => $data->channel])->result();
 
 		if($prevnext){
-			$data->prev = @array_pop($this->getList(["limit" => 1, "prev" => $data->id]));
-			$data->next = @array_pop($this->getList(["limit" => 1, "next" => $data->id]));
+			$data->prev = @array_pop($this->getList(["limit" => 1, "prev" => $data->id, "channel" => $data->channel]));
+			$data->next = @array_pop($this->getList(["limit" => 1, "next" => $data->id, "channel" => $data->channel]));
 		}
 		
 		if($order){
-			$data->order = $this->getList(["limit" => 3, "ingore" => $data->id]);
+			$data->order = $this->getList(["limit" => 3, "ingore" => $data->id,"channel" => $data->channel]);
 		}
 
 		return $data;
@@ -122,13 +122,14 @@ class Posts_model extends Model{
 
 		if($channel){
 			$this->db->where("{$this->table}.channel", $channel);
+
 		}
 
 
 		$data = $this->db->get($this->table)->result();
 		$arv = [];
 		foreach ($data as $key => $value) {
-			$value->catalog = $this->db->select($this->postInCatalog.".post_id, ".$this->postInCatalog.".catalog_id, catalog.catalog_name as catalog_name, catalog.catalog_url as catalog_url")->join("catalog","catalog.catalog_id=".$this->postInCatalog.".catalog_id","left")->get_where($this->postInCatalog, ["post_id" => $value->id])->result();
+			$value->catalog = $this->db->select($this->postInCatalog.".post_id, ".$this->postInCatalog.".catalog_id, catalog.catalog_name as catalog_name, catalog.catalog_url as catalog_url, channel")->join("catalog","catalog.catalog_id=".$this->postInCatalog.".catalog_id","left")->get_where($this->postInCatalog, ["post_id" => $value->id, "catalog.channel" => $channel])->result();
 			$value->image = isObject($value->image);
 			$arv[] = $value;
 		}

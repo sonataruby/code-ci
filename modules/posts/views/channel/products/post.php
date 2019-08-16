@@ -16,24 +16,23 @@
 				<?php if(@$data->prev->name){ ?>
 				<div class="col">
 					<div class="card card-body">
-						<h5 class="prev"><a href="<?php echo post_url(@$data->prev->url);?>" title="Prev Post"><i class="fa fa-chevron-left fa-2x"></i> <?php echo @$data->prev->name;?></a></h5>
+						<h5 class="prev"><a href="<?php echo post_url(@$data->prev->url, @$data->prev->channel);?>" title="Prev Post"><i class="fa fa-chevron-left fa-1x"></i> <?php echo @$data->prev->name;?></a></h5>
 					</div>
 				</div>
 				<?php } ?>
 				<?php if(@$data->next->name){ ?>
 				<div class="col">
 					<div class="card card-body text-right">
-						<h5 class="next"><a href="<?php echo post_url(@$data->next->url);?>" title="Next Post"><?php echo @$data->next->name;?> <i class="fa fa-chevron-right fa-2x"></i> </a></h5>
+						<h5 class="next"><a href="<?php echo post_url(@$data->next->url, @$data->next->channel);?>" title="Next Post"><?php echo @$data->next->name;?> <i class="fa fa-chevron-right fa-1x"></i> </a></h5>
 					</div>
 				</div>
 				<?php } ?>
 			</div>
 
+			<h2>Liên hệ nhà cung cấp sản phẩm này</h2>
 			<hr>
-			<h3>Nội dung liên quan</h3>
-			<?php $this->load->view("plugins/posts",["data" => $data->order, "class" => 'col-lg-6 col-sm-12',"type" => "list"]);?>
-			<hr>
-			<?php echo $this->components->comments("post",$data->url);?>
+			<?php echo $this->components->contact();?>
+			
 		</div>
 		<div class="col-lg-3 col-sm-12">
 			<div class="card right-alt">
@@ -42,6 +41,16 @@
 				</div>
 				<?php echo $catalog;?>
 			</div>
+
+			<div class="card right-alt">
+				<div class="card-header">
+					<h5>Sản phẩm khác</h5>
+				</div>
+				<div class="card-body">
+					<?php $this->load->view("plugins/posts",["data" => $data->order,"channel" => $data->channel, "class" => 'col-sm-12', "type" => "list"]);?>
+				</div>
+			</div>
+
 		</div>
 	</div>
 </div>

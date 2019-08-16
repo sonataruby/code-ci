@@ -141,6 +141,7 @@ class Catalog_model extends Model{
 	}
 
 	private function dropdown_item_checkbox($arv=[], $attr=[]){
+		if(!$arv) return;
 		$html = '<ul class="list-group list-group-flush list-group-checkbox">';
 		foreach ($arv as $key => $value) {
 			

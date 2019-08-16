@@ -89,6 +89,17 @@ class Components {
         return $this->CI->load->view("components/countdown",["data" => $data, "attr" => $attr]);
     }
 
+    public function contact($data="", $attr=["class" => "footer"]){
+        $data = isObject($data);
+        return $this->CI->load->view("components/contact",["data" => $data, "attr" => $attr]);
+    }
+
+
+    public function booking($data="", $attr=["class" => "footer"]){
+        $data = isObject($data);
+        return $this->CI->load->view("components/booking",["data" => $data, "attr" => $attr]);
+    }
+
     /*
         SVG HTML DESIGN
     */
