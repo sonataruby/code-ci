@@ -94,12 +94,15 @@ class Posts_model extends Model{
 		/*
 		Tag query
 		*/
-		if(is_array($tag)){
-			foreach ($tag as $key => $value) {
-				$this->db->like("{$this->table}.post_tag", $value);
+		if($tag){
+			if(is_array($tag)){
+				foreach ($tag as $key => $value) {
+					$this->db->like("{$this->table}.post_tag", $value);
+				}
+			}else{
+				$this->db->like("{$this->table}.post_tag", $tag);
 			}
 		}
-
 
 		if($catalog){
 			$this->db->join("posts_incatalog","posts_incatalog.post_id={$this->table}.post_id","left");
