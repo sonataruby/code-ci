@@ -9,11 +9,7 @@
 					</div>
 				  <div class="media-body">
 				    <h5 class="mt-0"><a href="<?php echo post_url($value->url, $value->channel);?>"><?php echo $value->name;?></a></h5>
-				    <p>
-				    	<?php foreach ($value->catalog as $keyC => $valueC) { ?>
-				    		<a class="btn btn-sm btn-outline-info" href="<?php echo catalog_url($valueC->catalog_url, @$valueC->channel);?>"><?php echo $valueC->catalog_name;?></a>
-				    	<?php }?>
-				    </p>
+				    
 				  </div>
 				</div>
 			</div>
