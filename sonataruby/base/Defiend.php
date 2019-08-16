@@ -143,7 +143,7 @@ if(!function_exists("is_login")){
 	function is_login(){
 		$data = get_instance()->session->userdata("logininfo");
 		if(!$data) return false;
-		if($data->account_id){
+		if(@$data->account_id){
 			return true;
 		}
 		return false;
