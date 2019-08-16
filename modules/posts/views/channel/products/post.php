@@ -5,7 +5,7 @@
 </section>
 <div class="container">
 	<div class="row">
-		<div class="col-lg-9 col-sm-12">
+		<div class="col-lg-8 col-sm-12">
 			<div class="content">
 				<?php echo $this->components->image($data->image);?>
 				<h4><?php echo $data->name;?></h4>
@@ -34,14 +34,14 @@
 			<?php echo $this->components->contact();?>
 			
 		</div>
-		<div class="col-lg-3 col-sm-12">
+		<div class="col-lg-4 col-sm-12">
 			<div class="card right-alt">
 				<div class="card-header">
 					<h5>Category</h5>
 				</div>
 				<?php echo $catalog;?>
 			</div>
-
+			<br>
 			<div class="card right-alt">
 				<div class="card-header">
 					<h5>Sản phẩm khác</h5>
