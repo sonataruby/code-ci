@@ -3,8 +3,10 @@
 		<div class="row">
 			<div class="col-lg-6 col-sm-12">
 				<h3>{site_name}</h3>
-				<p>{full_address}</p>
-				<p>Hotline : {hotline}</p>
+				
+				<p><i class="fa fa-map"></i> {full_address}</p>
+				<p><i class="fa fa-phone"></i> <a href="call:{hotline}">{hotline}</a></p>
+				<p><i class="fa fa-envelope"></i> <a href="mailto:{site_email}?subject=Contact">{site_email}</a></p>
 			</div>
 			<div class="col-lg-3 col-sm-12">
 				<h3>Infomation</h3>
