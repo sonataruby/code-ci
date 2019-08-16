@@ -30,7 +30,7 @@ class Content extends FrontEnd {
 		
 		if($data && count($data->posts) < 2 && count($data->posts) > 0){
 			$post = array_pop($data->posts);
-			$this->go(($post->channel ? $post->channel : "post")."/{$post->url}.html");
+			$this->go(($data->channel ? $data->channel : "post")."/{$post->url}.html");
 		}
 		
 		$this->setTitle($data->catalog_name)

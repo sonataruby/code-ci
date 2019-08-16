@@ -32,7 +32,7 @@ class Posts extends Enterprise {
 			$arv = [];
 			$arv["post_title"] = $this->input->post("post_title");
 			$arv["post_image"] = $image->saveImageUpload($this->input->post("post_image"), "image",@$data->post_image);
-			$arv["post_content"] = $this->input->post("content");
+			$arv["post_content"] = $this->clearContent($this->input->post("content"));
 			$arv["post_tag"] = $this->input->post("post_tag");
 			$arv["language"] = $this->config->item("language");
 			$arv["channel"] = $this->input->post("channel");
