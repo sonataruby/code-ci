@@ -1,7 +1,7 @@
 <footer class="app-footer">
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-6 col-sm-12">
+			<div class="col-lg-7 col-sm-12">
 				<h3>{site_name}</h3>
 				
 				<p><i class="fa fa-map"></i> {full_address}</p>
@@ -14,10 +14,10 @@
 					echo $this->pages_model->getDropdown(["show_menu" => "footer"]);
 				?>
 			</div>
-			<div class="col-lg-3 col-sm-12">
+			<div class="col-lg-2 col-sm-12">
 				<h3>Social</h3>
 				<i class="fab fa-facebook fa-2x"></i>
-				<i class="fab fa-google fa-2x"></i>
+				
 				<i class="fab fa-linkedin fa-2x"></i>
 				<i class="fab fa-whatsapp fa-2x"></i>
 				<i class="fab fa-twitter fa-2x"></i>
