@@ -130,7 +130,7 @@ class Catalog_model extends Model{
 		foreach ($arv as $key => $value) {
 			
 			
-			$html .= '<li class="list-group-item"><a href="'.site_url('catalog/'.$value->url.'.html').'" title="'.$value->name.'">'.$icon.$value->name.'</a>'.$icon_pick;
+			$html .= '<li class="list-group-item"><a href="'.site_url('catalog/'.$value->url.'.html').'" title="'.$value->name.'">'.$icon.$value->name.$icon_pick.'</a>';
 			if(isset($value->item)){
 				$html .= $this->dropdown_item_ul($value->item, $prefix." - ", ["class" => "sub-catalog"]);
 			}
