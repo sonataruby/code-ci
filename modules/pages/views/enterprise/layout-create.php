@@ -50,7 +50,7 @@
 				<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 				  
 
-				  <div class="btn-group" role="group">
+				  <div class="btn-group  dropright" role="group">
 				    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				      Image
 				    </button>
