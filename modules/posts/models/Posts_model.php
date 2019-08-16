@@ -150,5 +150,10 @@ class Posts_model extends Model{
 		return $url.($count > 0 ? "-".$count : "");
 	}
 
+	public function delete($id){
+		$this->db->delete($this->table, ["post_id" => $id]);
+		$this->db->delete($this->postInCatalog, ["post_id" => $id]);
+	}
+
 	
 }

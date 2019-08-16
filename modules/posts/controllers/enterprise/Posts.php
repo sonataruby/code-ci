@@ -54,4 +54,10 @@ class Posts extends Enterprise {
 		$this->view('posts-create',["catalog" => $catalog, "data" => $data]);
 	}
 
+	public function deletepost($id=false){
+		$this->posts_model->delete($id);
+		$channel = $this->input->get("channel");
+		$this->go("/posts/enterprise/posts?channel=".$channel);
+	}
+
 }
