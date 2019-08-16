@@ -9,7 +9,7 @@
 		  </div>
 		  <div class="card-body">
 		    <h5 class="card-title"><a href="<?php echo post_url($first->url, $first->channel);?>"><?php echo $first->name;?></a></h5>
-		    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+		    
 		    <p>
 		    	<?php foreach ($first->catalog as $keyC => $valueC) { ?>
 		    		<a class="btn btn-sm btn-outline-info" href="<?php echo catalog_url($valueC->catalog_url, $valueC->channel);?>"><?php echo $valueC->catalog_name;?></a>
