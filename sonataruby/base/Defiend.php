@@ -340,7 +340,7 @@ if( ! function_exists("get_address")){
 		if(config_item("address2")){
 			$arv[] = config_item("address2");
 		}
-		$arv[] = config_item("city");
+		if(config_item("city") $arv[] = config_item("city");
 		$arv[] = config_item("region");
 		$arv[] = get_country(config_item("country"));
 		return implode($arv, ", ");

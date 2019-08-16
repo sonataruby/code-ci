@@ -457,7 +457,7 @@ class Forms{
                     
 
                     <div class="form-group col-md-3">
-                      '.$this->text(["name" =>  $name."[city]", "label" => "City","value" => @$value->city],["required" => true]).'
+                      '.$this->text(["name" =>  $name."[city]", "label" => "City","value" => @$value->city],[]).'
                     </div>
                     
                     <div class="form-group col-md-2">
