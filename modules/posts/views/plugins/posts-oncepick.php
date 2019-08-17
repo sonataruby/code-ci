@@ -9,13 +9,15 @@
 		  </div>
 		  <div class="card-body">
 		    <h5 class="card-title"><a href="<?php echo post_url($first->url, $first->channel);?>"><?php echo $first->name;?></a></h5>
-		    
+		    <p><i class="fa fa-phone fa-1x"></i> <a href="tel:<?php echo config_item("hotline");?>">{hotline}</a></p>
+			<p><i class="fa fa-envelope fa-1x"></i> <a href="mailto:{site_email}?subject=Contact">{site_email}</a></p>
+			
 		    <p>
 		    	<?php foreach ($first->catalog as $keyC => $valueC) { ?>
 		    		<a class="btn btn-sm btn-outline-info" href="<?php echo catalog_url($valueC->catalog_url, $valueC->channel);?>"><?php echo $valueC->catalog_name;?></a>
 		    	<?php }?>
 		    </p>
-		    <a href="#" class="btn btn-primary">Go somewhere</a>
+		    <a href="<?php echo post_url($first->url, $first->channel);?>" class="btn btn-primary btn-sm">Xem thêm..</a>
 		  </div>
 		</div>
 	</div>
