@@ -26,7 +26,13 @@ class Dashboard extends FrontEnd {
 		$this->view("accessdenied");
 	}
 
-	public function show404(){
+	public function show404($url=false){
+		
+		$redirect = (array)config_item("redirect");
+		
+		if(isset($redirect[$this->urlactive()])){
+			$this->go($redirect[$this->urlactive()]);
+		}
 		$this->setTitle("Error 404");
 		$this->view("404");
 	}

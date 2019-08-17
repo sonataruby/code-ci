@@ -180,16 +180,17 @@
             </li>
 
             <li class="nav-item" id="settings">
-              <a class="nav-link" href="/settings/enterprise/configs" sn-link="true" parent-controller="#settings"><i class="fa fa-cogs"></i> <span>Settings</span></a>
+              <a class="nav-link" href="/settings/enterprise/configs" sn-link="true" parent-controller="#settings"><i class="fa fa-cogs"></i> <span>Cấu hình</span></a>
               <div id="multiCollapseExample2" class="slidebar">
                 <div class="menuHeader">
                   <h3>Settings</h3>
                   <p>Menu controller posts</p>
                   
                 </div>
-                <a class="dropdown-item" href="/settings/enterprise/configs/api" sn-link="true" parent-controller="#settings"><i class="fa fa-api"></i> API Manager</a>
-                <a class="dropdown-item" href="/settings/enterprise/configs" sn-link="true" parent-controller="#settings"><i class="fa fa-cogs"></i> System Settings</a>
-                <a class="dropdown-item" href="/settings/enterprise/configs/channels" sn-link="true" parent-controller="#settings"><i class="fa fa-cogs"></i> Channel Settings</a>
+                <a class="dropdown-item" href="/settings/enterprise/configs/api" sn-link="true" parent-controller="#settings"><i class="fa fa-api"></i> Quản lý API</a>
+                <a class="dropdown-item" href="/settings/enterprise/configs" sn-link="true" parent-controller="#settings"><i class="fa fa-cogs"></i> Điều chỉnh chung</a>
+                <a class="dropdown-item" href="/settings/enterprise/configs/channels" sn-link="true" parent-controller="#settings"><i class="fa fa-cogs"></i> Quản lý Channel</a>
+                <a class="dropdown-item" href="/settings/enterprise/configs/urlredirect" sn-link="true" parent-controller="#settings"><i class="fa fa-cogs"></i> Quản lý URL</a>
                 
               </div>
             </li>

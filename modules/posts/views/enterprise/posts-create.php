@@ -23,11 +23,13 @@
 			<button type="submit" class="btn btn-warning"><i class="fa fa-save"></i> Draff</button>
 		</div>
 		
-		<?php echo $this->forms->gallery([
+		<?php 
+
+		echo $this->forms->gallery([
 			"name" => "post_image[]",
 			"label" => "Thumnail Image",
 			"value" => is_string(@$data->image) ? [@$data->image] : @$data->image,
-		],["number" => 6]);?>
+		],["number" => 6, "size" => @config_item("channel")->{$data->channel}->image_size]);?>
 		
 		<div class="hbox border ">
 			<div class="btn-group" role="group" aria-label="Basic example">

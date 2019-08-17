@@ -327,7 +327,7 @@ class Forms{
     public function gallery(array $params=[], $extract=[]){
         $numstart = 2;
         $name = (isset($params["name"]) ? $params["name"] : "gallery[]");
-        $size = (isset($extract["size"]) ? $extract["size"] : "600x315");
+        $size = (isset($extract["size"]) && $extract["size"] != "" ? $extract["size"] : "600x315");
         $resize = (isset($extract["resize"]) ? ' data-resize="'.$extract["resize"].'"' : "");
 
         $value = (isset($params["value"]) ? $params["value"] : []);

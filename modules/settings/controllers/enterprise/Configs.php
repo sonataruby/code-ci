@@ -52,9 +52,9 @@ class Configs extends Enterprise {
 			$data = [];
 
 			if($edit){
-				$data[$edit] = ["name" => $config["name"], "url" => $edit, "layout" => $config["layout"]];
+				$data[$edit] = ["name" => $config["name"], "url" => $edit, "layout" => $config["layout"], "image_size" => $config["image_size"]];
 			}else{
-				$data[$config["url"]] = ["name" => $config["name"], "url" => $config["url"], "layout" => $config["layout"]];
+				$data[$config["url"]] = ["name" => $config["name"], "url" => $config["url"], "layout" => $config["layout"], "image_size" => $config["image_size"]];
 			}
 			
 
@@ -78,5 +78,53 @@ class Configs extends Enterprise {
 
 		$editdata = @$channel[$edit];
 		$this->view('channel',["data" => $channel, "edit" => $editdata]);
+	}
+
+
+	/*
+	urlredirect
+	*/
+
+	public function Urlredirect(){
+		$data = [];
+		$dataRead = $this->settings_model->getData();
+
+		$redirect = isObject(@$dataRead->redirect);
+		
+		$redirect = (empty($redirect) ? [] : (array)$redirect);
+
+
+
+		if($this->isPost()){
+			$config = $this->input->post("redirect");
+			$edit = $this->input->post("post");
+
+			
+			$data = [];
+
+			
+			$data[$config["old_url"]] = $config["new_url"];
+			$data = array_merge($redirect, $data);
+			$json = $this->tojson($data, true);
+			
+			$this->settings_model->save(["redirect" => $json]);
+			$this->go("settings/enterprise/configs/urlredirect");
+		}
+		$edit = $this->input->get("edit");
+		$delete = $this->input->get("delete");
+
+		/*
+		Delete Item
+		*/
+		if($delete && isset($redirect[$delete])){
+			unset($redirect[$delete]);
+			$json = $this->tojson($redirect, true);
+			$this->settings_model->save(["redirect" => $json]);
+			$this->go("settings/enterprise/configs/urlredirect");
+		}
+		
+		$editredirect = ["old_url" => $edit,"new_url" => @$redirect[$edit]];
+
+		$this->view("redirect",["data" => $redirect, "edit" => $editredirect]);
 	}
 }

@@ -48,6 +48,19 @@
 				"layout" => "outline"
 			]);?>
 		</div>
+		<div class="col">
+			<?php 
+	
+			echo $this->forms->text([
+				"name" => "channel[image_size]",
+				"label" => "Image Size",
+				"value" => @$edit->image_size
+			],[
+				
+				"group" => 'outline-group',
+				"layout" => "outline"
+			]);?>
+		</div>
 
 	</div>
 	<?php
@@ -70,6 +83,7 @@
 			<th>Name</th>
 			<th>URL</th>
 			<th>Layout</th>
+			<th>Image Size</th>
 			<th></th>
 		</thead>
 		<tbody>
@@ -80,6 +94,7 @@
 				<td><?php echo $value->name;?></td>
 				<td><?php echo $value->url;?></td>
 				<td><?php echo $value->layout;?></td>
+				<td><?php echo @$value->image_size;?></td>
 				<td class="text-right"><a href="/settings/enterprise/configs/channels?edit=<?php echo $value->url;?>" class="btn btn-sm btn-info">Edit</a> <a href="/settings/enterprise/configs/channels?delete=<?php echo $value->url;?>" class="btn btn-sm btn-info">Delete</a></td>
 			</tr>
 	<?php } ?>
