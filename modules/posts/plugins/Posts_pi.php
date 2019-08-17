@@ -13,6 +13,8 @@ class Posts_pi extends Plugins
 		$limit = (@$arv["limit"] ? intval($arv["limit"]) : 5);
 		$search = (@$arv["search"] ? $arv["search"] : "");
 		$catalog = (@$arv["catalog"] ? intval($arv["catalog"]) : "");
+		$tag = (@$arv["tag"] ? @$arv["theme"] : "");
+
 		$arvInput = [];
 		if($catalog){
 			$arvInput["catalog"] = $catalog;
@@ -21,7 +23,17 @@ class Posts_pi extends Plugins
 			$arvInput["channel"] = $arv["channel"];
 			unset($arv["channel"]);
 		}
+		if($limit){
+			$arvInput["limit"] = $limit;
+		}
+		if($search){
+			$arvInput["search"] = $search;
+		}
 		
+		if($tag){
+			$arvInput["tag"] = $tag;
+		}
+
 		$data = $this->posts_model->getList($arvInput);
 		$arv["data"] = $data;
 		return $this->view("posts".$theme, $arv);
