@@ -35,7 +35,7 @@ class Catalog_model extends Model{
 			$data->posts = $this->posts_model->getList(["catalog" => $data->catalog_id]);
 		}
 		if($loadList && $data){
-			$data->listCatalog = $this->dropdown(false, "ul");
+			$data->listCatalog = $this->dropdown(["channel" => $data->channel],false, "ul");
 		}
 		return $data;
 	}

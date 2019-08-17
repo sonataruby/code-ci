@@ -98,8 +98,14 @@ class Controller extends MX_Controller {
 			
 		}
 		
-		$content = $this->load->view("{$file}",$data,true, $this->channelLayout);
+		$content = $this->load->view("{$file}",$data,true);
+		$data_pate = [];
+		
+		foreach ($this->lang->language as $key => $value) {
+			$data_pate["lang_".$key] = $value;
+		}
 
+		$content = $this->parser->parse_string($content, $data_pate, true);
 		return $this->load->view("layout/".$this->setLayout,["content" => $content, "data" => $data, "header" => $this->header]);
 
 		
