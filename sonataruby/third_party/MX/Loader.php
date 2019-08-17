@@ -364,7 +364,7 @@ class MX_Loader extends CI_Loader
 			*/
 			$rpath = str_replace([FCPATH,'/'],['','_'],$_ci_path);
 			$cache = CACHE_LOCAL . "vqmod/" .$rpath;
-			if(file_exists($cahce)){
+			if(file_exists($cache)){
 				include($cache);
 			}else{
 				include($_ci_path);

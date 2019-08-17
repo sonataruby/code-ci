@@ -61,8 +61,9 @@
       <?php print_r($content);?>
     </div>
     <?php $this->components->footer(); ?>
-  
-  
+  <?php echo libs_url("css/animate.css");?>
+
+  <?php echo libs_url("js/animated.js");?>
   <?php echo template_url("app.js");?>
   <script type="text/javascript">(function($,d){$.each(readyQ,function(i,f){$(f)});$.each(bindReadyQ,function(i,f){$(d).bind("ready",f)})})(jQuery,document)</script>
   </body>
