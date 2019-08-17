@@ -132,7 +132,7 @@ class Posts_model extends Model{
 		$data = $this->db->get($this->table)->result();
 		$arv = [];
 		foreach ($data as $key => $value) {
-			$value->catalog = $this->db->select($this->postInCatalog.".post_id, ".$this->postInCatalog.".catalog_id, catalog.catalog_name as catalog_name, catalog.catalog_url as catalog_url, channel")->join("catalog","catalog.catalog_id=".$this->postInCatalog.".catalog_id","left")->get_where($this->postInCatalog, ["post_id" => $value->id, "catalog.channel" => $channel])->result();
+			$value->catalog = $this->db->select($this->postInCatalog.".post_id, ".$this->postInCatalog.".catalog_id, catalog.catalog_name as catalog_name, catalog.catalog_url as catalog_url, channel")->join("catalog","catalog.catalog_id=".$this->postInCatalog.".catalog_id","left")->get_where($this->postInCatalog, ["post_id" => $value->id])->result();
 			$value->image = isObject($value->image);
 			$arv[] = $value;
 		}
