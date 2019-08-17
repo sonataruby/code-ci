@@ -2,7 +2,7 @@
 <?php echo form_open("",["id" => "savedata"]);?>
 <input type="hidden" name="channel" value="<?php echo $this->input->get("channel");?>">
 <div class="row">
-	<div class="col-lg-9 col-sm-12">
+	<div class="col-lg-8 col-xl-9 col-sm-12">
 		<div class="hbox border">
 			
 			<?php echo $this->forms->text([
@@ -17,7 +17,7 @@
 			<div id="textarea" name="content"><?php echo (@$data->content ? @$data->content : '<p>Nhập nội dung bài viết</p>');?></div>
 		</div>
 	</div>
-	<div class="col-lg-3 col-sm-12 sticky-top">
+	<div class="col-lg-4 col-xl-3 col-sm-12 sticky-top">
 		<div class="hbox border">
 			<button type="submit" class="btn btn-info"><i class="fa fa-save"></i> Public</button>
 			<button type="submit" class="btn btn-warning"><i class="fa fa-save"></i> Draff</button>
