@@ -13,7 +13,7 @@ class Posts_pi extends Plugins
 		$limit = (@$arv["limit"] ? intval($arv["limit"]) : 5);
 		$search = (@$arv["search"] ? $arv["search"] : "");
 		$catalog = (@$arv["catalog"] ? intval($arv["catalog"]) : "");
-		$tag = (@$arv["tag"] ? @$arv["theme"] : "");
+		$tag = (@$arv["tag"] ? @$arv["tag"] : "");
 
 		$arvInput = [];
 		if($catalog){
@@ -35,6 +35,7 @@ class Posts_pi extends Plugins
 		}
 
 		$data = $this->posts_model->getList($arvInput);
+		
 		$arv["data"] = $data;
 		return $this->view("posts".$theme, $arv);
 	}
