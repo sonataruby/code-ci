@@ -52,9 +52,9 @@ class Configs extends Enterprise {
 			$data = [];
 
 			if($edit){
-				$data[$edit] = ["name" => $config["name"], "url" => $edit, "layout" => $config["layout"], "image_size" => $config["image_size"]];
+				$data[$edit] = ["name" => $config["name"], "url" => $edit, "layout" => $config["layout"], "image_size" => $config["image_size"], "options" => $config["options"]];
 			}else{
-				$data[$config["url"]] = ["name" => $config["name"], "url" => $config["url"], "layout" => $config["layout"], "image_size" => $config["image_size"]];
+				$data[$config["url"]] = ["name" => $config["name"], "url" => $config["url"], "layout" => $config["layout"], "image_size" => $config["image_size"], "options" => $config["options"]];
 			}
 			
 

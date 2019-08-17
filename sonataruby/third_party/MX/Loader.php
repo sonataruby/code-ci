@@ -359,7 +359,17 @@ class MX_Loader extends CI_Loader
 		}
 		else
 		{
-			include($_ci_path);
+			/*
+			Mode Cache
+			*/
+			$rpath = str_replace([FCPATH,'/'],['','_'],$_ci_path);
+			$cache = CACHE_LOCAL . "vqmod/" .$rpath;
+			if(file_exists($cahce)){
+				include($cache);
+			}else{
+				include($_ci_path);
+			}
+			
 		}
 
 		log_message('debug', 'File loaded: '.$_ci_path);

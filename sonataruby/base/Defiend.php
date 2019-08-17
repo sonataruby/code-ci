@@ -9,7 +9,8 @@ define("CMS_THEME_ENTERPRISE_PATH",CMS_ROOTPATH . "template/enterprise" . DIRECT
 define("CMS_THEME_PERSONAL_PATH",CMS_ROOTPATH . "template/personal" . DIRECTORY_SEPARATOR);
 define("UPLOAD_PATH", FCPATH . DIRECTORY_SEPARATOR . "upload" . DIRECTORY_SEPARATOR);
 define("CONFIG_LOCAL", FCPATH . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR);
-define("CACHE_LOCAL", FCPATH . DIRECTORY_SEPARATOR . "cache" . DIRECTORY_SEPARATOR);
+define("CACHE_LOCAL", FCPATH . "cache" . DIRECTORY_SEPARATOR);
+
 
 if(!function_exists("autoload_file")){
 	function autoload_file($path=""){

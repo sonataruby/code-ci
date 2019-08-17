@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 16, 2019 at 03:42 AM
+-- Generation Time: Aug 17, 2019 at 06:40 PM
 -- Server version: 5.6.35
 -- PHP Version: 7.1.8
 
@@ -185,7 +185,7 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`version`) VALUES
-(0);
+(1);
 
 -- --------------------------------------------------------
 
@@ -241,7 +241,7 @@ CREATE TABLE `pages_layout` (
 --
 
 INSERT INTO `pages_layout` (`layout_id`, `layout_name`, `layout_image`, `layout_description`, `layout_keyword`, `layout_content`, `layout_url`, `language`) VALUES
-(1, 'Text Layout', '', '', '', '\r\n<section class=\"animated bounceIn\" data-id=\"1\" data-animated=\"true\">\r\n  <div class=\"container\">\r\n    <div class=\"row d-flex\">\r\n      \r\n      <div class=\"col-lg-3 hidden-xs flex-box\"><div class=\"border\">[plugin name=\"posts/catalog\"]limit=5&order=desc[/plugin]</div></div>\r\n      <div class=\"col-lg-9 col-sm-12\">[plugin name=home/slider][\r\n{\"content\" : \"<h3>Con bo</h3>\", \"url\" : \"\", \"image\" : \"//wowslider.com/sliders/demo-77/data1/images/road220058.jpg\"},\r\n{\"content\" : \"\", \"url\" : \"\", \"image\" : \"//wowslider.com/sliders/demo-77/data1/images/road220058.jpg\"},\r\n{\"content\" : \"\", \"url\" : \"\", \"image\" : \"//wowslider.com/sliders/demo-77/data1/images/road220058.jpg\"}\r\n][/plugin]</div>\r\n    </div>\r\n  </div>\r\n</section>\r\n<section>\r\n   <div class=\"container\">\r\n      <div class=\"row\">\r\n        <div class=\"col\">\r\n         [plugin name=\"home/video\"]https://www.youtube.com/watch?v=rG9LMCL-HN0[/plugin]\r\n        </div>\r\n        <div class=\"col\">\r\n         [plugin name=\"home/video\"]https://www.youtube.com/watch?v=YbxLFA-BG0o[/plugin]\r\n        </div>\r\n      </div>\r\n  </div>\r\n</section>\r\n<section>\r\n   <div class=\"container\">\r\n      [plugin name=\"posts/posts\"]theme=oncepick&limit=7&order=desc[/plugin]\r\n  </div>\r\n</section>\r\n\r\n<section>\r\n   <div class=\"container\">\r\n      [plugin name=\"posts/posts\"]limit=5&order=desc[/plugin]\r\n </div>\r\n</section>\r\n\r\n<section>\r\n   <div class=\"container\">\r\n      [plugin name=\"posts/posts\"]limit=5&order=desc[/plugin]\r\n </div>\r\n</section>', 'home', 'english');
+(1, 'Text Layout', '', '', '', '<section class=\"animated bounceIn\" data-id=\"1\" data-animated=\"true\">\r\n  <div class=\"container\">\r\n    <div class=\"row d-flex\">\r\n      \r\n      <div class=\"col-lg-3 hidden-xs flex-box\"><div class=\"border\">[plugin name=\"posts/catalog\"]limit=5&order=desc[/plugin]</div></div>\r\n      <div class=\"col-lg-9 col-sm-12\">[plugin name=home/slider][\r\n{\"content\" : \"<h3>Con bo</h3>\", \"url\" : \"\", \"image\" : \"//wowslider.com/sliders/demo-77/data1/images/road220058.jpg\"},\r\n{\"content\" : \"\", \"url\" : \"\", \"image\" : \"//wowslider.com/sliders/demo-77/data1/images/road220058.jpg\"},\r\n{\"content\" : \"\", \"url\" : \"\", \"image\" : \"//wowslider.com/sliders/demo-77/data1/images/road220058.jpg\"}\r\n][/plugin]</div>\r\n    </div>\r\n  </div>\r\n</section>\r\n<section>\r\n   <div class=\"container\">\r\n      <div class=\"row\">\r\n        <div class=\"col\">\r\n         [plugin name=\"home/video\"]https://www.youtube.com/watch?v=rG9LMCL-HN0[/plugin]\r\n        </div>\r\n        <div class=\"col\">\r\n         [plugin name=\"home/video\"]https://www.youtube.com/watch?v=YbxLFA-BG0o[/plugin]\r\n        </div>\r\n      </div>\r\n  </div>\r\n</section>\r\n<section>\r\n   <div class=\"container\">\r\n      <h1>Catalog Post</h1>\r\n      [plugin name=\"posts/postincatalog\"][/plugin]\r\n  </div>\r\n</section>\r\n\r\n<section>\r\n   <div class=\"container\">\r\n      [plugin name=\"posts/posts\"]limit=5&order=desc[/plugin]\r\n </div>\r\n</section>\r\n\r\n<section>\r\n   <div class=\"container\">\r\n      [plugin name=\"posts/posts\"]limit=5&order=desc[/plugin]\r\n </div>\r\n</section>', 'home', 'english');
 
 -- --------------------------------------------------------
 
@@ -269,7 +269,7 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`post_id`, `post_title`, `post_image`, `post_url`, `post_content`, `post_tag`, `created_date`, `updated_date`, `language`, `channel`, `status`, `views`) VALUES
-(1, 'Test noi dung', '[\"\\/upload\\/image\\/5d411c95baceb.png\",\"\\/upload\\/image\\/5d48e8b9154f1.png\",\"\\/upload\\/image\\/5d48e8b916cdf.png\"]', 'test-noi-dung', '<p>Ông Juan de Dios Velazquez, 77 tuổi, lấy thân chắn đạn cho vợ khi tay súng bất ngờ tấn công siêu thị Walmart ở Texas hôm 3/8.<img alt=\"Con gái&nbsp;của một người&nbsp;người mua hàng trong Walmart&nbsp;khóc khi tìm mẹ cô sau khi xả súng xảy ra.&nbsp;Ảnh: AP.\" data-natural-width=\"500\" src=\"blob:http://localhost/37993bae-2be4-224a-bae7-f01d4008ea45\" data-pwidth=\"500\" class=\"fr-fic fr-dii\"></p><p>Con gái của một người mua hàng trong siêu thị Walmart khóc khi tìm mẹ sau vụ xả súng. Ảnh: <em>AP.</em></p><p><br></p><p>Juan de Dios và vợ là Estela Nicolasa, 55 tuổi, mới chuyển từ Mexico đến Mỹ sinh sống được 6 tháng. Như mọi ngày, hai ông bà có mặt tại siêu thị Walmart ở thành phố El Paso, bang Texas chiều 3/8 để mua sắm một vài đồ dùng thì <a href=\"https://vnexpress.net/the-gioi/xa-sung-tai-sieu-thi-o-my-it-nhat-20-nguoi-thiet-mang-3962445.html\" rel=\"dofollow\">vụ xả súng</a> bất ngờ xảy ra, làm 20 người thiệt mạng và 26 người bị thương.</p><p>Ngay khi tiếng súng rộ lên, Juan de Dios nhao về phía trước để che chắn cho vợ. \"Chú tôi bị bắn ở cự ly gần, viên đạn xuyên qua người chú và trúng vào dì tôi\", cô cháu gái Norma Ramos nói.</p><p>Juan de Dios đang được điều trị tại một trung tâm y tế ở El Paso và phải trải qua nhiều cuộc phẫu thuật vì bị đạn xuyên qua người. Bà Estala cũng được phẫu thuật và đã ổn định. Trung tâm y tế hiện chưa cung cấp thêm thông tin về hai nạn nhân.</p><p>Nghi phạm Patrick Crusius, 21 tuổi, đã bị cảnh sát bắt. Hình ảnh từ máy quay an ninh cho thấy y mang theo một khẩu AK và đeo chụp bảo vệ tai khi tấn công vào siêu thị hôm 3/8, trước khi đầu hàng cảnh sát.</p>', '', '0000-00-00 00:00:00', '2019-08-06 04:40:57', 'english', '', 0, 0),
+(1, 'Test noi dung', '[\"\\/upload\\/image\\/5d411c95baceb.png\",\"\\/upload\\/image\\/5d48e8b9154f1.png\",\"\\/upload\\/image\\/5d48e8b916cdf.png\"]', 'test-noi-dung', '<p>Ông Juan de Dios Velazquez, 77 tuổi, lấy thân chắn đạn cho vợ khi tay súng bất ngờ tấn công siêu thị Walmart ở Texas hôm 3/8.<img alt=\"Con gái&nbsp;của một người&nbsp;người mua hàng trong Walmart&nbsp;khóc khi tìm mẹ cô sau khi xả súng xảy ra.&nbsp;Ảnh: AP.\" data-natural-width=\"500\" src=\"blob:http://localhost/37993bae-2be4-224a-bae7-f01d4008ea45\" data-pwidth=\"500\" class=\" \"></p><p>Con gái của một người mua hàng trong siêu thị Walmart khóc khi tìm mẹ sau vụ xả súng. Ảnh: <em>AP.</em></p><p>Juan de Dios và vợ là Estela Nicolasa, 55 tuổi, mới chuyển từ Mexico đến Mỹ sinh sống được 6 tháng. Như mọi ngày, hai ông bà có mặt tại siêu thị Walmart ở thành phố El Paso, bang Texas chiều 3/8 để mua sắm một vài đồ dùng thì <a href=\"https://vnexpress.net/the-gioi/xa-sung-tai-sieu-thi-o-my-it-nhat-20-nguoi-thiet-mang-3962445.html\" rel=\"dofollow\">vụ xả súng</a> bất ngờ xảy ra, làm 20 người thiệt mạng và 26 người bị thương.</p><p>Ngay khi tiếng súng rộ lên, Juan de Dios nhao về phía trước để che chắn cho vợ. \"Chú tôi bị bắn ở cự ly gần, viên đạn xuyên qua người chú và trúng vào dì tôi\", cô cháu gái Norma Ramos nói.</p><p>Juan de Dios đang được điều trị tại một trung tâm y tế ở El Paso và phải trải qua nhiều cuộc phẫu thuật vì bị đạn xuyên qua người. Bà Estala cũng được phẫu thuật và đã ổn định. Trung tâm y tế hiện chưa cung cấp thêm thông tin về hai nạn nhân.</p><p>Nghi phạm Patrick Crusius, 21 tuổi, đã bị cảnh sát bắt. Hình ảnh từ máy quay an ninh cho thấy y mang theo một khẩu AK và đeo chụp bảo vệ tai khi tấn công vào siêu thị hôm 3/8, trước khi đầu hàng cảnh sát.</p>', 'home', '0000-00-00 00:00:00', '2019-08-17 07:25:28', 'english', '', 0, 0),
 (2, 'Test noi dung 123', '/upload/image/5d411ceec35cc.png', 'test-noi-dung-123', '<p>Nhập nội dung bài viết</p><p><img src=\"blob:http://localhost/9c01047b-61e9-074a-8131-ce9cdfc26055\" style=\"width: 100%;\" class=\"fr-fic fr-dib\"></p>', '', '0000-00-00 00:00:00', '2019-08-06 05:50:24', 'english', '', 0, 0),
 (3, 'Bai viet 17', '/upload/image/5d4164beea4fd.png', 'bai-viet-17', '<p>Nhập nội dung bài viết</p>', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'english', '', 0, 0),
 (4, 'Bai viet 123', '/upload/image/5d481af7727f0.png', 'bai-viet-123', '<p>Nhập nội dung bài viết</p>', '', '0000-00-00 00:00:00', '2019-08-05 02:08:46', 'english', '', 0, 0),
@@ -297,11 +297,11 @@ INSERT INTO `posts_incatalog` (`incat_id`, `post_id`, `catalog_id`, `created_dat
 (17, 3, 2, '0000-00-00 00:00:00'),
 (18, 3, 7, '0000-00-00 00:00:00'),
 (19, 4, 5, '0000-00-00 00:00:00'),
-(24, 1, 1, '0000-00-00 00:00:00'),
-(25, 1, 3, '0000-00-00 00:00:00'),
 (26, 2, 3, '0000-00-00 00:00:00'),
 (27, 2, 7, '0000-00-00 00:00:00'),
-(28, 6, 15, '0000-00-00 00:00:00');
+(28, 6, 15, '0000-00-00 00:00:00'),
+(29, 1, 1, '0000-00-00 00:00:00'),
+(30, 1, 3, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -349,13 +349,29 @@ INSERT INTO `settings` (`config_id`, `config_name`, `config_value`, `language`, 
 (11, 'country', 'bh', 'english', 'localhost', '0000-00-00 00:00:00'),
 (12, 'city', 'HCM', 'english', 'localhost', '0000-00-00 00:00:00'),
 (13, 'zipcode', '', 'english', 'localhost', '0000-00-00 00:00:00'),
-(14, 'plugins', '{\"home\\/slider\":\"Slider\",\"home\\/video\":\"Video\",\"pages\\/pages\":\"Pages\",\"posts\\/catalog\":\"Catalog\",\"posts\\/posts\":\"Posts\"}', 'english', 'localhost', '0000-00-00 00:00:00'),
+(14, 'plugins', '{\"home\\/slider\":\"Slider\",\"home\\/video\":\"Video\",\"pages\\/pages\":\"Pages\",\"posts\\/catalog\":\"Catalog\",\"posts\\/posts\":\"Posts\",\"posts\\/postsincatalog\":\"Postsincatalog\"}', 'english', 'localhost', '0000-00-00 00:00:00'),
 (15, 'site_navbar', 'Sonataruby CRM', 'english', 'localhost', '0000-00-00 00:00:00'),
 (16, 'navbar_icon', '/upload/image/navbar.png', 'english', 'localhost', '0000-00-00 00:00:00'),
 (27, 'header', '{\"sticky_header\":\"\",\"header_color\":\"bg-info\",\"header_style\":\"navbar-dark\",\"height\":\"70\",\"scrolmenu\":\"data-scrolmenu\",\"scrolmenu_class\":\"animated bounceDown\",\"shadown\":\"bg-shadown\"}', 'english', 'localhost', '0000-00-00 00:00:00'),
-(29, 'channel', '{\"blogs\":{\"name\":\"Blogs\",\"url\":\"blogs\",\"layout\":\"blogs\"},\"products\":{\"name\":\"Products\",\"url\":\"products\",\"layout\":\"default\"}}', 'english', 'localhost', '0000-00-00 00:00:00'),
+(29, 'channel', '{\"blogs\":{\"name\":\"Blogs\",\"url\":\"blogs\",\"layout\":\"blogs\"},\"products\":{\"name\":\"Products\",\"url\":\"products\",\"layout\":\"default\",\"image_size\":\"650x420\"}}', 'english', 'localhost', '0000-00-00 00:00:00'),
 (30, 'hotline', '0903908078', 'english', 'localhost', '0000-00-00 00:00:00'),
-(31, 'site_email', 'thietkewebvip@gmail.com', 'english', 'localhost', '0000-00-00 00:00:00');
+(31, 'site_email', 'thietkewebvip@gmail.com', 'english', 'localhost', '0000-00-00 00:00:00'),
+(32, 'redirect', '{\"anhkhoa.html\":\"conbo.html\"}', 'english', 'localhost', '0000-00-00 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `widgets`
+--
+
+CREATE TABLE `widgets` (
+  `winget_id` int(10) NOT NULL,
+  `winget_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `winget_icon` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `winget_content` text COLLATE utf8_unicode_ci NOT NULL,
+  `winget_display` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `winget_sort` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Indexes for dumped tables
@@ -441,6 +457,12 @@ ALTER TABLE `settings`
   ADD PRIMARY KEY (`config_id`);
 
 --
+-- Indexes for table `widgets`
+--
+ALTER TABLE `widgets`
+  ADD PRIMARY KEY (`winget_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -498,7 +520,7 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `posts_incatalog`
 --
 ALTER TABLE `posts_incatalog`
-  MODIFY `incat_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `incat_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `products`
 --
@@ -508,4 +530,9 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `settings`
 --
 ALTER TABLE `settings`
-  MODIFY `config_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `config_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+--
+-- AUTO_INCREMENT for table `widgets`
+--
+ALTER TABLE `widgets`
+  MODIFY `winget_id` int(10) NOT NULL AUTO_INCREMENT;

@@ -12,12 +12,12 @@
 		    <p><i class="fa fa-phone fa-1x"></i> <a href="tel:<?php echo config_item("hotline");?>">{hotline}</a></p>
 			<p><i class="fa fa-envelope fa-1x"></i> <a href="mailto:{site_email}?subject=Contact">{site_email}</a></p>
 
-		    <p>
+		    <p class="caregory-item">
 		    	<?php foreach ($first->catalog as $keyC => $valueC) { ?>
 		    		<a class="btn btn-sm btn-outline-info" href="<?php echo catalog_url($valueC->catalog_url, $valueC->channel);?>"><?php echo $valueC->catalog_name;?></a>
 		    	<?php }?>
 		    </p>
-		    <a href="<?php echo post_url($first->url, $first->channel);?>" class="btn btn-primary btn-sm">Xem thêm..</a>
+		    <a href="<?php echo post_url($first->url, $first->channel);?>" class="btn btn-primary btn-sm btn-more">Xem thêm..</a>
 		  </div>
 		</div>
 	</div>
