@@ -37,6 +37,10 @@ class Configs extends Enterprise {
 
 
 	public function channels(){
+		if($this->input->get("setdefault")){
+			$this->settings_model->save(["default_channel" => $this->input->get("setdefault")]);
+			$this->go("settings/enterprise/configs/channels");
+		}
 		$data = [];
 		$dataRead = $this->settings_model->getData();
 
