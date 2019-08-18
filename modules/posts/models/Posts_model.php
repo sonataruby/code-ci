@@ -68,7 +68,7 @@ class Posts_model extends Model{
 		$ingore = @$arv["ingore"];
 		$prev = @$arv["prev"];
 		$next = @$arv["next"];
-		$channel = @$arv["channel"];
+		$channel = (@$arv["channel"] ? @$arv["channel"] : config_item("default_channel"));
 
 		$limit = isset($arv["limit"]) ? intval($arv["limit"]) : 20;
 		$page = isset($arv["page"]) ? intval($arv["page"]) : 1;
@@ -132,7 +132,7 @@ class Posts_model extends Model{
 		$data = $this->db->get($this->table)->result();
 		$arv = [];
 		foreach ($data as $key => $value) {
-			$value->catalog = $this->db->select($this->postInCatalog.".post_id, ".$this->postInCatalog.".catalog_id, catalog.catalog_name as catalog_name, catalog.catalog_url as catalog_url, channel")->join("catalog","catalog.catalog_id=".$this->postInCatalog.".catalog_id","left")->get_where($this->postInCatalog, ["post_id" => $value->id])->result();
+			$value->catalog = $this->db->select($this->postInCatalog.".post_id, ".$this->postInCatalog.".catalog_id, catalog.catalog_name as catalog_name, catalog.catalog_url as catalog_url, catalog.channel")->join("catalog","catalog.catalog_id=".$this->postInCatalog.".catalog_id","left")->get_where($this->postInCatalog, ["post_id" => $value->id])->result();
 			$value->image = isObject($value->image);
 			$arv[] = $value;
 		}

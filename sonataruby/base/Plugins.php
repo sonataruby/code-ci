@@ -17,10 +17,8 @@ class Plugins extends Controller{
 	public function view($file, $data=[]){
 		
 		
-		return $this->load->view($this->get_views($file),$data, true);
+		return $this->load->view("{$file}",$data, true);
 	}
 
-	public function get_views($path=""){
-		return "plugins/{$path}";
-	}
+	
 }

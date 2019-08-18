@@ -264,7 +264,7 @@ class MX_Loader extends CI_Loader
 	{
 		if (is_array($plugin)) return $this->plugins($plugin);
 
-		if (isset($this->_ci_plugins[$plugin]))
+		if (isset($this->_ci_plugins[strtolower($plugin)]))
 			return $this;
 		$arvPlugins = explode('/',$plugin);
         $plugin = (count($arvPlugins) > 1 ? $arvPlugins[0]."/".ucfirst($arvPlugins[1]) : $plugin);
@@ -278,7 +278,7 @@ class MX_Loader extends CI_Loader
 		}
 
 		Modules::load_file($_plugin, $path);
-		$this->_ci_plugins[$plugin] = TRUE;
+		$this->_ci_plugins[strtolower($plugin)] = TRUE;
 		return $this;
 	}
 

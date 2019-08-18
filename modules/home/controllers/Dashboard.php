@@ -50,4 +50,14 @@ class Dashboard extends FrontEnd {
 		$this->view("404");
 	}
 
+
+	public function Blockview(){
+		$data = [];
+		$data["winget_content_as"] = $this->input->post("winget_content_as");
+		$data["winget_name"] = $this->input->post("winget_name");
+		$data["winget_icon"] = $this->input->post("winget_icon");
+		$data["winget_content"] = $this->input->post("winget_content");
+
+		$this->view('blockview',["data" => $data]);
+	}
 }

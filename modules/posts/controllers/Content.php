@@ -16,7 +16,7 @@ class Content extends FrontEnd {
 	public function info($url,$channel=false){
 		
 		
-		$data = $this->posts_model->getData($url, false, true, true);
+		$data = $this->posts_model->getData($url, false, false, true);
 		$catalog = $this->catalog_model->dropdown(false,"ul");
 		
 		$this->setTitle($data->name)

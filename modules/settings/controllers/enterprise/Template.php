@@ -96,4 +96,31 @@ class Template extends Enterprise {
 		}
 		$this->view("css-settings",["content" => $file]);
 	}
+
+
+	public function Blocks($id=false){
+		if($this->isPost()){
+			$data = [];
+			$data["winget_content_as"] = $this->input->post("winget_content_as");
+			$data["winget_name"] = $this->input->post("winget_name");
+			$data["winget_icon"] = $this->input->post("winget_icon");
+			$data["winget_content"] = $this->input->post("winget_content");
+			$data["winget_display"] = $this->input->post("winget_display");
+			$data["winget_display"] = $this->input->post("winget_display");
+			$this->layout_model->windget_save($data, $id);
+			$this->go("settings/enterprise/template/blocks");
+		}
+		$data = $this->layout_model->windget_result(false, $this->input->get("filter"));
+		$content = $this->layout_model->windget_row($id);
+		$this->view("blocks",["data" => $data, "content" => $content]);
+	}
+
+	public function Blockssorts(){
+		$data = $this->input->post("item");
+		$i = 1;
+		foreach ($data as $value) {
+		    $this->layout_model->windget_save(["winget_sort" => $i], $value);
+		    $i++;
+		}
+	}
 }

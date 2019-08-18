@@ -18,10 +18,10 @@ class Posts extends Enterprise {
 	Posts Interface
 	*/
 	public function posts(){
-		$channel = $this->input->get("channel");
+		$channel = ($this->input->get("channel") ? $this->input->get("channel") : config_item("default_channel"));
 		$data = $this->posts_model->getList(["channel" => $channel]);
 		$catalog = $this->catalog_model->dropdown(["channel" => $channel]);
-		$this->view('posts',["catalog" => $catalog, "data" => $data]);
+		$this->view('posts',["catalog" => $catalog, "data" => $data,"channel" => $channel]);
 	}
 
 	public function create($id=false){

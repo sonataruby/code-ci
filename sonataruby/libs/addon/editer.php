@@ -47,16 +47,22 @@
 
     var editer = new FroalaEditor('<?php echo $target;?>',{
       
-      toolbarInline: true,
+      toolbarInline: <?php echo (@$inline == "false" ? "false" : "true");?>,
       charCounterCount: false,
+      //toolbarVisibleWithoutSelection: true,
+      enter: FroalaEditor.ENTER_BR,
+      attribution: false,
       placeholderText: '<div class="placeholder">Click here add content</div>',
       iframe : false,
       videoAllowedProviders: ['youtube', 'vimeo'],
       quickInsertButtons: ['image','video', 'table', 'ol', 'ul'],
       pluginsEnabled: ['quickInsert', 'image','imageManager', 'video','table', 'lists','html'],
       //height : 550,//
-      bootstrapToolTarget : '<?php echo @$tools_desktop;?>',
-      bootstrapToolContent : $("#makeTools").html(),
+      //bootstrapToolTarget : '<?php echo @$tools_desktop;?>',
+      //bootstrapToolContent : $("#makeTools").html(),
+      <?php if(@$height){ ?>
+        height : <?php echo @$height;?>,//
+      <?php } ?>
       imageMove: false,
       imageOutputSize: false,
       imageResizeWithPercent: true,
@@ -98,6 +104,7 @@
         contentChanged: function () {
           
           $("form<?php echo $form;?>").find('textarea[name="'+name+'"]').val(this.html.get());
+          <?php echo @$contentChange;?>
         },
         'edit.on': function () {
           // Do something here.

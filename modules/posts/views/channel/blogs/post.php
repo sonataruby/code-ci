@@ -36,12 +36,7 @@
 			<?php echo $this->components->comments("post",$data->url);?>
 		</div>
 		<div class="col-lg-3 col-sm-12">
-			<div class="card right-alt">
-				<div class="card-header">
-					<h5>Category</h5>
-				</div>
-				<?php echo $catalog;?>
-			</div>
+			<?php echo $this->components->slidebar("rightslide",["class" => ""]);?>
 		</div>
 	</div>
 </div>

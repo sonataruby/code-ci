@@ -48,6 +48,26 @@ class MY_Loader extends MX_Loader {
     {
         
         if(!$this->_setups) $this->_setups();
+
+        if(defined("IS_PLUGINS")){
+            $this->_ci_view_paths = [];
+            $settemplate = CMS_THEMEPATH . TEMPLATE_ACTIVE . DIRECTORY_SEPARATOR . "plugins" . DIRECTORY_SEPARATOR;
+            if(is_dir($settemplate)) $this->_ci_view_paths[$settemplate] = true;
+            if(is_dir(CMS_SHAREPATH .  DIRECTORY_SEPARATOR . "plugins" . DIRECTORY_SEPARATOR)) $this->_ci_view_paths[CMS_SHAREPATH.  DIRECTORY_SEPARATOR . "plugins" . DIRECTORY_SEPARATOR] = true;
+
+            foreach ($this->_ci_plugins as $key => $value) {
+                if($value == true){
+                    list($path, $_plugin) = explode('/', $key);
+                    $f_path = array_keys(CMS_MODULESPATH)[0];
+                    $plugin_view = $f_path.$path."/views/plugins/";
+                    
+                    $this->_ci_view_paths = array_merge($this->_ci_view_paths,array($plugin_view => TRUE)) ;
+                }
+            }
+            
+            
+        }
+
         list($path, $_view) = Modules::find($view, $this->_module, 'views/');
 
         
@@ -57,24 +77,17 @@ class MY_Loader extends MX_Loader {
             if(defined("IS_ADMIN")){
                 $this->_ci_view_paths = $this->_ci_view_paths + array($path . "admin/" => TRUE) ;
             }else{
-                $this->_ci_view_paths = $this->_ci_view_paths + array($path => TRUE) ;
+                 $this->_ci_view_paths = $this->_ci_view_paths + array($path => TRUE) ;
+                
+               
             }
             
             $view = $_view;
         }
 
-        if(defined("IS_PLUGINS")){
-            foreach ($this->_ci_plugins as $key => $value) {
-                if($value == true){
-                    list($path, $_plugin) = explode('/', $key);
-                    $f_path = array_keys(CMS_MODULESPATH)[0];
-                    $plugin_view = $f_path.$path."/views/";
-                    $this->_ci_view_paths = array_merge($this->_ci_view_paths,array($plugin_view => TRUE)) ;
-                }
-            }
-        }
+        
 
-        if(is_dir(CMS_SHAREPATH)) $this->_ci_view_paths[CMS_SHAREPATH] = true;
+        
         
         /*
         Move to channel
@@ -90,6 +103,7 @@ class MY_Loader extends MX_Loader {
 
             }
         }
+        if(is_dir(CMS_SHAREPATH)) $this->_ci_view_paths[CMS_SHAREPATH] = true;
 
 
         return $this->_ci_load(array('_ci_view' => $view, '_ci_vars' => ((method_exists($this,'_ci_object_to_array')) ? $this->_ci_object_to_array($vars) : $this->_ci_prepare_view_vars($vars)), '_ci_return' => $return));

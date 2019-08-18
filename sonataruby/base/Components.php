@@ -127,4 +127,9 @@ class Components {
         $arv .= '<li class="dropdown-item"><a href="/account/logout"><i class="fa fa-lock"></i> Logout</a></li>';
         return $arv;
     }
+
+    public function slidebar($type="header", $attr=["class" => "footer"]){
+        $data = get_instance()->layout_model->windget_result(false, $type);
+        return $this->CI->load->view("components/slidebar",["data" => $data, "attr" => $attr]);
+    }
 }

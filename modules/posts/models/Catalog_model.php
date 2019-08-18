@@ -41,7 +41,10 @@ class Catalog_model extends Model{
 	}
 
 	public function getList($arv=[], $language=false, $relaytion=false){
+		
 		$language = ($language ? $language : $this->config->item("language"));
+		$channel = (@$arv["channel"] ? @$arv["channel"] : config_item("default_channel"));
+
 		$this->db->where("language", $language);
 		$this->db->order_by("catalog_sort","ASC");
 		$this->db->select("catalog_id as id, catalog_name as name, catalog_url as url, catalog_parent as parent, show_menu, show_header, show_dashboard, status, channel");
@@ -50,8 +53,8 @@ class Catalog_model extends Model{
 			$this->db->where_in("catalog_id", $arv["in"]);
 		}
 
-		if(isset($arv["channel"])){
-			$this->db->where("channel", $arv["channel"]);
+		if($channel){
+			$this->db->where("channel", $channel);
 		}
 
 		if($relaytion == false){

@@ -11,13 +11,7 @@
 		</div>
 		
 		<div class="col-lg-4 col-sm-12 hidden-xs">
-			<div class="card right-alt">
-				<div class="card-header">
-					<h5>Category</h5>
-				</div>
-				
-				<?php echo $data->listCatalog;?>
-			</div>
+			<?php echo $this->components->slidebar("rightslide",["class" => ""]);?>
 		</div>
 
 	</div>

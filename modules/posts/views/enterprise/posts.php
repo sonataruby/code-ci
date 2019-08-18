@@ -1,5 +1,5 @@
 <div class="hbox">
-	<h3>Quản lý bài viết <a class="btn btn-primary float-right" href="/posts/enterprise/posts/create?channel=<?php echo $this->input->get("channel");?>" sn-link="true" parent-controller="#posts"><i class="fa fa-plus"></i> Add Posts</a></h3>
+	<h3>Quản lý bài viết <a class="btn btn-primary float-right" href="/posts/enterprise/posts/create?channel=<?php echo $channel;?>" sn-link="true" parent-controller="#posts"><i class="fa fa-plus"></i> Add Posts</a></h3>
 	<hr>
 	<div class="row">
 	<?php foreach (config_item("channel") as $key => $value) { ?>

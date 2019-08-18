@@ -36,7 +36,7 @@ class FrontEnd extends Controller{
 				$data_pate[$key] = is_object($value) ? (array)$value : $value;
 			}
 			
-			$dataRender = $this->minify_html($this->parser->parse_string($dataRender, $data_pate, true));
+			$dataRender = $this->minify_html($this->parser->parse_string($this->shortcode->run($dataRender), $data_pate, true));
 			print_r($dataRender);
 			exit();
 		}

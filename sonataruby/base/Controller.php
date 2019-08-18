@@ -42,6 +42,8 @@ class Controller extends MX_Controller {
 			if(!defined("TEMPLATE_ACTIVE")){
 				define("TEMPLATE_ACTIVE", $json->template);
 			}
+			$this->config->set_item("default_channel",CHANNEL_DEFAULT);
+			
 			foreach ($json as $key => $value) {
 
 				$this->config->set_item($key, isObject($value));

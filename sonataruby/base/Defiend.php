@@ -10,7 +10,7 @@ define("CMS_THEME_PERSONAL_PATH",CMS_ROOTPATH . "template/personal" . DIRECTORY_
 define("UPLOAD_PATH", FCPATH . DIRECTORY_SEPARATOR . "upload" . DIRECTORY_SEPARATOR);
 define("CONFIG_LOCAL", FCPATH . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR);
 define("CACHE_LOCAL", FCPATH . "cache" . DIRECTORY_SEPARATOR);
-
+define("CHANNEL_DEFAULT","blogs");
 
 if(!function_exists("autoload_file")){
 	function autoload_file($path=""){

@@ -85,4 +85,35 @@ class Layout_model extends Model{
 		return $url.($count > 0 ? "_".$count : "");
 	}
 
+
+	public function windget_save($arv=[], $id=false){
+		if($id){
+			$this->db->update("widgets", $arv,["winget_id" => $id]);
+		}else{
+			$language = (@$arv["language"] ? $arv["language"] : $this->config->item("language"));
+			$arv["language"] = $language;
+			$this->db->insert("widgets", $arv);
+			$id = $this->db->insert_id();
+		}
+		return $id;
+	}
+
+	public function windget_result($language=false, $filter = ""){
+		$language = ($language ? $language : $this->config->item("language"));
+		$this->db->where("language", $language);
+
+		if($filter){
+			$this->db->like("winget_display",$filter);
+		}
+
+		$this->db->order_by("winget_sort","ASC");
+		return $this->db->get("widgets")->result();
+	}
+
+
+	public function windget_row($id=false){
+		
+		$this->db->where("winget_id", $id);
+		return $this->db->get("widgets")->row();
+	}
 }
