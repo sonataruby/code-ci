@@ -8,16 +8,16 @@
 				<p><i class="fa fa-phone"></i> Phone : <a href="tel:<?php echo config_item("hotline");?>">{hotline}</a></p>
 				<p><i class="fa fa-phone"></i> Tel : <a href="tel:<?php echo config_item("ctyphone");?>">{ctyphone}</a></p>
 				<p><i class="fa fa-envelope"></i> <a href="mailto:{site_email}?subject=Contact">{site_email}</a></p>
-				<p><i class="fa fa-copyright"></i> {company_license_number}</p>
+				<p><i class="fa fa-copyright"></i> Mã số thuế : {company_license_number}</p>
 			</div>
 			<div class="col-lg-3 col-sm-12">
-				<h3>Infomation</h3>
+				<h3>Về chúng tôi</h3>
 				<?php
 					echo $this->pages_model->getDropdown(["show_menu" => "footer"]);
 				?>
 			</div>
 			<div class="col-lg-2 col-sm-12">
-				<h3>Social</h3>
+				<h3>Liên hệ qua</h3>
 				<i class="fab fa-facebook fa-2x"></i>
 				
 				<i class="fab fa-linkedin fa-2x"></i>
