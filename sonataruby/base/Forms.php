@@ -435,6 +435,15 @@ class Forms{
 
                 <div class="form-row">
                     <div class="form-group col-md-6">
+                      '.$this->text(["name" => $name."[ctyphone]", "label" => "Tel","value" => @$value->ctyphone],[]).'
+                    </div>
+                    <div class="form-group col-md-6">
+                      '.$this->text(["name" =>  $name."[company_license_number]", "label" => "Company license number","value" => @$value->company_license_number],[]).'
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
                       '.$this->text(["name" => $name."[firstname]", "label" => "First Name","value" => @$value->firstname],["required" => true]).'
                     </div>
                     <div class="form-group col-md-6">

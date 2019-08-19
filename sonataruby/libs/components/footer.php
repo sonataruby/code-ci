@@ -5,8 +5,10 @@
 				<h3>{site_name}</h3>
 				
 				<p><i class="fa fa-map"></i> {full_address}</p>
-				<p><i class="fa fa-phone"></i> <a href="tel:<?php echo config_item("hotline");?>">{hotline}</a></p>
+				<p><i class="fa fa-phone"></i> Phone : <a href="tel:<?php echo config_item("hotline");?>">{hotline}</a></p>
+				<p><i class="fa fa-phone"></i> Tel : <a href="tel:<?php echo config_item("ctyphone");?>">{ctyphone}</a></p>
 				<p><i class="fa fa-envelope"></i> <a href="mailto:{site_email}?subject=Contact">{site_email}</a></p>
+				<p><i class="fa fa-copyright"></i> {company_license_number}</p>
 			</div>
 			<div class="col-lg-3 col-sm-12">
 				<h3>Infomation</h3>
