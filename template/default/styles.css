@@ -112,7 +112,15 @@ body section{
 	}
 	
 }
-
+.support{
+	background-image: url("image/support.png");
+	background-size: cover;
+	background-position: center right;
+	background-repeat: no-repeat; 
+	margin: -20px;
+	padding: 20px;
+	color:#FFF;
+}
 @media (max-width: 580px){
 	.content > .carousel, .masterSlider{
 		margin-left: -15px;

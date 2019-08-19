@@ -56,7 +56,7 @@
       iframe : false,
       videoAllowedProviders: ['youtube', 'vimeo'],
       quickInsertButtons: ['image','video', 'table', 'ol', 'ul'],
-      pluginsEnabled: ['quickInsert', 'image','imageManager', 'video','table', 'lists','html'],
+      //pluginsEnabled: ['quickInsert', 'image','imageManager', 'video','table', 'lists','html'],
       //height : 550,//
       //bootstrapToolTarget : '<?php echo @$tools_desktop;?>',
       //bootstrapToolContent : $("#makeTools").html(),
@@ -66,7 +66,7 @@
       imageMove: false,
       imageOutputSize: false,
       imageResizeWithPercent: true,
-
+      
       imageUploadParam : "userfile",
       imageUploadURL : "/settings/enterprise/uploads/image",
       imageUploadMethod: 'POST',
