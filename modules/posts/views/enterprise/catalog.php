@@ -2,7 +2,7 @@
 	<h3>Channel <select class="form-control col-lg-3 col-sm-12 float-right" onchange="window.location.href='/posts/enterprise/catalog?channel='+this.value">
 		<option value="">Default</option>
 		<?php foreach (config_item("channel") as $key => $value) { ?>
-			<option value="<?php echo $value->url;?>" <?php echo ($value->url == $this->input->get("channel") ? "selected" : "");?>><?php echo $value->name;?></option>
+			<option value="<?php echo $value->url;?>" <?php echo ($value->url == $this->input->get("channel") || ($value->url == config_item("default_channel") && !$this->input->get("channel")) ? "selected" : "");?>><?php echo $value->name;?></option>
 		<?php } ?>
 		
 	</select></h3>

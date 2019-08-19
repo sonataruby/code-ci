@@ -29,27 +29,11 @@
 				<?php } ?>
 			</div>
 
-			<h2>Liên hệ nhà cung cấp sản phẩm này</h2>
-			<hr>
-			<?php echo $this->components->contact();?>
+			
 			
 		</div>
 		<div class="col-lg-4 col-sm-12">
-			<div class="card right-alt">
-				<div class="card-header">
-					<h5>Category</h5>
-				</div>
-				<?php echo $catalog;?>
-			</div>
-			<br>
-			<div class="card right-alt">
-				<div class="card-header">
-					<h5>Sản phẩm khác</h5>
-				</div>
-				<div class="card-body">
-					<?php $this->load->view("plugins/posts",["data" => $data->order,"channel" => $data->channel, "class" => 'col-sm-12', "type" => "list"]);?>
-				</div>
-			</div>
+			<?php echo $this->components->slidebar("rightslide",["class" => ""]);?>
 
 		</div>
 	</div>

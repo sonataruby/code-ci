@@ -3,7 +3,7 @@
 	<hr>
 	<div class="row">
 	<?php foreach (config_item("channel") as $key => $value) { ?>
-		<div class="col-lg-2 col-sm-6"><div class="card card-body <?php echo ($value->url == $this->input->get("channel") ? "active" : "");?>">
+		<div class="col-lg-2 col-sm-6"><div class="card card-body <?php echo ($value->url == $this->input->get("channel") || ($value->url == config_item("default_channel") && !$this->input->get("channel")) ? "channel-active" : "");?>">
 			<a href="/posts/enterprise/posts?channel=<?php echo $value->url;?>">
 				<?php echo $value->name;?>
 			</a>

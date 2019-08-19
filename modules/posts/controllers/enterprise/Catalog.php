@@ -46,7 +46,7 @@ class Catalog extends CPEnterprise {
 				"catalog_name" => ($this->input->post("catalog_name") ? $this->input->post("catalog_name") : "Catalog name"),
 				"catalog_parent" => ($this->input->post("catalog_parent") ? $this->input->post("catalog_parent") : 0),
 				"language" => $this->config->item("language"),
-				"channel" => ($this->input->post("channel") ? $this->input->post("channel") : ""),
+				"channel" => ($this->input->post("channel") ? $this->input->post("channel") : config_item("default_channel")),
 			];
 		
 			$id = $this->catalog_model->create(false, $arv);
@@ -76,7 +76,7 @@ class Catalog extends CPEnterprise {
 				"catalog_parent" => ($this->input->post("catalog_parent") > 0 ? $this->input->post("catalog_parent") : 0),
 				"catalog_content" => $this->input->post("catalog_content"),
 				"language" => $this->config->item("language"),
-				"channel" => ($this->input->post("channel") ? $this->input->post("channel") : ""),
+				"channel" => ($this->input->post("channel") ? $this->input->post("channel") : config_item("default_channel")),
 				
 			];
 		
