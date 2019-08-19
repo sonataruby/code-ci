@@ -43,7 +43,7 @@
 			<div style="max-height: 180px; overflow:auto; ">
 			<?php echo $catalog;?>
 			</div>
-
+			<hr>
 			<?php echo $this->forms->text([
 				"name" => "post_tag",
 				"label" => "Page Tag's",

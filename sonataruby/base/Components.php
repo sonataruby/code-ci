@@ -64,6 +64,28 @@ class Components {
         return $this->CI->load->view("components/video",["data" => $data, "attr" => $attr]);
     }
 
+
+    /*Video */
+
+    public function gallery($data="", $attr=[]){
+        $arv = url_toarray($data);
+        $gid = false;
+        if(isset($arv["gid"]) && intval($arv["gid"]) > 0){
+            $gid = $arv["gid"];
+        }
+        if(isset($arv["tags"])){
+            
+            $data = @$this->CI->gallery_model->getInfoGallery(false, false, $arv)->image;
+            if(!$data) $data = [];
+        }else{
+            $data = $this->CI->gallery_model->getImageList($gid, $arv);
+        }
+        $link = @explode('|', $arv["link"]);
+        
+
+        return $this->CI->load->view("components/gallery",["data" => $data, "attr" => $attr, "link" => $link]);
+    }
+
     /*Header */
 
     public function header($data=[], $attr=["class" => "header fixed-top"]){

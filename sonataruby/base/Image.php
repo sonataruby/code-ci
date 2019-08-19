@@ -136,4 +136,30 @@ class Image extends \CI_Image_lib{
 		}
 	}
 
+	public function resizeFit($source, $size="650x420"){
+
+		$ext = ".".pathinfo($source, PATHINFO_EXTENSION);
+
+		list($width, $height, $type, $attr) = getimagesize($source);
+		list($rw, $rh) = explode('x', $size);
+
+		$image_config["image_library"] = "gd2";
+		$image_config["source_image"] = $source;
+		$image_config['create_thumb'] = FALSE;
+		$image_config['maintain_ratio'] = TRUE;
+		$image_config['new_image'] = $source;
+		$image_config['quality'] = "100";
+		$image_config['width'] = $rw;
+		$image_config['height'] = $rh;
+		$dim = (intval($width) / intval($height)) - ($image_config['width'] / $image_config['height']);
+		$image_config['master_dim'] = ($dim > 0)? "height" : "width";
+
+		$this->clear();
+		$this->initialize($image_config);
+
+		$this->resize();
+
+	}
+
+
 }

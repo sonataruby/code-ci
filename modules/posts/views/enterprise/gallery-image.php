@@ -1,48 +1,81 @@
 <div class="row">
 	<div class="col-lg-9 col-sm-12">
 		<div class="hbox">
-			<h3>Gallery <button class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModalCenter">Create gallery</button></h3>
-			<div class="row">
-				<?php foreach ($data->image as $key => $value) { ?>
-					<div class="col-lg-3 col-sm-6 mb-3">
-						<div class="card">
-						    <img src="https://www.dhresource.com/fc/s009/homepage/062519/990x440_190618_sport.jpg" class="card-img-top" alt="...">
-						    <div class="card-body">
-						      <h5 class="card-title"><?php echo $value->name;?></h5>
-						      <p class="card-text"><a href="/posts/enterprise/gimage/<?php echo $value->id;?>" sn-link="true" parent-controller="#posts" class="btn btn-sm btn-info">Add Image</a> <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#exampleModalCenter" data-id="<?php echo $value->id;?>" data-name="<?php echo $value->name;?>">Edit</button></p>
-						      
-						    </div>
-						</div>
-					</div>
-				<?php } ?>
+			<h3>Gallery - <?php echo $data->name;?> <a class="btn btn-primary float-right" href="/posts/enterprise/gallery">Back gallery</a></h3>
+			<hr>
+			<div class="showgallery">
+				
 			</div>
 
 
 		</div>
+		
+		
 
 	</div>
 	<div class="col-lg-3 col-sm-12">
-		<div class="hbox">
-			<h3>Upload Image</h3>
-			<hr>
-			<?php echo $this->forms->gallery([
-				"name" => "post_image[]",
-				"label" => "Thumnail Image",
-				"value" => @$data->image
-			],[
-				"onChange" => "AutoUpload(this);",
-				"resize" => "false"
-			]);?>
+		<div class="hbox border">
+			<div id="myId" class="dropzone"></div> 
 		</div>
-		<div class="hbox">
-			<h3>Options</h3>
+		<div class="hbox border">
+			<h4>Tools</h4>
 			<hr>
+			<div class="form-group">
+			    <label for="exampleInputPassword1">Resize to</label>
+			    <input type="text" class="form-control" id="imageResize" value="650x420" placeholder="Enter Size : 650x320">
+			</div>
+			<button type="button" onClick="window.location.href='/posts/enterprise/gallery/rsizeimage/<?php echo $data->id;?>/'+$('#imageResize').val();" class="btn btn-primary">Resize All</button>
 		</div>
+
 	</div>
 </div>
+<?php echo libs_url("css/dropzone.css");?>
 
-<script type="text/javascript">
-	var AutoUpload = function(){
-		alert("");
+<?php echo libs_url("js/dropzone.js");?>
+<?php libs_url("js/jquery-ui.js");?>
+<style type="text/css">
+	.dropzone{
+		border:1px solid #ddd;
+		font-size: 24px;
 	}
+</style>
+<script type="text/javascript">
+	
+
+
+		var queryItem = function(){
+			$(".showgallery").load("/posts/enterprise/gallery/vimage/gallery/<?php echo $data->id;?>", function(){
+				$("[data-remove]").on("click", function(){
+
+					$.get("/posts/enterprise/gallery/vimage/gallery/<?php echo $data->id;?>?remove="+$(this).attr("data-remove"));
+					$(this).parent().parent().remove();
+				});
+
+				$('#element').sortable({
+				    update: function (event, ui) {
+				        var data = $(this).sortable('serialize');
+
+				        // POST to server using $.post or $.ajax
+				        $.ajax({
+				            data: data,
+				            type: 'POST',
+				            url: '/posts/enterprise/gallery/sortimage'
+				        });
+				    }
+		        });
+			});
+		}
+
+		queryItem();
+	Dropzone.autoDiscover = false;
+	$(document).ready(function(){
+		new Dropzone("div#myId", { 
+			url: "/settings/enterprise/uploads/image/gallery/<?php echo $data->id;?>/", 
+			paramName: "userfile",
+			success : function(){
+				queryItem();
+			}
+		});
+	});
 </script>
+

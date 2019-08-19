@@ -1,4 +1,3 @@
-
 <section class="animated bounceIn" data-id="1" data-animated="true">
   <div class="container">
     <div class="row d-flex">
@@ -26,7 +25,8 @@
 </section>
 <section>
   	<div class="container">
-      [plugin name="posts/posts"]theme=oncepick&limit=7&order=desc[/plugin]
+      <h1>Catalog Post</h1>
+      [plugin name="posts/postincatalog"][/plugin]
 	</div>
 </section>
 
@@ -40,4 +40,10 @@
   	<div class="container">
       [plugin name="posts/posts"]limit=5&order=desc[/plugin]
 	</div>
+</section>
+<section>
+  <div class="container">
+  	Doi tac
+    [components name="gallery" class="col-lg-3 mb-3" type="slide"]limit=12&tags=parent&link=http://anhkhoa.com|http://conbo.com[/components]
+  </div>
 </section>

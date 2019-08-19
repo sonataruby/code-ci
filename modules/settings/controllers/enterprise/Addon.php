@@ -74,7 +74,25 @@ class Addon extends Enterprise {
 			$this->settings_model->save(["plugins" => json_encode($arvData)]);
 			$this->go("settings/enterprise/addon/plugins");
 		}
-		print_r(config_item("plugins"));
-		$this->view('addon-plugins',["data" => $arv]);
+
+		if($this->input->get("off")){
+			$readData = (array)config_item("plugins");
+			unset($readData[$this->input->get("off")]);
+			$this->settings_model->save(["plugins" => json_encode($readData)]);
+			$this->go("settings/enterprise/addon/plugins");
+
+		}
+
+		if($this->input->get("on")){
+			$readData = (array)config_item("plugins");
+			$readData = array_merge($readData,[$this->input->get("on") => ucfirst(basename($this->input->get("on")))]);
+			$this->settings_model->save(["plugins" => json_encode($readData)]);
+			$this->go("settings/enterprise/addon/plugins");
+
+		}
+
+
+		$active = config_item("plugins");
+		$this->view('addon-plugins',["data" => $arv, "active" => $active]);
 	}
 }

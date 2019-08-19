@@ -361,5 +361,10 @@ if( ! function_exists("format_phone")){
 	}
 }
 
-
+if( ! function_exists("url_toarray")){
+	function url_toarray($data){
+		parse_str(str_replace('amp;','',$data), $arv);
+		return $arv;
+	}
+}
 

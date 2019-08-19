@@ -10,8 +10,13 @@ class Uploads extends Enterprise {
 	    $this->load->helper(['directory','file']);
 	}
 
-	public function image(){
-		$config['upload_path']          = UPLOAD_PATH . "image/";
+	public function image($path=false, $gid=false){
+		if($gid) $path = $path ."/".$gid."/";
+		if(!is_dir(UPLOAD_PATH . "image/{$path}")){
+			@mkdir(UPLOAD_PATH . "image/{$path}", 0777, true);
+		}
+
+		$config['upload_path']          = UPLOAD_PATH . "image/{$path}";
 		$config['allowed_types']        = 'gif|jpg|png';
 		//$config['max_size']             = 8000;
 		//$config['max_width']            = 1024;

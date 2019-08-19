@@ -36,27 +36,63 @@ class Gallery_model extends Model{
 	}
 
 	public function getListGallery(){
-		$this->db->select("gallery_id as id, gallery_name as name, gallery_url as url, created_date");
+		$this->db->select("gallery_id as id, gallery_name as name, gallery_url as url, created_date, tags");
 		$data = $this->db->get($this->table_gallery)->result();
 		$arv = [];
 		foreach ($data as $key => $value) {
-			$value->image = $this->db->limit(5)->get_where($this->table_gallery_image,["gallery_id" => $value->id])->result();
+			$value->image = $this->getImageList($value->id,["limit" => 2]);
 			$arv[] = $value;
 		}
 		return $arv;
 	}
 
-	public function getInfoGallery($url=false, $id=false){
-		$this->db->select("gallery_id as id, gallery_name as name, gallery_url as url, created_date");
+
+	public function getRemoveGallery($gid){
+		$this->load->helper(['directory','file']);
+		$this->db->delete($this->table_gallery,["gallery_id" => $gid]);
+		$this->db->delete($this->table_gallery_image,["gallery_id" => $gid]);
+		delete_files(UPLOAD_PATH . "image/gallery/{$gid}");
+	}
+
+	public function getInfoGallery($url=false, $id=false, $arv=[]){
+		$this->db->select("gallery_id as id, gallery_name as name, gallery_url as url, created_date, tags");
 		if($url){
 			$this->db->where("gallery_url", $url);
 		}
 		if($id){
 			$this->db->where("gallery_id", $id);
 		}
+		if(isset($arv["tags"]) && $arv["tags"]){
+			$this->db->like("tags", $arv["tags"]);
+		}
 		$data = $this->db->get($this->table_gallery)->row();
 		if(!$data) return;
-		$data->image = $this->db->get_where($this->table_gallery_image,["gallery_id" => $data->id])->result();
+		$data->image = $this->getImageList($data->id, $arv);
 		return $data;
+	}
+
+	public function getImageList($gid=false, $arv=[]){
+		if($gid){
+			$this->db->where("gallery_id", $gid);
+		}
+		$limit = (@$arv["limit"] ? intval($arv["limit"]) : 20);
+		$this->db->limit($limit);
+		$this->db->order_by("image_sorts","ASC");
+		return $this->db->get($this->table_gallery_image)->result();
+	}
+
+	public function syncImage($arv=[]){
+		$check = $this->db->get_where($this->table_gallery_image,["image_hash" => $arv["image_hash"]])->num_rows();
+		if($check == 0){
+			$this->db->insert($this->table_gallery_image, $arv);
+		}
+	}
+
+	public function remove($image_hash){
+		$this->db->delete($this->table_gallery_image,["image_hash" => $image_hash]);
+	}
+
+	public function sorts($number, $image_id){
+		$this->db->update($this->table_gallery_image, ["image_sorts" => $number],["image_id" => $image_id]);
 	}
 }

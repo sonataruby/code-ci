@@ -11,13 +11,20 @@ class Tags extends Enterprise {
 	}
 	public function index()
 	{
-		return $this->video();
+		return $this->manager();
 	}
 
 	/*
 	Gallery
 	*/
-	public function video(){
-		$this->view('video',[]);
+	public function manager(){
+		if($this->isPost()){
+			$tag = $this->input->post("tags");
+			$this->settings_model->save(["tags" => $tag]);
+			$this->go("/posts/enterprise/tags");
+		}
+		$dataRead = $this->settings_model->getData();
+		$data = @$dataRead->tags;
+		$this->view('tags',["data" => $data]);
 	}
 }

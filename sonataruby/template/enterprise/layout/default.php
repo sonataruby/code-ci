@@ -41,7 +41,7 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
       <![endif]-->
-      <!--script type="text/javascript">(function(w,d,u){w.readyQ=[];w.bindReadyQ=[];function p(x,y){if(x=="ready"){w.bindReadyQ.push(y);}else{w.readyQ.push(x);}};var a={ready:p,bind:p};w.$=w.jQuery=function(f){if(f===d||f===u){return a}else{p(f)}}})(window,document)</script -->
+      <script type="text/javascript">(function(w,d,u){w.readyQ=[];w.bindReadyQ=[];function p(x,y){if(x=="ready"){w.bindReadyQ.push(y);}else{w.readyQ.push(x);}};var a={ready:p,bind:p};w.$=w.jQuery=function(f){if(f===d||f===u){return a}else{p(f)}}})(window,document)</script>
       
       <?php echo template_url("styles.css");?>
       <?php libs_url('js/app.js',['name' => "Bootstrap & Jquery"]);?>
@@ -78,7 +78,7 @@
               
               <div id="multiCollapseExample2" class="slidebar">
                 <div class="menuHeader">
-                  <h3>Trang chính</h3>
+                  <h4>Trang chính</h4>
                   <p>Quản lý trang</p>
                 </div>
                 <a class="dropdown-item" href="#"><i class="fa fa-file-word"></i> Categories</a>
@@ -87,10 +87,10 @@
               </div>
             </li>
             <li class="nav-item" id="pages">
-              <a class="nav-link active" href="#"><i class="fa fa-file-word"></i> <span>Pages</span></a>
+              <a class="nav-link active" href="#"><i class="fa fa-file-word"></i> <span>Trang</span></a>
               <div id="multiCollapseExample2" class="slidebar">
                 <div class="menuHeader">
-                  <h4>Layout <a class="btn btn-primary btn-sm float-right" href="/pages/layout/create" sn-link="true" parent-controller="#pages"><i class="fa fa-plus"></i> Add</a></h4>
+                  <h4>Trang giao diện <a class="btn btn-primary btn-sm float-right" href="/pages/enterprise/create" sn-link="true" parent-controller="#pages"><i class="fa fa-plus"></i></a></h4>
                   <p>Quản lý trang giao diện</p>
 
                 </div>
@@ -101,7 +101,7 @@
                   <?php } ?>
 
                 <div class="menuHeader">
-                  <h3>Pages <a class="btn btn-primary btn-sm float-right" href="/pages/enterprise/create" sn-link="true" parent-controller="#pages"><i class="fa fa-plus"></i> Add</a></h3>
+                  <h4>Trang nội dung <a class="btn btn-primary btn-sm float-right" href="/pages/enterprise/create" sn-link="true" parent-controller="#pages"><i class="fa fa-plus"></i></a></h4>
                   <p>Quản lý trang</p>
 
                 </div>
@@ -119,7 +119,7 @@
               <a class="nav-link arrow-down" href="/posts/enterprise/create" sn-link="true" parent-controller="#posts"><i class="fa fa-mail-bulk"></i> <span>Nội dung</span></a>
               <div id="multiCollapseExample2" class="slidebar">
                 <div class="menuHeader">
-                  <h3>Posts <a class="btn btn-primary btn-sm float-right" href="/posts/enterprise/create" sn-link="true" parent-controller="#posts"><i class="fa fa-plus"></i> Add</a></h3>
+                  <h4>Bài viết <a class="btn btn-primary btn-sm float-right" href="/posts/enterprise/create" sn-link="true" parent-controller="#posts"><i class="fa fa-plus"></i></a></h4>
                   <p>Menu controller posts</p>
                 </div>
                 <a class="dropdown-item" href="/posts/enterprise/catalog" sn-link="true" parent-controller="#posts"><i class="fa fa-table"></i> Chuyên mục</a>
@@ -128,46 +128,46 @@
                 <a class="dropdown-item" href="/posts/enterprise/gallery" sn-link="true" parent-controller="#posts"><i class="fa fa-image"></i> Gallery</a>
                 <a class="dropdown-item" href="/posts/enterprise/video" sn-link="true" parent-controller="#posts"><i class="fa fa-video"></i> Video</a>
                 <div class="menuHeader">
-                  <h3>Tools</h3>
+                  <h4>Công cụ</h4>
                   <p>Menu controller posts</p>
                 </div>
               </div>
             </li>
             <li class="nav-item" id="templates">
-              <a class="nav-link" href="#"><i class="fa fa-campground"></i> <span>Template</span></a>
+              <a class="nav-link" href="/settings/enterprise/template/manager"><i class="fa fa-campground"></i> <span>Giao diện</span></a>
               <div id="multiCollapseExample2" class="slidebar">
                 <div class="menuHeader">
-                  <h3>Template</h3>
+                  <h4>Giao diện</h4>
                   <p>Menu controller posts</p>
                 </div>
-                <a class="dropdown-item" href="/settings/enterprise/template/manager" sn-link="true" parent-controller="#templates">Manager</a>
-                <a class="dropdown-item" href="/settings/enterprise/template/search" sn-link="true" parent-controller="#templates">Search Templates</a>
+                <a class="dropdown-item" href="/settings/enterprise/template/manager" sn-link="true" parent-controller="#templates">Điều chỉnh</a>
+                <a class="dropdown-item" href="/settings/enterprise/template/search" sn-link="true" parent-controller="#templates">Tìm giao diện</a>
                 <a class="dropdown-item" href="/settings/enterprise/template/backups" sn-link="true" parent-controller="#templates">Backup & Upload</a>
                 
 
                 <div class="menuHeader">
-                  <h5>Custom Design</h5>
+                  <h4>Custom Design</h4>
                 </div>
-                <a class="dropdown-item" href="/settings/enterprise/menu/manager" sn-link="true" parent-controller="#templates">Menu Manager</a>
+                <a class="dropdown-item" href="/settings/enterprise/menu/manager" sn-link="true" parent-controller="#templates">Quản lý Menu</a>
                 <a class="dropdown-item" href="/settings/enterprise/template/header" sn-link="true" parent-controller="#templates">Header & Footer</a>
                 <a class="dropdown-item" href="/settings/enterprise/template/blocks" sn-link="true" parent-controller="#templates">Block Manager</a>
-                <a class="dropdown-item" href="/settings/enterprise/template/css" sn-link="true" parent-controller="#templates">CSS Develop</a>
+                <a class="dropdown-item" href="/settings/enterprise/template/css" sn-link="true" parent-controller="#templates">Điều chỉnh CSS</a>
                 
 
               </div>
             </li>
             <li class="nav-item" id="apps">
-              <a class="nav-link" href="#"><i class="fa fa-sitemap"></i> <span>Apps</span></a>
+              <a class="nav-link" href="/settings/enterprise/addon/manager"><i class="fa fa-sitemap"></i> <span>Ứng dụng</span></a>
               <div id="multiCollapseExample2" class="slidebar">
                 <div class="menuHeader">
-                  <h3>Apps</h3>
+                  <h4>Apps</h4>
                   <p>Menu controller posts</p>
                 </div>
-                <a class="dropdown-item" href="/settings/enterprise/addon/manager" sn-link="true" parent-controller="#apps">Manager</a>
-                <a class="dropdown-item" href="/settings/enterprise/addon/search" sn-link="true" parent-controller="#apps">Search Apps</a>
+                <a class="dropdown-item" href="/settings/enterprise/addon/manager" sn-link="true" parent-controller="#apps">Điều chỉnh</a>
+                <a class="dropdown-item" href="/settings/enterprise/addon/search" sn-link="true" parent-controller="#apps">Tìm ứng dụng</a>
                 <a class="dropdown-item" href="/settings/enterprise/addon/backups" sn-link="true" parent-controller="#apps">Backup & Upload</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="/settings/enterprise/addon/plugins" sn-link="true" parent-controller="#apps">Plugins</a>
+                <a class="dropdown-item" href="/settings/enterprise/addon/plugins" sn-link="true" parent-controller="#apps">Tiện ích mở rộng</a>
               </div>
             </li>
 
@@ -183,7 +183,7 @@
               <a class="nav-link" href="/settings/enterprise/configs" sn-link="true" parent-controller="#settings"><i class="fa fa-cogs"></i> <span>Cấu hình</span></a>
               <div id="multiCollapseExample2" class="slidebar">
                 <div class="menuHeader">
-                  <h3>Settings</h3>
+                  <h4>Settings</h4>
                   <p>Menu controller posts</p>
                   
                 </div>
@@ -207,7 +207,7 @@
   <?php libs_url("js/admin.js");?>
   <?php echo template_url("app.js");?>
 
-  <!--script type="text/javascript">(function($,d){$.each(readyQ,function(i,f){$(f)});$.each(bindReadyQ,function(i,f){$(d).bind("ready",f)})})(jQuery,document)</script -->
+  <script type="text/javascript">(function($,d){$.each(readyQ,function(i,f){$(f)});$.each(bindReadyQ,function(i,f){$(d).bind("ready",f)})})(jQuery,document)</script>
 
   </body>
   </html>
