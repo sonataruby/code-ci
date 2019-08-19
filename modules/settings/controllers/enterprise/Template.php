@@ -104,7 +104,7 @@ class Template extends Enterprise {
 			$data["winget_content_as"] = $this->input->post("winget_content_as");
 			$data["winget_name"] = $this->input->post("winget_name");
 			$data["winget_icon"] = $this->input->post("winget_icon");
-			$data["winget_content"] = $this->input->post("winget_content");
+			$data["winget_content"] = $this->clearContent($this->input->post("winget_content"));
 			$data["winget_display"] = $this->input->post("winget_display");
 			$data["winget_display"] = $this->input->post("winget_display");
 			$this->layout_model->windget_save($data, $id);
