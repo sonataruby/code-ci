@@ -12,14 +12,20 @@
 	</div>
 </div>
 <div class="hbox">
+	<?php echo form_open(false,["method" => "get"]);?>
+	<input type="hidden" name="channel" value="<?php echo $channel;?>">
 	<div class="input-group">
 		<?php echo $catalog;?>
-	  <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+	  
+	  <input type="text" class="form-control" name="search" placeholder="Nhập từ khóa tìm kiếm">
 	  <div class="input-group-append">
-	    <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="fa fa-search"></i> Search</button>
+	    <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="fa fa-search"></i> Search</button>
 	  </div>
+	  
 	</div>
+	<?php echo form_close();?>
 	<br>
+	<div class="float-right"><?php print_r($pages);?></div>
 	<table class="table">
 		<thead>
 			<th colspan="2">Name</th>
@@ -49,16 +55,18 @@
 				<td></td>
 				<td class="text-right">
 					<a class="btn btn-primary" href="/posts/enterprise/posts/create/<?php echo $value->id;?>?channel=<?php echo $value->channel;?>&ref=<?php echo getRef();?>" sn-link="true" parent-controller="#posts">Edit</a>
-					<a class="btn btn-primary" href="/posts/enterprise/posts/deletepost/<?php echo $value->id;?>?channel=<?php echo $value->channel;?>" sn-link="true" parent-controller="#posts">Delete</a>
+					<a class="btn btn-primary" href="/posts/enterprise/posts/deletepost/<?php echo $value->id;?>?channel=<?php echo $value->channel;?>&ref=<?php echo getRef();?>" sn-link="true" parent-controller="#posts">Delete</a>
 				</td>
 			</tr>
 			<?php } ?>
 		</tbody>
 	</table>
+	<hr>
 	<?php print_r($pages);?>
 </div>
 <script type="text/javascript">
 	$(document).ready(function(){
+		$(".catalog_selelct").css("max-width","350px");
 		$(".catalog_selelct").bind("change", function(){
 			window.location.href = '/posts/enterprise/posts?channel=<?php echo $channel;?>&catalog='+this.value;
 		});

@@ -20,7 +20,9 @@ class Posts extends Enterprise {
 	public function posts(){
 		$channel = ($this->input->get("channel") ? $this->input->get("channel") : config_item("default_channel"));
 		$catalog = ($this->input->get("catalog") ? $this->input->get("catalog") : false);
-		$data = $this->posts_model->getList(["channel" => $channel, "pages" => true, "catalog" => $catalog]);
+		$search = ($this->input->get("search") ? $this->input->get("search") : false);
+		
+		$data = $this->posts_model->getList(["channel" => $channel, "pages" => true, "catalog" => $catalog,"search" => $search]);
 
 		$pages = $this->posts_model->pages();
 		
@@ -68,7 +70,13 @@ class Posts extends Enterprise {
 	public function deletepost($id=false){
 		$this->posts_model->delete($id);
 		$channel = ($this->input->get("channel") ? $this->input->get("channel") : config_item("default_channel"));
-		$this->go("/posts/enterprise/posts?channel=".$channel);
+		if($this->input->get("ref")){
+			$this->go("posts/enterprise/posts?".getRef($this->input->get("ref")));
+		}else{
+			$this->go("/posts/enterprise/posts?channel=".$channel);
+		}
+
+		
 	}
 
 }
