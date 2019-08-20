@@ -20,6 +20,7 @@ class Content extends FrontEnd {
 		$catalog = $this->catalog_model->dropdown(false,"ul");
 		
 		$this->setTitle($data->name)
+			->setImage($data->image)
 		 	->channel($data->channel)
 			->view('post',["data" => $data, "catalog" => $catalog]);
 	}

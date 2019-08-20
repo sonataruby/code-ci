@@ -89,6 +89,7 @@ class Controller extends MX_Controller {
 	}
 
 	public function setImage($text){
+		if(is_array($text)) $text = array_pop($text);
 		if($text) $this->header["image"] = $text;
 		return $this;
 	}
