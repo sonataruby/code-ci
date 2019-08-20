@@ -14,6 +14,8 @@ class Components {
             $this->{$key} = call_user_func_array($value, []);
         }
 	}
+
+    
 	public function comments($key, $url){
         $data = $this->CI->db->get_where("comments")->result();
         return $this->CI->load->view("components/comments",["data" => $data]);
@@ -150,8 +152,51 @@ class Components {
         return $arv;
     }
 
-    public function slidebar($type="header", $attr=["class" => "footer"]){
-        $data = get_instance()->layout_model->windget_result(false, $type);
-        return $this->CI->load->view("components/slidebar",["data" => $data, "attr" => $attr]);
+    
+
+    /*
+    User Profile
+    */
+    public function userprofile($account_id, $attr=[]){
+        return $this->CI->load->view("components/profiles",$attr);
     }
+
+
+
+
+    public function getItems($items, $arvs=[], $arvs2=[]){
+        
+        if(isset($this->{$items})) $this->{$items};
+
+        $arv = [
+                CMS_THEMEPATH . TEMPLATE_ACTIVE . DIRECTORY_SEPARATOR . "apps". DIRECTORY_SEPARATOR ."components" . DIRECTORY_SEPARATOR, 
+                COMPONENTS_LOCAL
+        ];
+
+        foreach ($arv as $key => $value) {
+            $path = $value . "{$items}/".ucfirst($items).".php";
+
+            if(file_exists($path) && !isset($this->{$items})){
+                include $path;
+                $classname = ucfirst($items);
+                $this->{$items} = new $classname;
+                return $this->{$items}->main($arvs, $arvs2);
+                
+            }
+        }
+        
+        return false;
+    }
+
+    public function __call($method, $parameters)
+    {
+        if(!isset($this->{$method})){
+            /*Register Method*/
+            return $this->getItems($method, $parameters[0],@$parameters[1]);
+            //return $this->{$method};
+        }else{
+            return $this->{$method}->main($parameters[0],@$parameters[1]);
+        }
+    }
+
 }

@@ -21,7 +21,7 @@ class Content extends FrontEnd {
 		
 		$this->setTitle($data->name)
 			->setImage($data->image)
-			->setDescription($data->content)
+			->setDescription($data->description)
 		 	->channel($data->channel)
 			->view('post',["data" => $data, "catalog" => $catalog]);
 	}

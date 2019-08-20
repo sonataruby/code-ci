@@ -15,6 +15,7 @@ class Posts_model extends Model{
 			$this->db->update($this->table, $arv,["post_id" => $id]);
 		}else{
 			$arv["created_date"] = getDateSQL();
+			$arv['post_description'] = substr(strip_tags(@$arv['post_content']),0,500);
 			$this->db->insert($this->table, $arv);
 			$id = $this->db->insert_id();
 		}
@@ -42,7 +43,7 @@ class Posts_model extends Model{
 		if($id){
 			$this->db->where("post_id", $id);
 		}
-		$this->db->select("post_id as id, post_title as name, post_url as url, post_tag as tag, post_content as content, post_image as image, created_date, views, channel");
+		$this->db->select("post_id as id, post_title as name, post_url as url, post_tag as tag, post_content as content, post_description as description, post_image as image, created_date, updated_date, views, channel, account_id");
 		$data = $this->db->get($this->table)->row();
 		if(!$data) return;
 		$data->image = isObject($data->image);
@@ -79,7 +80,7 @@ class Posts_model extends Model{
 		$start = $page > 0 ? ($page - 1) * $limit : 0 * $limit;
 
 		$this->db->where("language", $language);
-		$this->db->select("{$this->table}.post_id as id, {$this->table}.post_image as image, {$this->table}.post_title as name, {$this->table}.post_url as url, {$this->table}.post_tag as tag, {$this->table}.created_date, {$this->table}.views, {$this->table}.channel");
+		$this->db->select("{$this->table}.post_id as id, {$this->table}.post_image as image, {$this->table}.post_title as name, {$this->table}.post_description as description, {$this->table}.post_url as url, {$this->table}.post_tag as tag, {$this->table}.created_date, {$this->table}.updated_date, {$this->table}.views, {$this->table}.channel, {$this->table}.account_id");
 
 		$this->db->limit($limit,$start);
 

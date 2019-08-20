@@ -44,6 +44,15 @@ class MY_Loader extends MX_Loader {
         $this->_setups = true;
     }
 
+    public function registerView($path){
+        $settemplate = CMS_THEMEPATH . TEMPLATE_ACTIVE . DIRECTORY_SEPARATOR;
+        if(is_dir($settemplate)) $this->_ci_view_paths[$settemplate] = true;
+
+        $this->_ci_view_paths = array_merge($this->_ci_view_paths,[$path . DIRECTORY_SEPARATOR => true]);
+       
+        return $this;
+    }
+    
     public function view($view, $vars = array(), $return = FALSE, $channel=false)
     {
         

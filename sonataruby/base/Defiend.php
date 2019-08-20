@@ -10,6 +10,8 @@ define("CMS_THEME_PERSONAL_PATH",CMS_ROOTPATH . "template/personal" . DIRECTORY_
 define("UPLOAD_PATH", FCPATH . DIRECTORY_SEPARATOR . "upload" . DIRECTORY_SEPARATOR);
 define("CONFIG_LOCAL", FCPATH . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR);
 define("CACHE_LOCAL", FCPATH . "cache" . DIRECTORY_SEPARATOR);
+define("COMPONENTS_LOCAL", FCPATH . "components" . DIRECTORY_SEPARATOR);
+
 define("CHANNEL_DEFAULT","blogs");
 
 if(!function_exists("autoload_file")){
@@ -378,4 +380,91 @@ function getRef($string=false){
 	}
 	
 	return $callback;
+}
+
+
+
+
+if (! function_exists('vdebug')) {
+    function vdebug($data=[], $die = false, $add_var_dump = true, $add_last_query = true)
+    {
+        $CI = &get_instance();
+        $CI->load->library('unit_test');
+        $bt = debug_backtrace();
+        $src = file($bt[0]["file"]);
+        $line = $src[$bt[0]['line'] - 1];
+        # Match the function call and the last closing bracket
+        preg_match('#' . __FUNCTION__ . '\((.+)\)#', $line, $match);
+        $max = strlen($match[1]);
+        $varname = null;
+        $c = 0;
+        for ($i = 0; $i < $max; $i++) {
+            if ($match[1]{$i} == "(") {
+                $c++;
+            } elseif ($match[1]{$i} == ")") {
+                $c--;
+            }
+            if ($c < 0) {
+                break;
+            }
+            $varname .= $match[1]{$i};
+        }
+        if (is_object($data)) {
+            $message = '<span class="vayes-debug-badge vayes-debug-badge-object">OBJECT</span>';
+        } elseif (is_array($data)) {
+            $message = '<span class="vayes-debug-badge vayes-debug-badge-array">ARRAY</span>';
+        } elseif (is_string($data)) {
+            $message = '<span class="vayes-debug-badge vayes-debug-badge-string">STRING</span>';
+        } elseif (is_int($data)) {
+            $message = '<span class="vayes-debug-badge vayes-debug-badge-integer">INTEGER</span>';
+        } elseif (is_true($data)) {
+            $message = '<span class="vayes-debug-badge vayes-debug-badge-true">TRUE [BOOLEAN]</span>';
+        } elseif (is_false($data)) {
+            $message = '<span class="vayes-debug-badge vayes-debug-badge-false">FALSE [BOOLEAN]</span>';
+        } elseif (is_null($data)) {
+            $message = '<span class="vayes-debug-badge vayes-debug-badge-null">NULL</span>';
+        } elseif (is_float($data)) {
+            $message = '<span class="vayes-debug-badge vayes-debug-badge-float">FLOAT</span>';
+        } else {
+            $message = 'N/A';
+        }
+        $output  = '';
+       
+        $output .= '<div class="debugbody fixed-bottom"><div class="card card-body">';
+        $output .= '<h1 class="debugheader">'.$varname.'</h1>';
+        $output .= '<div class="debugcontent">';
+       
+        if ($add_var_dump) {
+            $output .= '<code class="debugcode"><p class="debugp debugbold debutextR">:: var_dump</p><pre class="debugpre">';
+            ob_start();
+            var_dump($data);
+            $vardump = trim(ob_get_clean());
+            $vardump = preg_replace("/\]\=\>\n(\s+)/m", "] => ", $vardump);
+            $output .=  $vardump;
+            $output .= '</pre></code>';
+        }else{
+        	$output .= '<code class="debugcode"><p class="debugp debugbold debutextR">:: print_r</p><pre class="debugpre">'.$message;
+	        ob_start();
+	        print_r($data);
+	        $output .= "\n\n".trim(ob_get_clean());
+	        $output .= '</pre></code>';
+        }
+        if ($add_last_query) {
+            if ($CI->db->last_query()) {
+                $output .= '<p class="debugp debugbold debutextR lq-trigger">Show Last Query</p>';
+                $output .= $CI->db->last_query();
+                $output .= '</code>';
+            }
+        }
+        $output .= '</div></div></div>';
+        $output .= '<div style="clear:both;"></div>';
+        if (PHP_SAPI == 'cli') {
+            echo $varname . ' = ' . PHP_EOL . $output . PHP_EOL . PHP_EOL;
+            return;
+        }
+        echo $output;
+        if ($die) {
+            exit;
+        }
+    }
 }

@@ -95,18 +95,20 @@ class Controller extends MX_Controller {
 	}
 
 	public function view($file, $data=[]){
-		
-		if(is_ajax()){
-			return $this->load->view("{$file}",$data);
-			
-		}
-		
-		$content = $this->load->view("{$file}",$data,true);
 		$data_pate = [];
 		
 		foreach ($this->lang->language as $key => $value) {
 			$data_pate["lang_".$key] = $value;
 		}
+		
+		if(is_ajax()){
+			$content =  $this->load->view("{$file}",$data,true);
+			return $this->parser->parse_string($content, $data_pate);
+			
+		}
+		
+		$content = $this->load->view("{$file}",$data,true);
+		
 
 		$content = $this->parser->parse_string($content, $data_pate, true);
 		return $this->load->view("layout/".$this->setLayout,["content" => $content, "data" => $data, "header" => $this->header]);

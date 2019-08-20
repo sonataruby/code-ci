@@ -1,3 +1,4 @@
+
 <section class="nav-breadcrumb mb-4">
 	<div class="container">
 		<?php echo $this->components->breadcrumb();?>
@@ -7,10 +8,14 @@
 	<div class="row">
 		<div class="col-lg-9 col-sm-12">
 			<div class="content">
+				
 				<?php echo $this->components->image($data->image);?>
-				<h4><?php echo $data->name;?></h4>
-				<p><i class="fa fa-calendar-alt"></i> <?php echo $data->created_date;?> </p>
+				<?php echo $this->components->userprofile($data->account_id,["theme" => "post","data" => $data]);?>
+				
+				
 				<?php echo $data->content;?>
+				<div class="tags"><p><i class="fa fa-tags"></i> </p></div>
+				
 			</div>
 			<div class="row">
 				<?php if(@$data->prev->name){ ?>
@@ -36,12 +41,9 @@
 			<?php echo $this->components->comments("post",$data->url);?>
 		</div>
 		<div class="col-lg-3 col-sm-12">
-			<div class="card right-alt">
-				<div class="card-header">
-					<h5>Category</h5>
-				</div>
-				<?php echo $catalog;?>
-			</div>
+			<?php $this->components->slidebar("rightslide",["class" => ""]);?>
+			
+
 		</div>
 	</div>
 </div>
