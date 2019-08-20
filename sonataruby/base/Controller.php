@@ -84,7 +84,7 @@ class Controller extends MX_Controller {
 	}
 
 	public function setDescription($text){
-		if($text) $this->header["description"] = $text;
+		if($text) $this->header["description"] = substr(strip_tags($text),0,255);
 		return $this;
 	}
 
