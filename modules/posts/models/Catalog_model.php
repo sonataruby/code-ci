@@ -95,7 +95,7 @@ class Catalog_model extends Model{
 	public function dropdown($arv=[], $language=false, $tag="select", $attr=[]){
 		$dataList = $this->getList($arv,$language, true);
 		if($tag == "select"){
-			$data = $this->dropdown_item($dataList);
+			$data = $this->dropdown_item($dataList, false,$attr);
 		}else if($tag == "ul"){
 			$data = $this->dropdown_item_ul($dataList, false, array_merge($attr,["class" => "catalog-box list-group list-group-flush", "icon" => "fa fa-angle-double-right", "icon_pick" => "fa fa-chevron-right"]));
 		}else if($tag == "checkbox"){
@@ -106,13 +106,14 @@ class Catalog_model extends Model{
 
 	private function dropdown_item($arv=[], $prefix=false, $attr=[]){
 		if(!$arv) return ;
-		$html = !$prefix ? '<select class="form-control custom-select" '._stringify_attributes($attr).'>' : "";
+		$html = !$prefix ? '<select class="form-control custom-select catalog_selelct" '._stringify_attributes($attr).'>' : "";
+		$html .= '<option value="">{lang_allcatalog}</option>';
 		foreach ($arv as $key => $value) {
 			
 			
-			$html .= '<option value="'.$value->id.'">'.(!$prefix ? "" : "|".$prefix).$value->name.'</option>';
+			$html .= '<option value="'.$value->id.'" '.($attr["selected"] == $value->id ? "selected" : "").'>'.(!$prefix ? "" : "|".$prefix).$value->name.'</option>';
 			if(isset($value->item)){
-				$html .= $this->dropdown_item($value->item, $prefix." - ");
+				$html .= $this->dropdown_item($value->item, $prefix." - ",$attr);
 			}
 		}
 		$html .= !$prefix ? '</select>' : "";

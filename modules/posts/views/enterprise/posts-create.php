@@ -1,6 +1,7 @@
 
 <?php echo form_open("",["id" => "savedata"]);?>
 <input type="hidden" name="channel" value="<?php echo $this->input->get("channel");?>">
+<input type="hidden" name="ref" value="<?php echo $this->input->get("ref");?>">
 <div class="row">
 	<div class="col-lg-8 col-xl-9 col-sm-12">
 		<div class="hbox border">

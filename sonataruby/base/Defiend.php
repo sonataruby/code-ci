@@ -368,3 +368,14 @@ if( ! function_exists("url_toarray")){
 	}
 }
 
+function getRef($string=false){
+	if(!$string){
+		$callback = $_SERVER['QUERY_STRING'];
+		$callback = str_replace(['&','&amp;'],'|', $callback);
+	}else{
+		$callback = $string;
+		$callback = str_replace('|','&', $callback);
+	}
+	
+	return $callback;
+}

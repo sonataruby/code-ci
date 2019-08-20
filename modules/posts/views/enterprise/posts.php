@@ -29,7 +29,9 @@
 			<th></th>
 		</thead>
 		<tbody>
-			<?php foreach ($data as $key => $value) { ?>
+			<?php 
+
+			foreach ($data as $key => $value) { ?>
 				
 			<tr>
 				<td width="2%">
@@ -46,11 +48,19 @@
 				<td><?php echo $value->views;?></td>
 				<td></td>
 				<td class="text-right">
-					<a class="btn btn-primary" href="/posts/enterprise/posts/create/<?php echo $value->id;?>?channel=<?php echo $value->channel;?>" sn-link="true" parent-controller="#posts">Edit</a>
+					<a class="btn btn-primary" href="/posts/enterprise/posts/create/<?php echo $value->id;?>?channel=<?php echo $value->channel;?>&ref=<?php echo getRef();?>" sn-link="true" parent-controller="#posts">Edit</a>
 					<a class="btn btn-primary" href="/posts/enterprise/posts/deletepost/<?php echo $value->id;?>?channel=<?php echo $value->channel;?>" sn-link="true" parent-controller="#posts">Delete</a>
 				</td>
 			</tr>
 			<?php } ?>
 		</tbody>
 	</table>
+	<?php print_r($pages);?>
 </div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".catalog_selelct").bind("change", function(){
+			window.location.href = '/posts/enterprise/posts?channel=<?php echo $channel;?>&catalog='+this.value;
+		});
+	});
+</script>

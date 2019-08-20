@@ -6,6 +6,7 @@ class Posts_model extends Model{
 	private $table_gallery = "gallery";
 	private $table_gallery_image = "gallery_image";
 	private $postInCatalog = "posts_incatalog";
+	
 
 	public function create($id=false, $arv=[], $catalog=[]){
 		$arv["post_url"] = $this->makeURL($arv["post_title"], @$arv["post_url"], $id);
@@ -69,9 +70,12 @@ class Posts_model extends Model{
 		$prev = @$arv["prev"];
 		$next = @$arv["next"];
 		$channel = (@$arv["channel"] ? @$arv["channel"] : config_item("default_channel"));
-
+		$pages = (@$arv["pages"] ? true : false);
 		$limit = isset($arv["limit"]) ? intval($arv["limit"]) : 20;
-		$page = isset($arv["page"]) ? intval($arv["page"]) : 1;
+		
+		
+		$this->setLimit($limit);
+		$page = $this->input->get("page") ? intval($this->input->get("page")) : 1;
 		$start = $page > 0 ? ($page - 1) * $limit : 0 * $limit;
 
 		$this->db->where("language", $language);
@@ -130,6 +134,10 @@ class Posts_model extends Model{
 
 
 		$data = $this->db->get($this->table)->result();
+		if($pages){
+			$this->setTotal($this->getNumRows($arv, $language));
+		}
+
 		$arv = [];
 		foreach ($data as $key => $value) {
 			$value->catalog = $this->db->select($this->postInCatalog.".post_id, ".$this->postInCatalog.".catalog_id, catalog.catalog_name as catalog_name, catalog.catalog_url as catalog_url, catalog.channel")->join("catalog","catalog.catalog_id=".$this->postInCatalog.".catalog_id","left")->get_where($this->postInCatalog, ["post_id" => $value->id])->result();
@@ -139,6 +147,56 @@ class Posts_model extends Model{
 		return $arv;
 	}
 
+
+	public function getNumRows($arv=[], $language=false){
+		
+
+		$search = @$arv["search"];
+		$tag = @$arv["tag"];
+		$catalog = @$arv["catalog"];
+		
+		$channel = (@$arv["channel"] ? @$arv["channel"] : config_item("default_channel"));
+
+		/*
+		Search Query
+		*/
+		if(is_array($search)){
+			foreach ($search as $key => $value) {
+				$this->db->like("{$this->table}.{$key}", $value);
+			}
+		}else if($search){
+			$this->db->like("{$this->table}.post_title", $search);
+		}
+
+		/*
+		Tag query
+		*/
+		if($tag){
+			if(is_array($tag)){
+				foreach ($tag as $key => $value) {
+					$this->db->like("{$this->table}.post_tag", $value);
+				}
+			}else{
+				$this->db->like("{$this->table}.post_tag", $tag);
+			}
+		}
+
+		if($catalog){
+			$this->db->join("posts_incatalog","posts_incatalog.post_id={$this->table}.post_id","left");
+			$this->db->where("posts_incatalog.catalog_id",$catalog);
+		}
+
+		if($channel){
+			$this->db->where("{$this->table}.channel", $channel);
+
+		}
+
+		$this->db->where("language", $language);
+
+		return $this->db->get($this->table)->num_rows();
+	}
+
+	
 	private function makeURL($name, $url, $id=false){
 		if(trim($url)){
 			$name = $url;

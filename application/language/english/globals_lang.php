@@ -16,3 +16,4 @@ $lang["forget_password"] = "Quên mật khẩu";
 
 $lang["button_login"] = "Đăng nhập hệ thống";
 $lang["button_register"] = "Gởi đăng ký";
+$lang["allcatalog"] = "Tất cả chuyên mục";

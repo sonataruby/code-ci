@@ -19,9 +19,15 @@ class Posts extends Enterprise {
 	*/
 	public function posts(){
 		$channel = ($this->input->get("channel") ? $this->input->get("channel") : config_item("default_channel"));
-		$data = $this->posts_model->getList(["channel" => $channel]);
-		$catalog = $this->catalog_model->dropdown(["channel" => $channel]);
-		$this->view('posts',["catalog" => $catalog, "data" => $data,"channel" => $channel]);
+		$catalog = ($this->input->get("catalog") ? $this->input->get("catalog") : false);
+		$data = $this->posts_model->getList(["channel" => $channel, "pages" => true, "catalog" => $catalog]);
+
+		$pages = $this->posts_model->pages();
+		
+		$catalog = $this->catalog_model->dropdown(["channel" => $channel],false,"select",["selected" => $catalog]);
+		
+
+		$this->view('posts',["catalog" => $catalog, "data" => $data,"channel" => $channel, "pages" => $pages]);
 	}
 
 	public function create($id=false){
@@ -38,7 +44,12 @@ class Posts extends Enterprise {
 			$arv["channel"] = ($this->input->post("channel") ? $this->input->post("channel") : config_item("default_channel"));
 
 			$this->posts_model->create($id, $arv, $this->input->post("catalog"));
-			$this->go("posts/enterprise/posts?channel=".$this->input->post("channel"));
+			if($this->input->post("ref")){
+				$this->go("posts/enterprise/posts?".getRef($this->input->post("ref")));
+			}else{
+				$this->go("posts/enterprise/posts?channel=".$this->input->post("channel"));
+			}
+			
 		}
 
 		$catalog_id = [];
