@@ -5,7 +5,7 @@
 		
 		<div class="col-xl-4 col-sm-12 col-md-6">
 			<div class="card mb-3">
-			  <img src="https://www.dhresource.com/f2/albu/g9/M00/67/DD/rBVaWF1D1-GAe4M3AAGbfutg5TI067.jpg" class="card-img-top" alt="...">
+			  <img src="<?php echo site_url("template/".config_item("template")."/banner.jpg");?>" class="card-img-top" alt="...">
 			  
 			</div>
 			
@@ -14,9 +14,9 @@
 			<div class="card mb-3">
 			  
 			  <div class="card-body">
-			    <h5 class="card-title">Card title</h5>
-			    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-			     <p><a href="#" class="btn btn-outline-primary btn-sm">Điều chỉnh CSS</a> <a href="#" class="btn btn-outline-primary btn-sm">Điều chỉnh CSS</a> <a href="#" class="btn btn-outline-primary btn-sm">Điều chỉnh CSS</a></p>
+			    <h5 class="card-title"><?php echo $data->name;?></h5>
+			    <p class="card-text"><?php echo ucfirst($data->description);?></p>
+			     <p><a href="/settings/enterprise/template/css" class="btn btn-outline-primary btn-sm">Điều chỉnh CSS</a> </p>
 			  </div>
 			  
 			</div>
@@ -29,23 +29,23 @@
 <div class="hbox">
 	<h4>Template on Location</h4>
 	<div class="row">
-		<?php for($i=1;$i<=12;$i++){ ?>
+		<?php foreach($location as $key => $value){ ?>
 		<div class="col-xl-4 col-sm-12 col-md-6">
 			<div class="card mb-3">
-			  <img src="https://www.dhresource.com/f2/albu/g9/M00/67/DD/rBVaWF1D1-GAe4M3AAGbfutg5TI067.jpg" class="card-img-top" alt="...">
+			  <img src="<?php echo site_url("template/{$key}/banner.jpg");?>" class="card-img-top" alt="...">
 			  <div class="card-body">
-			    <h5 class="card-title">Card title</h5>
-			    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+			    <h5 class="card-title"><?php echo ucfirst($value->name);?></h5>
+			    <p class="card-text"><?php echo ucfirst($value->description);?></p>
 			  </div>
 			  <ul class="list-group list-group-flush">
-			    <li class="list-group-item">Tác giả : Cras justo odio</li>
-			    <li class="list-group-item">Phiên bản : Dapibus ac facilisis in</li>
-			    <li class="list-group-item">Định dạng : Vestibulum at eros</li>
+			    <li class="list-group-item">Tác giả : <?php echo $value->athour;?></li>
+			    <li class="list-group-item">Phiên bản : <?php echo $value->version;?></li>
+			    <li class="list-group-item">Định dạng : <?php echo $value->format;?></li>
 
 			  </ul>
 			  <div class="card-body">
-			    <a href="#" class="card-link"><?php echo date("d-m-Y h:i:s");?></a>
-			    <a href="#" class="card-link float-right btn btn-outline-primary btn-sm">Cài đặt</a>
+			    <a href="#" class="card-link"><?php echo $value->create;?></a>
+			    <a href="/settings/enterprise/template/install/<?php echo $key;?>" class="card-link float-right btn btn-outline-primary btn-sm">Cài đặt</a>
 			  </div>
 			</div>
 			

@@ -7,6 +7,8 @@ require_once CMS_HMVCPATH."Loader.php";
 class MY_Loader extends MX_Loader {
     protected $template = 'default';
     protected $_setups = false;
+    protected $debug = false;
+    protected $register = [];
 	/** Load a module view **/
     function __construct()
     {
@@ -46,10 +48,8 @@ class MY_Loader extends MX_Loader {
 
     public function registerView($path){
         $settemplate = CMS_THEMEPATH . TEMPLATE_ACTIVE . DIRECTORY_SEPARATOR;
-        if(is_dir($settemplate)) $this->_ci_view_paths[$settemplate] = true;
-
-        $this->_ci_view_paths = array_merge($this->_ci_view_paths,[$path . DIRECTORY_SEPARATOR => true]);
-       
+        if(is_dir($settemplate)) $this->register[$settemplate] = true;
+        $this->register[$path . DIRECTORY_SEPARATOR] = true;
         return $this;
     }
     
@@ -59,18 +59,20 @@ class MY_Loader extends MX_Loader {
         if(!$this->_setups) $this->_setups();
 
         if(defined("IS_PLUGINS")){
+            /*
             $this->_ci_view_paths = [];
             $settemplate = CMS_THEMEPATH . TEMPLATE_ACTIVE . DIRECTORY_SEPARATOR . "plugins" . DIRECTORY_SEPARATOR;
             if(is_dir($settemplate)) $this->_ci_view_paths[$settemplate] = true;
             if(is_dir(CMS_SHAREPATH .  DIRECTORY_SEPARATOR . "plugins" . DIRECTORY_SEPARATOR)) $this->_ci_view_paths[CMS_SHAREPATH.  DIRECTORY_SEPARATOR . "plugins" . DIRECTORY_SEPARATOR] = true;
 
+            */
             foreach ($this->_ci_plugins as $key => $value) {
                 if($value == true){
                     list($path, $_plugin) = explode('/', $key);
                     $f_path = array_keys(CMS_MODULESPATH)[0];
-                    $plugin_view = $f_path.$path."/views/plugins/";
-                    
-                    $this->_ci_view_paths = array_merge($this->_ci_view_paths,array($plugin_view => TRUE)) ;
+                    $plugin_view = $f_path.$path."/views/";
+                    $this->register[$plugin_view] = true;
+                    //$this->_ci_view_paths = array_merge($this->_ci_view_paths,array($plugin_view => TRUE)) ;
                 }
             }
             
@@ -112,9 +114,14 @@ class MY_Loader extends MX_Loader {
 
             }
         }
+
+        $this->_ci_view_paths = array_merge($this->_ci_view_paths, $this->register);
+
         if(is_dir(CMS_SHAREPATH)) $this->_ci_view_paths[CMS_SHAREPATH] = true;
 
-
+        if($this->debug){
+            print_r($this->_ci_view_paths);
+        }
         return $this->_ci_load(array('_ci_view' => $view, '_ci_vars' => ((method_exists($this,'_ci_object_to_array')) ? $this->_ci_object_to_array($vars) : $this->_ci_prepare_view_vars($vars)), '_ci_return' => $return));
     }
 
@@ -148,6 +155,10 @@ class MY_Loader extends MX_Loader {
     }
 
 
+
+    public function debug($type=false){
+       $this->debug = $type;
+    }
 
 
 }

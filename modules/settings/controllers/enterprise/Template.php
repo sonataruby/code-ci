@@ -7,7 +7,7 @@ class Template extends Enterprise {
 	public function __construct()
 	{
 	    parent::__construct();
-	    $this->load->helper('directory');
+	    $this->load->helper(['directory','file']);
 	}
 
 	public function index(){
@@ -16,18 +16,23 @@ class Template extends Enterprise {
 
 
 	public function manager(){
-		$location = directory_map(array_keys(CMS_MODULESPATH)[0], true);
+		$location = directory_map(CMS_THEMEPATH, true, false);
 		$arv = [];
-		$ingore = ["account","api","home","pages","posts","settings"];
+		$ingore = [config_item("template")];
 		foreach ($location as $key => $value) {
 			$rfolder = str_replace('/', '', $value);
-			if(!in_array($rfolder, $ingore)){
-				$arv[] = $rfolder;
+			if(!in_array($rfolder, $ingore) && is_dir(CMS_THEMEPATH . $rfolder)){
+				$arv[$rfolder] = json_decode(read_file(CMS_THEMEPATH . $rfolder."/info.json"));
 			}
 		}
-
 		
-		$this->view('template-manager', ["location" => $arv]);
+		$default = json_decode(read_file(CMS_THEMEPATH . config_item("template")."/info.json"));
+		$this->view('template-manager', ["location" => $arv, "data" => $default]);
+	}
+
+	public function install($dir){
+		$this->settings_model->save(["template" => $dir]);
+		$this->go("settings/enterprise/template/manager");
 	}
 
 	public function search(){

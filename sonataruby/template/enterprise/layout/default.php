@@ -160,7 +160,7 @@
               <a class="nav-link" href="/settings/enterprise/addon/manager"><i class="fa fa-sitemap"></i> <span>Ứng dụng</span></a>
               <div id="multiCollapseExample2" class="slidebar">
                 <div class="menuHeader">
-                  <h4>Apps</h4>
+                  <h4>Ứng dụng</h4>
                   <p>Menu controller posts</p>
                 </div>
                 <a class="dropdown-item" href="/settings/enterprise/addon/manager" sn-link="true" parent-controller="#apps">Điều chỉnh</a>
@@ -187,11 +187,17 @@
                   <p>Menu controller posts</p>
                   
                 </div>
-                <a class="dropdown-item" href="/settings/enterprise/configs/api" sn-link="true" parent-controller="#settings"><i class="fa fa-api"></i> Quản lý API</a>
+                <a class="dropdown-item" href="/settings/enterprise/configs/api" sn-link="true" parent-controller="#settings"><i class="fab fa-squarespace"></i> Quản lý API</a>
                 <a class="dropdown-item" href="/settings/enterprise/configs" sn-link="true" parent-controller="#settings"><i class="fa fa-cogs"></i> Điều chỉnh chung</a>
-                <a class="dropdown-item" href="/settings/enterprise/configs/channels" sn-link="true" parent-controller="#settings"><i class="fa fa-cogs"></i> Quản lý Channel</a>
-                <a class="dropdown-item" href="/settings/enterprise/configs/urlredirect" sn-link="true" parent-controller="#settings"><i class="fa fa-cogs"></i> Quản lý URL</a>
-                
+                <a class="dropdown-item" href="/settings/enterprise/configs/channels" sn-link="true" parent-controller="#settings"><i class="fa fa-dice-d20"></i> Quản lý Channel</a>
+                <a class="dropdown-item" href="/settings/enterprise/configs/urlredirect" sn-link="true" parent-controller="#settings"><i class="fa fa-link"></i> Quản lý URL</a>
+                <div class="menuHeader">
+                  <h4>Online / Offline</h4>
+                  <p>Menu controller posts</p>
+                </div>
+                <a class="dropdown-item" href="/settings/enterprise/configs/urlredirect" sn-link="true" parent-controller="#settings"><i class="fa fa-tachometer-alt"></i> Maintain</a>
+                <a class="dropdown-item" href="/settings/enterprise/configs/urlredirect" sn-link="true" parent-controller="#settings"><i class="fa fa-ambulance"></i> Page 404</a>
+
               </div>
             </li>
           </ul>

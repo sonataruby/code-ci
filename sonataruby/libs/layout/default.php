@@ -56,7 +56,7 @@
 
 
   <body class="app" itemscope itemtype="http://schema.org/WebPage">
-    <?php $this->components->header(); ?>
+    <?php $this->components->header(false,["class" => "fixed-top"]); ?>
     <div class="app-content">
       <?php print_r($content);?>
     </div>

@@ -10,7 +10,7 @@
 			<div class="content">
 				
 				<?php echo $this->components->image($data->image);?>
-				<?php echo $this->components->userprofile($data->account_id,["theme" => "post","data" => $data]);?>
+				<?php echo $this->components->users("bar",$data);?>
 				
 				
 				<?php echo $data->content;?>

@@ -88,7 +88,7 @@ class Components {
         return $this->CI->load->view("components/gallery",["data" => $data, "attr" => $attr, "link" => $link]);
     }
 
-    /*Header */
+    /*Header 
 
     public function header($data=[], $attr=["class" => "header fixed-top"]){
         $data = isObject($data);
@@ -98,7 +98,7 @@ class Components {
         $menu = $this->CI->menu_model->getDropdown();
         $data = array_merge($data, ["menu" => $menu]);
         return $this->CI->load->view("components/header",["data" => $data, "attr" => $attr, "usermenu" => $this->usermenu()]);
-    }
+    }*/
 
     /*Footer*/
     public function footer($data="", $attr=["class" => "footer"]){
@@ -106,7 +106,7 @@ class Components {
         return $this->CI->load->view("components/footer",["data" => $data, "attr" => $attr]);
     }
 
-    /*Video */
+    /*Video */ 
 
     public function countdown($data="", $attr=["class" => "d-block w-100 no-radius"]){
         $data = isObject($data);
@@ -177,6 +177,7 @@ class Components {
             $path = $value . "{$items}/".ucfirst($items).".php";
 
             if(file_exists($path) && !isset($this->{$items})){
+                if(!defined("IS_FRONTEND")) define("IS_FRONTEND", true);
                 include $path;
                 $classname = ucfirst($items);
                 $this->{$items} = new $classname;
@@ -192,10 +193,10 @@ class Components {
     {
         if(!isset($this->{$method})){
             /*Register Method*/
-            return $this->getItems($method, $parameters[0],@$parameters[1]);
+            return $this->getItems($method, @$parameters[0],@$parameters[1]);
             //return $this->{$method};
         }else{
-            return $this->{$method}->main($parameters[0],@$parameters[1]);
+            return $this->{$method}->main(@$parameters[0],@$parameters[1]);
         }
     }
 
