@@ -131,4 +131,28 @@ class Configs extends Enterprise {
 
 		$this->view("redirect",["data" => $redirect, "edit" => $editredirect]);
 	}
+
+
+
+	public function Maintain(){
+		$dataRead = $this->settings_model->getData();
+		if($this->isPost()){
+			$maintain = $this->input->post("maintain");
+			$maintain_content = $this->clearContent($this->input->post("maintain_content"));
+			$this->settings_model->save(["maintain" => $maintain, "maintain_content" => $maintain_content]);
+			$this->go("settings/enterprise/configs/maintain");
+		}
+		$this->view("maintain",["data" => $dataRead]);
+	}
+
+	public function page404(){
+		$dataRead = $this->settings_model->getData();
+		if($this->isPost()){
+			$layout = $this->input->post("layout_404");
+			$content = $this->clearContent($this->input->post("content_404"));
+			$this->settings_model->save(["layout_404" => $layout, "content_404" => $content]);
+			$this->go("settings/enterprise/configs/page404");
+		}
+		$this->view("page404",["data" => $dataRead]);
+	}
 }

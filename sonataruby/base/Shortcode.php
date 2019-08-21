@@ -88,7 +88,7 @@ class Shortcode {
 
     function __construct()
     {
-        
+        $components = new Components;
         $this->add("plugin", function($atts, $content=""){
             extract($this->shortcode_atts(array(
                        'name' => false
@@ -99,16 +99,18 @@ class Shortcode {
             }
             
         });
-        $this->add("components", function($atts, $content=""){
+        $this->add("components", function($atts, $content="") use(&$components){
             extract($this->shortcode_atts(array(
                        'name' => false
                ), $atts));
+            
             if($name){
-                $components = new Components;
+                
                 ob_start();
-                $components->{$name}($content, $atts);
+                print_r($components->{$name}($content, $atts));
                 $data = ob_get_contents();
                 ob_end_clean();
+               
                 return $data;
             }
             

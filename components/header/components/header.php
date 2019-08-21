@@ -14,7 +14,7 @@ $config = config_item("header");
           <?php print_r($menu);?>
           
 
-          
+          <?php $this->components->users("panel");?>
         </div>
       </nav>
     </div>

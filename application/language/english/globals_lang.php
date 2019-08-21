@@ -12,8 +12,13 @@ $lang["enter_email"] = "Nhập địa chỉ email";
 $lang["password"] = "Mật khẩu";
 $lang["enter_password"] = "Nhập mật khẩu 8 -12 ký tự";
 $lang["forget_password"] = "Quên mật khẩu";
-
-
+$lang["logout"] = "Thoát";
+$lang["account"] = "Tài khoản";
+$lang["profile"] = "Thông tin cá nhân";
+$lang["changepass"] = "Đổi mật khẩu";
+$lang["admin_panel"] = "Quản lý Admin";
 $lang["button_login"] = "Đăng nhập hệ thống";
 $lang["button_register"] = "Gởi đăng ký";
 $lang["allcatalog"] = "Tất cả chuyên mục";
+$lang["success"] = "Thành công";
+$lang["success_update"] = "Nội dung đã được cập nhập";

@@ -103,7 +103,7 @@ class Forms{
                 $this->renderTemplate($this->label($label, $extract["id"], $extract),
                 '
                 <div class="media">
-                    <div id="Preview'.$previewID.'" class="img-thumbnail mr-3" style="width:120px;"><img src="'.site_url($value).'" alt="..." style="max-width:100%;"></div>
+                    <div id="Preview'.$previewID.'" class="img-thumbnail mr-3" style="width:120px;"><img src="'.site_url(($value ? $value : "libs/image/nophoto.jpg")).'" alt="..." style="max-width:100%;"></div>
                     <div class="media-body">
                         <div class="input-group">
                           <div class="custom-file">
@@ -440,8 +440,17 @@ class Forms{
                     <div class="form-group col-md-6">
                       '.$this->text(["name" =>  $name."[company_license_number]", "label" => "Company license number","value" => @$value->company_license_number],[]).'
                     </div>
-                </div>
+                </div>'.$this->address($params, $extract, $append);
+    }
 
+
+
+
+    public function address(array $params=[], $extract=[], $append=[]){
+        $name = $params["name"];
+        $value = @$params["value"];
+        return '
+                
                 <div class="form-row">
                     <div class="form-group col-md-6">
                       '.$this->text(["name" => $name."[firstname]", "label" => "First Name","value" => @$value->firstname],["required" => true]).'
@@ -475,6 +484,5 @@ class Forms{
                   </div>
                   ';
     }
-
     
 }

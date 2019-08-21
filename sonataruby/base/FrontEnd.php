@@ -10,6 +10,11 @@ class FrontEnd extends Controller{
 	{
 		parent::__construct();
 		define("IS_FRONTEND",true);
+		if($this->config->item("maintain") == 1 && @$this->session->userdata("logininfo")->account_type != "enterprise"){
+			$this->view("maintain");
+			exit();
+			
+		}
 	}
 
 	public function view($file, $data=[]){
@@ -50,6 +55,10 @@ class FrontEnd extends Controller{
 
 
 		print_r($dataRender);
+		if(@$this->session->userdata("logininfo")->account_type == "enterprise" && $this->config->item("maintain") == 1){
+				echo "<div class=\"fixed-bottom bg-warning\"><div class=\"container\" style=\"padding:10px 15px;color:#FFF;\">Website Offline</div></div>";
+		}
+
 		exit();
 	}
 

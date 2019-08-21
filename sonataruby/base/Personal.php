@@ -14,6 +14,9 @@ class Personal extends Controller{
 		$this->setTitle("Personal Controller");
 	}
 
+	public function view($file, $data=[]){
+		return parent::view("personal/{$file}",$data);
+	}
 	public function get_views($path=""){
 		return "personal/{$path}";
 	}

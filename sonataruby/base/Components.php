@@ -134,23 +134,7 @@ class Components {
     }
 
 
-    public function usermenu(){
-        $data = get_instance()->session->userdata("logininfo");
-        $arv = '';
-        $arv .= '<li class="dropdown-item">Profile</li>';
-        $arv .= '<li class="dropdown-item">Change Password</li>';
-
-        if(@$data->account_type == "enterprise"){
-            $arv .= '<li class="dropdown-item"><a href="/enterprise">Administrator</a></li>';
-        }
-
-        if(@$data->account_type == "personal"){
-            $arv .= '<li class="dropdown-item"><a href="/personal">Administrator</a></li>';
-        }
-
-        $arv .= '<li class="dropdown-item"><a href="/account/logout"><i class="fa fa-lock"></i> Logout</a></li>';
-        return $arv;
-    }
+   
 
     
 
@@ -165,8 +149,14 @@ class Components {
 
 
     public function getItems($items, $arvs=[], $arvs2=[]){
-        
+        $classname = ucfirst($items);
+
         if(isset($this->{$items})) $this->{$items};
+
+        if(class_exists($classname)){
+           $this->{$items} = new $classname;
+           return $this->{$items}->main($arvs, $arvs2);
+        }
 
         $arv = [
                 CMS_THEMEPATH . TEMPLATE_ACTIVE . DIRECTORY_SEPARATOR . "apps". DIRECTORY_SEPARATOR ."components" . DIRECTORY_SEPARATOR, 
@@ -177,12 +167,14 @@ class Components {
             $path = $value . "{$items}/".ucfirst($items).".php";
 
             if(file_exists($path) && !isset($this->{$items})){
-                if(!defined("IS_FRONTEND")) define("IS_FRONTEND", true);
-                include $path;
-                $classname = ucfirst($items);
-                $this->{$items} = new $classname;
-                return $this->{$items}->main($arvs, $arvs2);
                 
+                if(!defined("IS_FRONTEND")) define("IS_FRONTEND", true);
+                if(!class_exists($classname)){
+                    include $path;
+                    
+                    $this->{$items} = new $classname;
+                    return $this->{$items}->main($arvs, $arvs2);
+                }
             }
         }
         

@@ -42,7 +42,7 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
       <![endif]-->
       <script type="text/javascript">(function(w,d,u){w.readyQ=[];w.bindReadyQ=[];function p(x,y){if(x=="ready"){w.bindReadyQ.push(y);}else{w.readyQ.push(x);}};var a={ready:p,bind:p};w.$=w.jQuery=function(f){if(f===d||f===u){return a}else{p(f)}}})(window,document)</script>
-      
+       <?php libs_url('js/app.js',['name' => "Bootstrap & Jquery"]);?>
       <?php echo template_url("styles.css");?>
       <script type="text/javascript">
         var base_url = '<?php echo site_url();?>';
@@ -62,7 +62,45 @@
     </div>
 
     <header class="fixed-top">
-      <?php getfile("header.php"); ?>
+      
+      <div>
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="logo"><img src="http://gull.ui-lib.com/blue/assets/images/logo.png" style="max-height:80px;"> <i class="fa fa-align-justify switchClass"></i></div>
+        <a class="navbar-brand" href="<?php echo site_url("personal");?>">Administrator</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="<?php echo site_url();?>" target="_bank"><?php echo lang("home");?> <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            </li>
+          </ul>
+          <?php $this->components->users("panel");?>
+        </div>
+
+        
+
+      </nav>
+      </div>
     </header>
     <aside>
       
@@ -84,69 +122,19 @@
                 <a class="dropdown-item" href="#"><i class="fa fa-file-word"></i> Something else here</a>
               </div>
             </li>
-            <li class="nav-item" id="pages">
-              <a class="nav-link active" href="#"><i class="fa fa-file-word"></i> <span>Pages</span></a>
-              <div id="multiCollapseExample2" class="slidebar">
-                <div class="menuHeader">
-                  <h3>Pages <a class="btn btn-primary btn-sm float-right" href="/pages/personal/create" sn-link="true" parent-controller="#pages"><i class="fa fa-plus"></i> Add</a></h3>
-                  <p>Quản lý trang</p>
-
-                </div>
-                <a class="dropdown-item" href="#"><i class="fa fa-file-word"></i> Categories</a>
-                <a class="dropdown-item" href="#"><i class="fa fa-file-word"></i> Posts</a>
-                <a class="dropdown-item" href="#"><i class="fa fa-file-word"></i> Something else here</a>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link arrow-down" href="#"><i class="fa fa-mail-bulk"></i> <span>Posts</span></a>
-              <div id="multiCollapseExample2" class="slidebar">
-                <div class="menuHeader">
-                  <h3>Posts Menu</h3>
-                  <p>Menu controller posts</p>
-                </div>
-                <a class="dropdown-item" href="#">Categories</a>
-                <a class="dropdown-item" href="#">Posts</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"><i class="fa fa-campground"></i> <span>Template</span></a>
-              <div id="multiCollapseExample2" class="slidebar">
-                <div class="menuHeader">
-                  <h3>Template</h3>
-                  <p>Menu controller posts</p>
-                </div>
-                <a class="dropdown-item" href="#">Categories</a>
-                <a class="dropdown-item" href="#">Posts</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"><i class="fa fa-sitemap"></i> <span>Modules</span></a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="#"><i class="fa fa-poll"></i> <span>Marketings</span></a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="#"><i class="fa fa-tasks"></i> <span>Task</span></a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="#"><i class="fa fa-cogs"></i> <span>Settings</span></a>
-            </li>
+           
           </ul>
       </div>
     </aside>
     <section class="app-content">
       <div class="app-body" sn-body="content">
+        <?php print_r($report);?>
         <?php print_r($content);?>
       </div>
     </section>
     <?php getfile("footer.php"); ?>
   
- <?php libs_url('js/app.js',['name' => "Bootstrap & Jquery"]);?>
+
   <?php echo template_url("app.js");?>
   <script type="text/javascript">(function($,d){$.each(readyQ,function(i,f){$(f)});$.each(bindReadyQ,function(i,f){$(d).bind("ready",f)})})(jQuery,document)</script>
   </body>

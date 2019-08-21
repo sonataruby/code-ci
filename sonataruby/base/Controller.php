@@ -60,6 +60,7 @@ class Controller extends MX_Controller {
 		$this->components = new Components;
 		//define("TEMPLATE_ACTIVE","default");
 		
+		
 	}
 
 	private function setLayout($layout=""){
@@ -110,8 +111,8 @@ class Controller extends MX_Controller {
 		$content = $this->load->view("{$file}",$data,true);
 		
 
-		$content = $this->parser->parse_string($content, $data_pate, true);
-		return $this->load->view("layout/".$this->setLayout,["content" => $content, "data" => $data, "header" => $this->header]);
+		//$content = $this->parser->parse_string($content, $data_pate, true);
+		return $this->parser->parse_string($this->load->view("layout/".$this->setLayout,["content" => $content, "data" => $data, "header" => $this->header, "report" => $this->getFlash()], true),$data_pate, false);
 
 		
 	}

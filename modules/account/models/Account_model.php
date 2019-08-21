@@ -24,7 +24,8 @@ class Account_model extends Model{
 		$this->db->where("account_email", $email);
 		$this->db->where("account_password", $password);
 		$this->db->where("status",1);
-		$this->db->select("account_id, network_id, account_email, account_type, status, is_banned, banned_reson");
+		$this->db->join("account_info","account_info.account_id={$this->table}.account_id","left");
+		$this->db->select("{$this->table}.account_id, {$this->table}.network_id, {$this->table}.account_email, {$this->table}.account_type, {$this->table}.status, {$this->table}.is_banned, {$this->table}.banned_reson, account_info.firstname, account_info.lastname, account_info.avatar");
 		
 		$data = $this->db->get($this->table)->row();
 		
@@ -89,5 +90,40 @@ class Account_model extends Model{
 		$this->email->message('Your password : '.$password);
 
 		$this->email->send();
+	}
+
+
+
+
+	/*
+	Account Info
+	*/
+	public function accountInfo($arv, $account_id){
+		$check = $this->db->get_where("account_info", ["account_id" => $account_id])->row();
+		if(isset($check->account_id)){
+			$data["updated_date"] = getDateSQL();
+			$this->db->update("account_info", $arv,["account_id" => $account_id]);
+		}else{
+			$data["account_id"] = $account_id;
+			$this->db->insert("account_info", $arv);
+			$account_id = $this->db->insert_id();
+		}
+		return $account_id;
+	}
+
+
+	/*
+	Change Password
+	*/
+
+	public function changepass($old, $new, $account_id){
+		$password = $this->make_password($old);
+		$check = $this->db->get_where($this->table, ["account_id" => $account_id, "account_password" => $password])->row();
+		if($check){
+			$this->db->update($this->table,["account_password" => $this->make_password($new)],["account_id" => $check->account_id]);
+			$this->sendmail($check->account_email, $new);
+			return true;
+		}
+		return false;
 	}
 }
