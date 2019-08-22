@@ -17,7 +17,7 @@ class Breadcrumb extends Controller{
        if($arv["active"]) $active = $arv["active"];
 
         if(isset($this->load->_ci_cached_vars["data"]->channel) && $this->load->_ci_cached_vars["data"]->channel){
-            $data[] = json_decode('{"catalog_name" : "'.config_item("channel")->{$this->load->_ci_cached_vars["data"]->channel}->name.'", "catalog_url" : "#"}');
+            $data[] = json_decode('{"catalog_name" : "'.config_item("channel")->{$this->load->_ci_cached_vars["data"]->channel}->name.'", "catalog_url" : "post"}');
         }
     	if(isset($this->load->_ci_cached_vars["data"]->catalog)){
     		$data = array_merge($data,$this->load->_ci_cached_vars["data"]->catalog);
@@ -27,7 +27,7 @@ class Breadcrumb extends Controller{
     	}
 
         if(isset($this->load->_ci_cached_vars["data"]->catalog_name)){
-            $data[] = json_decode('{"catalog_name" : "Category", "catalog_url" : "'.$this->load->_ci_cached_vars["data"]->catalog_url.'"}');
+            $data[] = json_decode('{"catalog_name" : "{lang_category}", "catalog_url" : "'.$this->load->_ci_cached_vars["data"]->catalog_url.'"}');
             $active = $this->load->_ci_cached_vars["data"]->catalog_name;
         }
 

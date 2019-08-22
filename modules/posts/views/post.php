@@ -10,11 +10,12 @@
 			<div class="content">
 				
 				<?php echo $this->components->image($data->image);?>
+				<div class="border bg-light mb-4" style="padding: 10px;">
 				<?php echo $this->components->users("bar",$data);?>
-				
+				</div>
 				
 				<?php echo $data->content;?>
-				<div class="tags"><p><i class="fa fa-tags"></i> </p></div>
+				<div class="tags"><p><i class="fa fa-tags"></i> {lang_tags} : </p></div>
 				
 			</div>
 			<div class="row">
@@ -35,7 +36,7 @@
 			</div>
 
 			<hr>
-			<h3>Nội dung liên quan</h3>
+			<h3>{lang_order_item}</h3>
 			<?php $this->load->view("plugins/posts",["data" => $data->order, "class" => 'col-lg-6 col-sm-12',"type" => "list"]);?>
 			<hr>
 			<?php echo $this->components->comments("post",$data->url);?>

@@ -97,7 +97,7 @@ class Catalog_model extends Model{
 		if($tag == "select"){
 			$data = $this->dropdown_item($dataList, false,$attr);
 		}else if($tag == "ul"){
-			$data = $this->dropdown_item_ul($dataList, false, array_merge($attr,["class" => "catalog-box list-group list-group-flush", "icon" => "fa fa-angle-double-right", "icon_pick" => "fa fa-chevron-right"]));
+			$data = $this->dropdown_item_ul($dataList, false, array_merge(["class" => "catalog-box list-group list-group-flush", "icon" => "fa fa-angle-double-right", "icon_pick" => "fa fa-chevron-right"],$attr));
 		}else if($tag == "checkbox"){
 			$data = $this->dropdown_item_checkbox($dataList, $attr);
 		}
@@ -134,9 +134,9 @@ class Catalog_model extends Model{
 		foreach ($arv as $key => $value) {
 			
 			
-			$html .= '<li class="list-group-item"><a href="'.site_url('catalog/'.$value->url.'.html').'" title="'.$value->name.'">'.$icon.$value->name.$icon_pick.'</a>';
+			$html .= '<li class="'.(@$attr["liclass"] ? @$attr["liclass"] : "list-group-item").'"><a href="'.site_url('catalog/'.$value->url.'.html').'" title="'.$value->name.'">'.$icon.$value->name.$icon_pick.'</a>';
 			if(isset($value->item)){
-				$html .= $this->dropdown_item_ul($value->item, $prefix." - ", ["class" => "sub-catalog"]);
+				$html .= $this->dropdown_item_ul($value->item, $prefix." - ", ["class" => "sub-catalog","liclass" => "list-group-item"]);
 			}
 			$html .= '</li>';
 		}

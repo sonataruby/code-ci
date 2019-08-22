@@ -37,6 +37,20 @@ class Content extends FrontEnd {
 		
 		$this->setTitle($data->catalog_name)
 			->channel($data->channel)
-			->view('catalog',["data" => $data]);
+			->view('catalog',["data" => $data, "channel" => $data->channel]);
+	}
+
+	public function catalogList($channel=false)
+	{
+		$title = config_item("channel")->{$channel}->name;
+		$this->setTitle($title)
+			->channel($channel)
+			->view('catalog-list',["channel" => $channel]);
+	}
+
+	public function list($channel){
+		$this->setTitle("All Posts")
+			->channel($channel)
+			->view('posts-list',["channel" => $channel]);
 	}
 }

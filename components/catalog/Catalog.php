@@ -10,7 +10,7 @@ class Catalog extends Controller{
 	}
 
 	public function main($type, $attr=[]){
-		$theme = (@$attr["theme"] && file_exists(__DIR__ ."/components/posts-{$attr["theme"]}.php") ? "-{$attr["theme"]}" : "");
+		$theme = (@$attr["theme"] && file_exists(__DIR__ ."/components/catalog-{$attr["theme"]}.php") ? "-{$attr["theme"]}" : "");
 		if($type) $attr["channel"] = $type;
 		
 		return $this->load->view("components/catalog{$theme}",["attr" => $attr]);

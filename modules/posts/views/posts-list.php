@@ -1,15 +1,14 @@
 <section class="nav-breadcrumb mb-4">
 	<div class="container">
-		<?php echo $this->components->breadcrumb();?>
+		<?php echo $this->components->breadcrumb(false,["active" => "All Post"]);?>
 	</div>
 </section>
 <div class="container">
 	<div class="row">
-		
 		<div class="col-lg-9 col-sm-12">
 			<div class="row">
 				<div class="col-lg-5 col-sm-12 hidden-xs">
-					<h3><?php echo $data->catalog_name;?></h3>
+					<h3>All Post</h3>
 				</div>
 				<div class="col-lg-7 col-sm-12">
 					<ul class="nav justify-content-end">
@@ -36,10 +35,8 @@
 				<?php $this->components->posts($channel,["limit" => 20,"page" => true, "theme" => $this->input->get("view")]);?>
 			</div>
 		</div>
-		
-		<div class="col-lg-3 col-sm-12 hidden-xs">
+		<div class="col-lg-3 col-sm-12">
 			<?php $this->components->slidebar(false,["type" => "rightslide"]);?>
 		</div>
-
 	</div>
 </div>

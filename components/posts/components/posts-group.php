@@ -18,3 +18,4 @@
 	<?php } ?>
 	
 </div>
+<?php print_r($pages);?>

@@ -22,3 +22,8 @@ $lang["button_register"] = "Gởi đăng ký";
 $lang["allcatalog"] = "Tất cả chuyên mục";
 $lang["success"] = "Thành công";
 $lang["success_update"] = "Nội dung đã được cập nhập";
+
+$lang["category"] = "Danh mục";
+$lang["news_item"] = "Mới nhất";
+$lang["order_item"] = "Nội dung khác";
+$lang["tags"] = "Tag's";
