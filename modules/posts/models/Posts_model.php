@@ -89,7 +89,7 @@ class Posts_model extends Model{
 		/*Sort*/
 		list($sortfield, $sorttype) = explode('-', $sort);
 
-		$this->db->order_by($sortfield, $sorttype);
+		$this->db->order_by("{$this->table}.{$sortfield}", $sorttype);
 		/*
 		Search Query
 		*/
