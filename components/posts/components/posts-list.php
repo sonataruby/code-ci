@@ -2,7 +2,7 @@
 	<?php foreach ($data as $key => $value) { ?>
 		
 		<div class="media mb-3">
-		  	<div class="card-header-top mr-3" style="max-width: 180px;">
+		  	<div class="card-header-top img-thumbnail mr-3" style="max-width: 180px;">
 			  <?php echo $this->components->image($value->image,["class" => "card-img-top", "alt" => $value->name]);?>
 			</div>
 		  <div class="media-body">
