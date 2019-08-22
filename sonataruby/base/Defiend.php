@@ -309,6 +309,10 @@ if( ! function_exists("post_url")){
 
 if( ! function_exists("catalog_url")){
 	function catalog_url($url, $prefix=""){
+		
+		if($url == "post"){
+			return site_url("{$prefix}/{$url}.html");
+		}
 		return site_url("{$prefix}/catalog/{$url}.html");
 	}
 }

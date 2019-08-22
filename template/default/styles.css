@@ -23,6 +23,15 @@ ul{
 	margin: 0;
 	list-style: none;
 }
+.nav-breadcrumb{
+	background-color: rgb(0, 86, 179);
+	color:#FFF;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+.nav-breadcrumb a{
+	color:#FFF;
+}
 .navbar-brand img{
 	border-radius: 100px;
 }
