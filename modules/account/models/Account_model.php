@@ -104,7 +104,7 @@ class Account_model extends Model{
 			$data["updated_date"] = getDateSQL();
 			$this->db->update("account_info", $arv,["account_id" => $account_id]);
 		}else{
-			$data["account_id"] = $account_id;
+			$arv["account_id"] = $account_id;
 			$this->db->insert("account_info", $arv);
 			$account_id = $this->db->insert_id();
 		}
