@@ -23,7 +23,7 @@
 					    <a class="nav-link" href="?view=masonry"><i class="fa fa-th-large fa-2x<?php echo ($this->input->get("view") == "masonry" ? " text-danger" : "");?>"></i></a>
 					  </li>
 					  <li class="nav-item">
-					    <a class="nav-link" href="?view=desk"><i class="fa fa-border-all fa-2x<?php echo ($this->input->get("view") == "desk" ? " text-danger" : "");?>"></i></a>
+					    <a class="nav-link" href="?view=group"><i class="fa fa-border-all fa-2x<?php echo ($this->input->get("view") == "group" ? " text-danger" : "");?>"></i></a>
 					  </li>
 					  
 					  
