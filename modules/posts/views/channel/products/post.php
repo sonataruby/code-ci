@@ -33,7 +33,7 @@
 			
 		</div>
 		<div class="col-lg-4 col-sm-12">
-			<?php echo $this->components->slidebar("rightslide",["class" => ""]);?>
+			<?php $this->components->slidebar(false,["type" => "rightslide"]);?>
 
 		</div>
 	</div>
