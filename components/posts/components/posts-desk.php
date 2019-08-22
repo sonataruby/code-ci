@@ -1,4 +1,4 @@
-<div class="card-deck">
+<div class="card-deck mb-3">
 	<?php foreach ($data as $key => $value) { ?>
 		
 			<div class="card">
@@ -14,7 +14,7 @@
 			    
 			  </div>
 			</div>
-	<?php if($key > 0 && $key%4 == 0){ ?>
+	<?php if($key > 0 && ($key+1)%4 == 0){ ?>
 
 		</div><div class="card-deck mb-3">
 	<?php } ?>
