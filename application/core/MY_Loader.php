@@ -53,6 +53,22 @@ class MY_Loader extends MX_Loader {
         $this->register[$path . DIRECTORY_SEPARATOR] = true;
         return $this;
     }
+
+
+    public function getLayoutChannel($channel, $layout){
+        $arv = [
+            CMS_THEMEPATH . TEMPLATE_ACTIVE . DIRECTORY_SEPARATOR . "layout/channel-{$channel}.php",
+            CMS_ROOTPATH . "libs/layout/channel-{$channel}.php"
+        ];
+        
+        foreach ($arv as $key => $value) {
+            if(file_exists($value)){
+                return "channel-".$channel;
+            }
+            
+        }
+        return $layout;
+    }
     
     public function view($view, $vars = array(), $return = FALSE, $channel=false)
     {

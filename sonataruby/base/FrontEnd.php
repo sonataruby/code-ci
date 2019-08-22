@@ -48,6 +48,9 @@ class FrontEnd extends Controller{
 		
 		$content = $this->load->view("{$file}",$data,true, $this->channelLayout);
 		
+		if($this->channelLayout){
+			$this->setLayout = $this->load->getLayoutChannel($this->channelLayout, $this->setLayout);
+		}
 		
 
 		$dataRender = $this->shortcode->run($this->load->view("layout/".$this->setLayout,["content" => $content, "data" => $data, "header" => $this->header], true));
