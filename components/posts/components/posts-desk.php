@@ -14,7 +14,10 @@
 			    
 			  </div>
 			</div>
-		
+	<?php if($key > 0 && $key%4 == 0){ ?>
+
+		</div><div class="card-deck mb-3">
+	<?php } ?>
 	<?php } ?>
 	
 </div>
