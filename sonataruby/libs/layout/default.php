@@ -56,11 +56,12 @@
 
 
   <body class="app" itemscope itemtype="http://schema.org/WebPage">
-    <?php $this->components->header(false,["class" => "fixed-top"]); ?>
+    
+    <?php $this->components->header(@config_item("header")->header_theme,["class" => "fixed-top"]); ?>
     <div class="app-content">
       <?php print_r($content);?>
     </div>
-    <?php $this->components->footer(); ?>
+    <?php $this->components->footer(@config_item("header")->footer_theme); ?>
   <?php echo libs_url("css/animate.css");?>
 
   <?php echo libs_url("js/animated.js");?>

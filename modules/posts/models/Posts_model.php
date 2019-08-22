@@ -67,6 +67,7 @@ class Posts_model extends Model{
 		$search = @$arv["search"];
 		$tag = @$arv["tag"];
 		$catalog = @$arv["catalog"];
+		$sort = (@$arv["sort"] ? @$arv["sort"] : "post_id-DESC");
 		$ingore = @$arv["ingore"];
 		$prev = @$arv["prev"];
 		$next = @$arv["next"];
@@ -85,6 +86,10 @@ class Posts_model extends Model{
 		$this->db->limit($limit,$start);
 
 
+		/*Sort*/
+		list($sortfield, $sorttype) = explode('-', $sort);
+
+		$this->db->order_by($sortfield, $sorttype);
 		/*
 		Search Query
 		*/

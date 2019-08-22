@@ -10,7 +10,7 @@ class Posts extends Controller{
 	}
 
 	public function main($type, $attr=[]){
-		$type = ($type ? "-{type}" : "");
+		$type = ($type ? "-{$type}" : "");
 		return $this->load->view("components/posts{$type}",["attr" => $attr]);
 	}
 

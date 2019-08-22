@@ -40,8 +40,10 @@ class Dashboard extends FrontEnd {
 
 
 	public function sitemap(){
-		$this->setTitle("Error 404");
-		$this->view("404");
+		$pages = $this->pages_model->getList();
+		$post = $this->posts_model->getList();
+		$catalog = $this->catalog_model->getList();
+		$this->load->view("sitemap");
 	}
 
 

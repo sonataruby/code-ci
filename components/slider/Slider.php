@@ -10,9 +10,8 @@ class Slidebar extends Controller{
 	}
 
 	public function main($type, $attr=[]){
-		$data = $this->layout_model->windget_result(false, @$attr["type"]);
 		$type = ($type ? "-{$type}" : "");
-		return $this->load->view("components/slidebar{$type}",["data" => $data, "attr" => $attr]);
+		return $this->load->view("components/slider{$type}",[]);
 	}
 
 

@@ -41,7 +41,7 @@
 			<?php echo $this->components->comments("post",$data->url);?>
 		</div>
 		<div class="col-lg-3 col-sm-12">
-			<?php $this->components->slidebar("rightslide",["class" => ""]);?>
+			<?php $this->components->slidebar(false,["type" => "rightslide"]);?>
 			
 
 		</div>

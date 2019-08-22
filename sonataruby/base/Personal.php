@@ -10,6 +10,7 @@ class Personal extends Controller{
 	function __construct()
 	{
 		parent::__construct();
+		$this->isLogin(true);
 		define("BASE_PERSONAL", true);
 		$this->setTitle("Personal Controller");
 	}

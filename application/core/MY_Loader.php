@@ -3,12 +3,13 @@
 /* load the MX_Loader class */
 
 require_once CMS_HMVCPATH."Loader.php";
-
+use \Sonata\Components;
 class MY_Loader extends MX_Loader {
     protected $template = 'default';
     protected $_setups = false;
     protected $debug = false;
     protected $register = [];
+
 	/** Load a module view **/
     function __construct()
     {
@@ -17,7 +18,7 @@ class MY_Loader extends MX_Loader {
         
         //$this->config->set_item("base_url",BASE_URL);
         //$this->config->set_item("index_page","");
-        
+        $this->components = new Components;
 
     }
     public function setTemplate($arv=""){
@@ -122,7 +123,36 @@ class MY_Loader extends MX_Loader {
         if($this->debug){
             print_r($this->_ci_view_paths);
         }
-        return $this->_ci_load(array('_ci_view' => $view, '_ci_vars' => ((method_exists($this,'_ci_object_to_array')) ? $this->_ci_object_to_array($vars) : $this->_ci_prepare_view_vars($vars)), '_ci_return' => $return));
+        $dataOutput = $this->_ci_load(array('_ci_view' => $view, '_ci_vars' => ((method_exists($this,'_ci_object_to_array')) ? $this->_ci_object_to_array($vars) : $this->_ci_prepare_view_vars($vars)), '_ci_return' => $return));
+
+
+        if(!defined("BASE_ENTERPRISE") ){
+
+            preg_match_all(
+                '#'.preg_quote('{').'components=(.+?)'.preg_quote('}').'(.+?)'.preg_quote('{/components}').'#s',
+                $dataOutput,
+                $matches,
+                PREG_SET_ORDER
+            );
+            $search = [];
+            $replace = [];
+            if(isset($matches[0]) && $matches[0]){
+                list($source, $name, $options) = @$matches[0];
+                $dataOptions = url_toarray($options);
+                $type = (@$dataOptions["type"] ? $dataOptions["type"] : "");
+
+                $search[] = $source;
+                ob_start();
+                $this->components->{$name}($type,$dataOptions);
+                $replaceData = ob_get_clean();
+                $replace[] = $replaceData;
+            }
+            $dataOutput = str_replace($search, $replace, $dataOutput);
+            
+            
+        }
+
+        return $dataOutput;
     }
 
 

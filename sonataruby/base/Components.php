@@ -88,23 +88,7 @@ class Components {
         return $this->CI->load->view("components/gallery",["data" => $data, "attr" => $attr, "link" => $link]);
     }
 
-    /*Header 
-
-    public function header($data=[], $attr=["class" => "header fixed-top"]){
-        $data = isObject($data);
-        //$catalog = $this->CI->catalog_model->getList();
-        //$pages = $this->CI->pages_model->getList();
-        
-        $menu = $this->CI->menu_model->getDropdown();
-        $data = array_merge($data, ["menu" => $menu]);
-        return $this->CI->load->view("components/header",["data" => $data, "attr" => $attr, "usermenu" => $this->usermenu()]);
-    }*/
-
-    /*Footer*/
-    public function footer($data="", $attr=["class" => "footer"]){
-        $data = isObject($data);
-        return $this->CI->load->view("components/footer",["data" => $data, "attr" => $attr]);
-    }
+    
 
     /*Video */ 
 
@@ -141,9 +125,7 @@ class Components {
     /*
     User Profile
     */
-    public function userprofile($account_id, $attr=[]){
-        return $this->CI->load->view("components/profiles",$attr);
-    }
+   
 
 
 
@@ -171,9 +153,11 @@ class Components {
                 if(!defined("IS_FRONTEND")) define("IS_FRONTEND", true);
                 if(!class_exists($classname)){
                     include $path;
-                    
-                    $this->{$items} = new $classname;
-                    return $this->{$items}->main($arvs, $arvs2);
+                    if(class_exists($classname)){
+                        $this->{$items} = new $classname;
+                        return $this->{$items}->main($arvs, $arvs2);
+                    }
+                    return false;
                 }
             }
         }

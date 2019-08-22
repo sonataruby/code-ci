@@ -11,10 +11,9 @@ class Header extends Controller{
 
 	public function main($type, $attr=[]){
 		//$this->load->debug(true);
-		$type = ($type ? "-{$type}" : "");
-		$menu = $this->menu_model->getDropdown();
-		//$userpanel = $this->components->users("panel");
-		return $this->load->view("components/header{$type}",["attr" => $attr,"menu" => $menu]);
+		$type = ($type && $type !== "header" ? "-{$type}" : "");
+		
+		return $this->load->view("components/header{$type}",["attr" => $attr]);
 	}
 
 

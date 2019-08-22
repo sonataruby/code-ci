@@ -69,6 +69,30 @@
 		"options" => [["label" => "On/Off", "value" => "bg-shadown"]]
 	],["group" => 'row', "layout" => 'inline']);?>
 
+	<?php if(isset($theme["header"])){ ?>
+	<h5>Header Theme</h5>
 
+	<div class="row">
+		<?php foreach ($theme["header"] as $key => $value) { ?>
+			<div class="col-lg-4">
+				<img src="<?php echo site_url($value);?>" class="w-100">
+				<label><input type="radio" name="config[header_theme]" <?php echo ((@$data->header_theme ? $data->header_theme : "header") == $key ? "checked" : "");?> value="<?php echo $key;?>"> <?php echo ucfirst($key);?></label>
+			</div>
+		<?php } ?>
+		
+	</div>
+	<?php } ?>
+	<?php if(isset($theme["footer"])){ ?>
+	<h5>Footer Theme</h5>
+	<div class="row">
+		<?php foreach ($theme["footer"] as $key => $value) { ?>
+			<div class="col-lg-4">
+				<img src="<?php echo site_url($value);?>" class="w-100">
+				<label><input type="radio" name="config[footer_theme]" <?php echo ((@$data->footer_theme ? @$data->footer_theme : "footer") == $key ? "checked" : "");?> value="<?php echo $key;?>"> <?php echo ucfirst($key);?></label>
+			</div>
+		<?php } ?>
+		
+	</div>
+	<?php } ?>
 </div>
 <?php echo form_close();?>

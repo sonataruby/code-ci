@@ -98,7 +98,8 @@ class Parser {
 		{
 			return FALSE;
 		}
-
+		
+		
 		$replace = array();
 		foreach ($data as $key => $val)
 		{
@@ -149,6 +150,7 @@ class Parser {
 	 */
 	protected function _parse_single($key, $val, $string)
 	{
+		
 		if(strpos($key,"plugin_") !== false){
 			return array($this->l_delim.$key.$this->r_delim => $this->CI->load->getPlugin($val));
 		}else{

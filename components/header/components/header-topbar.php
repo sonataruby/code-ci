@@ -1,6 +1,12 @@
 <?php
 $config = config_item("header");
 ?>
+<div class="topbar">
+  <div class="container">
+    Welcome your back
+    <?php $this->components->users("panel");?>
+  </div>
+</div>
 <header class="app-header">
   <div class="<?php echo @$config->shadown;?> <?php echo @$config->sticky_header;?> <?php echo (@$config->header_color ? $config->header_color : "bg-light");?>" <?php echo @$config->scrolmenu;?> data-activeclass="<?php echo @$config->scrolmenu_class;?>">
     <div class="container">
@@ -10,13 +16,14 @@ $config = config_item("header");
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
           <?php print_r($this->menu_model->getDropdown());?>
           
 
-          <?php $this->components->users("panel");?>
+          
         </div>
       </nav>
+      
     </div>
 </div>
 </header>
@@ -32,5 +39,8 @@ $config = config_item("header");
   }
   .psFixHeight{
     height : <?php echo (@$config->height + 15);?>px;
+  }
+  .justify-content-end .mr-auto{
+    margin-right: 0 !important;
   }
 </style>

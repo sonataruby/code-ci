@@ -87,7 +87,49 @@ class Template extends Enterprise {
 			$this->settings_model->save(["header" => $json]);
 			$this->go("/settings/enterprise/template/header");
 		}
-		$this->view("header-settings",["data" => $data]);
+
+
+		/*
+		Read Theme Local
+		*/
+		$arvLocal = [
+                CMS_THEMEPATH . TEMPLATE_ACTIVE . DIRECTORY_SEPARATOR . "apps". DIRECTORY_SEPARATOR ."components" . DIRECTORY_SEPARATOR . "{dir}" . DIRECTORY_SEPARATOR . "components" . DIRECTORY_SEPARATOR, 
+                COMPONENTS_LOCAL . "{dir}" . DIRECTORY_SEPARATOR . "components" . DIRECTORY_SEPARATOR
+        ];
+
+        $localTheme = [];
+        foreach ($arvLocal as $key => $value) {
+        	foreach (["header","footer"] as $keyM => $valueM) {
+        		$localTheme[$valueM] = (isset($localTheme[$valueM]) ? $localTheme[$valueM] : []);
+        		$path = str_replace('{dir}', $valueM, $value);
+        		$map = directory_map($path);
+        		$localTheme[$valueM] = @array_merge($localTheme[$valueM], $map,["path" => $path]);
+        	}
+        }
+
+        $makeItem = [];
+        foreach ($localTheme as $key => $value) {
+        	$setpath = $value["path"];
+
+        	foreach ($value as $keyM => $valueM) {
+        		$valueM = str_replace(['header-','footer-','.php'], '', $valueM);
+    			if($keyM !== "path" && $valueM){
+    				if(file_exists($setpath . "{$valueM}.png")){
+    					$file = str_replace(FCPATH,'',$setpath . "{$valueM}.png");
+    				}else{
+    					$file = "libs/image/nophoto.jpg";
+    				}
+	        		$makeItem[$key][$valueM] = $file;
+	        	}
+        	}
+        	
+        	
+        	
+        }
+
+        
+
+		$this->view("header-settings",["data" => $data, "theme" => $makeItem]);
 	}
 
 

@@ -10,8 +10,8 @@ class Footer extends Controller{
 	}
 
 	public function main($type, $attr=[]){
-		$type = ($type ? "-{type}" : "");
-		return $this->load->view("components/header{$type}",["attr" => $attr]);
+		$type = ($type && $type !== "footer" ? "-{$type}" : "");
+		return $this->load->view("components/footer{$type}",["attr" => $attr]);
 	}
 
 

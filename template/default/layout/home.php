@@ -1,9 +1,4 @@
-<section style="background-image:url(http://kythuatdaiphuc.com/upload/image/NHA_MAY.jpg); height:420px; margin-top:-30px; padding-top:100px; ">
-  <div class="text-center mt-4 text-white">
-  	<h1 class="mt-4">{site_name}</h1>
-    <h3>{hotline}</h3>
-  </div>
-</section>
+{components=html5}type=panel{/components}
 
 <section class="services">
   	<div class="container">
