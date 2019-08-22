@@ -1,4 +1,4 @@
-<div class="card-group">
+<div class="card-group mb-3">
 	<?php foreach ($data as $key => $value) { ?>
 		
 			<div class="card">
@@ -14,7 +14,10 @@
 			    
 			  </div>
 			</div>
-		
+	<?php if($key > 0 && ($key+1)%4 == 0){ ?>
+
+		</div><div class="card-group mb-3">
+	<?php } ?>
 	<?php } ?>
 	
 </div>
