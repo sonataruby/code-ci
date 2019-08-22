@@ -45,7 +45,11 @@
         </div>
 	</div>
 </section>
-
+<section>
+  	<div class="container">
+      {components=posts}limit=5&theme=masonry{/components}
+    </div>
+</section>
 <section>
   	<div class="container">
       <h3>Sản phẩm chủ lực</h3>

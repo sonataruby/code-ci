@@ -1,6 +1,6 @@
 <section class="nav-breadcrumb mb-4">
 	<div class="container">
-		<?php echo $this->components->breadcrumb(lang("login"));?>
+		<?php echo $this->components->breadcrumb(false,["active" => lang("login")]);?>
 	</div>
 </section>
 <section>

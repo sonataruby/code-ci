@@ -111,6 +111,9 @@ class Account_model extends Model{
 		return $account_id;
 	}
 
+	public function getInfo($account_id){
+		return $this->db->get_where("account_info", ["account_id" => $account_id])->row();
+	}
 
 	/*
 	Change Password

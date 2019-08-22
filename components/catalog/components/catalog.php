@@ -1,0 +1,1 @@
+<?php print_r($this->catalog_model->dropdown($attr,false, "ul"));?>

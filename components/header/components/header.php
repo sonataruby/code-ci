@@ -27,10 +27,12 @@ $config = config_item("header");
 }?>
 
 <style type="text/css">
+@media (min-width: 992px) {
   .navbar-nav > li > a.nav-link{
     line-height : <?php echo @$config->height;?>px;
   }
   .psFixHeight{
     height : <?php echo (@$config->height + 15);?>px;
   }
+}
 </style>

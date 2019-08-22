@@ -16,6 +16,7 @@ class Posts_model extends Model{
 		}else{
 			$arv["created_date"] = getDateSQL();
 			$arv['post_description'] = substr(strip_tags(@$arv['post_content']),0,500);
+			$arv["account_id"] = is_login();
 			$this->db->insert($this->table, $arv);
 			$id = $this->db->insert_id();
 		}
