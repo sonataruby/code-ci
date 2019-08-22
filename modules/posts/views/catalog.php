@@ -33,7 +33,7 @@
 			</div>
 			<hr>
 			<div class="content">
-				<?php $this->components->posts($channel,["limit" => 20,"page" => true, "theme" => $this->input->get("view")]);?>
+				<?php $this->components->posts($channel,["limit" => 20,"catalog" => $data->catalog_id,"page" => true, "theme" => $this->input->get("view")]);?>
 			</div>
 		</div>
 		
