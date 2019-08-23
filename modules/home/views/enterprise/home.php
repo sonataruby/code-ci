@@ -3,31 +3,31 @@
 <?php libs_url("css/Chart.css");?>
 <div class="row">
 	<div class="col-lg-3 col-sm-6">
-		<div class="hbox">
+		<div class="hbox bg-primary text-white">
 			<h4><i class="fa fa-chart-pie"></i> Channel <div class="float-right"><?php print_r(count((array)config_item("channel")));?></div></h4>
 			
 		</div>
 	</div>
 	<div class="col-lg-3 col-sm-6">
-		<div class="hbox">
+		<div class="hbox bg-info text-white">
 			<h4><i class="fa fa-file-word"></i> Posts <div class="float-right"><?php print_r(get_instance()->posts_model->getNumRows());?></div></h4>
 			
 		</div>
 	</div>
 	<div class="col-lg-3 col-sm-6">
-		<div class="hbox">
-			<h4><i class="fa fa-file-invoice-dollar"></i> Invoice</h4>
+		<div class="hbox bg-success text-white">
+			<h4><i class="fa fa-file-invoice-dollar"></i> Invoice <div class="float-right">0</div></h4>
 		</div>
 	</div>
 	<div class="col-lg-3 col-sm-6">
-		<div class="hbox">
-			<h4><i class="fa fa-users"></i> Member</h4>
+		<div class="hbox bg-danger text-white">
+			<h4><i class="fa fa-users"></i> Member <div class="float-right">1</div></h4>
 		</div>
 	</div>
 
 	<div class="col-lg-4 col-sm-12 flex-box mb-3">
 		<div class="hbox">
-			<h4>Customer Connect</h4>
+			<h4>Khu vực người dùng</h4>
 			<canvas id="myChart2" width="100%" ></canvas>
 		</div>
 	</div>
@@ -36,14 +36,14 @@
 		<div class="row">
 			<div class="col flex-box mb-3">
 				<div class="hbox">
-					<h4>Views</h4>
+					<h4>Các nội dung được xem</h4>
 					<canvas id="myChart" width="100%" ></canvas>
 				</div>
 			</div>
 
 			<div class="col flex-box mb-3">
 				<div class="hbox">
-					<h4>Bot Index</h4>
+					<h4>Robot tìm kiếm</h4>
 					<table class="table">
 						<thead>
 							<th>Name</th>
