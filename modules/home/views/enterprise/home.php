@@ -137,7 +137,9 @@
 					<th>Platform</th>
 					<th>Browser</th>
 					<th>View</th>
-					<th>Time</th>
+					<th>City</th>
+					<th>Country</th>
+					<th class="text-right">Time</th>
 				</thead>
 				<tbody>
 					<?php 
@@ -149,6 +151,8 @@
 							<td><?php echo $value->platform;?></td>
 							<td><?php echo $value->browser;?></td>
 							<td><?php echo $value->view_count;?></td>
+							<td><?php echo $value->city;?></td>
+							<td><?php echo $value->country;?></td>
 							<td class="text-right"><?php echo $value->view_update;?></td>
 						</tr>
 					<?php } ?>

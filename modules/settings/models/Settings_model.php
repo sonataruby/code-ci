@@ -88,7 +88,12 @@ class Settings_model extends Model{
 			if(isset($check->view_id)){
 				$this->db->update("reports_views",["view_update" => getDateSQL(), "view_count" => ($check->view_count + 1)],["view_id" => $check->view_id]);
 			}else{
-				$this->db->insert("reports_views",["view_url" => current_url(),"view_update" => getDateSQL(), "view_created" => getDateSQL(), "view_count" => 1, "hash_connect" => $data["hash"], "view_hash" => $hashview, "is_bot" => $this->agent->is_robot(), "platform" => $this->agent->platform(), "browser" => $this->agent->browser(), "is_mobile" => $this->agent->is_mobile(), "form_ip" => $clientIP, "store" => DOMAIN, "language" => config_item("language")]);
+				$getlocation = @json_decode(@file_get_contents("http://www.geoplugin.net/json.gp?ip=".$clientIP));
+				$city = (@$getlocation->geoplugin_city ? $getlocation->geoplugin_city : "N/A");
+				$region = (@$getlocation->geoplugin_regionName ? $getlocation->geoplugin_regionName : "N/A");
+				$country = (@$getlocation->geoplugin_countryName ? $getlocation->geoplugin_countryName : "N/A");
+				$continent = (@$getlocation->geoplugin_continentName ? $getlocation->geoplugin_continentName : "N/A");
+				$this->db->insert("reports_views",["view_url" => current_url(),"view_update" => getDateSQL(), "view_created" => getDateSQL(), "view_count" => 1, "hash_connect" => $data["hash"], "view_hash" => $hashview, "is_bot" => $this->agent->is_robot(), "platform" => $this->agent->platform(), "browser" => $this->agent->browser(), "is_mobile" => $this->agent->is_mobile(), "form_ip" => $clientIP, "store" => DOMAIN, "language" => config_item("language"), "city" => $city, "region" => $region, "country" => $country, "continent" => $continent]);
 			}
 			$this->session->set_userdata('addhistory', $hashview);
 		}
