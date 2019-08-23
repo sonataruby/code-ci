@@ -43,23 +43,14 @@
 							
 						</thead>
 						<tbody>
-							<tr>
-								<td>Google Bot</td>
-								<td class="text-right">22-10-2019</td>
-								
-							</tr>
-
-							<tr>
-								<td>MSN Bot</td>
-								<td class="text-right">22-10-2019</td>
-								
-							</tr>
-
-							<tr>
-								<td>Amazon Bot</td>
-								<td class="text-right">22-10-2019</td>
-								
-							</tr>
+							<?php foreach ($robot as $key => $value) { ?>
+								<tr>
+									<td><?php echo $value->bot_name;?></td>
+									<td class="text-right"><?php echo $value->reconnect;?></td>
+									
+								</tr>
+							<?php } ?>
+							
 
 						</tbody>
 					</table>
@@ -71,11 +62,7 @@
 					<canvas id="myChart" width="400" height="400"></canvas>
 				</div>
 			</div>
-			<div class="col flex-box mb-3">
-				<div class="hbox">
-					<h4>Bot Index</h4>
-				</div>
-			</div>
+			
 		</div>
 		
 	</div>
@@ -132,6 +119,34 @@
 	<div class="col-lg-6 col-sm-12">
 		<div class="hbox">
 			<h4>News</h4>
+		</div>
+	</div>
+
+	<div class="col-lg-12 col-sm-12">
+		<div class="hbox">
+			<h4>History</h4>
+			<table class="table">
+				<thead>
+					<th>IP</th>
+					<th>URL</th>
+					<th>Platform</th>
+					<th>Browser</th>
+					<th>View</th>
+					<th>Time</th>
+				</thead>
+				<tbody>
+					<?php foreach ($history as $key => $value) { ?>
+						<tr>
+							<td><?php echo $value->form_ip;?></td>
+							<td><?php echo $value->view_url;?></td>
+							<td><?php echo $value->platform;?></td>
+							<td><?php echo $value->browser;?></td>
+							<td><?php echo $value->view_count;?></td>
+							<td class="text-right"><?php echo $value->view_update;?></td>
+						</tr>
+					<?php } ?>
+				</tbody>
+			</table>
 		</div>
 	</div>
 

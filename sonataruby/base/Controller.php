@@ -62,7 +62,9 @@ class Controller extends MX_Controller {
 		$this->components = $this->load->components;
 		$this->settings_model->reports();
 		//define("TEMPLATE_ACTIVE","default");
-		
+		if($this->config->item("support_mobile") && $this->agent->is_mobile()){
+			$this->setLayout = "mobile-".$this->setLayout;
+		}
 		
 	}
 
@@ -111,6 +113,7 @@ class Controller extends MX_Controller {
 			
 		}
 		
+
 		$content = $this->load->view("{$file}",$data,true);
 		
 

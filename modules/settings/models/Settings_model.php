@@ -61,7 +61,7 @@ class Settings_model extends Model{
 		}
 
 		if($this->agent->is_robot()){
-			$check = $this->db->get_where("reports_robots", ["bot_name" => $this->agent->robot()])->row();
+			$check = $this->db->get_where("reports_robots", ["bot_name" => $this->agent->robot(),"store" => DOMAIN, "language" => config_item("language")])->row();
 			if(!isset($check->bot_id)){
 				$this->db->insert("reports_robots",["bot_name" => $this->agent->robot(), "store" => DOMAIN, "language" => config_item("language"), "firstconnect" => getDateSQL()]);
 			}else{
