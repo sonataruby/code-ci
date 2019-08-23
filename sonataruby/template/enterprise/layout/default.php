@@ -208,11 +208,11 @@
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="#"><i class="fa fa-poll"></i> <span>Marketings</span></a>
+              <a class="nav-link" href="/settings/enterprise/marketings"><i class="fa fa-poll"></i> <span>Marketings</span></a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="#"><i class="fa fa-tasks"></i> <span>Task</span></a>
+              <a class="nav-link" href="/settings/enterprise/tasks"><i class="fa fa-tasks"></i> <span>Task</span></a>
             </li>
 
             <li class="nav-item" id="settings">

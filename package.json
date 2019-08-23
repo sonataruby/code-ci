@@ -35,7 +35,7 @@
     "less": "node ./node_modules/gulp/bin/gulp.js less",
     "css": "node ./node_modules/gulp/bin/gulp.js cssmin",
     "js": "node ./node_modules/gulp/bin/gulp.js js",
-    "sacss": "node ./node_modules/gulp/bin/gulp.js sacss"
+    "sacss": "node ./node_modules/gulp/bin/gulp.js sass"
   },
   "author": "",
   "license": "ISC"

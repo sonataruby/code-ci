@@ -24,14 +24,14 @@ const AUTOPREFIXER_BROWSERS = [
 
 // Compile sass into CSS & auto-inject into browsers
 gulp.task('sass', function() {
-    return gulp.src(['node_modules/bootstrap/scss/bootstrap.scss', 'develop/scss/*.scss'])
+    return gulp.src(['develop/bootstrap/bootstrap.scss', 'develop/scss/*.scss'])
         .pipe(sass({
 	      outputStyle: 'nested',
 	      precision: 10,
 	      includePaths: ['.'],
 	      onError: console.error.bind(console, 'Sass error:')
 	    }))
-        .pipe(autoprefixer({browsers: AUTOPREFIXER_BROWSERS}))
+        //.pipe(autoprefixer({browsers: AUTOPREFIXER_BROWSERS}))
         .pipe(csso())
         .pipe(gulp.dest("libs/css"))
         .pipe(browserSync.stream());
