@@ -136,7 +136,7 @@
 				</thead>
 				<tbody>
 					<?php 
-					print_r($this->input->server(array('HTTP_CF_CONNECTING_IP', 'HTTP_X_FORWARDED_FOR')));
+					print_r($this->input->server("REMOTE_ADDR"));
 					foreach ($history as $key => $value) { ?>
 						<tr>
 							<td><?php echo $value->form_ip;?></td>
