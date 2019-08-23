@@ -28,6 +28,7 @@
 	<div class="col-lg-4 col-sm-12 flex-box mb-3">
 		<div class="hbox">
 			<h4>Customer Connect</h4>
+			<canvas id="myChart2" width="100%" ></canvas>
 		</div>
 	</div>
 
@@ -36,7 +37,7 @@
 			<div class="col flex-box mb-3">
 				<div class="hbox">
 					<h4>Views</h4>
-					<canvas id="myChart" width="400" height="400"></canvas>
+					<canvas id="myChart" width="100%" ></canvas>
 				</div>
 			</div>
 
@@ -241,6 +242,7 @@
 		window.onload = function() {
 			
 			new Chart(document.getElementById('myChart').getContext('2d'), config);
+			new Chart(document.getElementById('myChart2').getContext('2d'), config);
 		};
 	})
 </script>
