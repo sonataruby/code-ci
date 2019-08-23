@@ -48,14 +48,14 @@
 						<thead>
 							<th>Name</th>
 							<th>Insert</th>
-							<th>Time</th>
+							<th class="text-right">Time</th>
 							
 						</thead>
 						<tbody>
 							<?php foreach ($robot as $key => $value) { ?>
 								<tr>
 									<td><?php echo $value->bot_name;?></td>
-									<td><?php echo $value->count_connect;?></td>
+									<td class="text-center"><?php echo $value->count_connect;?></td>
 									<td class="text-right"><?php echo $value->reconnect;?></td>
 									
 								</tr>
