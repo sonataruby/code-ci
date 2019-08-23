@@ -16,8 +16,10 @@ class Controller extends MX_Controller {
 	public $channelLayout = false;
 	public $settings = [];
 	public $header = ["title" => "CMS Blockchain 4.0", "description" => "Advanced cloud hosting platform with 24/7 Expert Support &amp; 8 Datacenter Locations. We will handle caching, transfers, security, updates.", "keyword" => "", "image" => ""];
+	
 	function __construct()
 	{
+
 		parent::__construct();
 		
 		$this->load->helper(['date','cookie','url','form','string','text']);
@@ -57,7 +59,8 @@ class Controller extends MX_Controller {
 		}
 		$this->shortcode = new Shortcode;
 		$this->parser = new Parser;
-		$this->components = new Components;
+		$this->components = $this->load->components;
+		$this->settings_model->reports();
 		//define("TEMPLATE_ACTIVE","default");
 		
 		

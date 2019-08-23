@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" class="no-js" lang="en">
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="initial-scale=1,user-scalable=no,width=device-width">
@@ -50,6 +50,16 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
       <![endif]-->
       <script type="text/javascript">(function(w,d,u){w.readyQ=[];w.bindReadyQ=[];function p(x,y){if(x=="ready"){w.bindReadyQ.push(y);}else{w.readyQ.push(x);}};var a={ready:p,bind:p};w.$=w.jQuery=function(f){if(f===d||f===u){return a}else{p(f)}}})(window,document)</script>
+      <script type="text/javascript">
+        function getScripts(scripts, callback) {
+            var progress = 0;
+            scripts.forEach(function(script) { 
+                $.getScript(script, function () {
+                    if (++progress == scripts.length) callback();
+                }); 
+            });
+        }
+      </script>
       <?php libs_url('js/app.js',['name' => "Bootstrap & Jquery"]);?>
       <?php echo template_url("styles.css");?>
 </head>
@@ -66,6 +76,8 @@
 
   <?php echo libs_url("js/animated.js");?>
   <?php echo template_url("app.js");?>
+  
+
   <script type="text/javascript">(function($,d){$.each(readyQ,function(i,f){$(f)});$.each(bindReadyQ,function(i,f){$(d).bind("ready",f)})})(jQuery,document)</script>
   </body>
   </html>

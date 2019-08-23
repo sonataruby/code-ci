@@ -9,7 +9,7 @@ class MY_Loader extends MX_Loader {
     protected $_setups = false;
     protected $debug = false;
     protected $register = [];
-
+    public $components = null;
 	/** Load a module view **/
     function __construct()
     {
@@ -18,7 +18,7 @@ class MY_Loader extends MX_Loader {
         
         //$this->config->set_item("base_url",BASE_URL);
         //$this->config->set_item("index_page","");
-        $this->components = new Components;
+        if(!$this->components) $this->components = new Components;
 
     }
     public function setTemplate($arv=""){
