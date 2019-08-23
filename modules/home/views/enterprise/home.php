@@ -136,11 +136,11 @@
 				</thead>
 				<tbody>
 					<?php 
-					
+
 					foreach ($history as $key => $value) { ?>
 						<tr>
 							<td><?php echo $value->form_ip;?></td>
-							<td><?php echo $value->view_url;?></td>
+							<td><a href="<?php echo $value->view_url;?>" target="_bank"><?php echo $value->view_url;?></a></td>
 							<td><?php echo $value->platform;?></td>
 							<td><?php echo $value->browser;?></td>
 							<td><?php echo $value->view_count;?></td>
