@@ -135,7 +135,9 @@
 					<th>Time</th>
 				</thead>
 				<tbody>
-					<?php foreach ($history as $key => $value) { ?>
+					<?php 
+					print_r($this->input->server(array('HTTP_CF_CONNECTING_IP', 'HTTP_X_FORWARDED_FOR')));
+					foreach ($history as $key => $value) { ?>
 						<tr>
 							<td><?php echo $value->form_ip;?></td>
 							<td><?php echo $value->view_url;?></td>
