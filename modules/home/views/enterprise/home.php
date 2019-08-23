@@ -25,20 +25,28 @@
 		</div>
 	</div>
 
-	<div class="col-lg-6 col-sm-12 flex-box mb-3">
+	<div class="col-lg-4 col-sm-12 flex-box mb-3">
 		<div class="hbox">
 			<h4>Customer Connect</h4>
 		</div>
 	</div>
 
-	<div class="col-lg-6 col-sm-12">
+	<div class="col-lg-8 col-sm-12">
 		<div class="row">
+			<div class="col flex-box mb-3">
+				<div class="hbox">
+					<h4>Views</h4>
+					<canvas id="myChart" width="400" height="400"></canvas>
+				</div>
+			</div>
+
 			<div class="col flex-box mb-3">
 				<div class="hbox">
 					<h4>Bot Index</h4>
 					<table class="table">
 						<thead>
 							<th>Name</th>
+							<th>Insert</th>
 							<th>Time</th>
 							
 						</thead>
@@ -46,6 +54,7 @@
 							<?php foreach ($robot as $key => $value) { ?>
 								<tr>
 									<td><?php echo $value->bot_name;?></td>
+									<td><?php echo $value->count_connect;?></td>
 									<td class="text-right"><?php echo $value->reconnect;?></td>
 									
 								</tr>
@@ -56,12 +65,7 @@
 					</table>
 				</div>
 			</div>
-			<div class="col flex-box mb-3">
-				<div class="hbox">
-					<h4>Views</h4>
-					<canvas id="myChart" width="400" height="400"></canvas>
-				</div>
-			</div>
+			
 			
 		</div>
 		
