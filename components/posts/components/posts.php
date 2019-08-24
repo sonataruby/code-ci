@@ -1,6 +1,6 @@
 <div class="row">
 	<?php foreach ($data as $key => $value) { ?>
-		<div class="col-lg-3 col-sm-12 mb-3 flex-box">
+		<div class="col-lg-3 col-sm-12 mb-3 flex-box<?php echo (@$attr["animated"] ? " animated ".$attr["animated"] : "");?>" data-id="<?php echo $key + 1;?>">
 			<div class="card">
 			  <div class="card-header-top">
 			  <?php echo $this->components->image($value->image,["class" => "card-img-top", "alt" => $value->name]);?>

@@ -53,7 +53,7 @@
 		    	editor.replaceSelection($(this).attr("data-append"));
 		    });
 		    $('[data-item="animated"]').on("click", function(){
-		    	var string = 'class="animated '+$(this).attr("data-append")+'" data-id="" data-animated="true"';
+		    	var string = $(this).attr("data-append");
 		    	editor.replaceSelection(string);
 		    });
 		    

@@ -152,8 +152,9 @@ class MY_Loader extends MX_Loader {
             );
             $search = [];
             $replace = [];
-            if(isset($matches[0]) && $matches[0]){
-                list($source, $name, $options) = @$matches[0];
+           foreach ($matches as $key => $value) {
+             
+                list($source, $name, $options) = @$value;
                 $dataOptions = url_toarray($options);
                 $type = (@$dataOptions["type"] ? $dataOptions["type"] : "");
 
@@ -162,8 +163,10 @@ class MY_Loader extends MX_Loader {
                 $this->components->{$name}($type,$dataOptions);
                 $replaceData = ob_get_clean();
                 $replace[] = $replaceData;
-            }
-            $dataOutput = str_replace($search, $replace, $dataOutput);
+            
+                $dataOutput = str_replace($search, $replace, $dataOutput);
+           }
+            
             
             
         }

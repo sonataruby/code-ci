@@ -1,3 +1,14 @@
+<div>
+	<div class="container">
+		<h4>Email New Laster</h4>
+		<div class="input-group mb-3">
+		  <input type="email" class="form-control" placeholder="Enter Email">
+		  <div class="input-group-append">
+		    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Submit Email</button>
+		  </div>
+		</div>
+	</div>
+</div>
 <footer class="app-footer">
 	<div class="container">
 		<div class="row">

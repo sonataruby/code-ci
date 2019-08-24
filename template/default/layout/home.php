@@ -1,4 +1,4 @@
-{components=html5}type=panel{/components}
+{components=html5}type=round&color=red&content=<h1>Con bo</h1>{/components}
 
 <section class="services">
   	<div class="container">
@@ -46,14 +46,14 @@
 	</div>
 </section>
 <section>
-  	<div class="container">
-      {components=posts}limit=5&theme=masonry{/components}
+  	<div class="container" data-animated="true" data-sequence="150">
+      {components=posts}limit=5&theme=masonry&animated=bounceIn{/components}
     </div>
 </section>
 <section>
-  	<div class="container">
+  	<div class="container" data-animated="true" data-sequence="200">
       <h3>Sản phẩm chủ lực</h3>
-      [plugin name="posts/posts"]limit=7&order=desc[/plugin]
+      {components=posts}limit=5&animated=fadeIn{/components}
 	</div>
 </section>
 

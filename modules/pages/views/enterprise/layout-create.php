@@ -1,5 +1,5 @@
 
-<?php echo form_open("",["id" => "savedata"]);?>
+<?php echo form_open("",["id" => "savedata","target" => "IF_savedata"]);?>
 <div class="row">
 	<div class="col-lg-9 col-sm-12">
 		<div class="hbox border">
@@ -78,7 +78,12 @@
 				    </div>
 				  </div>
 				</div>
-
+				<?php
+					$animated = [
+						"bounceIn","bounceInRight","bounceInLeft","bounceInUp","bounceInDown","fadeIn","growIn","shake","shakeUp","FadeInLeft","fadeInRight","fadeInUp","fadeInDown","rotateIn",
+						"rotateInUpLeft","rotateInDownLeft","rotateInUpRight","rotateInDownRight","rollIn","wiggle","swing","tada","wobble","pulse","lightSpeedInRight","lightSpeedInLeft","flip",
+						"flipInX","flipInY"];
+				?>
 				<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 				  
 
@@ -86,9 +91,12 @@
 				    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				      Animated
 				    </button>
-				    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-				      <a class="dropdown-item"  data-item="animated" data-append="bounceIn">bounceIn</a>
-				      <a class="dropdown-item"  data-item="animated" data-append="bounceInRight">bounceInRight</a>
+				    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1" style="max-width:550px; min-width:550px; max-height: 450px; overflow: auto; padding:30px;">
+				      <?php foreach ($animated as $key => $value) { ?>
+				      	<a class="dropdown-item"  data-item="animated" data-append="<?php echo $value;?>"><?php echo $value;?></a>
+				      <?php } ?>
+				      
+				      
 				    </div>
 				  </div>
 				</div>
@@ -179,3 +187,4 @@ addon("addon/codemirror",["target" => "#textarea", "form" => "#savedata", "tools
 	
 	
 </script>
+<iframe id="IF_savedata" name="IF_savedata" style="border:0px; height: 1px; width: 1px; margin-top: -1000vh;"></iframe>

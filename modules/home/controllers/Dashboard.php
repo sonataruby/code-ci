@@ -62,4 +62,29 @@ class Dashboard extends FrontEnd {
 
 		$this->view('blockview',["data" => $data]);
 	}
+
+
+	/*
+	Create Email List
+	*/
+
+	public function emailnewlaster(){
+		if($this->isPost()){
+			$this->load->helper('email');
+			$email = $this->input->post_get("email");
+			
+			if (valid_email($email))
+			{
+				$check = $this->db->get_where("email_list",["email_address" => $email])->num_rows();
+				if($check == 0){
+					$this->db->insert("email_list",["email_address" => $email, "created" => getDateSQL(), "updated" => getDateSQL(), "validate" => 0, "tags" => "N/A"]);
+				}
+			        
+			}
+			return true;
+			
+		}
+		return false;
+		
+	}
 }
