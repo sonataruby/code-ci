@@ -9,7 +9,8 @@ class App extends Services {
 		include(APPPATH . "/config/rest.php");
 		$config["rest_auth"] = false;
 		parent::__construct($config);
-		$this->load->model(['pages/pages_model','posts/posts_model','posts/catalog_model']);
+		$this->load->helper(['date','cookie','url','form','string','text']);
+		$this->load->model(['pages/pages_model','posts/posts_model','posts/catalog_model','posts/gallery_model']);
 	}
 	public function index_get()
 	{
@@ -27,9 +28,9 @@ class App extends Services {
 	public function post_get()
 	{
 		$language = ($this->get("language") ? $this->get("language") : $this->config->item("language"));
-		$data = $this->posts_model->getList($language);
+		$data = $this->posts_model->getList([],$language);
 
-		$this->response(["server" => "http://192.168.1.10","data" => $data]);
+		$this->response(["server" => site_url(),"data" => $data]);
 	}
 
 	public function catalog_get()
@@ -41,12 +42,16 @@ class App extends Services {
 	}
 
 
-	public function gallery_get()
+	public function gallery_get($id=false)
 	{
+		if($id){
+			$data = $this->gallery_model->getImageList($id);
+		}else{
+			$data = $this->gallery_model->getListGallery();
+		}
 		
-		$data = $this->posts_model->getListGallery();
 
-		$this->response(["server" => "http://192.168.1.10","data" => $data]);
+		$this->response(["server" => site_url(),"data" => $data]);
 	}
 
 	public function imagemanager_get(){
