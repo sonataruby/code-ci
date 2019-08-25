@@ -39,17 +39,17 @@ class Layout extends CPEnterprise {
 
 
 	public function builder($page_id){
+		if($this->isPost()){
+			$content = $this->input->post("content");
+			$content = $this->renderContent($content);
+			$this->layout_model->updatecontent($page_id, ["layout_content" => $content]);
+			exit();
+		}
 		return $this->view("layout-builder", ["page_id" =>$page_id]);
 	}
 
 	public function loadcontent($page_id){
-		if($this->isPost()){
-			$content = explode('<!--startcontent-->', $this->input->post("content"))[1];
-			$content = $this->renderContent($content);
-			$this->layout_model->create($page_id, ["layout_content" => $content]);
-			print_r($content);
-			exit();
-		}
+		
 		$data = $this->layout_model->getData(false, $page_id);
 		$data->content = $this->builderContent($data->content);
 		$this->setLayout("_bank.php");

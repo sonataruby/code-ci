@@ -1,4 +1,4 @@
-Vvveb.Components.extend("_base", "_base", {
+Sonata.Components.extend("_base", "_base", {
 	 properties: [
 	 {
         name: "Font family",

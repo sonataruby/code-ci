@@ -50,7 +50,7 @@ MutationRecord.oldValue 			String 		The return value depends on the MutationReco
 												For childList, it is null.
 */
  
-Vvveb.Undo = {
+Sonata.Undo = {
 	
 	undos: [],
 	mutations: [],
@@ -65,7 +65,7 @@ Vvveb.Undo = {
 			this.mutations.push(mutation);
 			this.undoIndex++;
 		*/
-		Vvveb.Builder.frameBody.trigger("vvveb.undo.add");
+		Sonata.Builder.frameBody.trigger("vvveb.undo.add");
 		this.mutations.splice(++this.undoIndex, 0, mutation);
 	 },
 
@@ -135,7 +135,7 @@ Vvveb.Undo = {
 			break;
 		}
 		
-		Vvveb.Builder.frameBody.trigger("vvveb.undo.restore");
+		Sonata.Builder.frameBody.trigger("vvveb.undo.restore");
 	 },
 	 
 	undo : function() {	

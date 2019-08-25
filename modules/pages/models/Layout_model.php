@@ -15,6 +15,10 @@ class Layout_model extends Model{
 		$this->cacheLayout($id);
 		return $id;
 	}
+	public function updatecontent($id=false, $arv=[]){
+		$this->db->update($this->table, $arv,["layout_id" => $id]);
+		return $id;
+	}
 
 
 	private function cacheLayout($id){

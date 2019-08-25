@@ -262,16 +262,20 @@ body {
     width: var(--builder-right-panel-width); }
 
 #vvveb-builder #top-panel {
-  height: var(--builder-top-panel-height);
+  height: calc(var(--builder-top-panel-height) + 10px);
+
   border-bottom: 1px solid #ccc;
   text-align: center;
   background-color: #fafafa;
+  
   overflow: hidden; 
   position: fixed;
-  width: 100%;
+  width: calc(100% - var(--builder-panel-control));
   z-index: 999999;
   padding-top: 5px;
   padding-bottom: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
   #vvveb-builder #top-panel .btn-group .btn {
     padding: 0.25rem 0.5rem;
@@ -492,7 +496,7 @@ body {
   margin-left: var(--builder-left-panel-width);
   
   width: calc( 100% - (var(--builder-left-panel-width) + var(--builder-right-panel-width) + var(--builder-canvas-margin) + var(--builder-panel-control)) );
-  height: calc( 100% - (var(--builder-header-top-height) + var(--builder-bottom-panel-height)));
+  height: calc( 100% - (var(--builder-header-top-height) + var(--builder-bottom-panel-height) + var(--builder-top-panel-height)));
   top: calc(var(--builder-header-top-height) + var(--builder-top-panel-height));
   position: fixed;
   transition: width 0.35s, left 0.35s;}
@@ -506,11 +510,21 @@ body {
   #vvveb-builder #canvas.tablet {
     width: 768px !important;
     left: calc(50% - 399vw);
-    left: calc(50% - ((768px / 2) + var(--builder-left-panel-width))); }
+    left: calc(50% - ((768px / 2) + var(--builder-left-panel-width)));
+    
+    /*padding: 40px;
+    background-image:url(../image/tablet.png);
+    background-size: cover;
+    background-repeat: no-repeat; 
+    */
+  }
+
   #vvveb-builder #canvas.mobile {
     width: 320px !important;
     left: calc(50% - 175vw);
-    left: calc(50% - ((320px / 2) + var(--builder-left-panel-width))); }
+    left: calc(50% - ((320px / 2) + var(--builder-left-panel-width))); 
+    background-image:url(../image/mobile.png); 
+  }
 
 #vvveb-builder.preview #canvas {
   width: 100%;
@@ -698,7 +712,7 @@ li[data-type] {
   height: auto;
   width: 100%;
   overflow-y: auto;
-  width: 100%; }
+ }
   .drag-elements-sidepane::-webkit-scrollbar {
     width: 0.5rem;
     background-color: rgba(255, 255, 255, 0.1);
@@ -1039,4 +1053,4 @@ ul.autocomplete li.selected {
   padding-left: 0rem;
   padding-right: 0rem; }
 
-/*# sourceMappingURL=editor.css.map */
+

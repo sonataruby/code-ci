@@ -16,10 +16,10 @@ limitations under the License.
 https://github.com/givanz/VvvebJs
 */
 
-Vvveb.ComponentsGroup['Server Components'] = ["components/products", "components/product", "components/categories", "components/manufacturers", "components/search", "components/user", "components/product_gallery", "components/cart", "components/checkout", "components/filters", "components/product", "components/slider"];
+Sonata.ComponentsGroup['Server Components'] = ["components/products", "components/product", "components/categories", "components/manufacturers", "components/search", "components/user", "components/product_gallery", "components/cart", "components/checkout", "components/filters", "components/product", "components/slider"];
 
 
-Vvveb.Components.add("components/product", {
+Sonata.Components.add("components/product", {
     name: "Product",
     attributes: ["data-component-product"],
 
@@ -75,7 +75,7 @@ Vvveb.Components.add("components/product", {
 });    
 
 
-Vvveb.Components.add("components/products", {
+Sonata.Components.add("components/products", {
     name: "Products",
     attributes: ["data-component-products"],
 
@@ -229,7 +229,7 @@ Vvveb.Components.add("components/products", {
     }]
 });
 
-Vvveb.Components.add("components/manufacturers", {
+Sonata.Components.add("components/manufacturers", {
     name: "Manufacturers",
     classes: ["component_manufacturers"],
     image: "icons/categories.svg",
@@ -250,7 +250,7 @@ Vvveb.Components.add("components/manufacturers", {
     ]
 });
 
-Vvveb.Components.add("components/categories", {
+Sonata.Components.add("components/categories", {
     name: "Categories",
     classes: ["component_categories"],
     image: "icons/categories.svg",
@@ -262,7 +262,7 @@ Vvveb.Components.add("components/categories", {
         inputtype: FileUploadInput
     }]
 });
-Vvveb.Components.add("components/search", {
+Sonata.Components.add("components/search", {
     name: "Search",
     classes: ["component_search"],
     image: "icons/search.svg",
@@ -284,7 +284,7 @@ Vvveb.Components.add("components/search", {
         inputtype: TextInput
     }]
 });
-Vvveb.Components.add("components/user", {
+Sonata.Components.add("components/user", {
     name: "User",
     classes: ["component_user"],
     image: "icons/user.svg",
@@ -306,7 +306,7 @@ Vvveb.Components.add("components/user", {
         inputtype: TextInput
     }]
 });
-Vvveb.Components.add("components/product_gallery", {
+Sonata.Components.add("components/product_gallery", {
     name: "Product gallery",
     classes: ["component_product_gallery"],
     image: "icons/product_gallery.svg",
@@ -328,7 +328,7 @@ Vvveb.Components.add("components/product_gallery", {
         inputtype: TextInput
     }]
 });
-Vvveb.Components.add("components/cart", {
+Sonata.Components.add("components/cart", {
     name: "Cart",
     classes: ["component_cart"],
     image: "icons/cart.svg",
@@ -350,7 +350,7 @@ Vvveb.Components.add("components/cart", {
         inputtype: TextInput
     }]
 });
-Vvveb.Components.add("components/checkout", {
+Sonata.Components.add("components/checkout", {
     name: "Checkout",
     classes: ["component_checkout"],
     image: "icons/checkout.svg",
@@ -372,7 +372,7 @@ Vvveb.Components.add("components/checkout", {
         inputtype: TextInput
     }]
 });
-Vvveb.Components.add("components/filters", {
+Sonata.Components.add("components/filters", {
     name: "Filters",
     classes: ["component_filters"],
     image: "icons/filters.svg",
@@ -394,7 +394,7 @@ Vvveb.Components.add("components/filters", {
         inputtype: TextInput
     }]
 });
-Vvveb.Components.add("components/product", {
+Sonata.Components.add("components/product", {
     name: "Product",
     classes: ["component_product"],
     image: "icons/product.svg",
@@ -416,7 +416,7 @@ Vvveb.Components.add("components/product", {
         inputtype: TextInput
     }]
 });
-Vvveb.Components.add("components/slider", {
+Sonata.Components.add("components/slider", {
     name: "Slider",
     classes: ["component_slider"],
     image: "icons/slider.svg",

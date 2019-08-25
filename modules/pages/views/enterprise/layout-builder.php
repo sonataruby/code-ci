@@ -1,72 +1,71 @@
+<style type="text/css">
+	.btn-group, .btn-group .btn, .btn-group select, .form-control{
+		border-radius: 0;
+	}
+</style>
 <div id="vvveb-builder">
 				<div style="position: relative;">
 				<div id="top-panel">
 					
-					<div class="btn-group float-left" role="group">
-					  <button class="btn btn-light" title="Toggle file manager" id="toggle-file-manager-btn" data-vvveb-action="toggleFileManager" data-toggle="button" aria-pressed="false">
+					<div class="btn-group float-left btn-group-sm" role="group">
+					  <button class="btn btn-outline-secondary" title="Toggle file manager" id="toggle-file-manager-btn" data-vvveb-action="toggleFileManager" data-toggle="button" aria-pressed="false">
 						  <img src="/libs/builder/libs/builder/icons/file-manager-layout.svg" width="20px" height="20px">
 					  </button>
 
-					  <button class="btn btn-light" title="Toggle left column" id="toggle-left-column-btn" data-vvveb-action="toggleLeftColumn" data-toggle="button" aria-pressed="false">
+					  <button class="btn btn-outline-secondary" title="Toggle left column" id="toggle-left-column-btn" data-vvveb-action="toggleLeftColumn" data-toggle="button" aria-pressed="false">
 						  <img src="/libs/builder/libs/builder/icons/left-column-layout.svg" width="20px" height="20px">
 					  </button>
 					  
-					  <button class="btn btn-light" title="Toggle right column" id="toggle-right-column-btn" data-vvveb-action="toggleRightColumn" data-toggle="button" aria-pressed="false">
+					  <button class="btn btn-outline-secondary" title="Toggle right column" id="toggle-right-column-btn" data-vvveb-action="toggleRightColumn" data-toggle="button" aria-pressed="false">
 						  <img src="/libs/builder/libs/builder/icons/right-column-layout.svg" width="20px" height="20px">
 					  </button>
 					</div>
 										
-					<div class="btn-group mr-3" role="group">
-					  <button class="btn btn-light" title="Undo (Ctrl/Cmd + Z)" id="undo-btn" data-vvveb-action="undo" data-vvveb-shortcut="ctrl+z">
-						  <i class="la la-undo"></i>
-					  </button>
-
-					  <button class="btn btn-light"  title="Redo (Ctrl/Cmd + Shift + Z)" id="redo-btn" data-vvveb-action="redo" data-vvveb-shortcut="ctrl+shift+z">
-						  <i class="la la-undo la-flip-horizontal"></i>
-					  </button>
-					</div>
+					
 										
 					
-					<div class="btn-group mr-3" role="group">
-					  <button class="btn btn-light" title="Designer Mode (Free component dragging)" id="designer-mode-btn" data-toggle="button" aria-pressed="false" data-vvveb-action="setDesignerMode">
-						  <i class="la la-hand-grab-o"></i>
-					  </button>
-
-					  <button class="btn btn-light" title="Preview" id="preview-btn" type="button" data-toggle="button" aria-pressed="false" data-vvveb-action="preview">
-						  <i class="la la-eye"></i>
-					  </button>
-
-					  <button class="btn btn-light" title="Fullscreen (F11)" id="fullscreen-btn" data-toggle="button" aria-pressed="false" data-vvveb-action="fullscreen">
-						  <i class="la la-arrows"></i>
-					  </button>
-
-					</div>
 					
-					<div class="btn-group mr-3" role="group">
-					  <button class="btn btn-light" title="Export (Ctrl + E)" id="save-btn" data-vvveb-action="saveAjax" data-vvveb-shortcut="ctrl+e">
-						  <i class="la la-save"></i>
-					  </button>
-					  
-					  <button class="btn btn-light" title="Download" id="download-btn" data-vvveb-action="download" data-download="index.html">
-						  <i class="la la-download"></i>
-					  </button>
-					  <button class="btn btn-primary btnSaveData">Save Data</button>
-					</div>	
+					
+					
+					<div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
+						<div class="btn-group mr-2" role="group">
+							<button class="btn btn-primary" title="Undo (Ctrl/Cmd + Z)" id="undo-btn" data-vvveb-action="undo" data-vvveb-shortcut="ctrl+z">
+							  <i class="la la-undo"></i>
+						  </button>
 
+						  <button class="btn btn-primary"  title="Redo (Ctrl/Cmd + Shift + Z)" id="redo-btn" data-vvveb-action="redo" data-vvveb-shortcut="ctrl+shift+z">
+							  <i class="la la-undo la-flip-horizontal"></i>
+						  </button>
+						</div>
+						<div class="btn-group mr-2" role="group">
+						<button class="btn btn-light" title="Designer Mode (Free component dragging)" id="designer-mode-btn" data-toggle="button" aria-pressed="false" data-vvveb-action="setDesignerMode">
+							  <i class="la la-hand-grab-o"></i>
+						  </button>
 
-					<div class="btn-group  responsive-btns justify-content-end" role="group">
-		 			 <button id="mobile-view" data-view="mobile" class="btn btn-light"  title="Mobile view" data-vvveb-action="viewport">
-						  <i class="la la-mobile-phone"></i>
-					  </button>
+						  <button class="btn btn-light" title="Preview" id="preview-btn" type="button" data-toggle="button" aria-pressed="false" data-vvveb-action="preview">
+							  <i class="la la-eye"></i>
+						  </button>
 
-					  <button id="tablet-view"  data-view="tablet" class="btn btn-light"  title="Tablet view" data-vvveb-action="viewport">
-						  <i class="la la-tablet"></i>
-					  </button>
-					  
-					  <button id="desktop-view"  data-view="" class="btn btn-light"  title="Desktop view" data-vvveb-action="viewport">
-						  <i class="la la-laptop"></i>
-					  </button>
+						  <button class="btn btn-light" title="Fullscreen (F11)" id="fullscreen-btn" data-toggle="button" aria-pressed="false" data-vvveb-action="fullscreen">
+							  <i class="la la-arrows"></i>
+						  </button>
+						</div>
+						<div class="btn-group mr-2" role="group">
+			 			 <button id="mobile-view" data-view="mobile" class="btn btn-danger"  title="Mobile view" data-vvveb-action="viewport">
+							  <i class="fa fa-mobile-alt"></i>
+						  </button>
 
+						  <button id="tablet-view"  data-view="tablet" class="btn btn-danger"  title="Tablet view" data-vvveb-action="viewport">
+							  <i class="fa fa-tablet"></i>
+						  </button>
+						  
+						  <button id="desktop-view"  data-view="" class="btn btn-danger"  title="Desktop view" data-vvveb-action="viewport">
+							  <i class="fa fa-laptop"></i>
+						  </button>
+						</div>
+						<div class="btn-group mr-2">
+						  <button class="btn btn-success btnSaveData"><i class="fa fa-save"></i> Lưu lại</button>
+						</div>
 					</div>
 										
 				</div>	
@@ -74,7 +73,7 @@
 				<div id="left-panel">
 
 					  <div id="filemanager"> 
-								<div class="header"><a href="#" class="text-secondary">Pages</a></div>
+								<div class="header"><a href="#" class="text-secondary">Trang</a></div>
 
 								<div class="tree">
 									<ol>
@@ -88,10 +87,10 @@
 						<div class="header">							
 							<ul class="nav nav-tabs" id="elements-tabs" role="tablist">
 							  <li class="nav-item component-tab">
-								<a class="nav-link active" id="components-tab" data-toggle="tab" href="#components" role="tab" aria-controls="components" aria-selected="true"><i class="la la-lg la-cube"></i> <div><small>Components</small></div></a>
+								<a class="nav-link active" id="components-tab" data-toggle="tab" href="#components" role="tab" aria-controls="components" aria-selected="true"><i class="la la-lg la-cube"></i> <div><small>Thộc tính</small></div></a>
 							  </li>
 							  <li class="nav-item blocks-tab">
-								<a class="nav-link" id="blocks-tab" data-toggle="tab" href="#blocks" role="tab" aria-controls="blocks" aria-selected="false"><i class="la la-lg la-image"></i> <div><small>Blocks</small></div></a>
+								<a class="nav-link" id="blocks-tab" data-toggle="tab" href="#blocks" role="tab" aria-controls="blocks" aria-selected="false"><i class="la la-lg la-image"></i> <div><small>Mẫu giao diện</small></div></a>
 							  </li>
 							  <li class="nav-item component-properties-tab" style="display:none">
 								<a class="nav-link" id="properties-tab" data-toggle="tab" href="#properties" role="tab" aria-controls="blocks" aria-selected="false"><i class="la la-lg la-cog"></i> <div><small>Properties</small></div></a>
@@ -218,10 +217,10 @@
 									<div class="header">							
 										<ul class="nav nav-tabs" id="box-elements-tabs" role="tablist">
 										  <li class="nav-item component-tab">
-											<a class="nav-link active" id="box-components-tab" data-toggle="tab" href="#box-components" role="tab" aria-controls="components" aria-selected="true"><i class="la la-lg la-cube"></i> <div><small>Components</small></div></a>
+											<a class="nav-link active" id="box-components-tab" data-toggle="tab" href="#box-components" role="tab" aria-controls="components" aria-selected="true"><i class="la la-lg la-cube"></i> <div><small>Thuộc tính</small></div></a>
 										  </li>
 										  <li class="nav-item blocks-tab">
-											<a class="nav-link" id="box-blocks-tab" data-toggle="tab" href="#box-blocks" role="tab" aria-controls="blocks" aria-selected="false"><i class="la la-lg la-image"></i> <div><small>Blocks</small></div></a>
+											<a class="nav-link" id="box-blocks-tab" data-toggle="tab" href="#box-blocks" role="tab" aria-controls="blocks" aria-selected="false"><i class="la la-lg la-image"></i> <div><small>Mẫu giao diện</small></div></a>
 										  </li>
 										  <li class="nav-item component-properties-tab" style="display:none">
 											<a class="nav-link" id="box-properties-tab" data-toggle="tab" href="#box-properties" role="tab" aria-controls="blocks" aria-selected="false"><i class="la la-lg la-cog"></i> <div><small>Properties</small></div></a>
@@ -236,12 +235,12 @@
 											
 												<div class="custom-control custom-radio custom-control-inline">
 												  <input type="radio" id="add-section-insert-mode-after" value="after" checked="checked" name="add-section-insert-mode" class="custom-control-input">
-												  <label class="custom-control-label" for="add-section-insert-mode-after">After</label>
+												  <label class="custom-control-label" for="add-section-insert-mode-after">Thêm vào sau</label>
 												</div>
 												
 												<div class="custom-control custom-radio custom-control-inline">
 												  <input type="radio" id="add-section-insert-mode-inside" value="inside" name="add-section-insert-mode" class="custom-control-input">
-												  <label class="custom-control-label" for="add-section-insert-mode-inside">Inside</label>
+												  <label class="custom-control-label" for="add-section-insert-mode-inside">Thêm vào trong</label>
 												</div>
 										
 											</div>
@@ -350,12 +349,12 @@
 				<div class="btn-group" role="group">
 
 		 			 <button id="code-editor-btn" data-view="mobile" class="btn btn-sm btn-light btn-sm"  title="Code editor" data-vvveb-action="toggleEditor">
-						  <i class="la la-code"></i> Code editor
+						  <i class="la la-code"></i> Code
 					  </button>
 					 
 						<div id="toggleEditorJsExecute" class="custom-control custom-checkbox mt-1" style="display:none">
 							<input type="checkbox" class="custom-control-input" id="customCheck" name="example1" data-vvveb-action="toggleEditorJsExecute">
-							<label class="custom-control-label" for="customCheck"><small>Run javascript code on edit</small></label>
+							<label class="custom-control-label" for="customCheck"><small>Chạy javascript khi edit code</small></label>
 						</div>
 					</div>
 					
@@ -665,6 +664,7 @@
 </script>
 
 <script id="vvveb-input-cssunitinput" type="text/html">
+
 	<div class="input-group" id="cssunit-{%=key%}">
 		<input name="number" type="number"  {% if (typeof value !== 'undefined' && value != false) { %} value="{%=value%}" {% } %} 
 			  {% if (typeof min !== 'undefined' && min != false) { %}min="{%=min%}"{% } %} 
@@ -812,9 +812,7 @@
 			<div class="col-sm-9 input">
 				<div>    
 					<select class="form-control custom-select" name="startTemplateUrl">        
-						<option value="new-page-blank-template.html">Blank Template</option>        
-						<option value="demo/narrow-jumbotron/index.html">Narrow jumbotron</option>       
-						<option value="demo/album/index.html">Album</option>       
+						   
 					</select>    
 				</div>
 			</div>     
@@ -859,7 +857,7 @@
 <link href="/libs/builder/libs/codemirror/lib/codemirror.css" rel="stylesheet"/>
 <link href="/libs/builder/libs/codemirror/theme/material.css" rel="stylesheet"/>
 
-<script src="/libs/builder/js/jquery.hotkeys.js"></script>
+<script src="/libs/builder/libs/jquery.hotkeys.js"></script>
 
 
 <!-- builder code-->
@@ -909,23 +907,21 @@ $(document).ready(function()
 	{
 		$("#vvveb-builder").addClass("no-right-panel");
 		$(".component-properties-tab").show();
-		Vvveb.Components.componentPropertiesElement = "#left-panel .component-properties";
+		Sonata.Components.componentPropertiesElement = "#left-panel .component-properties";
 	} else
 	{
 		$(".component-properties-tab").hide();
 	}
 
-	Vvveb.Builder.init('/pages/layout/loadcontent/<?php echo $page_id;?>', function() {
+	Sonata.Builder.init('/pages/layout/loadcontent/<?php echo $page_id;?>', function() {
 		//run code after page/iframe is loaded
 	});
-	Vvveb.Gui.togglePanel("#filemanager", "--builder-filemanager-height");
-	Vvveb.Gui.init();
+	Sonata.Gui.togglePanel("#filemanager", "--builder-filemanager-height");
+	Sonata.Gui.init();
 	
 	$(".btnSaveData").on("click", function(){
 		//var data = Vvveb.Builder.getHtml();
-		var data = Vvveb.Builder.getHtml(true, true);
-		alert(data);
-		return true;
+		var data = Sonata.Builder.getHtml(true, true);
 		$.ajax({
 			type: "POST",
 			url: '/pages/layout/builder/<?php echo $page_id;?>',//set your server side save script url
@@ -933,7 +929,7 @@ $(document).ready(function()
 			cache: false,
 			success: function (data) {
 				
-				alert(data);
+				
 				
 			},
 			error: function (data) {
