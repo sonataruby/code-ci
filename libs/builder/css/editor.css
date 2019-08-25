@@ -125,7 +125,7 @@ body {
   --builder-bottom-panel-height: 35px;
   --drag-items-tabs-height: 90px;
   --builder-panel-control:120px;
-  --builder-top-panel-height:35px;
+  --builder-top-panel-height:45px;
   scrollbar-color: rgba(0, 0, 0, 0.1) #fff;
   scrollbar-width: thin; }
   @media (min-width: 576px) {
@@ -171,7 +171,7 @@ body {
 
 #vvveb-builder{
    margin-left: -40px;
-   margin-top: -10px;
+   margin-top: -14px;
    position: relative;
 }
 #vvveb-builder #left-panel, #vvveb-builder #right-panel {
@@ -262,13 +262,16 @@ body {
     width: var(--builder-right-panel-width); }
 
 #vvveb-builder #top-panel {
-  height: 40px;
+  height: var(--builder-top-panel-height);
   border-bottom: 1px solid #ccc;
   text-align: center;
   background-color: #fafafa;
   overflow: hidden; 
   position: fixed;
   width: 100%;
+  z-index: 999999;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
   #vvveb-builder #top-panel .btn-group .btn {
     padding: 0.25rem 0.5rem;
