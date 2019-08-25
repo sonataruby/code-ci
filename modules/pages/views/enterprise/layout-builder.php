@@ -536,6 +536,7 @@
 				<option value="{%=i%}" {% if ((typeof col_sm !== 'undefined') && col_sm == i) { %} selected {% } %}>{%=i%}</option>
 				{% } %}
 				
+				<option value="">Viable Small</option>
 			</select>
 			<br/>
 		</div>
@@ -548,7 +549,8 @@
 				{% for ( var i = 1; i <= 12; i++ ) { %}
 				<option value="{%=i%}" {% if ((typeof col_md !== 'undefined') && col_md == i) { %} selected {% } %}>{%=i%}</option>
 				{% } %}
-				
+				<option value="">Hidden Small</option>
+				<option value="">Viable Medium</option>
 			</select>
 			<br/>
 		</div>
@@ -561,6 +563,7 @@
 				{% for ( var i = 1; i <= 12; i++ ) { %}
 				<option value="{%=i%}" {% if ((typeof col_lg !== 'undefined') && col_lg == i) { %} selected {% } %}>{%=i%}</option>
 				{% } %}
+				<option value="">Hidden Medium</option>
 				
 			</select>
 			<br/>
@@ -849,8 +852,28 @@
 </div>
 </div>
 
-
-
+<style type="text/css">
+	div[data-key="column"] > label{
+	  display: none;
+	}
+	div[data-key="column"] > .col-sm-8.input{
+		flex: 0 0 100%;
+		max-width: 100%;
+	}
+</style>
+<script type="text/javascript">
+	<?php
+		$animated = [
+			"bounceIn","bounceInRight","bounceInLeft","bounceInUp","bounceInDown","fadeIn","growIn","shake","shakeUp","FadeInLeft","fadeInRight","fadeInUp","fadeInDown","rotateIn",
+			"rotateInUpLeft","rotateInDownLeft","rotateInUpRight","rotateInDownRight","rollIn","wiggle","swing","tada","wobble","pulse","lightSpeedInRight","lightSpeedInLeft","flip",
+			"flipInX","flipInY"];
+		$attClass = [];
+			foreach ($animated as $key => $value) {
+				$attClass[] = ["value" => $value, "text" => $value];
+			}
+	?>
+	var AmiteedClass = <?php echo json_encode($attClass);?>
+</script>
 <!-- jquery-->
 <link href="/libs/builder/css/editor.css" rel="stylesheet">
 <link href="/libs/builder/css/line-awesome.css" rel="stylesheet">
@@ -868,11 +891,11 @@
 <script src="/libs/builder/libs/builder/inputs.js"></script>	
 
 <!-- bootstrap colorpicker //uncomment bellow scripts to enable -->
-<!--
-<script src="libs/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
-<link href="libs/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet">
+<!---->
+<script src="/libs/builder/libs/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+<link href="/libs/builder/libs/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet">
 <script src="/libs/builder/libs/builder/plugin-bootstrap-colorpicker.js"></script>
--->
+
 
 <!-- components-->
 <script src="/libs/builder/libs/builder/components-server.js"></script>	

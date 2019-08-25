@@ -1,7 +1,7 @@
 <div class="card-deck mb-3">
 	<?php foreach ($data as $key => $value) { ?>
 		
-			<div class="card<?php echo (@$attr["animated"] ? " animated ".$attr["animated"] : "");?>" data-id="<?php echo $key + 1;?>">
+			<div class="card" data-animated-action="<?php echo (@$attr["animated"] ? $attr["animated"] : "");?>">
 			  <div class="card-header-top">
 			  <?php echo $this->components->image($value->image,["class" => "card-img-top", "alt" => $value->name]);?>
 			  </div>

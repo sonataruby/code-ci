@@ -2065,7 +2065,17 @@ Sonata.Components.add("html/gridcolumn", {
 			return node;
 		},
 
-	}]
+	},{
+        name: "Animated Class",
+        htmlAttr: "data-animated-action",
+        key: "data-animated-action",
+        inputtype: SelectInput,
+        data: {
+            extraclass:"btn-group-sm btn-group-fullwidth",
+            options : AmiteedClass
+        }
+        
+    }]
 });
 Sonata.Components.add("html/gridrow", {
     name: "Grid Row",
@@ -2333,3 +2343,43 @@ Sonata.Components.extend("_base", "_base", {
     }]
 });
 
+
+Sonata.Components.extend("_base", "html/section", {
+    name: "Section",
+    nodes: ["section"],
+    html: '<section>Content Here</section>',
+    properties: [{
+        name: "Data URL",
+        htmlAttr: "data-json",
+        key: "data-json",
+        inputtype: TextInput
+    },{
+        name: "Background Image",
+        htmlAttr: "data-background",
+        key: "data-background",
+        inputtype: TextInput
+    },{
+        name: "Palaex",
+        htmlAttr: "data-palarex",
+        key: "data-palarex",
+        inputtype: TextInput
+    },
+    {
+        name: "Animated",
+        htmlAttr: "data-animated",
+        key: "data-animated",
+        validValues: ["true", "false"],
+        inputtype: ToggleInput,
+        data: {
+            on: "true",
+            off: "false",
+        }
+        
+    },{
+        name: "Animated Time",
+        htmlAttr: "data-sequence",
+        key: "data-sequence",
+        inputtype: TextInput
+        
+    }]
+});
