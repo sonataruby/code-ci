@@ -18,4 +18,8 @@ class Content extends FrontEnd {
 			->setKeyword($data->keyword)
 			->view('page',["data" => $data]);
 	}
+
+
+	
+
 }

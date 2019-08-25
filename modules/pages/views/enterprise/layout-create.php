@@ -111,8 +111,8 @@
 	</div>
 	<div class="col-lg-3 col-sm-12 sticky-top">
 		<div class="hbox border">
-			<button type="submit" class="btn btn-info"><i class="fa fa-save"></i> Public</button>
-			<button type="submit" class="btn btn-warning"><i class="fa fa-save"></i> Draff</button>
+			<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Public</button>
+			<a href="/pages/layout/builder/<?php echo $data->id;?>" class="btn btn-warning"><i class="fa fa-save"></i> Design</a>
 		</div>
 		<div class="">
 			<?php echo $this->forms->gallery([

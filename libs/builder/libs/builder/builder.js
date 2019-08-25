@@ -296,7 +296,6 @@ Vvveb.Components = {
 		
 		if (!(Vvveb.preservePropertySections && section.length))
 		{
-
 			componentsPanelSections[defaultSection].html('').append(tmpl("vvveb-input-sectioninput", {key:"default", header:component.name}));
 			section = componentsPanelSections[defaultSection].find(".section");
 		}
@@ -417,25 +416,20 @@ Vvveb.Components = {
 			if (property.section)
 			{
 				propertySection = property.section;
-				
-				
 			}
 			
 
 			if (property.inputtype == SectionInput)
 			{
-
 				section = componentsPanelSections[propertySection].find('.section[data-section="' + property.key + '"]');
 				
 				if (Vvveb.preservePropertySections && section.length)
 				{
-
 					section.html("");
 				} else 
 				{
 					componentsPanelSections[propertySection].append(property.input);
 					section = componentsPanelSections[propertySection].find('.section[data-section="' + property.key + '"]');
-
 				}
 			}
 			else
@@ -1299,29 +1293,34 @@ Vvveb.Builder = {
 		return html;
 	},
 
-	getHtml: function(keepHelperAttributes = true) 
+	getHtml: function(keepHelperAttributes = true, onlybody=false) 
 	{
 		var doc = window.FrameDocument;
 		var hasDoctpe = (doc.doctype !== null);
 		var html = "";
 		
 		$(window).triggerHandler("vvveb.getHtml.before", doc);
-		
-		if (hasDoctpe) html =
-		"<!DOCTYPE "
-         + doc.doctype.name
-         + (doc.doctype.publicId ? ' PUBLIC "' + doc.doctype.publicId + '"' : '')
-         + (!doc.doctype.publicId && doc.doctype.systemId ? ' SYSTEM' : '') 
-         + (doc.doctype.systemId ? ' "' + doc.doctype.systemId + '"' : '')
-         + ">\n";
-          
-         html +=  doc.documentElement.innerHTML + "\n</html>";
+		if(onlybody){
+			html = $(doc).contents().find("body").html();
+			html = this.removeHelpers(html, keepHelperAttributes);
+		}else{
+			
+			if (hasDoctpe) html =
+			"<!DOCTYPE "
+	         + doc.doctype.name
+	         + (doc.doctype.publicId ? ' PUBLIC "' + doc.doctype.publicId + '"' : '')
+	         + (!doc.doctype.publicId && doc.doctype.systemId ? ' SYSTEM' : '') 
+	         + (doc.doctype.systemId ? ' "' + doc.doctype.systemId + '"' : '')
+	         + ">\n";
+	         
+	         html +=  doc.documentElement.innerHTML + "\n</html>";
+	         
+	         html = this.removeHelpers(html, keepHelperAttributes);
+	         
+	         var filter = $(window).triggerHandler("vvveb.getHtml.after", html);
+	         if (filter) return filter;
          
-         html = this.removeHelpers(html, keepHelperAttributes);
-         
-         var filter = $(window).triggerHandler("vvveb.getHtml.after", html);
-         if (filter) return filter;
-         
+     	}
          return html;
 	},
 	

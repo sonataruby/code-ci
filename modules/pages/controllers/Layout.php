@@ -36,4 +36,63 @@ class Layout extends CPEnterprise {
 		print_r($plugins);
 	}
 	
+
+
+	public function builder($page_id){
+		return $this->view("layout-builder", ["page_id" =>$page_id]);
+	}
+
+	public function loadcontent($page_id){
+		if($this->isPost()){
+			$content = explode('<!--startcontent-->', $this->input->post("content"))[1];
+			$content = $this->renderContent($content);
+			$this->layout_model->create($page_id, ["layout_content" => $content]);
+			print_r($content);
+			exit();
+		}
+		$data = $this->layout_model->getData(false, $page_id);
+		$data->content = $this->builderContent($data->content);
+		$this->setLayout("_bank.php");
+		$this->allowAjax = false;
+		return $this->view("layout-content",["data" => $data]);
+		
+	}
+
+	private function renderContent($text){
+		return $text;
+		preg_match_all(
+                '#'.preg_quote('<div').' title="(.+?)"'.preg_quote('}').'(.+?)'.preg_quote('{/components}').'#s',
+                $text,
+                $matches,
+                PREG_SET_ORDER
+            );
+            $search = [];
+            $replace = [];
+           foreach ($matches as $key => $value) {
+           		list($source, $name, $options) = @$value;
+           		$search[] = $source;
+           		$replace[] = '<div title="'.$source.'" data-toggle="modal" data-target="#ModalComponents">Components '.$name.'</div>';
+           }
+        $text = str_replace($search, $replace, $text);
+        return $text;
+	}
+
+	private function builderContent($text){
+		return $text;
+		preg_match_all(
+                '#'.preg_quote('{').'components=(.+?)'.preg_quote('}').'(.+?)'.preg_quote('{/components}').'#s',
+                $text,
+                $matches,
+                PREG_SET_ORDER
+            );
+            $search = [];
+            $replace = [];
+           foreach ($matches as $key => $value) {
+           		list($source, $name, $options) = @$value;
+           		$search[] = $source;
+           		$replace[] = '<div title="'.$source.'" data-toggle="modal" data-target="#ModalComponents">Components '.$name.'</div>';
+           }
+        $text = str_replace($search, $replace, $text);
+        return $text;
+	}
 }

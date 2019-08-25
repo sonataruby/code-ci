@@ -126,7 +126,7 @@
               <a class="nav-link active" href="#"><i class="fa fa-file-word"></i> <span>Trang</span></a>
               <div id="multiCollapseExample2" class="slidebar">
                 <div class="menuHeader">
-                  <h4>Trang giao diện <a class="btn btn-primary btn-sm float-right" href="/pages/enterprise/create" sn-link="true" parent-controller="#pages"><i class="fa fa-plus"></i></a></h4>
+                  <h4>Trang giao diện <a class="btn btn-primary btn-sm float-right" href="/pages/layout/create" sn-link="true" parent-controller="#pages"><i class="fa fa-plus"></i></a></h4>
                   <p>Quản lý trang giao diện</p>
 
                 </div>

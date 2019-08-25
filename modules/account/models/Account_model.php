@@ -32,7 +32,7 @@ class Account_model extends Model{
 		/*
 		Note member Login
 		*/
-		if($data->account_type != ""){
+		if(isset($data->account_type) && $data->account_type != ""){
 			$this->sendmail($email, "Login History");
 		}
 

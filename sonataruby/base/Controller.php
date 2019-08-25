@@ -15,6 +15,7 @@ class Controller extends MX_Controller {
 	public $setLayout = "default";
 	public $channelLayout = false;
 	public $settings = [];
+	public $allowAjax = true;
 	public $header = ["title" => "CMS Blockchain 4.0", "description" => "Advanced cloud hosting platform with 24/7 Expert Support &amp; 8 Datacenter Locations. We will handle caching, transfers, security, updates.", "keyword" => "", "image" => ""];
 	
 	function __construct()
@@ -68,7 +69,7 @@ class Controller extends MX_Controller {
 		
 	}
 
-	private function setLayout($layout=""){
+	public function setLayout($layout=""){
 		if($layout) $this->setLayout = $layout;
 		return $this;
 	}
@@ -107,7 +108,7 @@ class Controller extends MX_Controller {
 			$data_pate["lang_".$key] = $value;
 		}
 		
-		if(is_ajax()){
+		if(is_ajax() && $this->allowAjax){
 			$content =  $this->load->view("{$file}",$data,true);
 			return $this->parser->parse_string($content, $data_pate);
 			

@@ -164,9 +164,9 @@ class MY_Loader extends MX_Loader {
                 $replaceData = ob_get_clean();
                 $replace[] = $replaceData;
             
-                $dataOutput = str_replace($search, $replace, $dataOutput);
+                
            }
-            
+            $dataOutput = str_replace($search, $replace, $dataOutput);
             
             
         }
