@@ -2349,22 +2349,36 @@ Sonata.Components.extend("_base", "html/section", {
     nodes: ["section"],
     html: '<section>Content Here</section>',
     properties: [{
-        name: "Data URL",
+        name: "Data JSON",
         htmlAttr: "data-json",
         key: "data-json",
+        validValues: ["true", "false"],
+        inputtype: ToggleInput,
+        data: {
+            on: "true",
+            off: "false",
+        }
+    },{
+        name: "JSON URL",
+        htmlAttr: "data-json-url",
+        key: "data-json-url",
         inputtype: TextInput
     },{
-        name: "Background Image",
-        htmlAttr: "data-background",
-        key: "data-background",
+        name: "Parallax",
+        htmlAttr: "data-parallax",
+        key: "data-parallax",
+        validValues: ["scroll"],
+        inputtype: ToggleInput,
+        data: {
+            on: "scroll",
+            off: "",
+        }
+    },{
+        name: "Image URL",
+        htmlAttr: "data-image-src",
+        key: "data-image-src",
         inputtype: TextInput
     },{
-        name: "Palaex",
-        htmlAttr: "data-palarex",
-        key: "data-palarex",
-        inputtype: TextInput
-    },
-    {
         name: "Animated",
         htmlAttr: "data-animated",
         key: "data-animated",

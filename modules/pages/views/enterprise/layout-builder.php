@@ -536,7 +536,7 @@
 				<option value="{%=i%}" {% if ((typeof col_sm !== 'undefined') && col_sm == i) { %} selected {% } %}>{%=i%}</option>
 				{% } %}
 				
-				<option value="">Viable Small</option>
+				
 			</select>
 			<br/>
 		</div>
@@ -549,8 +549,7 @@
 				{% for ( var i = 1; i <= 12; i++ ) { %}
 				<option value="{%=i%}" {% if ((typeof col_md !== 'undefined') && col_md == i) { %} selected {% } %}>{%=i%}</option>
 				{% } %}
-				<option value="">Hidden Small</option>
-				<option value="">Viable Medium</option>
+				
 			</select>
 			<br/>
 		</div>
@@ -563,12 +562,40 @@
 				{% for ( var i = 1; i <= 12; i++ ) { %}
 				<option value="{%=i%}" {% if ((typeof col_lg !== 'undefined') && col_lg == i) { %} selected {% } %}>{%=i%}</option>
 				{% } %}
-				<option value="">Hidden Medium</option>
 				
 			</select>
 			<br/>
 		</div>
 		
+
+		<div class="col-6 mb-1">
+			<label>Hidden</label>
+			<select class="form-control custom-select" name="col-lg">
+				
+				<option value="">None</option>
+				<option value="d-sm-none" {% if ((typeof d_sm_none !== 'undefined')) { %} selected {% } %}>Hidden Small</option>
+				<option value="d-md-none" {% if ((typeof d_md_none !== 'undefined')) { %} selected {% } %}>Hidden Medium</option>
+				<option value="d-lg-none" {% if ((typeof d_lg_none !== 'undefined')) { %} selected {% } %}>Hidden Large</option>
+				
+				
+			</select>
+			<br/>
+		</div>
+
+
+		<div class="col-6 mb-1">
+			<label>Visable</label>
+			<select class="form-control custom-select" name="col-lg">
+				
+				<option value="">None</option>
+				<option value="d-sm-block" {% if ((typeof d_sm_block !== 'undefined')) { %} selected {% } %}>Viable Small</option>
+				<option value="d-md-block" {% if ((typeof d_md_block !== 'undefined')) { %} selected {% } %}>Viable Medium</option>
+				<option value="d-lg-block" {% if ((typeof d_lg_block !== 'undefined')) { %} selected {% } %}>Viable Large</option>
+				
+			</select>
+			<br/>
+		</div>
+
 		{% if (typeof hide_remove === 'undefined') { %}
 		<div class="col-12">
 		
