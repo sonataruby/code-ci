@@ -19,8 +19,6 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
       <![endif]-->
       
-      
-      <?php libs_url('js/app.js',['name' => "Bootstrap & Jquery"]);?>
       <?php echo template_url("styles.css");?>
       
       <style type="text/css">

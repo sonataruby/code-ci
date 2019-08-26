@@ -19,6 +19,10 @@ class ComposerStaticInit5af012652246c3fe16ae48eb1bb717df
         array (
             'HMVC\\' => 5,
         ),
+        'F' => 
+        array (
+            'Faker\\' => 6,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -30,11 +34,13 @@ class ComposerStaticInit5af012652246c3fe16ae48eb1bb717df
         array (
             0 => __DIR__ . '/../..' . '/sonataruby/third_party/MX',
         ),
+        'Faker\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker',
+        ),
     );
 
     public static $classMap = array (
-        'Sonata\\ApiClient' => __DIR__ . '/../..' . '/sonataruby/base/Controller.php',
-        'Sonata\\ApiServer' => __DIR__ . '/../..' . '/sonataruby/base/Controller.php',
         'Sonata\\Controller' => __DIR__ . '/../..' . '/sonataruby/base/Controller.php',
         'Sonata\\Format' => __DIR__ . '/../..' . '/sonataruby/base/Format.php',
         'Sonata\\Rest' => __DIR__ . '/../..' . '/sonataruby/base/Rest.php',

@@ -59,7 +59,7 @@ class Layout extends CPEnterprise {
 	}
 
 	private function renderContent($text){
-		return $text;
+		return str_replace(['<components>','</components>'], '', $text);
 		preg_match_all(
                 '#'.preg_quote('<div').' title="(.+?)"'.preg_quote('}').'(.+?)'.preg_quote('{/components}').'#s',
                 $text,
@@ -78,7 +78,7 @@ class Layout extends CPEnterprise {
 	}
 
 	private function builderContent($text){
-		return $text;
+		
 		preg_match_all(
                 '#'.preg_quote('{').'components=(.+?)'.preg_quote('}').'(.+?)'.preg_quote('{/components}').'#s',
                 $text,
@@ -90,7 +90,7 @@ class Layout extends CPEnterprise {
            foreach ($matches as $key => $value) {
            		list($source, $name, $options) = @$value;
            		$search[] = $source;
-           		$replace[] = '<div title="'.$source.'" data-toggle="modal" data-target="#ModalComponents">Components '.$name.'</div>';
+           		$replace[] = '<components>'.$source.'</components>';
            }
         $text = str_replace($search, $replace, $text);
         return $text;

@@ -274,22 +274,23 @@ var ImageInput = $.extend({}, Input, {
 				//return;//remove this line to enable php upload
 
 				var formData = new FormData();
-				formData.append("file", file);
+				formData.append("userfile", file);
     
 				$.ajax({
 					type: "POST",
-					url: 'upload.php',//set your server side upload script url
+					url: '/settings/enterprise/uploads/image',//set your server side upload script url
 					data: formData,
 					processData: false,
 					contentType: false,
+					dataType : "json",
 					success: function (data) {
 						console.log("File uploaded at: ", data);
 						
 						//if image is succesfully uploaded set image url
-						event.data.element.trigger('propertyChange', [data, this]);
+						event.data.element.trigger('propertyChange', [data.link, this]);
 						
 						//update src input
-						$('input[type="text"]', event.data.element).val(data);
+						$('input[type="text"]', event.data.element).val(data.link);
 					},
 					error: function (data) {
 						alert(data.responseText);

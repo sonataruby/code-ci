@@ -6,8 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Sonata\\ApiClient' => $baseDir . '/sonataruby/base/Controller.php',
-    'Sonata\\ApiServer' => $baseDir . '/sonataruby/base/Controller.php',
     'Sonata\\Controller' => $baseDir . '/sonataruby/base/Controller.php',
     'Sonata\\Format' => $baseDir . '/sonataruby/base/Format.php',
     'Sonata\\Rest' => $baseDir . '/sonataruby/base/Rest.php',

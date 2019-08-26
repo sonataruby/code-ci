@@ -62,12 +62,20 @@
       </script>
       <?php libs_url('js/app.js',['name' => "Bootstrap & Jquery"]);?>
       <?php echo template_url("styles.css");?>
+
+        <style type="text/css">
+        :root{
+          --builder-top-nav : <?php echo @@config_item("header")->height;?>px
+        }
+
+        </style>
+        
 </head>
 
 
   <body class="app" itemscope itemtype="http://schema.org/WebPage">
     
-    <?php $this->components->header(@config_item("header")->header_theme,["class" => "fixed-top"]); ?>
+    <?php $this->components->header(@config_item("header")->header_theme,[]); ?>
     <div class="app-content">
       <?php print_r($content);?>
     </div>

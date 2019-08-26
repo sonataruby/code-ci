@@ -1,6 +1,7 @@
 <?php
 $config = config_item("header");
 ?>
+  
 <header class="app-header">
   <div class="<?php echo @$config->shadown;?> <?php echo @$config->sticky_header;?> <?php echo (@$config->header_color ? $config->header_color : "bg-light");?>" <?php echo @$config->scrolmenu;?> data-active-class="<?php echo @$config->scrolmenu_class;?> animated fixed-top go" data-target="_parent">
     <div class="container">
@@ -20,19 +21,17 @@ $config = config_item("header");
     </div>
 </div>
 </header>
-<?php if(@$config->sticky_header == "fixed-top"){
-?>
-<div class="psFixHeight"></div>
-<?php
-}?>
+
 
 <style type="text/css">
 @media (min-width: 992px) {
   .navbar-nav > li > a.nav-link{
-    line-height : <?php echo @$config->height;?>px;
+    line-height : var(--builder-top-nav);
   }
-  .psFixHeight{
-    height : <?php echo (@$config->height + 15);?>px;
+  <?php if(@$config->sticky_header == "fixed-top" || @$config->scrolmenu){?>
+  body{
+    margin-top:var(--builder-top-nav);
   }
+<?php } ?>
 }
 </style>

@@ -16,7 +16,9 @@ limitations under the License.
 https://github.com/givanz/Vvvebjs
 */
 
-bgcolorClasses = ["bg-primary", "bg-secondary", "bg-success", "bg-danger", "bg-warning", "bg-info", "bg-light", "bg-dark", "bg-white"]
+
+
+bgcolorClasses = ["bg-primary", "bg-secondary", "bg-success", "bg-danger", "bg-warning", "bg-info", "bg-light", "bg-dark", "bg-white","bg-blue","bg-indigo","bg-purple","bg-pink","bg-red","bg-orange","bg-yellow","bg-green","bg-teal","bg-cyan","bg-gray","bg-gray-dark"]
 
 bgcolorSelectOptions = 
 [{
@@ -50,8 +52,164 @@ bgcolorSelectOptions =
 }, {
 	value: "bg-white",
 	text: "White"
+}, {
+    value: "bg-blue",
+    text: "Blue"
+}, {
+    value: "bg-indigo",
+    text: "Indigo"
+}, {
+    value: "bg-purple",
+    text: "Purple"
+}, {
+    value: "bg-pink",
+    text: "Pink"
+}, {
+    value: "bg-red",
+    text: "Red"
+}, {
+    value: "bg-orange",
+    text: "Orange"
+}, {
+    value: "bg-yellow",
+    text: "Yellow"
+}, {
+    value: "bg-green",
+    text: "Green"
+}, {
+    value: "bg-teal",
+    text: "Teal"
+}, {
+    value: "bg-cyan",
+    text: "Cyan"
+}, {
+    value: "bg-gray",
+    text: "Gray"
+}, {
+    value: "bg-gray-dark",
+    text: "Gray Dark"
 }];
 
+
+
+
+textcolorClasses = ["text-primary", "text-secondary", "text-success", "text-danger", "text-warning", "text-info", "text-light", "text-dark", "text-white","text-blue","text-indigo","text-purple","text-pink","text-red","text-orange","text-yellow","text-green","text-teal","text-cyan","text-gray","text-gray-dark"]
+
+textcolorSelectOptions = 
+[{
+    value: "Default",
+    text: ""
+}, 
+{
+    value: "text-primary",
+    text: "Primary"
+}, {
+    value: "text-secondary",
+    text: "Secondary"
+}, {
+    value: "text-success",
+    text: "Success"
+}, {
+    value: "text-danger",
+    text: "Danger"
+}, {
+    value: "text-warning",
+    text: "Warning"
+}, {
+    value: "text-info",
+    text: "Info"
+}, {
+    value: "text-light",
+    text: "Light"
+}, {
+    value: "text-dark",
+    text: "Dark"
+}, {
+    value: "text-white",
+    text: "White"
+}, {
+    value: "text-blue",
+    text: "Blue"
+}, {
+    value: "text-indigo",
+    text: "Indigo"
+}, {
+    value: "text-purple",
+    text: "Purple"
+}, {
+    value: "text-pink",
+    text: "Pink"
+}, {
+    value: "text-red",
+    text: "Red"
+}, {
+    value: "text-orange",
+    text: "Orange"
+}, {
+    value: "text-yellow",
+    text: "Yellow"
+}, {
+    value: "text-green",
+    text: "Green"
+}, {
+    value: "text-teal",
+    text: "Teal"
+}, {
+    value: "text-cyan",
+    text: "Cyan"
+}, {
+    value: "text-gray",
+    text: "Gray"
+}, {
+    value: "text-gray-dark",
+    text: "Gray Dark"
+}];
+
+
+imgClass = ["img-fluid","img-thumbnail"];
+imgClassSelect = [
+{
+    value: "Default",
+    text: ""
+}, {
+    value: "img-fluid",
+    text: "img-fluid"
+}, {
+    value: "img-thumbnail",
+    text: "img-thumbnail"
+}
+];
+iconClass = ["rounded","rounded-left","rounded-right","rounded-bottom","rounded-top","rounded-circle","rounded-pill","rounded-0"];
+iconClassSelect = [
+    {
+        value: "Default",
+        text: ""
+    },{
+        value: "rounded",
+        text: "rounded"
+    },{
+        value: "rounded-left",
+        text: "rounded-left"
+    },{
+        value: "rounded-right",
+        text: "rounded-right"
+    },{
+        value: "rounded-bottom",
+        text: "rounded-bottom"
+    },{
+        value: "rounded-top",
+        text: "rounded-top"
+    },{
+        value: "rounded-circle",
+        text: "rounded-circle"
+    },{
+        value: "rounded-pill",
+        text: "rounded-pill"
+    },{
+        value: "rounded-0",
+        text: "not rounded"
+    }
+];
 function changeNodeName(node, newNodeName)
 {
 	var newNode;
@@ -270,6 +428,129 @@ Sonata.Components.extend("_base", "_base", {
   	}]
 });    
 
+
+//Background image
+Sonata.Components.extend("_base", "_base", {
+     properties: [{
+        key: "background_image_header",
+        inputtype: SectionInput,
+        name:false,
+        sort: base_sort++,
+        section: style_section,
+        data: {header:"Background Image", expanded:false},
+     },{
+        name: "Image",
+        key: "Image",
+        sort: base_sort++,
+        section: style_section,
+        //htmlAttr: "style",
+        inputtype: ImageInput,
+        
+        init: function(node) {
+            var image = $(node).css("background-image").replace(/^url\(['"]?(.+)['"]?\)/, '$1');
+            return image;
+        },
+
+        onChange: function(node, value) {
+            
+            $(node).css('background-image', 'url(' + value + ')');
+            
+            return node;
+        }        
+
+    }, {
+        name: "Repeat",
+        key: "background-repeat",
+        sort: base_sort++,
+        section: style_section,
+        htmlAttr: "style",
+        inputtype: SelectInput,
+        data: {
+            options: [{
+                value: "",
+                text: "Default"
+            }, {    
+                value: "repeat-x",
+                text: "repeat-x"
+            }, {
+                value: "repeat-y",
+                text: "repeat-y"
+            }, {
+                value: "no-repeat",
+                text: "no-repeat"
+            }],
+        }
+    }, {
+        name: "Size",
+        key: "background-size",
+        sort: base_sort++,
+        section: style_section,
+        htmlAttr: "style",
+        inputtype: SelectInput,
+        data: {
+            options: [{
+                value: "",
+                text: "Default"
+            }, {    
+                value: "contain",
+                text: "contain"
+            }, {
+                value: "cover",
+                text: "cover"
+            }],
+        }
+    }, {
+        name: "Position x",
+        key: "background-position-x",
+        sort: base_sort++,
+        section: style_section,
+        htmlAttr: "style",
+        col:6,
+        inline:true,
+        inputtype: SelectInput,
+        data: {
+            options: [{
+                value: "",
+                text: "Default"
+            }, {    
+                value: "center",
+                text: "center"
+            }, {    
+                value: "right",
+                text: "right"
+            }, {
+                value: "left",
+                text: "left"
+            }],
+        }
+    }, {
+        name: "Position y",
+        key: "background-position-y",
+        sort: base_sort++,
+        section: style_section,
+        htmlAttr: "style",
+        col:6,
+        inline:true,
+        inputtype: SelectInput,
+        data: {
+            options: [{
+                value: "",
+                text: "Default"
+            }, {    
+                value: "center",
+                text: "center"
+            }, {    
+                value: "top",
+                text: "top"
+            }, {
+                value: "bottom",
+                text: "bottom"
+            }],
+        }
+    }]
+});    
+
+
 //Typography
 Sonata.Components.extend("_base", "_base", {
 	 properties: [
@@ -279,7 +560,7 @@ Sonata.Components.extend("_base", "_base", {
 		name:false,
 		sort: base_sort++,
 		section: style_section,
-		data: {header:"Typography"},
+		data: {header:"Typography", expanded:false},
     }, {
         name: "Font family",
         key: "font-family",
@@ -588,6 +869,7 @@ Sonata.Components.extend("_base", "_base", {
     }]
 });
 
+
 //Margin
 Sonata.Components.extend("_base", "_base", {
 	 properties: [{
@@ -789,126 +1071,6 @@ Sonata.Components.extend("_base", "_base", {
     }]
 });
 
-//Background image
-Sonata.Components.extend("_base", "_base", {
-	 properties: [{
-		key: "background_image_header",
-		inputtype: SectionInput,
-		name:false,
-		sort: base_sort++,
-		section: style_section,
-		data: {header:"Background Image", expanded:false},
-	 },{
-        name: "Image",
-        key: "Image",
-        sort: base_sort++,
-		section: style_section,
-		//htmlAttr: "style",
-        inputtype: ImageInput,
-        
-        init: function(node) {
-			var image = $(node).css("background-image").replace(/^url\(['"]?(.+)['"]?\)/, '$1');
-			return image;
-        },
-
-		onChange: function(node, value) {
-			
-			$(node).css('background-image', 'url(' + value + ')');
-			
-			return node;
-		}        
-
-   	}, {
-        name: "Repeat",
-        key: "background-repeat",
-        sort: base_sort++,
-		section: style_section,
-		htmlAttr: "style",
-        inputtype: SelectInput,
-        data: {
-			options: [{
-				value: "",
-				text: "Default"
-			}, {	
-				value: "repeat-x",
-				text: "repeat-x"
-			}, {
-				value: "repeat-y",
-				text: "repeat-y"
-			}, {
-				value: "no-repeat",
-				text: "no-repeat"
-			}],
-		}
-   	}, {
-        name: "Size",
-        key: "background-size",
-        sort: base_sort++,
-		section: style_section,
-		htmlAttr: "style",
-        inputtype: SelectInput,
-        data: {
-			options: [{
-				value: "",
-				text: "Default"
-			}, {	
-				value: "contain",
-				text: "contain"
-			}, {
-				value: "cover",
-				text: "cover"
-			}],
-		}
-   	}, {
-        name: "Position x",
-        key: "background-position-x",
-        sort: base_sort++,
-		section: style_section,
-		htmlAttr: "style",
-        col:6,
-		inline:true,
-		inputtype: SelectInput,
-        data: {
-			options: [{
-				value: "",
-				text: "Default"
-			}, {	
-				value: "center",
-				text: "center"
-			}, {	
-				value: "right",
-				text: "right"
-			}, {
-				value: "left",
-				text: "left"
-			}],
-		}
-   	}, {
-        name: "Position y",
-        key: "background-position-y",
-        sort: base_sort++,
-		section: style_section,
-		htmlAttr: "style",
-        col:6,
-		inline:true,
-		inputtype: SelectInput,
-        data: {
-			options: [{
-				value: "",
-				text: "Default"
-			}, {	
-				value: "center",
-				text: "center"
-			}, {	
-				value: "top",
-				text: "top"
-			}, {
-				value: "bottom",
-				text: "bottom"
-			}],
-		}
-    }]
-});    
 
 Sonata.Components.extend("_base", "html/container", {
     classes: ["container", "container-fluid"],
@@ -931,28 +1093,6 @@ Sonata.Components.extend("_base", "html/container", {
                 text: "Fluid"
             }]
         }
-    },
-	{
-        name: "Background",
-        key: "background",
-		htmlAttr: "class",
-        validValues: bgcolorClasses,
-        inputtype: SelectInput,
-        data: {
-            options: bgcolorSelectOptions
-        }
-    },
-	{
-        name: "Background Color",
-        key: "background-color",
-		htmlAttr: "style",
-        inputtype: ColorInput,
-    },
-	{
-        name: "Text Color",
-        key: "color",
-		htmlAttr: "style",
-        inputtype: ColorInput,
     }],
 });
 
@@ -2344,27 +2484,17 @@ Sonata.Components.extend("_base", "_base", {
 });
 
 
-Sonata.Components.extend("_base", "html/section", {
+Sonata.Components.extend("_base","html/section", {
     name: "Section",
     nodes: ["section"],
     html: '<section>Content Here</section>',
     properties: [{
-        name: "Data JSON",
-        htmlAttr: "data-json",
-        key: "data-json",
-        validValues: ["true", "false"],
-        inputtype: ToggleInput,
-        data: {
-            on: "true",
-            off: "false",
-        }
-    },{
         name: "JSON URL",
         htmlAttr: "data-json-url",
         key: "data-json-url",
         inputtype: TextInput
     },{
-        name: "Parallax",
+        name: "Parallax BG",
         htmlAttr: "data-parallax",
         key: "data-parallax",
         validValues: ["scroll"],
@@ -2373,11 +2503,6 @@ Sonata.Components.extend("_base", "html/section", {
             on: "scroll",
             off: "",
         }
-    },{
-        name: "Image URL",
-        htmlAttr: "data-image-src",
-        key: "data-image-src",
-        inputtype: TextInput
     },{
         name: "Animated",
         htmlAttr: "data-animated",
@@ -2406,7 +2531,7 @@ Sonata.Components.extend("_base", "html/section", {
         }
     }]
 });
-Sonata.Components.add("html/card", {
+Sonata.Components.extend("_base","html/card", {
     name: "Animated",
     nodes: ["div.card"],
     properties: [{
@@ -2428,5 +2553,37 @@ Sonata.Components.add("html/card", {
         data: {
             options: bgcolorSelectOptions
         }
+    },{
+        name: "Text Class",
+        key: "text_class",
+        htmlAttr: "class",
+        validValues: textcolorClasses,
+        inputtype: SelectInput,
+        data: {
+            options: textcolorSelectOptions
+        }
+    }]
+});
+
+
+Sonata.Components.extend("_base","html/icon", {
+    name: "Icon",
+    classes: ["fa","fab","fas","icon"],
+    properties: [{
+        name: "Size",
+        htmlAttr: "class",
+        key: "fa_size",
+        validValues : ["fa-1x","fa-2x","fa-3x"],
+        inputtype: SelectInput,
+        data: {
+            options : [{value : "fa-1x", text : "1x"},{value : "fa-2x", text : "2x"},{value : "fa-3x", text : "3x"}]
+        }
+        
+    }]
+});
+Sonata.Components.extend("_base","html/components", {
+    name : "Components",
+    nodes : ["components"],
+    properties: [{
     }]
 });

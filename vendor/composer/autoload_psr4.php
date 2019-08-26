@@ -8,4 +8,5 @@ $baseDir = dirname($vendorDir);
 return array(
     'Sonata\\' => array($baseDir . '/sonataruby/base'),
     'HMVC\\' => array($baseDir . '/sonataruby/third_party/MX'),
+    'Faker\\' => array($vendorDir . '/fzaninotto/faker/src/Faker'),
 );

@@ -204,6 +204,7 @@
                 <a class="dropdown-item" href="/settings/enterprise/addon/backups" sn-link="true" parent-controller="#apps">Backup & Upload</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="/settings/enterprise/addon/plugins" sn-link="true" parent-controller="#apps">Tiện ích mở rộng</a>
+                <a class="dropdown-item" href="/settings/enterprise/addon/plugins" sn-link="true" parent-controller="#apps">Ứng dụng Mobile</a>
               </div>
             </li>
 

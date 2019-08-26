@@ -12,7 +12,7 @@ class Dashboard extends FrontEnd {
 		$data["hotline"] = $this->config->item("hotline");
 
 		if($layout){
-			$layout->content = $this->parser->parse_string($this->shortcode->run($layout->content), $data, true);
+			//$layout->content = $this->parser->parse_string($this->shortcode->run($layout->content), $data, true);
 			$this->view('home-customs',["data" => $layout]);
 		}else{
 			$this->view('home',["data" => $data]);
