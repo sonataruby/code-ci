@@ -36,6 +36,12 @@ ul{
 	border-radius: 100px;
 }
 
+.bg-primary .card{
+	background-color: transparent;
+}
+.bg-primary .card ul > li > a{
+	color:#FFF;
+}
 .card > .catalog-box{
 	padding-top: 10px;
 	padding-bottom: 10px;
