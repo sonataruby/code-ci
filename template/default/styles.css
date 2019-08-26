@@ -38,6 +38,7 @@ ul{
 
 .bg-primary .card{
 	background-color: transparent;
+	border-radius: 5px; 
 }
 .bg-primary .card ul > li > a{
 	color:#FFF;
