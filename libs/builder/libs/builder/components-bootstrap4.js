@@ -2395,5 +2395,38 @@ Sonata.Components.extend("_base", "html/section", {
         key: "data-sequence",
         inputtype: TextInput
         
+    },{
+        name: "Background",
+        key: "background",
+        htmlAttr: "class",
+        validValues: bgcolorClasses,
+        inputtype: SelectInput,
+        data: {
+            options: bgcolorSelectOptions
+        }
+    }]
+});
+Sonata.Components.add("html/card", {
+    name: "Animated",
+    nodes: ["div.card"],
+    properties: [{
+        name: "Animated Class",
+        htmlAttr: "data-animated-action",
+        key: "data-animated-action",
+        inputtype: SelectInput,
+        data: {
+            extraclass:"animated",
+            options : AmiteedClass
+        }
+        
+    },{
+        name: "Background",
+        key: "background",
+        htmlAttr: "class",
+        validValues: bgcolorClasses,
+        inputtype: SelectInput,
+        data: {
+            options: bgcolorSelectOptions
+        }
     }]
 });

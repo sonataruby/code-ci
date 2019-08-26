@@ -769,7 +769,7 @@ Sonata.Blocks.add("bootstrap4/portfolio-three-column", {
 
 Sonata.Blocks.add("bootstrap4/portfolio-four-column", {
     name: "Four Column Portfolio Layout",
-	dragHtml: '<img src="' + Sonata.baseUrl + 'icons/image.svg">',        
+	  dragHtml: '<img src="' + Sonata.baseUrl + 'icons/image.svg">',        
     image: "https://startbootstrap.com/assets/img/screenshots/snippets/portfolio-four-column.jpg",
     html:`
 <section>
@@ -857,7 +857,7 @@ Sonata.Blocks.add("bootstrap4/portfolio-four-column", {
       </div>
     </div>
   </div>
-  
+
 </div>
 </section>
 `,

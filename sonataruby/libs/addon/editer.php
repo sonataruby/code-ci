@@ -110,6 +110,9 @@
           // Do something here.
           // this is the editor instance.
           objEditer = this;
+          if($("div.second-toolbar").length > 0){
+            $("div.second-toolbar").remove();
+          }
         }
       }
       //iframeStyleFiles : ['https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css']
