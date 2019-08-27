@@ -5,7 +5,7 @@ class Settings_model extends Model{
 	private $table = "settings";
 	public function save($arv=[]){
 		foreach ($arv as $key => $value) {
-			$data = $this->db->get_where($this->table,["config_name" => $key])->row();
+			$data = $this->db->get_where($this->table,["config_name" => $key, "store" => DOMAIN])->row();
 			
 			$value = is_array($value) ? json_encode($value) : $value;
 

@@ -1,3 +1,1 @@
-<div class="container">
-	<?php echo @$data->content;?>	
-</div>
+Home Default

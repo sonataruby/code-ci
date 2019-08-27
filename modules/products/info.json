@@ -9,6 +9,7 @@
 	"image" : "",
 	"banner" : "",
 	"prices" : "0",
+	"sample" : false,
 	"register" : {
 		"task" : {
 			"task" : "/products/task",
@@ -21,8 +22,6 @@
 			"controller" : ["posts","users"],
 			"view" : ["posts","users"]
 		},
-		"network" : {
-			"allow" : false
-		}
+		"network" : false
 	} 
 }

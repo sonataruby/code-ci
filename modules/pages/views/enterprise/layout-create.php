@@ -112,7 +112,9 @@
 	<div class="col-lg-3 col-sm-12 sticky-top">
 		<div class="hbox border">
 			<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Public</button>
-			<a href="/pages/layout/builder/<?php echo $data->id;?>" class="btn btn-warning"><i class="fa fa-save"></i> Design</a>
+			<?php if(@$data->id){?>
+				<a href="/pages/layout/builder/<?php echo @$data->id;?>" class="btn btn-warning"><i class="fa fa-save"></i> Design</a>
+			<?php } ?>
 		</div>
 		<div class="">
 			<?php echo $this->forms->gallery([

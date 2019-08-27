@@ -9,6 +9,7 @@ class Layout_model extends Model{
 		if($id){
 			$this->db->update($this->table, $arv,["layout_id" => $id]);
 		}else{
+			$arv["store"] = DOMAIN;
 			$this->db->insert($this->table, $arv);
 			$id = $this->db->insert_id();
 		}
@@ -42,7 +43,7 @@ class Layout_model extends Model{
 		}
 		$language = ($language ? $language : $this->config->item("language"));
 		$this->db->where("language", $language);
-
+		$this->db->where("store", DOMAIN);
 		$this->db->select("layout_id as id, layout_name as name, layout_image as image, layout_description as description, layout_keyword as keyword, layout_url as url, layout_content as content");
 		$data = $this->db->get($this->table)->row();
 
@@ -70,6 +71,7 @@ class Layout_model extends Model{
 	public function getList($language=false){
 		$language = ($language ? $language : $this->config->item("language"));
 		$this->db->where("language", $language);
+		$this->db->where("store", DOMAIN);
 		$this->db->select("layout_id as id, layout_name as name, layout_image as image, layout_description as description, layout_keyword as keyword, layout_url as url, layout_content as content");
 		return $this->db->get($this->table)->result();
 	}
@@ -84,6 +86,7 @@ class Layout_model extends Model{
 		}
 		$url = url_title(convert_accented_characters($name),"_",true);
 		$this->db->where("layout_url", $url);
+		$this->db->where("store", DOMAIN);
 		$count = $this->db->get($this->table)->num_rows();
 
 		return $url.($count > 0 ? "_".$count : "");
@@ -96,6 +99,7 @@ class Layout_model extends Model{
 		}else{
 			$language = (@$arv["language"] ? $arv["language"] : $this->config->item("language"));
 			$arv["language"] = $language;
+			$arv["store"] = DOMAIN;
 			$this->db->insert("widgets", $arv);
 			$id = $this->db->insert_id();
 		}
@@ -105,6 +109,7 @@ class Layout_model extends Model{
 	public function windget_result($language=false, $filter = ""){
 		$language = ($language ? $language : $this->config->item("language"));
 		$this->db->where("language", $language);
+		$this->db->where("store", DOMAIN);
 
 		if($filter){
 			$this->db->like("winget_display",$filter);

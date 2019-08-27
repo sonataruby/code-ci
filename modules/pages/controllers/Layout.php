@@ -41,7 +41,7 @@ class Layout extends CPEnterprise {
 	public function builder($page_id){
 		if($this->isPost()){
 			$content = $this->input->post("content");
-			$content = $this->renderContent($content);
+			$content = trim($this->renderContent($content));
 			$this->layout_model->updatecontent($page_id, ["layout_content" => $content]);
 			exit();
 		}
@@ -90,9 +90,12 @@ class Layout extends CPEnterprise {
            foreach ($matches as $key => $value) {
            		list($source, $name, $options) = @$value;
            		$search[] = $source;
-           		$replace[] = '<components>'.$source.'</components>';
+           		$replace[] = '<components data-content="'.$source.'">'.$this->renderComponents($source).'</components>';
            }
         $text = str_replace($search, $replace, $text);
         return $text;
+	}
+	public function renderComponents($source){
+		return $source;
 	}
 }

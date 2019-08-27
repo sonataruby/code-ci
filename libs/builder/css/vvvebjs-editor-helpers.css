@@ -11,10 +11,10 @@ body {
     background-color: rgba(0, 0, 0, 0.15);
     outline: 1px solid slategrey; }
 
-[data-vvveb-disabled] {
+[data-disabled] {
   pointer-events: none;
   position: relative; }
-  [data-vvveb-disabled]::after {
+  [data-disabled]::after {
     content: "Non-editable area";
     position: absolute;
     left: 0px;

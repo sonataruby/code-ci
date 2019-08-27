@@ -18,7 +18,11 @@ class FrontEnd extends Controller{
 	}
 
 	public function view($file, $data=[]){
-		
+		//if($this->config->item("support_mobile") && $this->agent->is_mobile()){
+		if($this->config->item("support_mobile") == "true"){
+			$this->setLayout = "mobile-".$this->setLayout;
+		}
+
 		$data_pate = [];
 		$data_pate["full_address"] = get_address();
 		foreach ($this->lang->language as $key => $value) {

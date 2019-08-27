@@ -1,1 +1,1 @@
-<?php print_r(($data->content ? $data->content : "Move Item Here"));?>
+<?php print_r(($data->content ? $data->content : "<br>"));?>

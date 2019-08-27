@@ -1156,17 +1156,30 @@ Sonata.Builder = {
 			addSectionBox.hide();
 		});
 		
+		/*
+		Add Content to body
+		*/
 		function addSectionComponent(html, after = true) 
 		{
 			var node = $(html);
 			
-			if (after)
-			{
-				addSectionElement.after(node);
-			} else
-			{
-				addSectionElement.append(node);
+			if(node.get(0).nodeName == "SECTION" || 
+				node.get(0).className == "container" || 
+				node.get(0).className == "container-fluid" || 
+				addSectionElement.get(0).nodeName == "HTML" || 
+				addSectionElement.get(0).nodeName == "BODY"){
+
+				self.frameBody.append(node);
+			}else{
+				if (after)
+				{
+					addSectionElement.after(node);
+				} else
+				{
+					addSectionElement.append(node);
+				}
 			}
+			
 			
 			node = node.get(0);
 			
@@ -1339,6 +1352,7 @@ Sonata.Builder = {
         if (this.runJsOnSetHtml)
 			self.frameBody.html(body);
 		else
+
 			window.FrameDocument.body.innerHTML = body;
         
 		

@@ -8,6 +8,7 @@ class Menu_model extends Model{
 		if($id){
 			$this->db->update($this->table, $arv, ["menu_id" => $id]);
 		}else{
+			$arv["store"] = DOMAIN;
 			$this->db->insert($this->table, $arv);
 			$id = $this->db->insert_id();
 		}
@@ -54,6 +55,7 @@ class Menu_model extends Model{
 		$language = !$language ? config_item("language") : $language;
 		$this->db->where("parent_id",$parent_id);
 		$this->db->where("language", $language);
+		$this->db->where("store",DOMAIN);
 		$this->db->order_by("menu_sort","ASC");
 		$this->db->select("menu_id as id, parent_id, menu_name as name, menu_icon as icon, menu_link as url, menu_sort as sorts");
 
@@ -85,6 +87,7 @@ class Menu_model extends Model{
 		$this->db->order_by("menu_sort","ASC");
 		$this->db->where("parent_id",$parent_id);
 		$this->db->where("language", $language);
+		$this->db->where("store",DOMAIN);
 		$this->db->select("menu_id as id, parent_id, menu_name as name, menu_icon as icon, menu_link as url, menu_sort as sorts");
 
 		$data = $this->db->get($this->table)->result();

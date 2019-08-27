@@ -16,9 +16,18 @@ class Addon extends Enterprise {
 
 
 	public function manager(){
+
+		$dataRead = $this->settings_model->getData();
+		$module = isObject(@$dataRead->module);
+		$module = (empty($module) ? [] : (array)$module);
+
 		$location = directory_map(array_keys(CMS_MODULESPATH)[0], true);
 		$arv = [];
 		$ingore = ["account","api","home","pages","posts","settings"];
+		
+		if(@$module) {
+			$ingore = array_merge($ingore, array_keys($module));
+		}
 		foreach ($location as $key => $value) {
 			$rfolder = str_replace('/', '', $value);
 			if(!in_array($rfolder, $ingore)){
@@ -26,39 +35,48 @@ class Addon extends Enterprise {
 			}
 		}
 
+		$module_info = [];
+		foreach ($module as $key => $value) {
+			$path = array_keys(CMS_MODULESPATH)[0] . $key."/info.json";
+			$module_info[$key] = json_decode(read_file($path));
+		}
+		
+		
+		$this->view('addon-manager', ["location" => $arv, "module" => $module_info]);
+	}
+
+
+	public function uninstall($modules){
 		$dataRead = $this->settings_model->getData();
 		$module = isObject(@$dataRead->module);
 		$module = (empty($module) ? [] : (array)$module);
-		print_r($module);
-		$this->view('addon-manager', ["location" => $arv]);
+		
+		if(isset($module[$modules])){
+			unset($module[$modules]);
+			$json = $this->tojson($module, true);
+			$this->settings_model->save(["module" => $json]);
+		}
+		
+		
+
+		$this->go("settings/enterprise/addon/manager");
+
 	}
 
+
 	public function install($modules){
-		$arv = json_decode(read_file(array_keys(CMS_MODULESPATH)[0] . $modules . "/info.json"));
+		
 
 		$dataRead = $this->settings_model->getData();
 		$module = isObject(@$dataRead->module);
-		$module = (empty($module) ? ["name" => [],"task" => [], "before" => [], "after" => [], "hook" => []] : (array)$module);
+		$module = (empty($module) ? [] : (array)$module);
 		
 		$data = [];
 		$arvData = [];
 		$arvRegister = (array)@$arv->register;
-		foreach ($arvRegister as $key => $value) {
-			if($value){
-				$arvData[$key] = (array)$value;
-			}
-		}
-		$module["name"] = @array_merge((array)$module["name"], [$modules => true]);
-		$module["task"] = @array_merge((array)$module["task"], $arvData["task"]);
-		$module["before"] = @array_merge((array)$module["before"], $arvData["before"]);
-		$module["after"] = @array_merge((array)$module["after"], $arvData["after"]);
-		$module["hook"] = @array_merge((array)$module["hook"], $arvData["hook"]);
 		
-		
-
+		$module = @array_merge((array)$module, [$modules => true]);
 		$json = $this->tojson($module, true);
-
-
 		$this->settings_model->save(["module" => $json]);
 
 		$this->go("settings/enterprise/addon/manager");

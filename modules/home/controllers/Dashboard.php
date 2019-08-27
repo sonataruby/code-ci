@@ -11,6 +11,7 @@ class Dashboard extends FrontEnd {
 		$data["site_name"] = $this->config->item("site_name");
 		$data["hotline"] = $this->config->item("hotline");
 
+		
 		if($layout){
 			//$layout->content = $this->parser->parse_string($this->shortcode->run($layout->content), $data, true);
 			$this->view('home-customs',["data" => $layout]);
