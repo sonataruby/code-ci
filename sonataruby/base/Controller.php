@@ -226,7 +226,7 @@ class Controller extends MX_Controller {
 		foreach ($plugin as $key => $value) {
 			$text = str_replace('<div class="plugins '.$value.'"></div>', '{'.$value.'}', $text);
 		}
-		return $text;
+		return trim($text);
 	}
 
 

@@ -1,0 +1,28 @@
+{
+	"name" : "Products Modules",
+	"description" : "Module bán hàng trực tuyến",
+	"requiced" : "",
+	"athour" : "Võ Văn Khoa",
+	"version" : "1.2",
+	"base_version" : "1.1",
+	"icon" : "",
+	"image" : "",
+	"banner" : "",
+	"prices" : "0",
+	"register" : {
+		"task" : {
+			"task" : "/products/task",
+			"task2" : "/products/task2"
+		},
+		"before" : "",
+		"after" : "",
+		"hook" : {
+			"model" : ["posts","users"],
+			"controller" : ["posts","users"],
+			"view" : ["posts","users"]
+		},
+		"network" : {
+			"allow" : false
+		}
+	} 
+}

@@ -20,11 +20,15 @@ class Settings_model extends Model{
 	}
 
 
-	public function getData($language=false){
+	public function getData($language=false, $autoload=false){
 		$language = (!$language ? $this->config->item("language") : $language);
 		$store = DOMAIN;
 		$this->db->where("language", $language);
 		$this->db->where("store", $store);
+		if($autoload){
+			
+			$this->db->where("autoload", $autoload);
+		}
 		$data = $this->db->get($this->table)->result();
 		$arv = new stdClass;
 		foreach ($data as $key => $value) {

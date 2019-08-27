@@ -46,7 +46,7 @@
 					"placeholder" => "{lang_enter_password}",
 					"type" => "password"
 				],[false, '<div class="input-group-append">
-    <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="fa fa-eye"></i></button>
+    <button class="btn btn-outline-secondary" data-viewpass="true" type="button" id="button-addon2"><i class="fa fa-eye"></i></button>
   </div>']);?>
 
 				<?php echo $this->forms->checkbox([

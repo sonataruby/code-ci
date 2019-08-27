@@ -2,7 +2,7 @@
   <?php if(isset($data->account_id)){ ?>
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-     <img src="<?php echo site_url($data->avatar);?>" class="img-fluid rounded-circle" style="max-width: 45px;">
+     <img src="<?php echo site_url($data->avatar);?>" class="img-fluid rounded-circle" style="max-width: 32px;">
      Hi! <?php echo $data->firstname;?> <?php echo $data->lastname;?>
    </a>
     <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

@@ -50,6 +50,7 @@
         var base_url = '<?php echo site_url();?>';
         var base_target = 'enterprise';
       </script>
+      
 </head>
 
 
