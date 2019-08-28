@@ -6,18 +6,24 @@ class Dashboard extends FrontEnd {
 	
 	public function index()
 	{
-		$layout = $this->layout_model->getData("home");
+		$offset_layout =  $this->offset_layout("home");
+		if($offset_layout){
+			$view = $offset_layout;
+		}else{
+			$layout = $this->layout_model->getData("home");
+			if($layout){
+				$view = "home-customs";
+			}else{
+				$view = "home";
+			}
+		}
+		
 		$data = [];
 		$data["site_name"] = $this->config->item("site_name");
 		$data["hotline"] = $this->config->item("hotline");
 
 		
-		if($layout){
-			//$layout->content = $this->parser->parse_string($this->shortcode->run($layout->content), $data, true);
-			$this->view('home-customs',["data" => $layout]);
-		}else{
-			$this->view('home',["data" => $data]);
-		}
+		$this->view($view,["data" => $data]);
 
 		
 	}

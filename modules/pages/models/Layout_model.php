@@ -10,6 +10,8 @@ class Layout_model extends Model{
 			$this->db->update($this->table, $arv,["layout_id" => $id]);
 		}else{
 			$arv["store"] = DOMAIN;
+			$arv["language"] = $this->config->item("language");
+			
 			$this->db->insert($this->table, $arv);
 			$id = $this->db->insert_id();
 		}
@@ -27,7 +29,7 @@ class Layout_model extends Model{
 		$settemplate = CMS_THEMEPATH . TEMPLATE_ACTIVE . DIRECTORY_SEPARATOR . "layout" . DIRECTORY_SEPARATOR;
 		if(!is_dir($settemplate)) mkdir($settemplate, 0775, true);
 		$data = $this->getData(false, $id);
-		$settemplate .= $data->url.".php";
+		$settemplate .= $data->url."-".str_replace('.','-',DOMAIN).".php";
 		write_file($settemplate, $data->content,'wb');
 	}
 

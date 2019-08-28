@@ -21,8 +21,7 @@ class Layout extends CPEnterprise {
 				"layout_image" =>  $image->saveImageUpload($this->input->post("layout_image"),"image",@$data->image),
 				"layout_keyword" => $this->input->post("layout_keyword"),
 				"layout_url" => $this->input->post("layout_url"),
-				"layout_content" => $this->clearContent($this->input->post("content")),
-				"language" => $this->config->item("language")
+				"layout_content" => $this->clearContent($this->input->post("content"))
 			];
 			$id = $this->layout_model->create($id, $arv);
 			$this->go("/pages/layout/create/{$id}");

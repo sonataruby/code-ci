@@ -1,3 +1,4 @@
+
 <style type="text/css">
 	.btn-group, .btn-group .btn, .btn-group select, .form-control{
 		border-radius: 0;
@@ -903,6 +904,7 @@
 	var AmiteedClass = <?php echo json_encode($attClass);?>
 </script>
 <!-- jquery-->
+
 <link href="/libs/builder/css/editor.css" rel="stylesheet">
 <link href="/libs/builder/css/line-awesome.css" rel="stylesheet">
 <link href="/libs/builder/libs/codemirror/lib/codemirror.css" rel="stylesheet"/>

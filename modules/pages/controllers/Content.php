@@ -9,14 +9,25 @@ class Content extends FrontEnd {
 		
 		$data = $this->pages_model->getData($url);
 
-		$layout = $this->layout_model->getData($data->layout);
+		$offset_layout =  $this->offset_layout($data->layout);
+		if($offset_layout){
+			$view = $offset_layout;
+		}else{
+			$layout = $this->layout_model->getData($data->layout);
+			if($layout){
+
+			}else{
+				$view = "page";
+			}
+		}
+		
 
 		
 		
 		$this->setTitle($data->name)
 			->setDescription($data->description)
 			->setKeyword($data->keyword)
-			->view('page',["data" => $data]);
+			->view($view,["data" => $data]);
 	}
 
 

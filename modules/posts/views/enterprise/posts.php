@@ -2,7 +2,7 @@
 	<h3>Quản lý bài viết <a class="btn btn-primary float-right" href="/posts/enterprise/posts/create?channel=<?php echo $channel;?>" sn-link="true" parent-controller="#posts"><i class="fa fa-plus"></i> Add Posts</a></h3>
 	<hr>
 	<div class="row">
-	<?php foreach (config_item("channel") as $key => $value) { ?>
+	<?php foreach ((array)config_item("channel") as $key => $value) { ?>
 		<div class="col-lg-2 col-sm-6"><div class="card card-body <?php echo ($value->url == $this->input->get("channel") || ($value->url == config_item("default_channel") && !$this->input->get("channel")) ? "channel-active" : "");?>">
 			<a href="/posts/enterprise/posts?channel=<?php echo $value->url;?>">
 				<?php echo $value->name;?>

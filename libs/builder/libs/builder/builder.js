@@ -1001,10 +1001,13 @@ Sonata.Builder = {
 		
 		$("#drag-btn").on("mousedown", function(event) {
 			jQuery("#select-box").hide();
+			
+
 			self.dragElement = self.selectedEl.css("position","");
 			self.isDragging = true;
 			
 			node = self.dragElement.get(0);
+			
 
 			self.dragMoveMutation = {type: 'move', 
 								target: node,
