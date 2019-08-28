@@ -931,9 +931,11 @@
 <script src="/libs/builder/libs/builder/components-server.js"></script>	
 -->
 <script src="/libs/builder/libs/builder/components-bootstrap4.js"></script>	
-<script src="/libs/builder/libs/builder/components-widgets.js"></script>	
+<!-- script src="/libs/builder/libs/builder/components-widgets.js"></script -->	
 
 <!-- blocks-->
+<script src="<?php echo str_replace('api','design',$server_api)."blocks";?>"></script>	
+<!-- script src="/design/blocks"></script -->	
 <script src="/libs/builder/libs/builder/blocks-bootstrap4.js"></script>	
 
 <!-- plugins -->

@@ -7,16 +7,23 @@ use stdClass;
 use \MX_Controller;
 use \Sonata\Forms;
 use \Sonata\Shortcode;
-use \Sonata\Parser;
+
 use \Sonata\Rest;
 use \Sonata\Components;
+use \Sonata\Security;
 class Controller extends MX_Controller {
 
 	public $setLayout = "default";
 	public $channelLayout = false;
 	public $settings = [];
 	public $allowAjax = true;
-	public $header = ["title" => "CMS Blockchain 4.0", "description" => "Advanced cloud hosting platform with 24/7 Expert Support &amp; 8 Datacenter Locations. We will handle caching, transfers, security, updates.", "keyword" => "", "image" => ""];
+	public $store_id = 0;
+	public $header = [
+			"title" => "CMS Blockchain 4.0", 
+			"description" => "Advanced cloud hosting platform with 24/7 Expert Support &amp; 8 Datacenter Locations. We will handle caching, transfers, security, updates.", 
+			"keyword" => "", 
+			"image" => ""
+		];
 	
 	function __construct()
 	{
@@ -36,14 +43,30 @@ class Controller extends MX_Controller {
 			'posts/posts_model',
 			'posts/gallery_model'
 		]);
-		$this->forms = new Forms;
+		
 		$this->domain = strtolower(str_replace(['http://','https://','www.','/'],'', base_url()));
+
+		/*
+		Load Main Config
+		*/
+		if(file_exists(CONFIG_LOCAL . "mainconfig.json")){
+			$json = json_decode(file_get_contents(CONFIG_LOCAL ."mainconfig.json"));
+			foreach ($json as $key => $value) {
+
+				$this->config->set_item($key, isObject($value));
+				$this->settings[$key] = isObject($value);
+			}
+		}
+
+
+		$this->config->set_item("default_channel",CHANNEL_DEFAULT);
+		$this->config->set_item("template",'default');
 
 		if(file_exists(CONFIG_LOCAL . DOMAIN.".json")){
 			$json = json_decode(file_get_contents(CONFIG_LOCAL . DOMAIN.".json"));
 			
 			if(!defined("TEMPLATE_ACTIVE")){
-				define("TEMPLATE_ACTIVE", $json->template);
+				define("TEMPLATE_ACTIVE", (@$json->template ? $json->template : "default"));
 			}
 			$this->config->set_item("default_channel",CHANNEL_DEFAULT);
 			
@@ -58,12 +81,35 @@ class Controller extends MX_Controller {
 			$this->setKeyword(@$json->site_keyword);
 			$this->setImage(@$json->banner);
 		}
+
+
+
+		$this->forms = new Forms;
 		$this->shortcode = new Shortcode;
-		$this->parser = new Parser;
+		$this->parser = $this->load->parser;
 		$this->components = $this->load->components;
+		$this->access = $this->load->access;
 		$this->settings_model->reports();
-		//define("TEMPLATE_ACTIVE","default");
 		
+
+		if(isset($this->config->item("root_domain")->domain) && $this->config->item("root_domain")->domain == DOMAIN){
+			$this->store_id = $this->config->item("root_domain")->store_id;
+		}else{
+			$allow_domain = (array)$this->config->item("allow_domain");
+			if(isset($allow_domain[DOMAIN])){
+				$this->store_id = $allow_domain[DOMAIN];
+			}else{
+				die("Domain not allow");
+			}
+		}
+		
+		$this->menu_model->setStore($this->store_id);
+		$this->settings_model->setStore($this->store_id);
+		$this->layout_model->setStore($this->store_id);
+		$this->pages_model->setStore($this->store_id);
+		$this->catalog_model->setStore($this->store_id);
+		$this->posts_model->setStore($this->store_id);
+		$this->gallery_model->setStore($this->store_id);
 		
 		
 	}

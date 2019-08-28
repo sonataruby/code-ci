@@ -5,14 +5,15 @@ class Settings_model extends Model{
 	private $table = "settings";
 	public function save($arv=[]){
 		foreach ($arv as $key => $value) {
-			$data = $this->db->get_where($this->table,["config_name" => $key, "store" => DOMAIN])->row();
+			
+			$data = $this->db->get_where($this->table,["config_name" => $key, "store" => $this->store_id])->row();
 			
 			$value = is_array($value) ? json_encode($value) : $value;
 
 			if($data){
 				$this->db->update($this->table,["config_value" => $value],["config_id" => $data->config_id]);
 			}else{
-				$this->db->insert($this->table,["config_name" => $key,"config_value" => $value, "language" => $this->config->item("language"), "store" => DOMAIN]);
+				$this->db->insert($this->table,["config_name" => $key,"config_value" => $value, "language" => $this->config->item("language"), "store" => $this->store_id]);
 			}
 		}
 
@@ -22,9 +23,10 @@ class Settings_model extends Model{
 
 	public function getData($language=false, $autoload=false){
 		$language = (!$language ? $this->config->item("language") : $language);
-		$store = DOMAIN;
+		
 		$this->db->where("language", $language);
-		$this->db->where("store", $store);
+		
+		if($this->store_id) $this->db->where("store", $this->store_id);
 		if($autoload){
 			
 			$this->db->where("autoload", $autoload);
@@ -34,13 +36,32 @@ class Settings_model extends Model{
 		foreach ($data as $key => $value) {
 			$arv->{$value->config_name} = $value->config_value;
 		}
+
 		return $arv;
 	}
 
 	public function putDataCache(){
 		$this->load->helper('file');
-		$data = json_encode($this->getData());
+		$getData = $this->getData();
+		$data = json_encode($getData);
 		write_file(CONFIG_LOCAL . strtolower(DOMAIN).".json",$data);
+
+
+		/*
+		Update Store Condig
+		*/
+		$dataStore = $this->db->get("stores")->result();
+		$arv = [];
+		foreach ($dataStore as $key => $value) {
+			if($value->is_root == 1){
+				$arv["root_domain"] = ["domain" => $value->store_domain, "store_id" => $value->store_id];
+			}else{
+				$arv["allow_domain"][$value->store_domain] = $value->store_id;
+			}
+		}
+		$data = json_encode($arv);
+		write_file(CONFIG_LOCAL . "mainconfig.json",$data);
+
 	}
 
 

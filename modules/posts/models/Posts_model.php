@@ -38,6 +38,7 @@ class Posts_model extends Model{
 
 
 	public function getData($url="", $id=false, $prevnext=false, $order=false){
+		
 		if(!$url && !$id) return;
 		if($url){
 			$this->db->where("post_url", $url);

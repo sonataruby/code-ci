@@ -44,7 +44,7 @@ class Layout extends CPEnterprise {
 			$this->layout_model->updatecontent($page_id, ["layout_content" => $content]);
 			exit();
 		}
-		return $this->view("layout-builder", ["page_id" =>$page_id]);
+		return $this->view("layout-builder", ["page_id" =>$page_id, "server_api" => $this->server_api_url]);
 	}
 
 	public function loadcontent($page_id){

@@ -1,9 +1,4 @@
 <section>
-   <div class="container" data-animated="true" data-sequence="150">
-      {components=posts}limit=5&theme=masonry&animated=bounceIn{/components}
-    </div>
-</section>
-    <section class="bg-orange">
 <div class="container">
 
   

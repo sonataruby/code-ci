@@ -8,7 +8,8 @@ use \CI_Model;
 class Model extends CI_Model{
 	public $limit=20;
 	public $total = 0;
-	function __construct()
+	public $store_id =0;
+	function __construct($a=0)
 	{
 		parent::__construct();
 		$this->load->database();
@@ -53,5 +54,9 @@ class Model extends CI_Model{
 		//$str = preg_replace('/\?page=\/+/', '?page=', $str);
 
 		return $str;
+	}
+	public function setStore($id){
+		$this->store_id = $id;
+		
 	}
 }

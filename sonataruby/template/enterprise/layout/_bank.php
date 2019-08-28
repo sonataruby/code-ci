@@ -60,7 +60,13 @@
             display: flex;
             align-items: center;
             justify-content: center; }
-
+        .blocks-list{
+          display: block;
+          width: 100%;
+        }
+        .blocks-list ol li{
+          float: left;
+        }
 
       </style>
 </head>

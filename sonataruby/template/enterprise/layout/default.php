@@ -110,6 +110,19 @@
                 <a class="dropdown-item" href="#">Something else here</a>
               </div>
             </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Tools
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/tools/enterprise/database/reset">Reset Database</a>
+                <a class="dropdown-item" href="/tools/enterprise/database/backups">Backup Database</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li>
+
           </ul>
           <?php $this->components->users("panel");?>
         </div>
@@ -251,6 +264,9 @@
                 </div>
                 <a class="dropdown-item" href="/settings/enterprise/configs/maintain" sn-link="true" parent-controller="#settings"><i class="fa fa-tachometer-alt"></i> Maintain</a>
                 <a class="dropdown-item" href="/settings/enterprise/configs/page404" sn-link="true" parent-controller="#settings"><i class="fa fa-ambulance"></i> Page 404</a>
+
+                
+
 
               </div>
             </li>

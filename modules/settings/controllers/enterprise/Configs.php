@@ -7,7 +7,7 @@ class Configs extends Enterprise {
 	public function __construct()
 	{
 	    parent::__construct();
-	   
+	    $this->settings_model->setStore($this->store_id);
 	}
 
 	public function index(){

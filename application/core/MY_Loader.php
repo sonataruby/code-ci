@@ -4,12 +4,16 @@
 
 require_once CMS_HMVCPATH."Loader.php";
 use \Sonata\Components;
+use \Sonata\Parser;
+use \Sonata\Securityaccess;
 class MY_Loader extends MX_Loader {
     protected $template = 'default';
     protected $_setups = false;
     protected $debug = false;
     protected $register = [];
     public $components = null;
+    public $parser = null;
+    public $access = null;
 	/** Load a module view **/
     function __construct()
     {
@@ -19,6 +23,8 @@ class MY_Loader extends MX_Loader {
         //$this->config->set_item("base_url",BASE_URL);
         //$this->config->set_item("index_page","");
         if(!$this->components) $this->components = new Components;
+        if(!$this->parser) $this->parser = new Parser;
+        if(!$this->access) $this->access = new Securityaccess;
 
     }
     public function setTemplate($arv=""){

@@ -9,7 +9,7 @@ class Layout_model extends Model{
 		if($id){
 			$this->db->update($this->table, $arv,["layout_id" => $id]);
 		}else{
-			$arv["store"] = DOMAIN;
+			$arv["store"] = $this->store_id;
 			$arv["language"] = $this->config->item("language");
 			
 			$this->db->insert($this->table, $arv);
@@ -20,6 +20,7 @@ class Layout_model extends Model{
 	}
 	public function updatecontent($id=false, $arv=[]){
 		$this->db->update($this->table, $arv,["layout_id" => $id]);
+		$this->cacheLayout($id);
 		return $id;
 	}
 
@@ -45,7 +46,7 @@ class Layout_model extends Model{
 		}
 		$language = ($language ? $language : $this->config->item("language"));
 		$this->db->where("language", $language);
-		$this->db->where("store", DOMAIN);
+		if($this->store_id) $this->db->where("store", $this->store_id);
 		$this->db->select("layout_id as id, layout_name as name, layout_image as image, layout_description as description, layout_keyword as keyword, layout_url as url, layout_content as content");
 		$data = $this->db->get($this->table)->row();
 
@@ -73,22 +74,22 @@ class Layout_model extends Model{
 	public function getList($language=false){
 		$language = ($language ? $language : $this->config->item("language"));
 		$this->db->where("language", $language);
-		$this->db->where("store", DOMAIN);
+		if($this->store_id) $this->db->where("store", $this->store_id);
 		$this->db->select("layout_id as id, layout_name as name, layout_image as image, layout_description as description, layout_keyword as keyword, layout_url as url, layout_content as content");
 		return $this->db->get($this->table)->result();
 	}
 
 
 	private function makeURL($name, $url, $id=false){
-		if(trim($url)){
+		if(trim($url) != ""){
 			$name = $url;
 		}
 		if($id > 0){
 			$this->db->where("layout_id !=",$id);
 		}
-		$url = url_title(convert_accented_characters($name),"_",true);
+		$url = url_title(convert_accented_characters($name),"-",true);
 		$this->db->where("layout_url", $url);
-		$this->db->where("store", DOMAIN);
+		if($this->store_id) $this->db->where("store", $this->store_id);
 		$count = $this->db->get($this->table)->num_rows();
 
 		return $url.($count > 0 ? "_".$count : "");
@@ -101,7 +102,7 @@ class Layout_model extends Model{
 		}else{
 			$language = (@$arv["language"] ? $arv["language"] : $this->config->item("language"));
 			$arv["language"] = $language;
-			$arv["store"] = DOMAIN;
+			if($this->store_id) $arv["store"] = $this->store_id;
 			$this->db->insert("widgets", $arv);
 			$id = $this->db->insert_id();
 		}
@@ -111,7 +112,7 @@ class Layout_model extends Model{
 	public function windget_result($language=false, $filter = ""){
 		$language = ($language ? $language : $this->config->item("language"));
 		$this->db->where("language", $language);
-		$this->db->where("store", DOMAIN);
+		if($this->store_id) $this->db->where("store", $this->store_id);
 
 		if($filter){
 			$this->db->like("winget_display",$filter);
