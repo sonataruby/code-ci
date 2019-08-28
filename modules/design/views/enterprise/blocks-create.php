@@ -8,7 +8,7 @@
 <div class="row">
 	<div class="col-lg-9 col-sm-12">
 		<div class="hbox">
-			<textarea class="form-control" name="block_content" rows="24"><?php echo $data->block_content;?></textarea>
+			<textarea class="form-control" name="block_content" rows="24"><?php echo @$data->block_content;?></textarea>
 		</div>
 	</div>
 	<div class="col-lg-3 col-sm-12">
