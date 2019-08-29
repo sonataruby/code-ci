@@ -18,7 +18,7 @@ class Core extends Enterprise {
 		$output = "Server không hỗ trợ cập nhập trực tuyến";
 		if(function_exists('shell_exec'))
 		{
-			$output = shell_exec("cd "+FCPTAH+" & git pull") ;
+			$output = shell_exec("cd " . FCPATH . " & git pull") ;
 		}
 		$this->view("update-report",["data" => $output]);
 	}
