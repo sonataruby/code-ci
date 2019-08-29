@@ -8,7 +8,7 @@
 <div class="row">
 	<div class="col-lg-9 col-sm-12">
 		<div class="hbox">
-			<textarea class="form-control" name="block_content" rows="24" id="textarea"><?php echo @$data->block_content;?></textarea>
+			<div name="block_content" rows="24" id="block_content"><?php echo @$data->block_content;?></div>
 		</div>
 	</div>
 	<div class="col-lg-3 col-sm-12">
@@ -42,4 +42,4 @@
 <?php libs_url('js/bootstrap-iconpicker-iconset-all.js',['name' => "Font Icoin Picker"]);?>
 <?php libs_url('js/bootstrap-iconpicker.js',['name' => "Font Icoin Picker"]);?>
 <?php libs_url('css/bootstrap-iconpicker.css',['name' => "Font Icoin Picker"]);?>
-<?php addon("addon/editer",["target" => "#textarea", "inline" => "false","form" => "#savedata"]);?>
+<?php addon("addon/editer",["target" => "#block_content", "inline" => "false","form" => "#savedata"]);?>
