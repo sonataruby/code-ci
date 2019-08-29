@@ -216,10 +216,10 @@
                 <div class="menuHeader">
                   <h4>Custom Design</h4>
                 </div>
-                <a class="dropdown-item" href="/settings/enterprise/menu/manager" sn-link="true" parent-controller="#templates">Quản lý Menu</a>
+                <a class="dropdown-item" href="/settings/enterprise/menu/manager" parent-controller="#templates">Quản lý Menu</a>
                 <a class="dropdown-item" href="/settings/enterprise/template/header" sn-link="true" parent-controller="#templates">Header & Footer</a>
-                <a class="dropdown-item" href="/settings/enterprise/template/blocks" sn-link="true" parent-controller="#templates">Block Manager</a>
-                <a class="dropdown-item" href="/settings/enterprise/template/css" sn-link="true" parent-controller="#templates">Điều chỉnh CSS</a>
+                <a class="dropdown-item" href="/settings/enterprise/template/blocks" parent-controller="#templates">Block Manager</a>
+                <a class="dropdown-item" href="/settings/enterprise/template/css" parent-controller="#templates">Điều chỉnh CSS</a>
                 
 
               </div>

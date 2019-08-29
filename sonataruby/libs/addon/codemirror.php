@@ -30,11 +30,11 @@
   <?php } ?>
 </div>
 </script>
-
+<?php echo libs_url("/js/codemirror.js");?>
+<?php echo libs_url("/js/js/xml.js");?>
 <script type="text/javascript">
 	jQuery(document).ready(function(){
-		getScripts(["/libs/js/codemirror.js","/libs/js/xml.js"], function () {
-			var _target = document.getElementById("<?php echo str_replace('#','',$target);?>");
+		var _target = document.getElementById("<?php echo str_replace('#','',$target);?>");
 		    var editor = CodeMirror.fromTextArea(_target, {
 		      lineNumbers: true,
 		      lineWrapping: true,
@@ -63,8 +63,7 @@
 			    	editor.replaceSelection($(this).attr("data-append"));
 			    });
 			});
-
-		});
 		
 	});
   </script>
+  

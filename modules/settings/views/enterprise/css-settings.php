@@ -4,11 +4,12 @@
 <br>
 <div class="border">
 	
-<textarea id="textarea" rows="32" class="form-control" name="content"><?php echo @$content;?></textarea>
+<textarea id="content" rows="32" class="form-control" name="content"><?php echo @$content;?></textarea>
 </div>
 <?php echo form_close();?>
 
 <?php
-//addon("addon/codemirror",["target" => "#textarea", "form" => "#savedata", "tools" => "true", "libs" => "default", "tools_desktop" => ".tools_desktop"]);
+addon("addon/codemirror",["target" => "#content", "form" => "#savedata", "tools" => "true", "libs" => "default", "tools_desktop" => ".tools_desktop"]);
 
 ?>
+<iframe id="IF_savedata" name="IF_savedata" style="border:0px; height: 1px; width: 1px; margin-top: -1000vh;"></iframe>

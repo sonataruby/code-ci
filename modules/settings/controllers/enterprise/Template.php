@@ -135,13 +135,14 @@ class Template extends Enterprise {
 
 	public function css(){
 		$this->load->helper('file');
-		$file = read_file(CMS_THEMEPATH . TEMPLATE_ACTIVE . "/styles.css");
+		$file = CMS_THEMEPATH . TEMPLATE_ACTIVE . "/styles.css";
 		if($this->isPost()){
 			$data = $this->input->post("content");
+			
 			write_file($file, $data);
 			$this->go("settings/enterprise/template/css");
 		}
-		$this->view("css-settings",["content" => $file]);
+		$this->view("css-settings",["content" => read_file($file)]);
 	}
 
 
