@@ -42,4 +42,4 @@
 <?php libs_url('js/bootstrap-iconpicker-iconset-all.js',['name' => "Font Icoin Picker"]);?>
 <?php libs_url('js/bootstrap-iconpicker.js',['name' => "Font Icoin Picker"]);?>
 <?php libs_url('css/bootstrap-iconpicker.css',['name' => "Font Icoin Picker"]);?>
-<?php addon("addon/editer",["target" => "#textarea", "inline" => false,"form" => "#savedata"]);?>
+<?php addon("addon/editer",["target" => "#textarea", "inline" => "false","form" => "#savedata"]);?>
