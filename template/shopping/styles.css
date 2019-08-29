@@ -1,3 +1,17 @@
 body {
 	
 }
+.tab-primary .nav-link{
+	border-radius: 0;
+	border:0;
+
+}
+.tab-primary .nav-link.active{
+	/*border-bottom: 5px solid var(--primary);*/
+	background-color: var(--primary);
+	color:#FFF;
+}
+.tab-content{
+	padding-top:30px;
+	min-height: 300px;
+}
