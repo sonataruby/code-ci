@@ -416,6 +416,7 @@ Sonata.Components.add("components/product", {
         inputtype: TextInput
     }]
 });
+/*
 Sonata.Components.add("components/slider", {
     name: "Slider",
     classes: ["component_slider"],
@@ -438,3 +439,4 @@ Sonata.Components.add("components/slider", {
         inputtype: TextInput
     }]
 });
+*/

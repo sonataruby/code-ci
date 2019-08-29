@@ -1,4 +1,4 @@
-<?php echo form_open();?>
+<?php echo form_open(false, ["id" => "savedata"]);?>
 <div class="hbox">
 	<h3>Design Block
 		<button type="submit" class="btn btn-primary float-right">Save</button>
@@ -8,7 +8,7 @@
 <div class="row">
 	<div class="col-lg-9 col-sm-12">
 		<div class="hbox">
-			<textarea class="form-control" name="block_content" rows="24"><?php echo @$data->block_content;?></textarea>
+			<textarea class="form-control" name="block_content" rows="24" id="textarea"><?php echo @$data->block_content;?></textarea>
 		</div>
 	</div>
 	<div class="col-lg-3 col-sm-12">
@@ -35,3 +35,11 @@
 	</div>
 </div>
 <?php echo form_close();?>
+
+<?php libs_url('js/exif.js',['name' => "Font Icoin Picker"]);?>
+<?php libs_url('js/croppie.js',['name' => "Font Icoin Picker"]);?>
+<?php libs_url('css/croppie.css',['name' => "Font Icoin Picker"]);?>
+<?php libs_url('js/bootstrap-iconpicker-iconset-all.js',['name' => "Font Icoin Picker"]);?>
+<?php libs_url('js/bootstrap-iconpicker.js',['name' => "Font Icoin Picker"]);?>
+<?php libs_url('css/bootstrap-iconpicker.css',['name' => "Font Icoin Picker"]);?>
+<?php addon("addon/editer",["target" => "#textarea", "form" => "#savedata"]);?>

@@ -230,7 +230,7 @@ Sonata.Blocks.add("bootstrap4/slider-header", {
 	dragHtml: '<img src="' + Sonata.baseUrl + 'icons/product.png">',        
     image: "https://startbootstrap.com/assets/img/screenshots/snippets/full-slider.jpg",
     html:`
-<header class="slider">
+<section class="slider">
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
       <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -281,7 +281,7 @@ Sonata.Blocks.add("bootstrap4/slider-header", {
   background-size: cover;
 }
 </style>  
-</header>
+</section>
 `,
 });
 
@@ -291,7 +291,7 @@ Sonata.Blocks.add("bootstrap4/video-header", {
 	dragHtml: '<img src="' + Sonata.baseUrl + 'icons/image.svg">',        
     image: "https://startbootstrap.com/assets/img/screenshots/snippets/video-header.jpg",
     html:`
-<header class="video">
+<section class="video">
   <div class="overlay"></div>
   <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
     <source src="https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4" type="video/mp4">
@@ -304,9 +304,6 @@ Sonata.Blocks.add("bootstrap4/video-header", {
       </div>
     </div>
   </div>
-</header>
-
-<section class="my-5">
   <div class="container">
     <div class="row">
       <div class="col-md-8 mx-auto">
@@ -315,6 +312,7 @@ Sonata.Blocks.add("bootstrap4/video-header", {
     </div>
   </div>
 </section>
+
 <style>
 header.video {
   position: relative;
@@ -782,7 +780,7 @@ Sonata.Blocks.add("bootstrap4/portfolio-four-column", {
 
   <div class="card-group">
     <div class="card">
-      <img json-image src="..." class="card-img-top" alt="...">
+      <img json-image src="/libs/builder/image/p-1.png" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title" json-name><a json-url href="/{channel}/{url}.html">Card title</a></h5>
         <p class="card-text" json-description>This card has supporting text below as a natural lead-in to additional content.</p>

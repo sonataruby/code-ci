@@ -93,7 +93,9 @@
                 Modules
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
+                <?php foreach((array)config_item("module") as $key => $value){?>
+                  <a class="dropdown-item" href="#"><?php echo $key;?></a>
+                <?php } ?>
                 <a class="dropdown-item" href="#">Another action</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">Something else here</a>
@@ -119,7 +121,7 @@
                 <a class="dropdown-item" href="/tools/enterprise/database/reset">Reset Database</a>
                 <a class="dropdown-item" href="/tools/enterprise/database/backups">Backup Database</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
+                <a class="dropdown-item" href="/tools/enterprise/core/update">Update Core</a>
               </div>
             </li>
 
