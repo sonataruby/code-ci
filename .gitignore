@@ -11,3 +11,4 @@ templates/*/layout
 node_modules
 node_modules_backup
 backup
+template
