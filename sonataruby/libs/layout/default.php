@@ -60,7 +60,7 @@
             });
         }
       </script>
-      <?php libs_url("js/jquery-ui.js");?>
+      
       <?php libs_url('js/app.js',['name' => "Bootstrap & Jquery"]);?>
       <?php echo template_url("styles.css");?>
 </head>

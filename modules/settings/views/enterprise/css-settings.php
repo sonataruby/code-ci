@@ -1,5 +1,5 @@
 
-<?php echo form_open("",["id" => "savedata"]);?>
+<?php echo form_open("",["id" => "savedata", "target" => "IF_savedata"]);?>
 <button type="submit" class="btn btn-primary">Save</button>
 <br>
 <div class="border">

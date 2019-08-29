@@ -1,10 +1,10 @@
 <section class="team-2 bg-light">
       <div class="container">
-        <div class="row ">
-          <div class="col-4 justify-content-start">
+        <div class="row align-items-center">
+          <div class="col-4">
             <h1>Shopping Card</h1>
             <h3>Sales Off 50%</h3>
-            <a class="btn btn-primary btn-lg">Shop Now</a>
+            <a class="btn btn-primary btn-lg" href="#">Shop Now</a>
           </div>
           <div class="col-8 justify-content-end">
             <img src="http://www.vvveb.com/electro-html/img/ipad.png" class="w-100">
