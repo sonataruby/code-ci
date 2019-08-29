@@ -113,6 +113,7 @@
           if($("div.second-toolbar").length > 0){
             $("div.second-toolbar").remove();
           }
+          $('p[data-f-id="pbf"]').remove();
         }
       }
       //iframeStyleFiles : ['https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css']
