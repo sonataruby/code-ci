@@ -13,7 +13,7 @@
 			]);?>
 		</div>
 		<div class="hbox border" style="min-height: 70vh;">
-			<div id="textarea" name="content"><?php echo @$data->content;?></div>
+			<div id="content" name="content"><?php echo (@$data->content ? @$data->content : "<span style=\"font-size:48px;\">T</span>ext content here");?></div>
 		</div>
 	</div>
 	<div class="col-lg-3 col-sm-12 sticky-top">
@@ -138,4 +138,4 @@
 	
 
 </script>
-<?php addon("addon/editer",["target" => "#textarea", "form" => "#savedata"]);?>
+<?php addon("addon/editer",["target" => "#content", "form" => "#savedata"]);?>

@@ -1,5 +1,5 @@
 <div class="hbox">
-	<h3>Quản lý bài viết <a class="btn btn-primary float-right" href="/posts/enterprise/posts/create?channel=<?php echo $channel;?>" sn-link="true" parent-controller="#posts"><i class="fa fa-plus"></i> Add Posts</a></h3>
+	<h3>Quản lý bài viết <a class="btn btn-primary float-right" href="/posts/enterprise/posts/create?channel=<?php echo $channel;?>" parent-controller="#posts"><i class="fa fa-plus"></i> Add Posts</a></h3>
 	<hr>
 	<div class="row">
 	<?php foreach ((array)config_item("channel") as $key => $value) { ?>
@@ -54,8 +54,8 @@
 				<td><?php echo $value->views;?></td>
 				<td></td>
 				<td class="text-right">
-					<a class="btn btn-primary" href="/posts/enterprise/posts/create/<?php echo $value->id;?>?channel=<?php echo $value->channel;?>&ref=<?php echo getRef();?>" sn-link="true" parent-controller="#posts">Edit</a>
-					<a class="btn btn-primary" href="/posts/enterprise/posts/deletepost/<?php echo $value->id;?>?channel=<?php echo $value->channel;?>&ref=<?php echo getRef();?>" sn-link="true" parent-controller="#posts">Delete</a>
+					<a class="btn btn-primary" href="/posts/enterprise/posts/create/<?php echo $value->id;?>?channel=<?php echo $value->channel;?>&ref=<?php echo getRef();?>" parent-controller="#posts">Edit</a>
+					<a class="btn btn-primary" href="/posts/enterprise/posts/deletepost/<?php echo $value->id;?>?channel=<?php echo $value->channel;?>&ref=<?php echo getRef();?>"  parent-controller="#posts">Delete</a>
 				</td>
 			</tr>
 			<?php } ?>

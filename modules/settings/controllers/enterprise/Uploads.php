@@ -31,7 +31,7 @@ class Uploads extends Enterprise {
 		{
 			$data = $this->upload->data();
 			$image = str_replace(FCPATH,'',$data["full_path"]);
-			echo stripslashes(json_encode(["link" => site_url($image)]));
+			echo stripslashes(json_encode(["link" => site_url($image), "location" => $image]));
 		}
 	}
 

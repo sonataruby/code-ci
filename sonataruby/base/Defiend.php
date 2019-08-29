@@ -179,7 +179,14 @@ if(!function_exists("image_raito")){
 if(!function_exists("addon")){
 	function addon($file="", $arv=[]){
 		if(!$file) return;
-		return get_instance()->load->view($file, $arv);
+		if($file == "addon/editer"){
+			$default = "tinymce";
+			$file = str_replace('editer',$default, $file);
+			return get_instance()->load->view($file, $arv);
+		}else{
+			return get_instance()->load->view($file, $arv);
+		}
+		
 	}
 }
 
