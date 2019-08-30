@@ -50,26 +50,35 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
       <![endif]-->
       <script type="text/javascript">(function(w,d,u){w.readyQ=[];w.bindReadyQ=[];function p(x,y){if(x=="ready"){w.bindReadyQ.push(y);}else{w.readyQ.push(x);}};var a={ready:p,bind:p};w.$=w.jQuery=function(f){if(f===d||f===u){return a}else{p(f)}}})(window,document)</script>
+      <style type="text/css">
+        body,html {
+          height: 100%;
+          background-color: #f2f2f2;
+        }
+      </style>
       
 </head>
 
 
   <body class="app" itemscope itemtype="http://schema.org/WebPage">
   
-  <div class="container" style="max-width: 680px;">
+  <div class="container h-100 d-flex  align-items-center justify-content-center" style="max-width: 680px;">
+    
+      <div class="w-100">
     <div class="card">
       <div class="card-body">
         <?php echo form_open();?>
           <h5>Administrator</h5>
+          <hr>
           <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="text" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            <label for="exampleInputEmail1"><?php echo lang("email");?></label>
+            <input type="text" name="email" class="form-control" placeholder="<?php echo lang("enter_email");?>">
+            <small id="emailHelp" class="form-text text-muted">Email người quản lý</small>
           </div>
 
           <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            <label for="exampleInputPassword1"><?php echo lang("password");?></label>
+            <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="<?php echo lang("enter_password");?>">
           </div>
           
           
@@ -117,6 +126,8 @@
           <button type="submit" class="btn btn-primary">Install</button>
         </form>
       </div>
+    </div>
+    
     </div>
   </div>
   

@@ -10,11 +10,12 @@ class Install extends MX_Controller{
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->helper(['date','cookie','url','form','string','text']);
-		$this->load->library(['session','email','user_agent','form_validation']);
-		
 		define("IS_FRONTEND",true);
 		$this->validateInstall();
+		$this->load->helper(['date','cookie','url','form','string','text']);
+		$this->load->library(['session','email','user_agent','form_validation']);
+		$this->lang->load("install");
+		
 	}
 
 	private function validateInstall(){
@@ -24,7 +25,7 @@ class Install extends MX_Controller{
 		require_once $file;
 		
 		if(isset($db[$active_group]["install"]) && $db[$active_group]["install"]  === TRUE){
-			die("CMS Ready install");
+			die("CMS Ready install, pls remove <b>{$file}</b> before re install");
 		}
 		
 	}
@@ -91,6 +92,23 @@ $db["default"] = array('."\n\t".implode($data, ",\n\t")."\n".');';
 		        $password = $this->input->post("password");
 		        $this->load->model(['account/account_model']);
 		        $this->account_model->setAccount($email, $password,1, "enterprise");
+
+		        /*
+				Write allow domain install
+		        */
+				$this->db->insert("stores",["store_domain" => DOMAIN,"is_root" => 1]);
+				$dataStore = $this->db->get("stores")->result();
+				$arv = [];
+				foreach ($dataStore as $key => $value) {
+					if($value->is_root == 1){
+						$arv["root_domain"] = ["domain" => $value->store_domain, "store_id" => $value->store_id];
+					}else{
+						$arv["allow_domain"][$value->store_domain] = $value->store_id;
+					}
+				}
+				$data = json_encode($arv);
+				write_file(CONFIG_LOCAL . "mainconfig.json",$data);
+
 		        return true;
 		        
 		       
