@@ -56,6 +56,13 @@ class Controller extends MX_Controller {
 				$this->config->set_item($key, isObject($value));
 				$this->settings[$key] = isObject($value);
 			}
+		}else{
+			$readdb = $this->db->get_where("stores",["store_domain" => DOMAIN, "is_root" => 1])->row();
+
+			if($readdb){
+				$this->config->set_item("root_domain", json_decode(json_encode(["domain" => $readdb->store_domain, "store_id" => $readdb->store_id])));
+			}
+			
 		}
 
 
