@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 27, 2019 at 10:03 PM
+-- Generation Time: Aug 30, 2019 at 10:38 AM
 -- Server version: 5.7.26
 -- PHP Version: 7.2.20
 
@@ -90,30 +90,6 @@ CREATE TABLE `catalog` (
   `status` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Dumping data for table `catalog`
---
-
-INSERT INTO `catalog` (`catalog_id`, `catalog_name`, `catalog_url`, `catalog_parent`, `created_date`, `catalog_content`, `catalog_sort`, `show_menu`, `show_header`, `show_dashboard`, `language`, `channel`, `status`) VALUES
-(1, 'Category', 'category', 0, '0000-00-00 00:00:00', '', 1, 0, 0, 0, 'english', '', 0),
-(2, 'Con voi', 'con-voi', 0, '0000-00-00 00:00:00', '', 2, 0, 1, 1, 'english', '', 0),
-(3, 'Con heo', 'con-heo', 0, '0000-00-00 00:00:00', '', 3, 0, 0, 0, 'english', '', 0),
-(5, 'Con bo', 'con-bo', 0, '0000-00-00 00:00:00', '', 3, 0, 1, 1, 'english', '', 0),
-(6, 'Catalog Name', 'catalog-name', 3, '0000-00-00 00:00:00', '', 1, 0, 0, 0, 'english', '', 0),
-(7, 'Catalog Name', 'catalog-name', 0, '0000-00-00 00:00:00', '', 4, 0, 0, 0, 'english', '', 0),
-(8, 'Catalog Name', 'catalog-name', 5, '0000-00-00 00:00:00', '', 1, 0, 0, 0, 'english', '', 0),
-(14, 'Tin kinh tế', 'tin-kinh-te', 0, '0000-00-00 00:00:00', '', 0, 0, 0, 0, 'english', 'blogs', 0),
-(15, 'Bơm Hơi', 'bom-hoi', 0, '0000-00-00 00:00:00', '', 0, 0, 0, 0, 'english', 'products', 0),
-(16, 'Tin khoa học', 'tin-khoa-hoc', 0, '0000-00-00 00:00:00', '', 0, 0, 0, 0, 'english', 'blogs', 0),
-(17, 'Pháp luật', 'phap-luat', 0, '0000-00-00 00:00:00', '', 0, 0, 0, 0, 'english', 'blogs', 0),
-(18, 'Xã hội', 'xa-hoi', 0, '0000-00-00 00:00:00', '', 0, 0, 0, 0, 'english', 'blogs', 0),
-(19, 'Thời sự', 'thoi-su', 0, '0000-00-00 00:00:00', '', 0, 0, 0, 0, 'english', 'blogs', 0),
-(20, 'Hướng dẫn sử dụng', 'huong-dan-su-dung', 0, '0000-00-00 00:00:00', '', 0, 0, 0, 0, 'english', 'docs', 0),
-(21, 'Tài liệu phát triển', 'tai-lieu-phat-trien', 0, '0000-00-00 00:00:00', '', 0, 0, 0, 0, 'english', 'docs', 0),
-(22, 'Hỗ trợ khách hàng', 'ho-tro-khach-hang', 0, '0000-00-00 00:00:00', '', 0, 0, 0, 0, 'english', 'docs', 0),
-(23, 'Câu hỏi thường gặp', 'cau-hoi-thuong-gap', 0, '0000-00-00 00:00:00', '', 0, 0, 0, 0, 'english', 'docs', 0),
-(24, 'Vấn đề khác', 'van-dje-khac', 0, '0000-00-00 00:00:00', '', 0, 0, 0, 0, 'english', 'docs', 0);
-
 -- --------------------------------------------------------
 
 --
@@ -127,6 +103,28 @@ CREATE TABLE `comments` (
   `comment_text` text COLLATE utf8_unicode_ci NOT NULL,
   `created_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `design_blocks`
+--
+
+CREATE TABLE `design_blocks` (
+  `block_id` int(10) NOT NULL,
+  `block_name` varchar(255) NOT NULL,
+  `block_content` longtext NOT NULL,
+  `block_keyword` varchar(255) NOT NULL,
+  `block_image` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `design_blocks`
+--
+
+INSERT INTO `design_blocks` (`block_id`, `block_name`, `block_content`, `block_keyword`, `block_image`) VALUES
+(1, 'Team Groups', '<div class=\"container-fluid\">\r\n<div class=\"row\">\r\n<div class=\"col-6 col-sm-12\"><img src=\"http://develop.com/upload/blocks/5d66725d36f51.jpeg\"></div>\r\n<div class=\"col-6 col-sm-12\">Right</div>\r\n</div>\r\n</div>', 'tearmgroup', '/upload/blocks/5d66725d36f51.jpeg'),
+(2, 'Meet Our Team', '<section class=\"team-2\">\r\n      <div class=\"container\">\r\n        <div class=\"row text-center justify-content-center\">\r\n          <div class=\"col-8\">\r\n            <h1>Meet Our Team</h1>\r\n          </div>\r\n        </div>\r\n    \r\n        <div class=\"row-50\"></div>\r\n    \r\n        <div class=\"row text-center justify-content-center\">\r\n          <div class=\"col-sm-3 m-sm-auto\">\r\n            <img alt=\"image\" class=\"img-fluid rounded-circle\" src=\"./imgs/people/4.jpg\">\r\n    \r\n            <h2>Sara Doe</h2>\r\n            <p>Founder</p>\r\n          </div>\r\n    \r\n          <div class=\"col-sm-3 m-sm-auto\">\r\n            <img alt=\"image\" class=\"img-fluid rounded-circle\" src=\"./imgs/people/5.jpg\">\r\n    \r\n            <h2>Sara Doe</h2>\r\n            <p>Founder</p>\r\n          </div>\r\n    \r\n          <div class=\"col-sm-3 m-sm-auto\">\r\n            <img alt=\"image\" class=\"img-fluid rounded-circle\" src=\"./imgs/people/7.jpg\">\r\n    \r\n            <h2>Sara Doe</h2>\r\n    \r\n            <p>Founder</p>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </section>', 'MeetOurTeam', '/upload/blocks/5d667ac4f1c33.jpeg');
 
 -- --------------------------------------------------------
 
@@ -157,15 +155,6 @@ CREATE TABLE `gallery` (
   `created_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Dumping data for table `gallery`
---
-
-INSERT INTO `gallery` (`gallery_id`, `gallery_name`, `gallery_url`, `tags`, `created_date`) VALUES
-(18, 'Ảnh thiên nhiên tháng 12', 'anh-thien-nhien-thang-12', 'parent', '2019-08-01 10:29:52'),
-(19, 'Ảnh thiên nhiên tháng 13', 'anh-thien-nhien-thang-13', '', '2019-08-01 10:29:59'),
-(20, 'Ảnh thiên nhiên tháng 9', 'anh-thien-nhien-thang-9-1', 'anhthiennhen', '2019-08-19 11:59:19');
-
 -- --------------------------------------------------------
 
 --
@@ -181,27 +170,6 @@ CREATE TABLE `gallery_image` (
   `gallery_id` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Dumping data for table `gallery_image`
---
-
-INSERT INTO `gallery_image` (`image_id`, `image_name`, `image_url`, `image_hash`, `image_sorts`, `gallery_id`) VALUES
-(12, 'ethereum.jpg', '/upload/image/gallery/19/ethereum.jpg', '757755199bfb6932476b281167fcb2aa485a69cf', 1, 19),
-(13, 'adsensebannersizes.png', '/upload/image/gallery/18/adsensebannersizes.png', '94689d8556246fb60f85eba1171068a1e1feed06', 1, 18),
-(14, 'Cloud-Hosting-Vs-VPS-Hosting-Banner-1.jpg', '/upload/image/gallery/20/Cloud-Hosting-Vs-VPS-Hosting-Banner-1.jpg', '680373845e006e7adfb4b37e0c68815316dc0542', 1, 20),
-(15, 'crm1-2.jpg', '/upload/image/gallery/19/crm1-2.jpg', '4fc2e8827ec300357acb698387be1337ab217902', 1, 19),
-(16, 'ethereum1.jpg', '/upload/image/gallery/19/ethereum1.jpg', 'd63e8d17ebc64dd3e16ccb4443d86c503e6d20a1', 3, 19),
-(17, 'ethereum.png', '/upload/image/gallery/19/ethereum.png', 'f21cd861cd4e938b211053afde9524ef42dd4eab', 3, 19),
-(18, 'jimdo_web.jpg', '/upload/image/gallery/19/jimdo_web.jpg', 'be34b4eb5eed6ff40ec452db6ad0319bb8d972a3', 5, 19),
-(19, 'jQuery-Fileuploader-Beautiful-and-powerful-jQuery-and-PHP-file-upload-plugin-Innostudio-de.png', '/upload/image/gallery/19/jQuery-Fileuploader-Beautiful-and-powerful-jQuery-and-PHP-file-upload-plugin-Innostudio-de.png', 'aecdd0b3fceb160c413c0c76bc662d307cf6ff08', 6, 19),
-(20, 'ks3Jzrd854dhMEgxxMdXUi-650-80.jpg', '/upload/image/gallery/19/ks3Jzrd854dhMEgxxMdXUi-650-80.jpg', '6aacd39fd5c5151b971289ff526564831160b109', 7, 19),
-(21, 'docker-hub-ubuntu-image.png', '/upload/image/gallery/18/docker-hub-ubuntu-image.png', '942ff7cf29a8f5292e99b9b1ae419425358a05c5', 2, 18),
-(22, 'githook.png', '/upload/image/gallery/18/githook.png', '3b81f1f1baebb90b6817e60b8e311d0720d92115', 3, 18),
-(23, 'vps.png', '/upload/image/gallery/18/vps.png', 'eb2445a96c8453ecc5a821d0c20372c50691f9ae', 4, 18),
-(32, 'best-wbsite-builder-cheap-vps-banner.jpg', '/upload/image/gallery/18/best-wbsite-builder-cheap-vps-banner.jpg', '8b53bb3013c4e73980bc494319ce2eb1a5b0db67', 2, 18),
-(33, 'Cloud-Hosting-Vs-VPS-Hosting-Banner-1.jpg', '/upload/image/gallery/18/Cloud-Hosting-Vs-VPS-Hosting-Banner-1.jpg', '0a6722e35d82433b61296bfbf21acecc1348fc6a', 3, 18),
-(34, 'install_XAMPP.png', '/upload/image/gallery/18/install_XAMPP.png', 'e26c83d79d6e364c34facbe8b2a24bfbb84b0331', 6, 18);
-
 -- --------------------------------------------------------
 
 --
@@ -216,21 +184,8 @@ CREATE TABLE `menu` (
   `menu_link` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `menu_sort` int(10) NOT NULL,
   `language` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `store` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+  `store` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `menu`
---
-
-INSERT INTO `menu` (`menu_id`, `parent_id`, `menu_name`, `menu_icon`, `menu_link`, `menu_sort`, `language`, `store`) VALUES
-(1, 0, 'Trang chủ', 'fas fa-home', 'home', 1, 'english', ''),
-(2, 0, 'Về chúng tôi', '', 'page_2,catalog_2', 2, 'english', ''),
-(3, 0, 'Liên hệ', '', 'page_2', 3, 'english', ''),
-(4, 0, 'Menu 2', '', 'page_1,page_2,catalog_1', 4, 'english', ''),
-(5, 3, 'Menu Name', '', '#', 1, 'english', ''),
-(6, 0, 'Home', '', '', 0, 'english', 'develop.com'),
-(7, 0, 'Templates', '', '', 0, 'english', 'develop.com');
 
 -- --------------------------------------------------------
 
@@ -272,16 +227,6 @@ CREATE TABLE `pages` (
   `status` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Dumping data for table `pages`
---
-
-INSERT INTO `pages` (`page_id`, `parent_id`, `page_name`, `page_description`, `page_keyword`, `page_layout`, `page_url`, `page_content`, `page_icoin`, `page_image`, `page_tag`, `language`, `show_menu`, `status`) VALUES
-(1, 0, 'Khoa 2', NULL, NULL, NULL, 'khoa-2', '<p>fdsa</p><p data-f-id=\"pbf\" style=\"text-align: center; font-size: 14px; margin-top: 30px; opacity: 0.65; font-family: sans-serif;\">Powered by <a href=\"https://www.froala.com/wysiwyg-editor?pb=1\" title=\"Froala Editor\">Froala Editor</a></p>', NULL, '', NULL, 'english', '0', 0),
-(2, 0, 'Page 3', '', '', 'text_layout', 'page-3', '<section><h2>What makes the FastCloud Awesome</h2><p>Performance that exceeds your expectations and features you are about to fall in love with</p><img data-fr-image-pasted=\"true\" src=\"https://media.fastcomet.com/storage/upload/images/static/mpfeatures/website.svg\" alt=\"FastComet Free Domain\" class=\"fr-fic fr-dii\"><h3>Free Domain Forever</h3><p>Register or transfer an existing domain for free. We will renew it for you free of charge forever.</p><img data-fr-image-pasted=\"true\" src=\"https://media.fastcomet.com/storage/upload/images/static/mpfeatures/rocket.svg\" alt=\"FastComet SSD Only-Cloud\" class=\"fr-fic fr-dii\"><h3>SSD-Only Cloud</h3><p>Up to 300% faster access to your files and databases compared to non-SSD hosting providers!</p><img data-fr-image-pasted=\"true\" src=\"https://media.fastcomet.com/storage/upload/images/static/mpfeatures/cloud-server.svg\" alt=\"FastComet Free Cloudflare CDN\" class=\"fr-fic fr-dii\"><h3>Free Cloudflare CDN</h3><p>Distribute your content around the world, so it’s closer to your visitors (speeding up your site).</p><img data-fr-image-pasted=\"true\" src=\"https://media.fastcomet.com/storage/upload/images/static/mpfeatures/server.svg\" alt=\"FastComet Powerd By cPanel\" class=\"fr-fic fr-dii\"><h3>Powered by cPanel</h3><p>The most popular and powerful web hosting control panel for easy point-and-click management of your hosting account.</p><img data-fr-image-pasted=\"true\" src=\"https://media.fastcomet.com/storage/upload/images/static/mpfeatures/backup.svg\" alt=\"FastComet Daily and Weekly Backups\" class=\"fr-fic fr-dii\"><h3>Daily and Weekly Backups</h3><p>Free daily and weekly backups of your data to keep you safe. When others charge for this, we don’t!</p><img data-fr-image-pasted=\"true\" src=\"https://media.fastcomet.com/storage/upload/images/static/mpfeatures/support.svg\" alt=\"FastComet Free 24/7 Priority Support\" class=\"fr-fic fr-dii\"><h3>Free 24/7 Priority Support</h3><p>Because there is no great hosting without great technical support that cares about your website.</p><img data-fr-image-pasted=\"true\" src=\"https://media.fastcomet.com/storage/upload/images/static/mpfeatures/price.svg\" alt=\"FastComet Fixed Prices No Surprises\" class=\"fr-fic fr-dii\"><h3>Fixed Prices, No Surprises</h3><p>Same price no matter where you are from, your local currency or where you host your website.</p><img data-fr-image-pasted=\"true\" src=\"https://media.fastcomet.com/storage/upload/images/static/mpfeatures/money-back.svg\" alt=\"FastComet Money Back Guarantee\" class=\"fr-fic fr-dii\"><h3>100% Satisfaction or Money Back Guarantee</h3><p>45 days money-back guarantee for Cloud Shared Hosting and 7 days for VPS/DS Servers.</p></section>', 'fas fa-heart', '/upload/image/5d3fc5ab431c7.png', '', 'english', '0', 0),
-(3, 0, 'Con heo page', '', '', '_bank', 'con-heo-page', '', 'fas fa-address-book', '', '', 'english', '0', 0),
-(4, 0, 'Contact Page', '', '', '0', 'contact-page', '', '', '', '', 'english', '', 0);
-
 -- --------------------------------------------------------
 
 --
@@ -297,7 +242,7 @@ CREATE TABLE `pages_layout` (
   `layout_content` longtext COLLATE utf8_unicode_ci NOT NULL,
   `layout_url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `language` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `store` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+  `store` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -305,9 +250,8 @@ CREATE TABLE `pages_layout` (
 --
 
 INSERT INTO `pages_layout` (`layout_id`, `layout_name`, `layout_image`, `layout_description`, `layout_keyword`, `layout_content`, `layout_url`, `language`, `store`) VALUES
-(1, 'Text Layout', '', '', '', '<section class=\"services\" style=\"padding-top: 30px; padding-bottom: 30px;\" data-animated=\"true\" data-sequence=\"100\">\r\n    <div class=\"container\">\r\n      <div class=\"row d-flex\">\r\n      <div class=\" col-sm-12 flex-box hidden-xs col-lg-4\">\r\n         <div class=\"card bg-gray-dark\">{components=catalog}icon=fa fa-plus-circle{/components}</div>\r\n      </div>\r\n        \r\n      <div class=\"col-lg-8 col-sm-12\">\r\n        <div class=\"row flex-box-card\">\r\n              <div class=\"col-lg-6 col-sm-12 mb-3 text-center col-md-6\" data-animated-action=\"wiggle\">\r\n               <div class=\"card card-body\">\r\n                  <div class=\"text-center\"><i class=\"fa fa-home fa-3x border p-3 rounded\" style=\"background-color: rgb(127, 0, 127); color: rgb(255, 255, 255);\"></i></div>\r\n                  <h3>Cung cấp đồng hồ lưu lượng </h3>\r\n                  <p>Chuyên cung cấp các sản phẩm đồng hồ lưu lượng trên toàn quốc</p>\r\n                </div>\r\n              </div>\r\n              <div class=\"col-lg-6 col-sm-12 mb-3 text-center col-md-6\" data-animated-action=\"rotateInDownLeft\">\r\n                  <div class=\"card card-body\">\r\n                      <div class=\"text-center\"><i class=\"fa fa-home fa-3x border p-3 rounded\"></i></div>\r\n                      <h3>Cung cấp đồng hồ nước</h3>\r\n                      <p>Chuyên cung cấp các sản phẩm đồng hồ nước trên toàn quốc</p>\r\n                  </div>\r\n              </div>\r\n\r\n              <div class=\"col-lg-6 col-sm-12 text-center col-md-6\">\r\n                <div class=\"card card-body\">\r\n                    <div class=\"text-center\"><i class=\"fa fa-home fa-3x border p-3 rounded\"></i></div>\r\n                    <h3>Cung cấp van công nghiệp</h3>\r\n                    <p>Chuyên cung cấp các sản phẩm van công nghiệp  trên toàn quốc</p>\r\n                </div>\r\n              </div>\r\n\r\n              <div class=\"col-lg-6 col-sm-12 text-center col-md-6\">\r\n                <div class=\"card card-body\">\r\n                    <div class=\"text-center\"><i class=\"fa fa-home fa-3x border p-3 rounded\"></i></div>\r\n                    <h3>Cung cấp máy bơm</h3>\r\n                    <p>Chuyên cung cấp các sản phẩm máy bơm công nghiệp trên toàn quốc</p>\r\n                </div>\r\n              </div>\r\n        </div>\r\n        </div>\r\n        \r\n        </div>\r\n </div>\r\n</section>\r\n<section data-json-url=\"http://localhost/api/public/app/post\" data-json=\"true\" data-animated=\"true\" data-sequence=\"150\" style=\"background-image: url(http://pixelcog.github.io/parallax.js/img/reflection-nebula-750x763.jpg);\" data-parallax=\"scroll\">\r\n<div class=\"container mt-4 mb-4\">\r\n\r\n  \r\n  <h1 class=\"my-4\">Page Heading\r\n    <small>Secondary Text</small>\r\n  </h1>\r\n\r\n  <div class=\"card-group mb-4\">\r\n    <div class=\"card\">\r\n      <img json-image=\"\" src=\"\" class=\"card-img-top\" alt=\"...\">\r\n      <div class=\"card-body\">\r\n        <h5 class=\"card-title\" json-name=\"\">Điều chỉnh giao diện</h5>\r\n        <p class=\"card-text\" json-description=\"\">Nhập nội dung bài viết</p>\r\n        <p class=\"card-text\"><small class=\"text-muted\">Last updated 3 mins ago</small></p>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"card\" style=\"background-color: rgb(57, 136, 223); color: rgb(251, 245, 245); opacity: 0.9;\" data-animated-action=\"rotateInDownRight\">\r\n      <img json-image=\"\" src=\"\" class=\"card-img-top\" alt=\"...\">\r\n      <div class=\"card-body\">\r\n        <h5 class=\"card-title\" json-name=\"\">Cài đặt & ứng dụng</h5>\r\n        <p class=\"card-text\" json-description=\"\">Nhập nội dung bài viết</p>\r\n        <p class=\"card-text\"><small class=\"text-muted\">Last updated 3 mins ago</small></p>\r\n      </div>\r\n    </div>\r\n\r\n\r\n    <div class=\"card\">\r\n      <img json-image=\"\" src=\"/upload/image/5d55bf91a6d99.png\" class=\"card-img-top\" alt=\"...\">\r\n      <div class=\"card-body\">\r\n        <h5 class=\"card-title\" json-name=\"\">Test san pham 1</h5>\r\n        <p class=\"card-text\" json-description=\"\"></p>\r\n        <p class=\"card-text\"><small class=\"text-muted\">Last updated 3 mins ago</small></p>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"card\">\r\n      <img json-image=\"\" src=\"/upload/image/5d538f9a305bb.png\" class=\"card-img-top\" alt=\"...\">\r\n      <div class=\"card-body\">\r\n        <h5 class=\"card-title\" json-name=\"\">Con bo</h5>\r\n        <p class=\"card-text\" json-description=\"\"></p>\r\n        <p class=\"card-text\"><small class=\"text-muted\">Last updated 3 mins ago</small></p>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"card-group mb-4\">\r\n    <div class=\"card\">\r\n      \r\n      <div class=\"card-body\">\r\n        <h5 class=\"card-title\" json-name=\"\">Bai viet 123</h5>\r\n        <p class=\"card-text\" json-description=\"\"></p>\r\n        <p class=\"card-text\"><small class=\"text-muted\">Last updated 3 mins ago</small></p>\r\n      </div>\r\n      <img json-image=\"\" src=\"/upload/image/5d481af7727f0.png\" class=\"card-img-bottom\" alt=\"...\">\r\n    </div>\r\n\r\n    <div class=\"card\">\r\n      <img json-image=\"\" src=\"/upload/image/5d4164beea4fd.png\" class=\"card-img-top\" alt=\"...\">\r\n      <div class=\"card-body\">\r\n        <h5 class=\"card-title\" json-name=\"\">Bai viet 17</h5>\r\n        <p class=\"card-text\" json-description=\"\"></p>\r\n        <p class=\"card-text\"><small class=\"text-muted\">Last updated 3 mins ago</small></p>\r\n      </div>\r\n    </div>\r\n\r\n\r\n    <div class=\"card\">\r\n      <img json-image=\"\" src=\"/upload/image/5d411ceec35cc.png\" class=\"card-img-top\" alt=\"...\">\r\n      <div class=\"card-body\">\r\n        <h5 class=\"card-title\" json-name=\"\">Test noi dung 123</h5>\r\n        <p class=\"card-text\" json-description=\"\"></p>\r\n        <p class=\"card-text\"><small class=\"text-muted\">Last updated 3 mins ago</small></p>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"card bg-primary\" style=\"background-color: rgb(160, 61, 249);\" data-animated-action=\"shakeUp\">\r\n      <img json-image=\"\" src=\"/upload/image/5d411c95baceb.png,/upload/image/5d48e8b9154f1.png,/upload/image/5d48e8b916cdf.png\" class=\"card-img-top\" alt=\"...\">\r\n      <div class=\"card-body\">\r\n        <h5 class=\"card-title\" json-name=\"\">Test noi dung</h5>\r\n        <p class=\"card-text\" json-description=\"\"></p>\r\n        <p class=\"card-text\"><small class=\"text-muted\">Last updated 3 mins ago</small></p>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  \r\n</div>\r\n</section>\r\n<section>\r\n   <div class=\"container\" data-animated=\"true\" data-sequence=\"150\">\r\n      {components=posts}limit=5&theme=masonry&animated=bounceIn{/components}\r\n    </div>\r\n</section>\r\n<section>\r\n   <div class=\"container\" data-animated=\"true\" data-sequence=\"200\">\r\n      <h3>Sản phẩm chủ lực</h3>\r\n      {components=posts}limit=5&animated=fadeIn{/components}\r\n </div>\r\n</section>\r\n\r\n\r\n\r\n<section>\r\n   <div class=\"container\">\r\n     <h1 class=\"text-center\">Đối tác</h1>\r\n     [components name=\"gallery\" class=\"col-lg-3 mb-3\" type=\"slide\"]limit=12&tags=doitac[/components]\r\n      \r\n  </div>\r\n</section>', 'home', 'english', ''),
-(2, 'Contact Page', '', '', '', '', 'contact_page', 'english', ''),
-(3, 'Home', '', '', '', '<section>\n   <div class=\"container\" data-animated=\"true\" data-sequence=\"150\">\n      {components=posts}limit=5&amp;theme=masonry&amp;animated=bounceIn{/components}\n    </div>\n</section>\n    <section class=\"bg-orange\">\n<div class=\"container\">\n\n  \n  <h1 class=\"my-4\">Page Heading\n    <small>Secondary Text</small>\n  </h1>\n\n  <div class=\"card-group\">\n    <div class=\"card\">\n      <img json-image=\"\" src=\"...\" class=\"card-img-top\" alt=\"...\">\n      <div class=\"card-body\">\n        <h5 class=\"card-title\" json-name=\"\"><a json-url=\"\" href=\"/{channel}/{url}.html\">Card title</a></h5>\n        <p class=\"card-text\" json-description=\"\">This card has supporting text below as a natural lead-in to additional content.</p>\n        <p class=\"card-text\"><small class=\"text-muted\">Last updated 3 mins ago</small></p>\n      </div>\n    </div>\n\n    <div class=\"card\">\n      <img json-image=\"\" src=\"...\" class=\"card-img-top\" alt=\"...\">\n      <div class=\"card-body\">\n        <h5 class=\"card-title\" json-name=\"\"><a json-url=\"\" href=\"/{channel}/{url}.html\">Card title</a></h5>\n        <p class=\"card-text\" json-description=\"\">This card has supporting text below as a natural lead-in to additional content.</p>\n        <p class=\"card-text\"><small class=\"text-muted\">Last updated 3 mins ago</small></p>\n      </div>\n    </div>\n\n\n    <div class=\"card\">\n      <img json-image=\"\" src=\"...\" class=\"card-img-top\" alt=\"...\">\n      <div class=\"card-body\">\n        <h5 class=\"card-title\" json-name=\"\"><a json-url=\"\" href=\"/{channel}/{url}.html\">Card title</a></h5>\n        <p class=\"card-text\" json-description=\"\">This card has supporting text below as a natural lead-in to additional content.</p>\n        <p class=\"card-text\"><small class=\"text-muted\">Last updated 3 mins ago</small></p>\n      </div>\n    </div>\n\n    <div class=\"card\">\n      <img json-image=\"\" src=\"...\" class=\"card-img-top\" alt=\"...\">\n      <div class=\"card-body\">\n        <h5 class=\"card-title\" json-name=\"\"><a json-url=\"\" href=\"/{channel}/{url}.html\">Card title</a></h5>\n        <p class=\"card-text\" json-description=\"\">This card has supporting text below as a natural lead-in to additional content.</p>\n        <p class=\"card-text\"><small class=\"text-muted\">Last updated 3 mins ago</small></p>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"card-group\">\n    <div class=\"card\">\n      <img json-image=\"\" src=\"...\" class=\"card-img-top\" alt=\"...\">\n      <div class=\"card-body\">\n        <h5 class=\"card-title\" json-name=\"\"><a json-url=\"\" href=\"/{channel}/{url}.html\">Card title</a></h5>\n        <p class=\"card-text\" json-description=\"\">This card has supporting text below as a natural lead-in to additional content.</p>\n        <p class=\"card-text\"><small class=\"text-muted\">Last updated 3 mins ago</small></p>\n      </div>\n    </div>\n\n    <div class=\"card\">\n      <img json-image=\"\" src=\"...\" class=\"card-img-top\" alt=\"...\">\n      <div class=\"card-body\">\n        <h5 class=\"card-title\" json-name=\"\"><a json-url=\"\" href=\"/{channel}/{url}.html\">Card title</a></h5>\n        <p class=\"card-text\" json-description=\"\">This card has supporting text below as a natural lead-in to additional content.</p>\n        <p class=\"card-text\"><small class=\"text-muted\">Last updated 3 mins ago</small></p>\n      </div>\n    </div>\n\n\n    <div class=\"card\">\n      <img json-image=\"\" src=\"...\" class=\"card-img-top\" alt=\"...\">\n      <div class=\"card-body\">\n        <h5 class=\"card-title\" json-name=\"\"><a json-url=\"\" href=\"/{channel}/{url}.html\">Card title</a></h5>\n        <p class=\"card-text\" json-description=\"\">This card has supporting text below as a natural lead-in to additional content.</p>\n        <p class=\"card-text\"><small class=\"text-muted\">Last updated 3 mins ago</small></p>\n      </div>\n    </div>\n\n    <div class=\"card\">\n      <img json-image=\"\" src=\"...\" class=\"card-img-top\" alt=\"...\">\n      <div class=\"card-body\">\n        <h5 class=\"card-title\" json-name=\"\"><a json-url=\"\" href=\"/{channel}/{url}.html\">Card title</a></h5>\n        <p class=\"card-text\" json-description=\"\">This card has supporting text below as a natural lead-in to additional content.</p>\n        <p class=\"card-text\"><small class=\"text-muted\">Last updated 3 mins ago</small></p>\n      </div>\n    </div>\n  </div>\n\n</div>\n</section>', 'home', 'english', 'develop.com');
+(1, 'Home', '', '', '', '<section>\n<div class=\"container\">\n\n  \n  <h1 class=\"my-4\">Page Heading\n    <small>Secondary Text</small>\n  </h1>\n\n  <div class=\"card-group\">\n    <div class=\"card\">\n      <img json-image=\"\" src=\"...\" class=\"card-img-top\" alt=\"...\">\n      <div class=\"card-body\">\n        <h5 class=\"card-title\" json-name=\"\"><a json-url=\"\" href=\"/{channel}/{url}.html\">Card title</a></h5>\n        <p class=\"card-text\" json-description=\"\">This card has supporting text below as a natural lead-in to additional content.</p>\n        <p class=\"card-text\"><small class=\"text-muted\">Last updated 3 mins ago</small></p>\n      </div>\n    </div>\n\n    <div class=\"card\">\n      <img json-image=\"\" src=\"...\" class=\"card-img-top\" alt=\"...\">\n      <div class=\"card-body\">\n        <h5 class=\"card-title\" json-name=\"\"><a json-url=\"\" href=\"/{channel}/{url}.html\">Card title</a></h5>\n        <p class=\"card-text\" json-description=\"\">This card has supporting text below as a natural lead-in to additional content.</p>\n        <p class=\"card-text\"><small class=\"text-muted\">Last updated 3 mins ago</small></p>\n      </div>\n    </div>\n\n\n    <div class=\"card\">\n      <img json-image=\"\" src=\"...\" class=\"card-img-top\" alt=\"...\">\n      <div class=\"card-body\">\n        <h5 class=\"card-title\" json-name=\"\"><a json-url=\"\" href=\"/{channel}/{url}.html\">Card title</a></h5>\n        <p class=\"card-text\" json-description=\"\">This card has supporting text below as a natural lead-in to additional content.</p>\n        <p class=\"card-text\"><small class=\"text-muted\">Last updated 3 mins ago</small></p>\n      </div>\n    </div>\n\n    <div class=\"card\">\n      <img json-image=\"\" src=\"...\" class=\"card-img-top\" alt=\"...\">\n      <div class=\"card-body\">\n        <h5 class=\"card-title\" json-name=\"\"><a json-url=\"\" href=\"/{channel}/{url}.html\">Card title</a></h5>\n        <p class=\"card-text\" json-description=\"\">This card has supporting text below as a natural lead-in to additional content.</p>\n        <p class=\"card-text\"><small class=\"text-muted\">Last updated 3 mins ago</small></p>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"card-group\">\n    <div class=\"card\">\n      <img json-image=\"\" src=\"...\" class=\"card-img-top\" alt=\"...\">\n      <div class=\"card-body\">\n        <h5 class=\"card-title\" json-name=\"\"><a json-url=\"\" href=\"/{channel}/{url}.html\">Card title</a></h5>\n        <p class=\"card-text\" json-description=\"\">This card has supporting text below as a natural lead-in to additional content.</p>\n        <p class=\"card-text\"><small class=\"text-muted\">Last updated 3 mins ago</small></p>\n      </div>\n    </div>\n\n    <div class=\"card\">\n      <img json-image=\"\" src=\"...\" class=\"card-img-top\" alt=\"...\">\n      <div class=\"card-body\">\n        <h5 class=\"card-title\" json-name=\"\"><a json-url=\"\" href=\"/{channel}/{url}.html\">Card title</a></h5>\n        <p class=\"card-text\" json-description=\"\">This card has supporting text below as a natural lead-in to additional content.</p>\n        <p class=\"card-text\"><small class=\"text-muted\">Last updated 3 mins ago</small></p>\n      </div>\n    </div>\n\n\n    <div class=\"card\">\n      <img json-image=\"\" src=\"...\" class=\"card-img-top\" alt=\"...\">\n      <div class=\"card-body\">\n        <h5 class=\"card-title\" json-name=\"\"><a json-url=\"\" href=\"/{channel}/{url}.html\">Card title</a></h5>\n        <p class=\"card-text\" json-description=\"\">This card has supporting text below as a natural lead-in to additional content.</p>\n        <p class=\"card-text\"><small class=\"text-muted\">Last updated 3 mins ago</small></p>\n      </div>\n    </div>\n\n    <div class=\"card\">\n      <img json-image=\"\" src=\"...\" class=\"card-img-top\" alt=\"...\">\n      <div class=\"card-body\">\n        <h5 class=\"card-title\" json-name=\"\"><a json-url=\"\" href=\"/{channel}/{url}.html\">Card title</a></h5>\n        <p class=\"card-text\" json-description=\"\">This card has supporting text below as a natural lead-in to additional content.</p>\n        <p class=\"card-text\"><small class=\"text-muted\">Last updated 3 mins ago</small></p>\n      </div>\n    </div>\n  </div>\n\n</div>\n</section>    \n  \n  \n  \n\n  \n  \n\n  <section class=\"team-2 bg-secondary\">\n      <div class=\"container\">\n        <div class=\"row text-center justify-content-center\">\n          <div class=\"col-8\">\n            <h1>Meet Our Team</h1>\n          </div>\n        </div>\n    \n        <div class=\"row-50\"></div>\n    \n        <div class=\"row text-center justify-content-center\">\n          <div class=\"col-sm-3 m-sm-auto\">\n            <img alt=\"image\" class=\"img-fluid rounded-circle\" src=\"./imgs/people/4.jpg\">\n    \n            <h2>Sara Doe</h2>\n            <p>Founder</p>\n          </div>\n    \n          <div class=\"col-sm-3 m-sm-auto\">\n            <img alt=\"image\" class=\"img-fluid rounded-circle\" src=\"./imgs/people/5.jpg\">\n    \n            <h2>Sara Doe</h2>\n            <p>Founder</p>\n          </div>\n    \n          <div class=\"col-sm-3 m-sm-auto\">\n            <img alt=\"image\" class=\"img-fluid rounded-circle\" src=\"./imgs/people/7.jpg\">\n    \n            <h2>Sara Doe</h2>\n    \n            <p>Founder</p>\n          </div>\n        </div>\n      </div>\n    </section>', 'home', 'english', 1),
+(2, 'Home', '', '', '', '<section class=\"team-2 bg-light\">\n      <div class=\"container\">\n        <div class=\"row align-items-center\">\n          <div class=\"col-4\">\n            <h1>Shopping Card</h1>\n            <h3>Sales Off 50%</h3>\n            <a class=\"btn btn-primary btn-lg\" href=\"#\">Shop Now</a>\n          </div>\n          <div class=\"col-8 justify-content-end\">\n            <img src=\"http://www.vvveb.com/electro-html/img/ipad.png\" class=\"w-100\">\n          </div>\n        </div>\n    \n     </div>\n    </section>    \n  \n  \n  \n\n  \n  \n\n      \n  \n  \n  \n\n  \n  \n\n      \n  \n  \n  \n\n  \n  \n\n  <section class=\"team-2\" style=\"padding-top: 40px; padding-bottom: 40px;\">\n<div class=\"container\">\n<div class=\"row d-flex\">\n<div class=\"col-lg-4 col-sm-12 flex-box\">\n<div class=\"bg-light\">&nbsp;</div>\n</div>\n<div class=\"col-lg-8 col-sm-12\">\n<ul id=\"myTab\" class=\"nav nav-tabs tab-primary\" role=\"tablist\">\n<li class=\"nav-item\"><a id=\"home-tab\" class=\"nav-link active\" role=\"tab\" href=\"#home\" data-toggle=\"tab\" aria-controls=\"home\" aria-selected=\"true\">Chú ý nhất</a></li>\n<li class=\"nav-item\"><a id=\"profile-tab\" class=\"nav-link\" role=\"tab\" href=\"#profile\" data-toggle=\"tab\" aria-controls=\"profile\" aria-selected=\"false\">Bán chạy nhất</a></li>\n<li class=\"nav-item\"><a id=\"contact-tab\" class=\"nav-link\" role=\"tab\" href=\"#contact\" data-toggle=\"tab\" aria-controls=\"contact\" aria-selected=\"false\">Đang khuyến mại</a></li><li class=\"nav-item\"><a id=\"contact-tab\" class=\"nav-link\" role=\"tab\" href=\"#contact\" data-toggle=\"tab\" aria-controls=\"contact\" aria-selected=\"false\">Hàng mới nhập</a></li>\n</ul>\n<div id=\"myTabContent\" class=\"tab-content\">\n<div id=\"home\" class=\"tab-pane fade show active\" role=\"tabpanel\" aria-labelledby=\"home-tab\">\n<ul class=\"row\">\n<li class=\"col-lg-3 col-sm-12\">Item 1</li>\n<li class=\"col-lg-3  col-sm-12\">Item 2</li>\n<li class=\"col-lg-3  col-sm-12\">Item 3</li>\n<li class=\"col-lg-3  col-sm-12\">Item 4</li>\n</ul>\n</div>\n</div>\n</div>\n</div>\n</div>\n</section>', 'home', 'english', 2);
 
 -- --------------------------------------------------------
 
@@ -337,14 +281,7 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`post_id`, `post_title`, `post_image`, `post_url`, `post_content`, `post_description`, `post_tag`, `created_date`, `updated_date`, `language`, `channel`, `status`, `views`, `account_id`) VALUES
-(1, 'Test noi dung', '[\"\\/upload\\/image\\/5d411c95baceb.png\",\"\\/upload\\/image\\/5d48e8b9154f1.png\",\"\\/upload\\/image\\/5d48e8b916cdf.png\"]', 'test-noi-dung', '<p>Ông Juan de Dios Velazquez, 77 tuổi, lấy thân chắn đạn cho vợ khi tay súng bất ngờ tấn công siêu thị Walmart ở Texas hôm 3/8.<img alt=\"Con gái&nbsp;của một người&nbsp;người mua hàng trong Walmart&nbsp;khóc khi tìm mẹ cô sau khi xả súng xảy ra.&nbsp;Ảnh: AP.\" data-natural-width=\"500\" src=\"blob:http://localhost/37993bae-2be4-224a-bae7-f01d4008ea45\" data-pwidth=\"500\" class=\" \"></p><p>Con gái của một người mua hàng trong siêu thị Walmart khóc khi tìm mẹ sau vụ xả súng. Ảnh: <em>AP.</em></p><p>Juan de Dios và vợ là Estela Nicolasa, 55 tuổi, mới chuyển từ Mexico đến Mỹ sinh sống được 6 tháng. Như mọi ngày, hai ông bà có mặt tại siêu thị Walmart ở thành phố El Paso, bang Texas chiều 3/8 để mua sắm một vài đồ dùng thì <a href=\"https://vnexpress.net/the-gioi/xa-sung-tai-sieu-thi-o-my-it-nhat-20-nguoi-thiet-mang-3962445.html\" rel=\"dofollow\">vụ xả súng</a> bất ngờ xảy ra, làm 20 người thiệt mạng và 26 người bị thương.</p><p>Ngay khi tiếng súng rộ lên, Juan de Dios nhao về phía trước để che chắn cho vợ. \"Chú tôi bị bắn ở cự ly gần, viên đạn xuyên qua người chú và trúng vào dì tôi\", cô cháu gái Norma Ramos nói.</p><p>Juan de Dios đang được điều trị tại một trung tâm y tế ở El Paso và phải trải qua nhiều cuộc phẫu thuật vì bị đạn xuyên qua người. Bà Estala cũng được phẫu thuật và đã ổn định. Trung tâm y tế hiện chưa cung cấp thêm thông tin về hai nạn nhân.</p><p>Nghi phạm Patrick Crusius, 21 tuổi, đã bị cảnh sát bắt. Hình ảnh từ máy quay an ninh cho thấy y mang theo một khẩu AK và đeo chụp bảo vệ tai khi tấn công vào siêu thị hôm 3/8, trước khi đầu hàng cảnh sát.</p>', '', 'home', '0000-00-00 00:00:00', '2019-08-17 07:25:28', 'english', 'blogs', 0, 0, 1),
-(2, 'Test noi dung 123', '/upload/image/5d411ceec35cc.png', 'test-noi-dung-123', '<p>Nhập nội dung bài viết</p><p><img src=\"blob:http://localhost/9c01047b-61e9-074a-8131-ce9cdfc26055\" style=\"width: 100%;\" class=\"fr-fic fr-dib\"></p>', '', '', '0000-00-00 00:00:00', '2019-08-06 05:50:24', 'english', 'blogs', 0, 0, 0),
-(3, 'Bai viet 17', '/upload/image/5d4164beea4fd.png', 'bai-viet-17', '<p>Nhập nội dung b&agrave;i viết</p>', '', '', '0000-00-00 00:00:00', '2019-08-20 05:49:21', 'english', 'blogs', 0, 0, 0),
-(4, 'Bai viet 123', '/upload/image/5d481af7727f0.png', 'bai-viet-123', '<p>Nhập nội dung b&agrave;i viết</p>', '', '', '0000-00-00 00:00:00', '2019-08-20 04:19:59', 'english', 'blogs', 0, 0, 0),
-(5, 'Con bo', '/upload/image/5d538f9a305bb.png', 'con-bo', '<p>Nhập nội dung bài viết</p>', '', '', '2019-08-14 06:32:59', '2019-08-14 06:35:38', 'english', 'blogs', 0, 0, 0),
-(6, 'Test san pham 1', '/upload/image/5d55bf91a6d99.png', 'test-san-pham-1', '<p>Nhập nội dung bài viết</p><p>Con bo</p>', '', '', '2019-08-15 10:24:49', '0000-00-00 00:00:00', 'english', 'products', 0, 0, 1),
-(7, 'Cài đặt & ứng dụng', '', 'cai-djat-ung-dung', '<article>Quyết định cảnh c&aacute;o &ocirc;ng Mu&ocirc;n được Thủ tướng ban h&agrave;nh ng&agrave;y 21/8. &Ocirc;ng Mu&ocirc;n đ&atilde; bị Ủy ban Kiểm tra Trung ương kỷ luật v&agrave;o th&aacute;ng trước.<br>Theo Ủy ban Kiểm tra Trung ương, &ocirc;ng Phạm Viết Mu&ocirc;n vi phạm khuyết điểm trong việc tham mưu cho l&atilde;nh đạo Ch&iacute;nh phủ về chủ trương thực hiện cổ phần h&oacute;a, tho&aacute;i vốn nh&agrave; nước tại một số doanh nghiệp thuộc Bộ Giao th&ocirc;ng Vận tải.<br><table align=\"center\" border=\"0\" cellpadding=\"3\" cellspacing=\"0\"><tbody><tr><td><img data-fr-image-pasted=\"true\" alt=\"Ông Phạm Viết Muôn. Ảnh: PV.&nbsp;\" data-natural-h=\"298\" data-natural-width=\"500\" src=\"https://i-vnexpress.vnecdn.net/2019/08/22/3a-pptc-9001-1566474497.jpg\" data-width=\"500\" data-pwidth=\"500\" class=\" \"></td></tr><tr><td>&Ocirc;ng Phạm Viết Mu&ocirc;n. Ảnh: <em>PV.&nbsp;</em><br></td></tr></tbody></table>Vi phạm của Ban c&aacute;n sự Đảng Bộ Giao th&ocirc;ng Vận tải v&agrave; một số l&atilde;nh đạo li&ecirc;n quan, trong đ&oacute; c&oacute; &ocirc;ng Phạm Viết Mu&ocirc;n &quot;đ&atilde; g&acirc;y thất tho&aacute;t lớn tiền v&agrave; t&agrave;i sản của Nh&agrave; nước, ảnh hưởng xấu đến uy t&iacute;n của tổ chức đảng v&agrave; ng&agrave;nh giao th&ocirc;ng vận tải, g&acirc;y bức x&uacute;c trong x&atilde; hội&quot;, th&ocirc;ng b&aacute;o của Ủy ban Kiểm tra Trung ương hồi th&aacute;ng 4 n&ecirc;u.<br>&Ocirc;ng Phạm Viết Mu&ocirc;n năm nay 64 tuổi, tr&igrave;nh độ tiến sĩ kinh tế, nhiều năm giữ vị tr&iacute; Ph&oacute; chủ nhiệm Văn ph&ograve;ng Ch&iacute;nh phủ v&agrave; nghỉ hưu từ th&aacute;ng 1/2015.</article>', 'Nhập nội dung b&agrave;i viết', '', '2019-08-22 03:42:41', '2019-08-22 04:31:04', 'english', 'docs', 0, 0, 1),
-(8, 'Điều chỉnh giao diện', '', 'djieu-chinh-giao-dien', '<p>Nhập nội dung b&agrave;i viết</p>', 'Nhập nội dung b&agrave;i viết', '', '2019-08-22 04:28:03', '2019-08-22 04:28:03', 'english', 'docs', 0, 0, 1);
+(1, 'Text noi dung', '', 'text-noi-dung', '<p>Nhập nội dung b&agrave;i viết</p>\r\n<p>Hai con bo</p>', '', '', '2019-08-29 02:58:18', '2019-08-29 03:09:49', 'english', 'blogs', 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -358,20 +295,6 @@ CREATE TABLE `posts_incatalog` (
   `catalog_id` int(10) NOT NULL,
   `created_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `posts_incatalog`
---
-
-INSERT INTO `posts_incatalog` (`incat_id`, `post_id`, `catalog_id`, `created_date`) VALUES
-(26, 2, 3, '0000-00-00 00:00:00'),
-(27, 2, 7, '0000-00-00 00:00:00'),
-(28, 6, 15, '0000-00-00 00:00:00'),
-(29, 1, 1, '0000-00-00 00:00:00'),
-(30, 1, 3, '0000-00-00 00:00:00'),
-(31, 3, 16, '0000-00-00 00:00:00'),
-(34, 8, 20, '0000-00-00 00:00:00'),
-(35, 7, 20, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -396,8 +319,7 @@ CREATE TABLE `reports` (
 --
 
 INSERT INTO `reports` (`report_id`, `hash`, `report_key`, `report_value`, `report_count`, `report_create`, `report_update`, `store`, `language`) VALUES
-(2, 'ecb7d0d47a6303b9e12b446b78ae0e19aa02ce0f', '', '', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'localhost', 'english'),
-(3, 'b48af28979910507a72300805b16b39786c09205', '', '', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'localhost', 'english');
+(1, 'b48af28979910507a72300805b16b39786c09205', '', '', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'develop.com', 'english');
 
 -- --------------------------------------------------------
 
@@ -442,18 +364,6 @@ CREATE TABLE `reports_views` (
   `continent` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Dumping data for table `reports_views`
---
-
-INSERT INTO `reports_views` (`view_id`, `view_hash`, `view_url`, `view_count`, `view_created`, `view_update`, `form_ip`, `hash_connect`, `is_bot`, `platform`, `browser`, `is_mobile`, `store`, `language`, `city`, `region`, `country`, `continent`) VALUES
-(1, 'f6c97a7f64063cfee7c2dc2157847204d4dbf093', '', 50, '2019-08-23 01:32:30', '2019-08-23 08:31:57', '::1', 'ecb7d0d47a6303b9e12b446b78ae0e19aa02ce0f', 0, 'Mac OS X', 'Firefox', 0, '', '', '', '', '', ''),
-(2, '4784802269cbb42a9599e9f972e157c9cb38448f', '', 3, '2019-08-23 01:32:54', '2019-08-23 07:37:42', '::1', 'ecb7d0d47a6303b9e12b446b78ae0e19aa02ce0f', 0, 'Mac OS X', 'Firefox', 0, '', '', '', '', '', ''),
-(3, '7aa6ecf7dc0323c7e5461adcf6ef3ba4bf79d223', '', 8, '2019-08-23 01:32:54', '2019-08-23 07:37:42', '::1', 'ecb7d0d47a6303b9e12b446b78ae0e19aa02ce0f', 0, 'Mac OS X', 'Firefox', 0, '', '', '', '', '', ''),
-(4, '173e7300327e574b62977ac77a9148373f63c359', 'http://localhost/catalog/xa-hoi.html', 2, '2019-08-23 01:34:26', '2019-08-23 01:34:26', '::1', 'ecb7d0d47a6303b9e12b446b78ae0e19aa02ce0f', 0, 'Mac OS X', 'Firefox', 0, '', '', '', '', '', ''),
-(5, '7cf5ad3eeb2a482fddba13d2fabe64235bb8b2e5', 'http://localhost/blogs/post/test-noi-dung-123.html', 3, '2019-08-23 01:39:35', '2019-08-23 03:35:37', '::1', 'ecb7d0d47a6303b9e12b446b78ae0e19aa02ce0f', 0, 'Mac OS X', 'Firefox', 0, 'localhost', 'english', '', '', '', ''),
-(6, '16ad8a62fe4d4023fb35cca0d9841db5f1a3b8a6', 'http://localhost/home/enterprise', 2, '2019-08-23 03:27:23', '2019-08-23 03:40:43', '::1', 'ecb7d0d47a6303b9e12b446b78ae0e19aa02ce0f', 0, 'Mac OS X', 'Firefox', 0, 'localhost', 'english', '', '', '', '');
-
 -- --------------------------------------------------------
 
 --
@@ -465,7 +375,7 @@ CREATE TABLE `settings` (
   `config_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `config_value` text COLLATE utf8_unicode_ci NOT NULL,
   `language` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `store` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `store` int(10) NOT NULL,
   `created_date` datetime NOT NULL,
   `autoload` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -475,54 +385,28 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`config_id`, `config_name`, `config_value`, `language`, `store`, `created_date`, `autoload`) VALUES
-(1, 'site_name', 'Develop Site', 'english', 'localhost', '0000-00-00 00:00:00', 0),
-(2, 'site_description', 'Develop Site', 'english', 'localhost', '0000-00-00 00:00:00', 0),
-(3, 'site_keyword', 'Develop Site', 'english', 'localhost', '0000-00-00 00:00:00', 0),
-(4, 'icon', '', 'english', 'localhost', '0000-00-00 00:00:00', 0),
-(5, 'logo', '', 'english', 'localhost', '0000-00-00 00:00:00', 0),
-(6, 'banner', '', 'english', 'localhost', '0000-00-00 00:00:00', 0),
-(7, 'firstname', 'Ruby', 'english', 'localhost', '0000-00-00 00:00:00', 0),
-(8, 'lastname', 'Nguyen', 'english', 'localhost', '0000-00-00 00:00:00', 0),
-(9, 'address', 'C3', 'english', 'localhost', '0000-00-00 00:00:00', 0),
-(10, 'address2', '', 'english', 'localhost', '0000-00-00 00:00:00', 0),
-(11, 'country', 'af', 'english', 'localhost', '0000-00-00 00:00:00', 0),
-(12, 'city', '', 'english', 'localhost', '0000-00-00 00:00:00', 0),
-(13, 'zipcode', '', 'english', 'localhost', '0000-00-00 00:00:00', 0),
-(14, 'plugins', '{\"home\\/slider\":\"Slider\",\"posts\\/posts\":\"Posts\",\"posts\\/postsincatalog\":\"Postsincatalog\",\"home\\/video\":\"Video\",\"posts\\/catalog\":\"Catalog\",\"pages\\/pages\":\"Pages\"}', 'english', 'localhost', '0000-00-00 00:00:00', 0),
-(15, 'site_navbar', 'Develop Site', 'english', 'localhost', '0000-00-00 00:00:00', 0),
-(16, 'navbar_icon', '', 'english', 'localhost', '0000-00-00 00:00:00', 0),
-(27, 'header', '{\"sticky_header\":\"sticky-top\",\"header_color\":\"bg-primary\",\"header_style\":\"navbar-light\",\"height\":\"70\",\"scrolmenu\":\"data-scrolmenu\",\"scrolmenu_class\":\"fadeInUp bg-white\",\"shadown\":\"bg-shadown\",\"header_theme\":\"header\",\"footer_theme\":\"footer\"}', 'english', 'localhost', '0000-00-00 00:00:00', 0),
-(29, 'channel', '{\"blogs\":{\"name\":\"Blogs\",\"url\":\"blogs\",\"layout\":\"blogs\"},\"products\":{\"name\":\"Products\",\"url\":\"products\",\"layout\":\"default\",\"image_size\":\"650x420\"},\"docs\":{\"name\":\"T\\u00e0i Li\\u1ec7u\",\"url\":\"docs\",\"layout\":\"default\",\"image_size\":\"\",\"options\":\"\"}}', 'english', 'localhost', '0000-00-00 00:00:00', 0),
-(30, 'hotline', '0903908078', 'english', 'localhost', '0000-00-00 00:00:00', 0),
-(31, 'site_email', 'contact@gmail.com', 'english', 'localhost', '0000-00-00 00:00:00', 0),
-(32, 'redirect', '{\"anhkhoa.html\":\"conbo.html\"}', 'english', 'localhost', '0000-00-00 00:00:00', 0),
-(33, 'template', 'default', 'english', 'localhost', '0000-00-00 00:00:00', 0),
-(34, 'maintain', '0', 'english', 'localhost', '0000-00-00 00:00:00', 0),
-(35, 'maintain_content', 'Chung toi dang offline', 'english', 'localhost', '0000-00-00 00:00:00', 0),
-(47, 'module', '[]', 'english', 'develop.com', '0000-00-00 00:00:00', 0),
-(48, 'support_mobile', 'false', 'english', 'develop.com', '0000-00-00 00:00:00', 0),
-(49, 'ctyphone', '', 'english', 'develop.com', '0000-00-00 00:00:00', 0),
-(50, 'company_license_number', '', 'english', 'develop.com', '0000-00-00 00:00:00', 0),
-(51, 'region', 'Ha Noi', 'english', 'develop.com', '0000-00-00 00:00:00', 0),
-(52, 'navbar_icon', '', 'english', 'develop.com', '0000-00-00 00:00:00', 0),
-(53, 'site_navbar', 'Develop Site', 'english', 'develop.com', '0000-00-00 00:00:00', 0),
-(54, 'site_name', 'Develop Site', 'english', 'develop.com', '0000-00-00 00:00:00', 0),
-(55, 'site_description', 'Develop Site', 'english', 'develop.com', '0000-00-00 00:00:00', 0),
-(56, 'site_keyword', 'Develop Site', 'english', 'develop.com', '0000-00-00 00:00:00', 0),
-(57, 'icon', '', 'english', 'develop.com', '0000-00-00 00:00:00', 0),
-(58, 'logo', '', 'english', 'develop.com', '0000-00-00 00:00:00', 0),
-(59, 'banner', '', 'english', 'develop.com', '0000-00-00 00:00:00', 0),
-(60, 'hotline', '0903908078', 'english', 'develop.com', '0000-00-00 00:00:00', 0),
-(61, 'site_email', 'contact@gmail.com', 'english', 'develop.com', '0000-00-00 00:00:00', 0),
-(62, 'firstname', 'Luan', 'english', 'develop.com', '0000-00-00 00:00:00', 0),
-(63, 'lastname', 'Phúc', 'english', 'develop.com', '0000-00-00 00:00:00', 0),
-(64, 'address', 'C3', 'english', 'develop.com', '0000-00-00 00:00:00', 0),
-(65, 'address2', '', 'english', 'develop.com', '0000-00-00 00:00:00', 0),
-(66, 'country', 'af', 'english', 'develop.com', '0000-00-00 00:00:00', 0),
-(67, 'city', '', 'english', 'develop.com', '0000-00-00 00:00:00', 0),
-(68, 'zipcode', '', 'english', 'develop.com', '0000-00-00 00:00:00', 0),
-(69, 'maintain', '0', 'english', 'develop.com', '0000-00-00 00:00:00', 0),
-(70, 'maintain_content', '', 'english', 'develop.com', '0000-00-00 00:00:00', 0);
+(1, 'module', '{\"products\":true}', 'english', 2, '0000-00-00 00:00:00', 0),
+(2, 'template', 'shopping', 'english', 2, '0000-00-00 00:00:00', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stores`
+--
+
+CREATE TABLE `stores` (
+  `store_id` int(10) NOT NULL,
+  `store_domain` varchar(255) NOT NULL,
+  `is_root` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `stores`
+--
+
+INSERT INTO `stores` (`store_id`, `store_domain`, `is_root`) VALUES
+(1, 'develop.com', 1),
+(2, 'shopping.com', 0);
 
 -- --------------------------------------------------------
 
@@ -539,17 +423,8 @@ CREATE TABLE `widgets` (
   `winget_display` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `winget_sort` int(10) NOT NULL,
   `language` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `store` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+  `store` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `widgets`
---
-
-INSERT INTO `widgets` (`winget_id`, `winget_name`, `winget_icon`, `winget_content`, `winget_content_as`, `winget_display`, `winget_sort`, `language`, `store`) VALUES
-(1, 'Sales', 'fab fa-rocketchat', '<p class=\"support\">Sales 1: 0986.979.585<br>Sales 2: 0939.749.038<br>Sales 3: 0972. 420.023<br>Sales 4: 0908.141.615<br>Sales 5: 0938.717.545<br>Kỹ thuật: 0938.456.993</p>', 0, 'rightslide,header', 3, 'english', ''),
-(2, 'Category', 'far fa-address-book', '{components=catalog}type=products&amp;icon=fa fa-plus-circle{/components}', 0, 'rightslide', 1, 'english', ''),
-(3, 'Đăng nhập', 'fas fa-unlock', '[components name=users]login[/components]', 0, 'rightslide', 2, 'english', '');
 
 --
 -- Indexes for dumped tables
@@ -579,6 +454,12 @@ ALTER TABLE `catalog`
 --
 ALTER TABLE `comments`
   ADD PRIMARY KEY (`comment_id`);
+
+--
+-- Indexes for table `design_blocks`
+--
+ALTER TABLE `design_blocks`
+  ADD PRIMARY KEY (`block_id`);
 
 --
 -- Indexes for table `email_list`
@@ -653,6 +534,12 @@ ALTER TABLE `settings`
   ADD PRIMARY KEY (`config_id`);
 
 --
+-- Indexes for table `stores`
+--
+ALTER TABLE `stores`
+  ADD PRIMARY KEY (`store_id`);
+
+--
 -- Indexes for table `widgets`
 --
 ALTER TABLE `widgets`
@@ -672,13 +559,19 @@ ALTER TABLE `account`
 -- AUTO_INCREMENT for table `catalog`
 --
 ALTER TABLE `catalog`
-  MODIFY `catalog_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `catalog_id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
   MODIFY `comment_id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `design_blocks`
+--
+ALTER TABLE `design_blocks`
+  MODIFY `block_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `email_list`
@@ -690,49 +583,49 @@ ALTER TABLE `email_list`
 -- AUTO_INCREMENT for table `gallery`
 --
 ALTER TABLE `gallery`
-  MODIFY `gallery_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `gallery_id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `gallery_image`
 --
 ALTER TABLE `gallery_image`
-  MODIFY `image_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `image_id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `menu_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `menu_id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pages`
 --
 ALTER TABLE `pages`
-  MODIFY `page_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `page_id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pages_layout`
 --
 ALTER TABLE `pages_layout`
-  MODIFY `layout_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `layout_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `post_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `posts_incatalog`
 --
 ALTER TABLE `posts_incatalog`
-  MODIFY `incat_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `incat_id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `reports`
 --
 ALTER TABLE `reports`
-  MODIFY `report_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `report_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `reports_robots`
@@ -744,16 +637,22 @@ ALTER TABLE `reports_robots`
 -- AUTO_INCREMENT for table `reports_views`
 --
 ALTER TABLE `reports_views`
-  MODIFY `view_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `view_id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `settings`
 --
 ALTER TABLE `settings`
-  MODIFY `config_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `config_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `stores`
+--
+ALTER TABLE `stores`
+  MODIFY `store_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `widgets`
 --
 ALTER TABLE `widgets`
-  MODIFY `winget_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `winget_id` int(10) NOT NULL AUTO_INCREMENT;
