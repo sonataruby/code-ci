@@ -68,9 +68,9 @@
 
   <body class="app" itemscope itemtype="http://schema.org/WebPage">
   <div class="wrapper">
-    <nav id="sidebar">
+    <nav class="mobile-sidebar sidebar-left">
 
-        <div id="dismiss">
+        <div class="dismiss">
             <i class="fas fa-arrow-left"></i>
         </div>
 
@@ -80,6 +80,14 @@
         <div class="slidercontent"></div>
         
     </nav>
+
+    <nav class="mobile-sidebar sidebar-right">
+        <div class="dismiss">
+            <i class="fas fa-arrow-left"></i>
+        </div>
+        <div class="slidercontent"></div>
+    </nav>
+
     <div id="content"  style="width: 100%;">
       <?php $this->components->header(@config_item("header")->header_theme,["class" => "fixed-top"]); ?>
       <div class="app-content">
