@@ -1,4 +1,4 @@
-<section class="team-2 bg-danger">
+<section class="team-2 bg-primary">
       <div class="container">
         <div class="row align-items-center">
           <div class="col-lg-5 col-md-6 col-sm-12">
@@ -40,7 +40,7 @@
 <div class="container">
 <div class="row d-flex">
 <div class="col-lg-4 col-sm-12 flex-box">
-<div class="bg-light"> </div>
+<div class="bg-light">&nbsp;</div>
 </div>
 <div class="col-lg-8 col-sm-12">
 <ul id="myTab" class="nav nav-tabs tab-primary" role="tablist">
