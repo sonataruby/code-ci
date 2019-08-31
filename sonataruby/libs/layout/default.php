@@ -67,12 +67,29 @@
 
 
   <body class="app" itemscope itemtype="http://schema.org/WebPage">
-    
-    <?php $this->components->header(@config_item("header")->header_theme,["class" => "fixed-top"]); ?>
-    <div class="app-content">
-      <?php print_r($content);?>
+  <div class="wrapper">
+    <nav id="sidebar">
+
+        <div id="dismiss">
+            <i class="fas fa-arrow-left"></i>
+        </div>
+
+        <div class="sidebar-header">
+            <h3>Bootstrap Sidebar</h3>
+        </div>
+        <div class="slidercontent"></div>
+        
+    </nav>
+    <div id="content"  style="width: 100%;">
+      <?php $this->components->header(@config_item("header")->header_theme,["class" => "fixed-top"]); ?>
+      <div class="app-content">
+        <?php print_r($content);?>
+      </div>
+      <?php $this->components->footer(@config_item("header")->footer_theme); ?>
     </div>
-    <?php $this->components->footer(@config_item("header")->footer_theme); ?>
+  </div>
+
+  <div class="overlay"></div>
   <?php echo libs_url("css/animate.css");?>
 
   <?php echo libs_url("js/animated.js");?>

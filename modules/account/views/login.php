@@ -6,7 +6,7 @@
 <section>
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-5 col-sm-12">
+			<div class="col-laptop-5 col-mobile-12">
 				<h3>{lang_welcome_login}</h3>
 				<p>{lang_welcome_login_description}</p> 
 				<h4>{site_name}</h4>
@@ -15,7 +15,7 @@
 				<p><i class="fa fa-envelope fa-2x"></i> <a href="mailto:{site_email}?subject=Contact">{site_email}</a></p>
 
 			</div>
-			<div class="col-lg-7 col-sm-12">
+			<div class="col-laptop-7 col-mobile-12">
 				<div class="card card-body">
 				<h5><?php echo lang("login");?></h5>
 				<hr>

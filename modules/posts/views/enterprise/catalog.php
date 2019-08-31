@@ -1,5 +1,5 @@
 <div class="hbox">
-	<h3>Channel <select class="form-control col-lg-3 col-sm-12 float-right" onchange="window.location.href='/posts/enterprise/catalog?channel='+this.value">
+	<h3>Channel <select class="form-control col-laptop-3 col-mobile-12 float-right" onchange="window.location.href='/posts/enterprise/catalog?channel='+this.value">
 		<option value="">Default</option>
 		<?php foreach (config_item("channel") as $key => $value) { ?>
 			<option value="<?php echo $value->url;?>" <?php echo ($value->url == $this->input->get("channel") || ($value->url == config_item("default_channel") && !$this->input->get("channel")) ? "selected" : "");?>><?php echo $value->name;?></option>
@@ -10,7 +10,7 @@
 </div>
 
 <div class="row">
-	<div class="col-lg-6 col-sm-12">
+	<div class="col-laptop-6 col-mobile-12">
 		<div class="hbox">
 			<?php echo form_open(false, ["id" => "dataform"]);?>
 			<input type="hidden" name="catalog_id" value="">
@@ -39,7 +39,7 @@
 			<?php echo form_close();?>
 		</div>
 	</div>
-	<div class="col-lg-6 col-sm-12">
+	<div class="col-laptop-6 col-mobile-12">
 		
 		<div class="hbox">
 			<h3>Catalog List

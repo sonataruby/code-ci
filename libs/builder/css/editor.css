@@ -497,7 +497,7 @@ body {
   
   width: calc( 100% - (var(--builder-left-panel-width) + var(--builder-right-panel-width) + var(--builder-canvas-margin) + var(--builder-panel-control)) );
   height: calc( 100% - (var(--builder-header-top-height) + var(--builder-bottom-panel-height) + var(--builder-top-panel-height)));
-  top: calc(var(--builder-header-top-height) + var(--builder-top-panel-height));
+  top: calc(var(--builder-header-top-height) + var(--builder-top-panel-height) + 25px);
   position: fixed;
   transition: width 0.35s, left 0.35s;}
 

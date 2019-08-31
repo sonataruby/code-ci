@@ -1,7 +1,7 @@
 <footer class="app-footer">
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-7 col-sm-12">
+			<div class="col-laptop-7 col-mobile-12">
 				<h3>{site_name}</h3>
 				
 				<p><i class="fa fa-map"></i> {full_address}</p>
@@ -11,13 +11,13 @@
 				<p><i class="fa fa-envelope"></i> <a href="mailto:{site_email}?subject=Contact">{site_email}</a></p>
 				
 			</div>
-			<div class="col-lg-3 col-sm-12">
+			<div class="col-laptop-3 col-mobile-12">
 				<h3>Về chúng tôi</h3>
 				<?php
 					echo $this->pages_model->getDropdown(["show_menu" => "footer"]);
 				?>
 			</div>
-			<div class="col-lg-2 col-sm-12">
+			<div class="col-laptop-2 col-mobile-12">
 				<h3>Liên hệ qua</h3>
 				<i class="fab fa-facebook fa-2x"></i>
 				

@@ -7,6 +7,14 @@ class Posts_model extends Model{
 	private $table_gallery_image = "gallery_image";
 	private $postInCatalog = "posts_incatalog";
 	
+	function __construct()
+	{
+	    parent::__construct();
+	    $this->setExcel([
+	    	"post_id" => "id"
+	    ]);
+	}
+
 
 	public function create($id=false, $arv=[], $catalog=[]){
 		$arv["post_url"] = $this->makeURL($arv["post_title"], @$arv["post_url"], $id);

@@ -1,6 +1,6 @@
 <?php
 use Sonata\Controller;
-class Slidebar extends Controller{
+class Slider extends Controller{
 	function __construct()
 	{
 		

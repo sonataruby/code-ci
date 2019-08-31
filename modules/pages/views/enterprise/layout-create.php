@@ -1,7 +1,7 @@
 
 <?php echo form_open("",["id" => "savedata","target" => "IF_savedata"]);?>
 <div class="row">
-	<div class="col-lg-9 col-sm-12">
+	<div class="col-laptop-9 col-tablet-12">
 		<div class="hbox border">
 			<?php echo $this->forms->text([
 				"name" => "layout_name",
@@ -109,7 +109,7 @@
 			<textarea id="textarea" rows="32" class="form-control" name="content"><?php echo @$data->content;?></textarea>
 		</div>
 	</div>
-	<div class="col-lg-3 col-sm-12 sticky-top">
+	<div class="col-laptop-3 col-tablet-12 sticky-top">
 		<div class="hbox border">
 			<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Public</button>
 			<?php if(@$data->id){?>

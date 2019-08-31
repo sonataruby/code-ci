@@ -274,13 +274,15 @@ class Controller extends MX_Controller {
 			'<p data-f-id="pbf" style="text-align: center; font-size: 14px; margin-top: 30px; opacity: 0.65; font-family: sans-serif;">Powered by <a href="https://www.froala.com/wysiwyg-editor?pb=1" title="Froala Editor">Froala Editor</a></p>',
 			'<p><br></p>',
 			'<br></div>',
-			'fr-fic','fr-dib','fr-dii'
+			'fr-fic','fr-dib','fr-dii',
+			'}{/components}'// fix emtpty config components
 		];
 		$replace = [
 			'',
 			'',
 			'</div>',
-			'','',''
+			'','','',
+			'} {/components}'
 		];
 
 		$text = str_replace($search,$replace,$text);

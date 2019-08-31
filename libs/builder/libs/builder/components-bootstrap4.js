@@ -18,7 +18,7 @@ https://github.com/givanz/Vvvebjs
 
 
 
-bgcolorClasses = ["bg-primary", "bg-secondary", "bg-success", "bg-danger", "bg-warning", "bg-info", "bg-light", "bg-dark", "bg-white","bg-blue","bg-indigo","bg-purple","bg-pink","bg-red","bg-orange","bg-yellow","bg-green","bg-teal","bg-cyan","bg-gray","bg-gray-dark"]
+bgcolorClasses = ["bg-primary", "bg-secondary", "bg-success", "bg-danger", "bg-warning", "bg-info", "bg-light", "bg-dark", "bg-white"]
 
 bgcolorSelectOptions = 
 [{
@@ -52,48 +52,12 @@ bgcolorSelectOptions =
 }, {
 	value: "bg-white",
 	text: "White"
-}, {
-    value: "bg-blue",
-    text: "Blue"
-}, {
-    value: "bg-indigo",
-    text: "Indigo"
-}, {
-    value: "bg-purple",
-    text: "Purple"
-}, {
-    value: "bg-pink",
-    text: "Pink"
-}, {
-    value: "bg-red",
-    text: "Red"
-}, {
-    value: "bg-orange",
-    text: "Orange"
-}, {
-    value: "bg-yellow",
-    text: "Yellow"
-}, {
-    value: "bg-green",
-    text: "Green"
-}, {
-    value: "bg-teal",
-    text: "Teal"
-}, {
-    value: "bg-cyan",
-    text: "Cyan"
-}, {
-    value: "bg-gray",
-    text: "Gray"
-}, {
-    value: "bg-gray-dark",
-    text: "Gray Dark"
 }];
 
 
 
 
-textcolorClasses = ["text-primary", "text-secondary", "text-success", "text-danger", "text-warning", "text-info", "text-light", "text-dark", "text-white","text-blue","text-indigo","text-purple","text-pink","text-red","text-orange","text-yellow","text-green","text-teal","text-cyan","text-gray","text-gray-dark"]
+textcolorClasses = ["text-primary", "text-secondary", "text-success", "text-danger", "text-warning", "text-info", "text-light", "text-dark", "text-white"]
 
 textcolorSelectOptions = 
 [{
@@ -127,42 +91,6 @@ textcolorSelectOptions =
 }, {
     value: "text-white",
     text: "White"
-}, {
-    value: "text-blue",
-    text: "Blue"
-}, {
-    value: "text-indigo",
-    text: "Indigo"
-}, {
-    value: "text-purple",
-    text: "Purple"
-}, {
-    value: "text-pink",
-    text: "Pink"
-}, {
-    value: "text-red",
-    text: "Red"
-}, {
-    value: "text-orange",
-    text: "Orange"
-}, {
-    value: "text-yellow",
-    text: "Yellow"
-}, {
-    value: "text-green",
-    text: "Green"
-}, {
-    value: "text-teal",
-    text: "Teal"
-}, {
-    value: "text-cyan",
-    text: "Cyan"
-}, {
-    value: "text-gray",
-    text: "Gray"
-}, {
-    value: "text-gray-dark",
-    text: "Gray Dark"
 }];
 
 
@@ -2175,7 +2103,7 @@ Sonata.Components.add("html/gridcolumn", {
     name: "Grid Column",
     image: "icons/grid_row.svg",
     classesRegex: ["col-"],
-    html: '<div class="col-sm-4"><h3>col-sm-4</h3></div>',
+    html: '<div class="col-laptop-4 col-mobile-4 col-tablet-4"><h3>col-laptop-4 col-mobile-4 col-tablet-4</h3></div>',
     properties: [{
         name: "Column",
         key: "column",
@@ -2221,7 +2149,7 @@ Sonata.Components.add("html/gridrow", {
     name: "Grid Row",
     image: "icons/grid_row.svg",
     classes: ["row"],
-    html: '<div class="row"><div class="col-sm-4"><h3>col-sm-4</h3></div><div class="col-sm-4 col-5"><h3>col-sm-4</h3></div><div class="col-sm-4"><h3>col-sm-4</h3></div></div>',
+    html: '<div class="row"><div class="col-laptop-4 col-mobile-4 col-tablet-4"><h3>col-sm-4</h3></div><div class="col-laptop-4 col-mobile-4 col-tablet-4"><h3>col-sm-4</h3></div><div class="col-laptop-4 col-mobile-4 col-tablet-4"><h3>col-sm-4</h3></div></div>',
     children :[{
 		name: "html/gridcolumn",
 		classesRegex: ["col-"],
@@ -2498,6 +2426,7 @@ Sonata.Components.extend("_base","html/section", {
         htmlAttr: "data-parallax",
         key: "data-parallax",
         validValues: ["scroll"],
+        col : 6,
         inputtype: ToggleInput,
         data: {
             on: "scroll",
@@ -2508,6 +2437,7 @@ Sonata.Components.extend("_base","html/section", {
         htmlAttr: "data-animated",
         key: "data-animated",
         validValues: ["true", "false"],
+        col : 6,
         inputtype: ToggleInput,
         data: {
             on: "true",

@@ -59,4 +59,24 @@ class Model extends CI_Model{
 		$this->store_id = $id;
 		
 	}
+
+
+	public function setExcel($arv=[], $table=""){
+
+	}
+
+
+	public function importExcel($arv=[], $table=""){
+
+	}
+
+
+	public function exportExcel($arv=[], $table=""){
+
+	}
+
+	public function example($arv=[], $table=""){
+
+	}
+
 }

@@ -3,7 +3,7 @@
 <input type="hidden" name="channel" value="<?php echo $this->input->get("channel");?>">
 <input type="hidden" name="ref" value="<?php echo $this->input->get("ref");?>">
 <div class="row">
-	<div class="col-lg-8 col-xl-9 col-sm-12">
+	<div class="col-laptop-8 col-desktop-9 col-mobile-12">
 		<div class="hbox border">
 			
 			<?php echo $this->forms->text([
@@ -18,7 +18,7 @@
 			<div id="content" name="content"><?php echo (@$data->content ? @$data->content : '<p>Nhập nội dung bài viết</p>');?></div>
 		</div>
 	</div>
-	<div class="col-lg-4 col-xl-3 col-sm-12 sticky-top">
+	<div class="col-laptop-4 col-desktop-3 col-mobile-12 sticky-top">
 		<div class="hbox border">
 			<button type="submit" class="btn btn-info"><i class="fa fa-save"></i> Public</button>
 			<button type="submit" class="btn btn-warning"><i class="fa fa-save"></i> Draff</button>

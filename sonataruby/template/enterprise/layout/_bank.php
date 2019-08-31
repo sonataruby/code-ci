@@ -19,8 +19,8 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
       <![endif]-->
       
-      <?php echo template_url("styles.css");?>
       
+      <link rel="stylesheet" type="text/css" href="<?php echo site_url("template/".config_item("template")."/styles.css");?>">
       <style type="text/css">
         body{
           width: 100%;

@@ -7,7 +7,7 @@ class Posts extends Enterprise {
 	public function __construct()
 	{
 	    parent::__construct();
-	   
+	    
 	}
 	public function index()
 	{

@@ -149,7 +149,7 @@ class MY_Loader extends MX_Loader {
 
 
         if(!defined("BASE_ENTERPRISE") ){
-
+           
             preg_match_all(
                 '#'.preg_quote('{').'components=(.+?)'.preg_quote('}').'(.+?)'.preg_quote('{/components}').'#s',
                 $dataOutput,

@@ -2,37 +2,37 @@
 <?php libs_url("js/Chart-utils.js");?>
 <?php libs_url("css/Chart.css");?>
 <div class="row">
-	<div class="col-lg-3 col-sm-6">
+	<div class="col-laptop-3 col-tablet-6">
 		<div class="hbox bg-primary text-white">
 			<h4><i class="fa fa-chart-pie"></i> Channel <div class="float-right"><?php print_r(count((array)config_item("channel")));?></div></h4>
 			
 		</div>
 	</div>
-	<div class="col-lg-3 col-sm-6">
+	<div class="col-laptop-3 col-tablet-6">
 		<div class="hbox bg-info text-white">
 			<h4><i class="fa fa-file-word"></i> Posts <div class="float-right"><?php print_r(get_instance()->posts_model->getNumRows());?></div></h4>
 			
 		</div>
 	</div>
-	<div class="col-lg-3 col-sm-6">
+	<div class="col-laptop-3 col-tablet-6">
 		<div class="hbox bg-success text-white">
 			<h4><i class="fa fa-file-invoice-dollar"></i> Invoice <div class="float-right">0</div></h4>
 		</div>
 	</div>
-	<div class="col-lg-3 col-sm-6">
+	<div class="col-laptop-3 col-tablet-6">
 		<div class="hbox bg-danger text-white">
 			<h4><i class="fa fa-users"></i> Member <div class="float-right">1</div></h4>
 		</div>
 	</div>
 
-	<div class="col-lg-4 col-sm-12 flex-box mb-3">
+	<div class="col-laptop-4 col-tablet-12 flex-box mb-3">
 		<div class="hbox">
 			<h4>Khu vực người dùng</h4>
 			<canvas id="myChart2" width="100%" ></canvas>
 		</div>
 	</div>
 
-	<div class="col-lg-8 col-sm-12">
+	<div class="col-laptop-8 col-tablet-12">
 		<div class="row">
 			<div class="col flex-box mb-3">
 				<div class="hbox">
@@ -73,21 +73,21 @@
 	</div>
 
 
-	<div class="col-lg-6 col-sm-12">
+	<div class="col-laptop-6 col-tablet-12">
 		<div class="hbox">
 			<h4>Comments</h4>
 		</div>
 	</div>
 
 
-	<div class="col-lg-6 col-sm-12">
+	<div class="col-laptop-6 col-tablet-12">
 		<div class="hbox">
 			<h4>Chat Box</h4>
 		</div>
 	</div>
 
 
-	<div class="col-lg-6 col-sm-12">
+	<div class="col-laptop-6 col-tablet-12">
 		<div class="hbox">
 			<h4>Systems</h4>
 			<table class="table">
@@ -121,13 +121,13 @@
 		</div>
 	</div>
 
-	<div class="col-lg-6 col-sm-12">
+	<div class="col-laptop-6 col-tablet-12">
 		<div class="hbox">
 			<h4>News</h4>
 		</div>
 	</div>
 
-	<div class="col-lg-12 col-sm-12">
+	<div class="col-laptop-12 col-tablet-12">
 		<div class="hbox">
 			<h4>History</h4>
 			<table class="table">

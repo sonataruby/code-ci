@@ -517,12 +517,12 @@
 		</div>
 
 		<div class="col-6">
-			<label>Extra small</label>
-			<select class="form-control custom-select" name="col-xs">
+			<label>Mobile H</label>
+			<select class="form-control custom-select" name="col-mobile">
 				
 				<option value="">None</option>
 				{% for ( var i = 1; i <= 12; i++ ) { %}
-				<option value="{%=i%}" {% if ((typeof col_xs !== 'undefined') && col_xs == i) { %} selected {% } %}>{%=i%}</option>
+				<option value="{%=i%}" {% if ((typeof col_mobile_h !== 'undefined') && col_mobile_h == i) { %} selected {% } %}>{%=i%}</option>
 				{% } %}
 				
 			</select>
@@ -530,12 +530,12 @@
 		</div>
 		
 		<div class="col-6">
-			<label>Small</label>
-			<select class="form-control custom-select" name="col-sm">
+			<label>Mobile</label>
+			<select class="form-control custom-select" name="col-tablet-h">
 				
 				<option value="">None</option>
 				{% for ( var i = 1; i <= 12; i++ ) { %}
-				<option value="{%=i%}" {% if ((typeof col_sm !== 'undefined') && col_sm == i) { %} selected {% } %}>{%=i%}</option>
+				<option value="{%=i%}" {% if ((typeof col_mobile !== 'undefined') && col_mobile == i) { %} selected {% } %}>{%=i%}</option>
 				{% } %}
 				
 				
@@ -544,12 +544,12 @@
 		</div>
 		
 		<div class="col-6">
-			<label>Medium</label>
-			<select class="form-control custom-select" name="col-md">
+			<label>Tablet</label>
+			<select class="form-control custom-select" name="col-laptop">
 				
 				<option value="">None</option>
 				{% for ( var i = 1; i <= 12; i++ ) { %}
-				<option value="{%=i%}" {% if ((typeof col_md !== 'undefined') && col_md == i) { %} selected {% } %}>{%=i%}</option>
+				<option value="{%=i%}" {% if ((typeof col_tablet !== 'undefined') && col_tablet == i) { %} selected {% } %}>{%=i%}</option>
 				{% } %}
 				
 			</select>
@@ -557,12 +557,12 @@
 		</div>
 		
 		<div class="col-6 mb-1">
-			<label>Large</label>
-			<select class="form-control custom-select" name="col-lg">
+			<label>Laptop</label>
+			<select class="form-control custom-select" name="col-desktop">
 				
 				<option value="">None</option>
 				{% for ( var i = 1; i <= 12; i++ ) { %}
-				<option value="{%=i%}" {% if ((typeof col_lg !== 'undefined') && col_lg == i) { %} selected {% } %}>{%=i%}</option>
+				<option value="{%=i%}" {% if ((typeof col_laptop !== 'undefined') && col_laptop == i) { %} selected {% } %}>{%=i%}</option>
 				{% } %}
 				
 			</select>
@@ -570,33 +570,7 @@
 		</div>
 		
 
-		<div class="col-6 mb-1">
-			<label>Hidden</label>
-			<select class="form-control custom-select" name="col-lg">
-				
-				<option value="">None</option>
-				<option value="d-sm-none" {% if ((typeof d_sm_none !== 'undefined')) { %} selected {% } %}>Hidden Small</option>
-				<option value="d-md-none" {% if ((typeof d_md_none !== 'undefined')) { %} selected {% } %}>Hidden Medium</option>
-				<option value="d-lg-none" {% if ((typeof d_lg_none !== 'undefined')) { %} selected {% } %}>Hidden Large</option>
-				
-				
-			</select>
-			<br/>
-		</div>
-
-
-		<div class="col-6 mb-1">
-			<label>Visable</label>
-			<select class="form-control custom-select" name="col-lg">
-				
-				<option value="">None</option>
-				<option value="d-sm-block" {% if ((typeof d_sm_block !== 'undefined')) { %} selected {% } %}>Viable Small</option>
-				<option value="d-md-block" {% if ((typeof d_md_block !== 'undefined')) { %} selected {% } %}>Viable Medium</option>
-				<option value="d-lg-block" {% if ((typeof d_lg_block !== 'undefined')) { %} selected {% } %}>Viable Large</option>
-				
-			</select>
-			<br/>
-		</div>
+		
 
 		{% if (typeof hide_remove === 'undefined') { %}
 		<div class="col-12">
@@ -741,11 +715,11 @@
 
 <script id="vvveb-property" type="text/html">
 
-	<div class="form-group {% if (typeof col !== 'undefined' && col != false) { %} col-sm-{%=col%} d-inline-block {% } else { %}row{% } %}" data-key="{%=key%}" {% if (typeof group !== 'undefined' && group != null) { %}data-group="{%=group%}" {% } %}>
+	<div class="form-group {% if (typeof col !== 'undefined' && col != false) { %} col-tablet-{%=col%} d-inline-block {% } else { %}row{% } %}" data-key="{%=key%}" {% if (typeof group !== 'undefined' && group != null) { %}data-group="{%=group%}" {% } %}>
 		
-		{% if (typeof name !== 'undefined' && name != false) { %}<label class="{% if (typeof inline === 'undefined' ) { %}col-sm-4{% } %} control-label" for="input-model">{%=name%}</label>{% } %}
+		{% if (typeof name !== 'undefined' && name != false) { %}<label class="{% if (typeof inline === 'undefined' ) { %}col-tablet-12{% } %} control-label" for="input-model">{%=name%}</label>{% } %}
 		
-		<div class="{% if (typeof inline === 'undefined') { %}col-sm-{% if (typeof name !== 'undefined' && name != false) { %}8{% } else { %}12{% } } %} input"></div>
+		<div class="{% if (typeof inline === 'undefined') { %}col-tablet-{% if (typeof name !== 'undefined' && name != false) { %}12{% } else { %}12{% } } %} input"></div>
 		
 	</div>		 
 	
@@ -996,3 +970,4 @@ $(document).ready(function()
 	//Vvveb.FileManager.loadPage("_bank");
 });
 </script>
+

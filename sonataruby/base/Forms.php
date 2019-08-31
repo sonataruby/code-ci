@@ -17,7 +17,7 @@ class Forms{
         'bootstrap4' => [
             // input and textarea and dropdown and multiselect
             'group_class' =>  'form-group',
-            'label_class' =>  'col-sm-2 col-form-label',
+            'label_class' =>  'col-tablet-2 col-mobile-12 col-form-label',
             'input_class' => 'form-control',
             'input_error_class' => 'is-invalid',
             'requried_text' => '<span style="color:red;">(*)</span>',
@@ -381,7 +381,7 @@ class Forms{
     }
     public function renderTemplate($label, $text, $layout=""){
         if($layout == "inline"){
-            return $label.'<div class="col-sm-10">'.$text.'</div>';
+            return $label.'<div class="col-tablet-10 col-mobile-12">'.$text.'</div>';
         }
         return $label. $text;
     }
@@ -425,19 +425,19 @@ class Forms{
         return '
                 
                 <div class="form-row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-tablet-6 col-mobile-12">
                       '.$this->text(["name" => $name."[hotline]", "label" => "Hotline","value" => @$value->hotline],["required" => true]).'
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-tablet-6 col-mobile-12">
                       '.$this->text(["name" =>  $name."[site_email]", "label" => "Email","value" => @$value->site_email],["required" => true]).'
                     </div>
                 </div>
 
                 <div class="form-row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-tablet-6 col-mobile-12">
                       '.$this->text(["name" => $name."[ctyphone]", "label" => "Tel","value" => @$value->ctyphone],[]).'
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-tablet-6 col-mobile-12">
                       '.$this->text(["name" =>  $name."[company_license_number]", "label" => "Company license number","value" => @$value->company_license_number],[]).'
                     </div>
                 </div>'.$this->address($params, $extract, $append);
@@ -452,10 +452,10 @@ class Forms{
         return '
                 
                 <div class="form-row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-tablet-6 col-mobile-12">
                       '.$this->text(["name" => $name."[firstname]", "label" => "First Name","value" => @$value->firstname],["required" => true]).'
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-tablet-6 col-mobile-12">
                       '.$this->text(["name" =>  $name."[lastname]", "label" => "Last Name","value" => @$value->lastname],["required" => true]).'
                     </div>
                 </div>
@@ -466,19 +466,19 @@ class Forms{
                     '.$this->textarea(["name" =>  $name."[address2]", "label" => "Address 2","value" => @$value->address2],["rows" => 2]).'
                   </div>
                   <div class="form-row">
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-tablet-4 col-mobile-12">
                       '.$this->country(["name" =>  $name."[country]", "label" => "Country","value" => @$value->country],["required" => true]).'
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-tablet-3 col-mobile-12">
                       '.$this->text(["name" =>  $name."[region]", "label" => "Region","value" => @$value->region],["required" => true]).'
                     </div>
                     
 
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-tablet-3 col-mobile-12">
                       '.$this->text(["name" =>  $name."[city]", "label" => "City","value" => @$value->city],[]).'
                     </div>
                     
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-tablet-2 col-mobile-12">
                       '.$this->text(["name" =>  $name."[zipcode]", "label" => "Zipcode","value" => @$value->zipcode]).'
                     </div>
                   </div>
