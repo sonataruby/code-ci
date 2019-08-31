@@ -65,7 +65,7 @@
     </div>
 
     <header class="fixed-top">
-      <nav class="navbar navbar-expand-laptop navbar-light">
+      <nav class="navbar navbar-expand-md navbar-light">
         <div class="logo"><img src="http://gull.ui-lib.com/blue/assets/images/logo.png" style="max-height:80px;"> <i class="fa fa-align-justify switchClass"></i></div>
         <a class="navbar-brand" href="#">Administrator</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

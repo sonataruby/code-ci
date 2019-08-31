@@ -522,7 +522,7 @@
 				
 				<option value="">None</option>
 				{% for ( var i = 1; i <= 12; i++ ) { %}
-				<option value="{%=i%}" {% if ((typeof col_mobile_h !== 'undefined') && col_mobile_h == i) { %} selected {% } %}>{%=i%}</option>
+				<option value="{%=i%}" {% if ((typeof col_xs !== 'undefined') && col_xs == i) { %} selected {% } %}>{%=i%}</option>
 				{% } %}
 				
 			</select>
@@ -535,7 +535,7 @@
 				
 				<option value="">None</option>
 				{% for ( var i = 1; i <= 12; i++ ) { %}
-				<option value="{%=i%}" {% if ((typeof col_mobile !== 'undefined') && col_mobile == i) { %} selected {% } %}>{%=i%}</option>
+				<option value="{%=i%}" {% if ((typeof col_sm !== 'undefined') && col_sm == i) { %} selected {% } %}>{%=i%}</option>
 				{% } %}
 				
 				
@@ -549,7 +549,7 @@
 				
 				<option value="">None</option>
 				{% for ( var i = 1; i <= 12; i++ ) { %}
-				<option value="{%=i%}" {% if ((typeof col_tablet !== 'undefined') && col_tablet == i) { %} selected {% } %}>{%=i%}</option>
+				<option value="{%=i%}" {% if ((typeof col_md !== 'undefined') && col_md == i) { %} selected {% } %}>{%=i%}</option>
 				{% } %}
 				
 			</select>
@@ -562,7 +562,7 @@
 				
 				<option value="">None</option>
 				{% for ( var i = 1; i <= 12; i++ ) { %}
-				<option value="{%=i%}" {% if ((typeof col_laptop !== 'undefined') && col_laptop == i) { %} selected {% } %}>{%=i%}</option>
+				<option value="{%=i%}" {% if ((typeof col_lg !== 'undefined') && col_lg == i) { %} selected {% } %}>{%=i%}</option>
 				{% } %}
 				
 			</select>

@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-laptop-6 col-tablet-12">
+    <div class="col-lg-6 col-md-12">
         <div class="hbox">
             Menu Groups
             <div class="form-row">
@@ -57,7 +57,7 @@
             <?php echo form_close();?>
         </div>
     </div>
-    <div class="col-laptop-6 col-tablet-12">
+    <div class="col-lg-6 col-md-12">
 
         <div class="hbox">
             <h3>Menu List

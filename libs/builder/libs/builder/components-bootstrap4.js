@@ -2103,7 +2103,7 @@ Sonata.Components.add("html/gridcolumn", {
     name: "Grid Column",
     image: "icons/grid_row.svg",
     classesRegex: ["col-"],
-    html: '<div class="col-laptop-4 col-mobile-4 col-tablet-4"><h3>col-laptop-4 col-mobile-4 col-tablet-4</h3></div>',
+    html: '<div class="col-lg-4 col-sm-4 col-md-4"><h3>col-lg-4 col-sm-4 col-md-4</h3></div>',
     properties: [{
         name: "Column",
         key: "column",
@@ -2149,7 +2149,7 @@ Sonata.Components.add("html/gridrow", {
     name: "Grid Row",
     image: "icons/grid_row.svg",
     classes: ["row"],
-    html: '<div class="row"><div class="col-laptop-4 col-mobile-4 col-tablet-4"><h3>col-sm-4</h3></div><div class="col-laptop-4 col-mobile-4 col-tablet-4"><h3>col-sm-4</h3></div><div class="col-laptop-4 col-mobile-4 col-tablet-4"><h3>col-sm-4</h3></div></div>',
+    html: '<div class="row"><div class="col-lg-4 col-sm-4 col-md-4"><h3>col-sm-4</h3></div><div class="col-lg-4 col-sm-4 col-md-4"><h3>col-sm-4</h3></div><div class="col-lg-4 col-sm-4 col-md-4"><h3>col-sm-4</h3></div></div>',
     children :[{
 		name: "html/gridcolumn",
 		classesRegex: ["col-"],
