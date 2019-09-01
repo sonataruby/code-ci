@@ -32,7 +32,7 @@
 			</div>
 			<hr>
 			<div class="content">
-				<?php $this->components->posts($channel,["limit" => 20,"page" => true, "theme" => $this->input->get("view")]);?>
+				<?php $this->components->posts($channel,["limit" => 20,"page" => true, "theme" => $this->input->get("view"), "tag" => $this->input->get("tags")]);?>
 			</div>
 		</div>
 		<div class="col-lg-3 col-sm-12">

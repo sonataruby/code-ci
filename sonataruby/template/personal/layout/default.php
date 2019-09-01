@@ -31,7 +31,7 @@
       
       <?php libs_url('css/bootstrap.css',['name' => "Bootstrap CSS"]);?>
       <?php libs_url('icoins/css/icoin.css',['name' => "Font Icoin CSS"]);?>
-      <?php libs_url('css/admin-theme.css',['name' => "Admin CSS"]);?>
+      <?php libs_url('css/personal-theme.css',['name' => "Admin CSS"]);?>
       <?php libs_url('css/bs-theme.css',['name' => "BS CSS"]);?>
       <link rel="alternate" type="application/rss+xml" title="Sitemap Feed for <?php echo site_url();?>" href="<?php echo site_url("sitemap.xml");?>" />
       <link rel="alternate" type="application/rss+xml" title="RSS Feed for <?php echo site_url();?>" href="<?php echo site_url("feeds");?>" />
@@ -48,6 +48,14 @@
         var base_url = '<?php echo site_url();?>';
         var base_target = 'personal';
       </script>
+      <style type="text/css">
+        body{
+          --header-height : 65px;
+        }
+        header{
+          height: var(--header-height);
+        }
+      </style>
 </head>
 
 
@@ -60,12 +68,13 @@
           <div class="bar"></div>
         </div>
     </div>
+    
 
-    <header class="fixed-top">
+    <header class="bg-info fixed-top">
       
       <div>
-      <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="logo"><img src="http://gull.ui-lib.com/blue/assets/images/logo.png" style="max-height:80px;"> <i class="fa fa-align-justify switchClass"></i></div>
+      <nav class="navbar navbar-expand-md navbar-light" style="padding: 0; margin: 0;">
+        <div class="logo"><img src="http://gull.ui-lib.com/blue/assets/images/logo.png" style="max-height:var(--header-height);"> </div>
         <a class="navbar-brand" href="<?php echo site_url("personal");?>">Administrator</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -74,7 +83,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="<?php echo site_url();?>" target="_bank"><?php echo lang("home");?> <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="<?php echo site_url();?>" target="_bank"><i class="fa fa-home"></i></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Link</a>
@@ -83,7 +92,7 @@
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Dropdown
               </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <div class="dropdown-menu bg-white" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="#">Action</a>
                 <a class="dropdown-item" href="#">Another action</a>
                 <div class="dropdown-divider"></div>
@@ -102,39 +111,79 @@
       </nav>
       </div>
     </header>
-    <aside>
-      
-      
-      <div class="aside-content">
-        
+    <div class="wrapper">
+      <section class="app-menu" style=" position: fixed;">
+        <div class="aside-content bg-light border-right">
+            <nav class="nav flex-column" style="padding: 0;">
+              <ul class="" style="padding: 0;">
+                <li class="nav-item">
+                  <a class="nav-link " data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fab fa-accusoft fa-1x"></i> <span>Dashboard</span></a>
+                  <div class="collapse border-top" id="collapseExample2">
+                    
+                      <ul class="list-group list-group-flush" style="line-height: 22px;">
+                        <li class="list-group-item">Cras justo odio</li>
+                        <li class="list-group-item">Dapibus ac facilisis in</li>
+                        <li class="list-group-item">Morbi leo risus</li>
+                        <li class="list-group-item">Porta ac consectetur ac</li>
+                        <li class="list-group-item">Vestibulum at eros</li>
+                      </ul>
+                   
+                  </div>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-users fa-1x"></i> <span>Dashboard</span></a>
+                  <div class="collapse border-top" id="collapseExample">
+                    
+                      <ul class="list-group list-group-flush" style="line-height: 22px;">
+                        <li class="list-group-item">Cras justo odio</li>
+                        <li class="list-group-item">Dapibus ac facilisis in</li>
+                        <li class="list-group-item">Morbi leo risus</li>
+                        <li class="list-group-item">Porta ac consectetur ac</li>
+                        <li class="list-group-item">Vestibulum at eros</li>
+                      </ul>
+                   
+                  </div>
+                </li>
 
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link bannerHeader text-white" href="#"><i class="fab fa-accusoft fa-2x"></i> <span>Dashboard</span></a>
+                
+
+              </ul>
               
-              <div id="multiCollapseExample2" class="slidebar">
-                <div class="menuHeader">
-                  <h3>Trang chính</h3>
-                  <p>Quản lý trang</p>
-                </div>
-                <a class="dropdown-item" href="#"><i class="fa fa-file-word"></i> Categories</a>
-                <a class="dropdown-item" href="#"><i class="fa fa-file-word"></i> Posts</a>
-                <a class="dropdown-item" href="#"><i class="fa fa-file-word"></i> Something else here</a>
-              </div>
-            </li>
-           
-          </ul>
-      </div>
-    </aside>
-    <section class="app-content">
-      <div class="app-body" sn-body="content">
-        <?php print_r($report);?>
-        <?php print_r($content);?>
-      </div>
-    </section>
-    <?php getfile("footer.php"); ?>
-  
+            </nav>
 
+            <div class="align-items-end" style="position: absolute; bottom: 0; width: 100%;">
+                <ul class="" style="padding: 0;">
+                  <li class="nav-item border-top">
+                    <div class="collapse border-bottom" id="collapseExample3">
+                    
+                      <ul class="list-group list-group-flush" style="line-height: 22px;">
+                        <li class="list-group-item">Cras justo odio</li>
+                        <li class="list-group-item">Dapibus ac facilisis in</li>
+                        <li class="list-group-item">Morbi leo risus</li>
+                        <li class="list-group-item">Porta ac consectetur ac</li>
+                        <li class="list-group-item">Vestibulum at eros</li>
+                      </ul>
+                   
+                  </div>
+                    <a class="nav-link" data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-users fa-1x"></i> <span>Dashboard</span></a>
+                  
+                  </li>
+                </ul>
+                </div>
+
+        </div>
+      </section>
+
+
+      <section class="app-content">
+        <div class="app-body" sn-body="content">
+          <?php print_r($report);?>
+          <?php print_r($content);?>
+        </div>
+      </section>
+      
+  </div>
+  <?php getfile("footer.php"); ?>
   <?php echo template_url("app.js");?>
   <script type="text/javascript">(function($,d){$.each(readyQ,function(i,f){$(f)});$.each(bindReadyQ,function(i,f){$(d).bind("ready",f)})})(jQuery,document)</script>
   </body>

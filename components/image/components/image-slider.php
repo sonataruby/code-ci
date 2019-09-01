@@ -24,10 +24,4 @@ if(is_array($data)){ ?>
     <span class="sr-only">Next</span>
   </a>
 </div>
-<?php }else{ ?>
-  <div class="carousel">
-	   <img src="<?php echo site_url($data);?>" <?php echo _attributes_to_string($attr);?>/>
-  </div>
-<?php } ?>
-
-  
+<?php }?>

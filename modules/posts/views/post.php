@@ -9,13 +9,16 @@
 		<div class="col-lg-9 col-sm-12">
 			<div class="content">
 				
-				<?php echo $this->components->image($data->image);?>
+				<?php echo $this->components->image($data->image,["class" => "w-100","lazy" => @$attr["lazy"]]);?>
 				<div class="border bg-light mb-4" style="padding: 10px;">
 				<?php echo $this->components->users("bar",$data);?>
 				</div>
 				
 				<?php echo $data->content;?>
-				<div class="tags"><p><i class="fa fa-tags"></i> {lang_tags} : </p></div>
+
+				<code class="mt-4">
+					<div class="tags mt-4"><p><i class="fa fa-tags"></i> {lang_tags} : <?php echo $data->tagURL;?></p></div>
+				</code>
 				
 			</div>
 			<div class="row">

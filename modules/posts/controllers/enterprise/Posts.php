@@ -79,4 +79,9 @@ class Posts extends Enterprise {
 		
 	}
 
+
+	public function sample(){
+		$this->posts_model->example(25, "posts");
+		$this->go("/posts/enterprise/posts?channel=".$channel);
+	}
 }

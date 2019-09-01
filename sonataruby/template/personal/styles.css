@@ -1,6 +1,85 @@
+html, body{
+	height: 100%;
+	width: 100%;
+}
 .hbox{
 	box-shadow: 0 1px 15px rgba(0,0,0,.04),0 1px 6px rgba(0,0,0,.04);
 	min-height: 100px;
 	padding: 30px;
 	margin-bottom: 15px;
+}
+
+.app-menu{
+	width: 65px;
+	
+	border-right: 1px solid #ddd;
+	top: var(--header-height);
+	height: calc(100% - var(--header-height));
+	z-index: 999;
+	
+}
+.aside-content{
+	position: relative;
+}
+.aside-content .collapse.show{
+	display: none;
+}
+.app-menu:hover .aside-content{
+	width: 320px;
+}
+.app-menu:hover .aside-content .collapse.show{
+	display: block;
+}
+
+
+.app-menu li.nav-item{
+	border-bottom: 1px solid #ddd;
+	line-height: 45px;
+	vertical-align: middle;
+	
+}
+.app-menu .nav-link{
+	padding: 0;
+	margin: 0;
+}
+.app-menu:hover .nav-link span
+{
+	display: block;
+	padding-left: 15px;
+	transition: all 1s;
+}
+.app-menu:hover .nav-link i{
+	width: 65px;
+	border-right:1px solid #ddd;
+}
+
+
+.app-menu .aside-content{
+	position: absolute;
+	width: 65px;
+	height: 100%;
+	
+	z-index: 999;
+	transition: all 0.5s;
+	overflow: hidden;
+}
+.app-menu .nav-link i{
+	width: 100%;
+	line-height: 45px;
+	vertical-align: middle;
+	text-align: center;
+
+}
+.app-menu .nav-link{
+	display: flex;
+}
+.app-menu .nav-link span{
+	display: none;
+}
+
+.app-content{
+	width: 100%;
+	position: relative;
+	padding-left: 90px;
+	padding-top: var(--header-height);
 }

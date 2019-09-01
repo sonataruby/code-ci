@@ -9,6 +9,8 @@ class Model extends CI_Model{
 	public $limit=20;
 	public $total = 0;
 	public $store_id =0;
+	public $field_excel = [];
+
 	function __construct($a=0)
 	{
 		parent::__construct();
@@ -61,8 +63,8 @@ class Model extends CI_Model{
 	}
 
 
-	public function setExcel($arv=[], $table=""){
-
+	public function setExcel($arv=[]){
+		$this->field_excel = $arv;
 	}
 
 
@@ -75,8 +77,57 @@ class Model extends CI_Model{
 
 	}
 
-	public function example($arv=[], $table=""){
+	public function example($number=1, $table=""){
+		if(!$table) return false;
+		
+		for ($i=0; $i < $number; $i++) { 
+			$arv = [];
+			foreach ($this->field_excel as $key => $value) {
+				if($value != "id"){
+					$arv[$key] = $this->makeSampleData($value);
+				}
+			}
+			$this->db->insert($table, $arv);
+		}
+		
+		
+		
+	}
 
+	private function makeSampleData($key){
+		$faker = \Faker\Factory::create('vi_VN');
+		switch ($key) {
+			case 'name':
+				return $faker->name;
+			break;
+			case 'content':
+				return ucfirst($faker->text('2000'));
+			break;
+			case 'description':
+				return ucfirst($faker->text('200'));
+			break;
+			case 'image':
+				return $faker->imageUrl(640, 320);
+			break;
+			case 'datetime':
+				return $faker->dateTime(time())->format('Y-m-d h:i:s');
+			break;
+			case 'athour_id':
+				return is_login();
+			break;
+			case 'title':
+				return ucfirst($faker->text('100'));
+			break;
+			case 'title_url':
+				return url_title(convert_accented_characters($faker->text('100')),"-",true);
+			break;
+			case 'tags':
+				return implode(explode(' ', $faker->text('100')), ", ");
+			break;
+			default:
+				return $key;
+			break;
+		}
 	}
 
 }

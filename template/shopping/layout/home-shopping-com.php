@@ -14,33 +14,11 @@
      </div>
     </section>    
   
-  
-  
-
-  
-  
-
-      
-  
-  
-  
-
-  
-  
-
-      
-  
-  
-  
-
-  
-  
-
   <section class="team-2" style="padding-top: 40px; padding-bottom: 40px;">
 <div class="container">
 <div class="row d-flex">
 <div class="col-lg-4 col-sm-12 flex-box">
-<div class="bg-light">&nbsp;</div>
+<div class="bg-light"> </div>
 </div>
 <div class="col-lg-8 col-sm-12">
 <ul id="myTab" class="nav nav-tabs tab-primary" role="tablist">
@@ -61,4 +39,9 @@
 </div>
 </div>
 </div>
+</section>
+<section>
+	<div class="container">
+    	{components=posts}lazy=true{/components}
+    </div>
 </section>

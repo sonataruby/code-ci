@@ -11,7 +11,18 @@ class Posts_model extends Model{
 	{
 	    parent::__construct();
 	    $this->setExcel([
-	    	"post_id" => "id"
+	    	"post_id" => "id",
+	    	"post_title" => "title",
+	    	"post_url" => "title_url",
+	    	"post_tag" => "tags",
+	    	"post_content" => "content",
+	    	"post_description" => "description",
+	    	"post_image" => "image",
+	    	"created_date" => "datetime",
+	    	"updated_date" => "datetime",
+	    	"channel" => @$this->input->get("channel"),
+	    	"account_id" => "athour_id",
+	    	"language" => config_item("language")
 	    ]);
 	}
 
@@ -58,6 +69,7 @@ class Posts_model extends Model{
 		$data = $this->db->get($this->table)->row();
 		if(!$data) return;
 		$data->image = isObject($data->image);
+		$data->tagURL = $this->renderTag($data->tag, $data->channel);
 		$data->catalog = $this->db->select($this->postInCatalog.".post_id, ".$this->postInCatalog.".catalog_id, catalog.catalog_name as catalog_name, catalog.catalog_url as catalog_url, catalog.channel as channel")->join("catalog","catalog.catalog_id=".$this->postInCatalog.".catalog_id","left")->get_where($this->postInCatalog, ["post_id" => $data->id, "channel" => $data->channel])->result();
 
 		if($prevnext){
@@ -70,6 +82,15 @@ class Posts_model extends Model{
 		}
 
 		return $data;
+	}
+
+	private function renderTag($test, $channel=""){
+		$ex = explode(',', $test);
+		$arv = [];
+		foreach ($ex as $key => $value) {
+			$arv[] = '<a href="'.site_url($channel."/post.html?tags=".trim($value)).'" title="Tag\'s '.$value.'">'.$value.'</a>';
+		}
+		return implode($arv, ", ");
 	}
 
 	public function getList($arv=[],$language=false){

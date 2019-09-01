@@ -1,6 +1,15 @@
 <div class="hbox">
-	<h3>Quản lý bài viết <a class="btn btn-primary float-right" href="/posts/enterprise/posts/create?channel=<?php echo $channel;?>" parent-controller="#posts"><i class="fa fa-plus"></i> Add Posts</a></h3>
-	<hr>
+	<h3><i class="fa fa-clone"></i> Quản lý bài viết 
+		<div class="float-right">
+			<div class="btn-group" role="group" aria-label="Basic example">
+				<a class="btn btn-primary" href="/posts/enterprise/posts/sample?channel=<?php echo $channel;?>" parent-controller="#posts"><i class="fa fa-vials"></i> Sample</a>
+				<a class="btn btn-primary" href="/posts/enterprise/posts/create?channel=<?php echo $channel;?>" parent-controller="#posts"><i class="fa fa-file-upload"></i> Import</a>
+				<a class="btn btn-primary" href="/posts/enterprise/posts/create?channel=<?php echo $channel;?>" parent-controller="#posts"><i class="fa fa-file-download"></i> Export</a>
+			</div>
+			<a class="btn btn-outline-success" href="/posts/enterprise/posts/create?channel=<?php echo $channel;?>" parent-controller="#posts"><i class="fa fa-plus"></i> Add Posts</a>
+		</div>
+	</h3>
+	
 	<div class="row">
 	<?php foreach ((array)config_item("channel") as $key => $value) { ?>
 		<div class="col-lg-2 col-sm-6"><div class="card card-body <?php echo ($value->url == $this->input->get("channel") || ($value->url == config_item("default_channel") && !$this->input->get("channel")) ? "channel-active" : "");?>">
@@ -54,8 +63,8 @@
 				<td><?php echo $value->views;?></td>
 				<td></td>
 				<td class="text-right">
-					<a class="btn btn-primary" href="/posts/enterprise/posts/create/<?php echo $value->id;?>?channel=<?php echo $value->channel;?>&ref=<?php echo getRef();?>" parent-controller="#posts">Edit</a>
-					<a class="btn btn-primary" href="/posts/enterprise/posts/deletepost/<?php echo $value->id;?>?channel=<?php echo $value->channel;?>&ref=<?php echo getRef();?>"  parent-controller="#posts">Delete</a>
+					<a class="btn btn-outline-danger btn-sm" href="/posts/enterprise/posts/create/<?php echo $value->id;?>?channel=<?php echo $value->channel;?>&ref=<?php echo getRef();?>" parent-controller="#posts"><i class="fa fa-edit"></i> Edit</a>
+					<a class="btn btn-outline-primary btn-sm" href="/posts/enterprise/posts/deletepost/<?php echo $value->id;?>?channel=<?php echo $value->channel;?>&ref=<?php echo getRef();?>"  parent-controller="#posts"><i class="fa fa-trash"></i> Delete</a>
 				</td>
 			</tr>
 			<?php } ?>

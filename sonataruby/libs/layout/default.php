@@ -62,6 +62,7 @@
       </script>
       
       <?php libs_url('js/app.js',['name' => "Bootstrap & Jquery"]);?>
+      <?php libs_url('js/jquery.lazy.js',['name' => "Layzy Loadding & Jquery"]);?>
       <?php echo template_url("styles.css");?>
 </head>
 

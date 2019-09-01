@@ -9,10 +9,7 @@ class Components {
 	function __construct()
 	{
 		$this->CI =& get_instance();
-        $register = isset($this->CI->registerComponents) ? (array)$this->CI->registerComponents : [];
-        foreach ($register as $key => $value) {
-            $this->{$key} = call_user_func_array($value, []);
-        }
+       
 	}
 
     
@@ -25,13 +22,13 @@ class Components {
 
 
 
-    /*Image */
+    /*Image 
 
     public function image($data="", $attr=["class" => "d-block w-100 no-radius"]){
         $data = isObject($data);
         return $this->CI->load->view("components/image",["data" => $data, "attr" => $attr]);
     }
-
+    */
     /*Video */
 
     public function video($data="", $attr=["class" => "d-block w-100 no-radius"]){
