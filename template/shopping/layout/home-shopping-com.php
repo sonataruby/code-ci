@@ -18,7 +18,7 @@
 <div class="container">
 <div class="row d-flex">
 <div class="col-lg-4 col-sm-12 flex-box">
-<div class="bg-light"> </div>
+<div class="bg-light">&nbsp;</div>
 </div>
 <div class="col-lg-8 col-sm-12">
 <ul id="myTab" class="nav nav-tabs tab-primary" role="tablist">
@@ -41,7 +41,60 @@
 </div>
 </section>
 <section>
-	<div class="container">
-    	{components=posts}lazy=true{/components}
-    </div>
+	
+</section>    
+  
+  
+  
+
+  
+  
+
+  <section class="team-2">
+<div class="container">
+<div class="row d-flex">
+<div class="col-lg-4 col-sm-12 flex-box">
+<div class="bg-light">&nbsp;</div>
+</div>
+<div class="col-lg-8 col-sm-12">
+<div class="tab-primary">
+<ul id="myTab" class="nav nav-tabs" role="tablist">
+<li class="nav-item"><a id="home-tab" class="nav-link active" role="tab" href="#home" data-toggle="tab" aria-controls="home" aria-selected="true">Tabs 1</a></li>
+<li class="nav-item"><a id="profile-tab" class="nav-link" role="tab" href="#profile" data-toggle="tab" aria-controls="profile" aria-selected="false">Tabs 2</a></li>
+<li class="nav-item"><a id="contact-tab" class="nav-link" role="tab" href="#contact" data-toggle="tab" aria-controls="contact" aria-selected="false">Tabs 3</a></li>
+</ul>
+<div id="myTabContent" class="tab-content">
+<div id="home" class="tab-pane fade show active" role="tabpanel" aria-labelledby="home-tab">
+<ul class="row">
+<li class="col-lg-3 col-sm-12">
+<div class="card">
+<div class="card-image-header"><img class="w-100" src="http://lorempixel.com/400/200/"></div>
+<div class="card-body"><strong>Text</strong></div>
+</div>
+</li>
+<li class="col-lg-3  col-sm-12">
+<div class="card">
+<div class="card-image-header"><img class="w-100" src="http://lorempixel.com/400/200/"></div>
+<div class="card-body"><strong>Text</strong></div>
+</div>
+</li>
+<li class="col-lg-3  col-sm-12">
+<div class="card">
+<div class="card-image-header"><img class="w-100" src="http://lorempixel.com/400/200/"></div>
+<div class="card-body"><strong>Text</strong></div>
+</div>
+</li>
+<li class="col-lg-3  col-sm-12">
+<div class="card">
+<div class="card-image-header"><img class="w-100" src="http://lorempixel.com/400/200/"></div>
+<div class="card-body"><strong>Text</strong></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
