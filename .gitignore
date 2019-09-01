@@ -7,7 +7,7 @@ vendor
 create.sh
 application/config/database.php
 upload/*
-templates/*/layout
+templates/*
 node_modules
 node_modules_backup
 backup
