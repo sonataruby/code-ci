@@ -58,6 +58,10 @@ class Posts_model extends Model{
 
 	public function getData($url="", $id=false, $prevnext=false, $order=false){
 		
+		//$readCache = $this->dbCache("posts-{$url}-{$id}");
+
+		//if($readCache) return $readCache;
+
 		if(!$url && !$id) return;
 		if($url){
 			$this->db->where("post_url", $url);
@@ -81,6 +85,8 @@ class Posts_model extends Model{
 			$data->order = $this->getList(["limit" => 3, "ingore" => $data->id,"channel" => $data->channel]);
 		}
 
+		//$this->dbCache("posts-{$url}-{$id}", $data);
+
 		return $data;
 	}
 
@@ -96,6 +102,8 @@ class Posts_model extends Model{
 	public function getList($arv=[],$language=false){
 		$language = ($language ? $language : $this->config->item("language"));
 
+		
+
 		$search = @$arv["search"];
 		$tag = @$arv["tag"];
 		$catalog = @$arv["catalog"];
@@ -108,9 +116,13 @@ class Posts_model extends Model{
 		$limit = isset($arv["limit"]) ? intval($arv["limit"]) : 20;
 		
 		
+
+		
+
 		$this->setLimit($limit);
 		$page = $this->input->get("page") ? intval($this->input->get("page")) : 1;
 		$start = $page > 0 ? ($page - 1) * $limit : 0 * $limit;
+
 
 		$this->db->where("language", $language);
 		$this->db->select("{$this->table}.post_id as id, {$this->table}.post_image as image, {$this->table}.post_title as name, {$this->table}.post_description as description, {$this->table}.post_url as url, {$this->table}.post_tag as tag, {$this->table}.created_date, {$this->table}.updated_date, {$this->table}.views, {$this->table}.channel, {$this->table}.account_id");
@@ -182,6 +194,8 @@ class Posts_model extends Model{
 			$value->image = isObject($value->image);
 			$arv[] = $value;
 		}
+
+		
 		return $arv;
 	}
 

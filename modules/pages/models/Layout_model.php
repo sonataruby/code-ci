@@ -32,6 +32,9 @@ class Layout_model extends Model{
 		$data = $this->getData(false, $id);
 		$settemplate .= $data->url."-".str_replace('.','-',DOMAIN).".php";
 		write_file($settemplate, $data->content,'wb');
+
+		
+
 	}
 
 

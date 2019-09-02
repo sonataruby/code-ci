@@ -10,12 +10,15 @@ class Model extends CI_Model{
 	public $total = 0;
 	public $store_id =0;
 	public $field_excel = [];
-
+	private $startTime = 0;
 	function __construct($a=0)
 	{
 		parent::__construct();
 		$this->load->database();
 		$this->load->library("pagination");
+		$this->startTime = microtime(true);
+		$this->load->driver('cache',array('adapter' => 'apc', 'backup' => 'file'));
+		$this->AutomaticCache();
 		
 	}
 	public function setLimit($limit){
@@ -128,6 +131,23 @@ class Model extends CI_Model{
 				return $key;
 			break;
 		}
+	}
+
+
+	public function dbCache($key, $content=""){
+		
+		if ( ! $read = $this->cache->get($key))
+		{
+		        $read = $content;
+		        $this->cache->save($key, $read, 300);
+		}
+		return $read;
+	}
+
+	private function AutomaticCache(){
+
+		$class = get_called_class();
+		
 	}
 
 }
