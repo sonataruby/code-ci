@@ -30,7 +30,7 @@ class Controller extends MX_Controller {
 
 		parent::__construct();
 		
-		$this->load->helper(['date','cookie','url','form','string','text']);
+		$this->load->helper(['date','cookie','url','form','string','text','html']);
 		$this->load->library(['session','email','user_agent','form_validation']);
 		$this->lang->load("globals");
 		$this->load->model([

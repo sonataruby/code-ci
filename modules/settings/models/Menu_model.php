@@ -9,6 +9,7 @@ class Menu_model extends Model{
 			$this->db->update($this->table, $arv, ["menu_id" => $id]);
 		}else{
 			if($this->store_id) $arv["store"] = $this->store_id;
+			$arv["language"] = $this->config->item("language");
 			$this->db->insert($this->table, $arv);
 			$id = $this->db->insert_id();
 		}
@@ -197,6 +198,7 @@ class Menu_model extends Model{
 
 
 	public function delete($id){
+		if($this->store_id) $this->db->where("store", $this->store_id); 
 		$count = $this->db->get_where($this->table,['parent_id'=>$id])->result();
 		if(count($count) > 0){
 			foreach ($count as $key => $value) {
@@ -209,5 +211,12 @@ class Menu_model extends Model{
 		
 
 		return true;
+	}
+
+
+	public function resetMenu(){
+		if($this->store_id) $this->db->where("store", $this->store_id); 
+		$this->db->where("language", $this->config->item("language"));
+		$this->db->delete($this->table);
 	}
 }

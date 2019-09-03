@@ -1,99 +1,49 @@
-<section class="team-2 bg-primary">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-lg-5 col-md-6 col-sm-12">
-            <h1>Shopping Card</h1>
-            <h3>Sales Off 50%</h3>
-            <a class="btn btn-primary btn-lg" href="#">Shop Now</a>
-          </div>
-          <div class="col-lg-7 col-md-6 col-sm-12 justify-content-end">
-            <img src="http://www.vvveb.com/electro-html/img/ipad.png" class="w-100">
-          </div>
-        </div>
-    
-     </div>
-    </section>    
-  
-  <section class="team-2" style="padding-top: 40px; padding-bottom: 40px;">
+<div class="slider">
+<div class="container"><img class="w-100" src="https://lorempixel.com/1600/480/?72572" /></div>
+</div>
+<section>
 <div class="container">
-<div class="row d-flex">
-<div class="col-lg-4 col-sm-12 flex-box">
-<div class="bg-light">&nbsp;</div>
-</div>
-<div class="col-lg-8 col-sm-12">
-<ul id="myTab" class="nav nav-tabs tab-primary" role="tablist">
-<li class="nav-item"><a id="home-tab" class="nav-link active" role="tab" href="#home" data-toggle="tab" aria-controls="home" aria-selected="true">Chú ý nhất</a></li>
-<li class="nav-item"><a id="profile-tab" class="nav-link" role="tab" href="#profile" data-toggle="tab" aria-controls="profile" aria-selected="false">Bán chạy nhất</a></li>
-<li class="nav-item"><a id="contact-tab" class="nav-link" role="tab" href="#contact" data-toggle="tab" aria-controls="contact" aria-selected="false">Đang khuyến mại</a></li><li class="nav-item"><a id="contact-tab" class="nav-link" role="tab" href="#contact" data-toggle="tab" aria-controls="contact" aria-selected="false">Hàng mới nhập</a></li>
-</ul>
-<div id="myTabContent" class="tab-content">
-<div id="home" class="tab-pane fade show active" role="tabpanel" aria-labelledby="home-tab">
-<ul class="row">
-<li class="col-lg-3 col-sm-12">Item 1</li>
-<li class="col-lg-3  col-sm-12">Item 2</li>
-<li class="col-lg-3  col-sm-12">Item 3</li>
-<li class="col-lg-3  col-sm-12">Item 4</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
+<h2>Chương tr&igrave;nh tour Thang 10</h2>
+{components=posts}limit=12{/components}</div>
 </section>
 <section>
-	
-</section>    
-  
-  
-  
-
-  
-  
-
-  <section class="team-2">
 <div class="container">
-<div class="row d-flex">
-<div class="col-lg-4 col-sm-12 flex-box">
-<div class="bg-light">&nbsp;</div>
-</div>
-<div class="col-lg-8 col-sm-12">
-<div class="tab-primary">
-<ul id="myTab" class="nav nav-tabs" role="tablist">
-<li class="nav-item"><a id="home-tab" class="nav-link active" role="tab" href="#home" data-toggle="tab" aria-controls="home" aria-selected="true">Tabs 1</a></li>
-<li class="nav-item"><a id="profile-tab" class="nav-link" role="tab" href="#profile" data-toggle="tab" aria-controls="profile" aria-selected="false">Tabs 2</a></li>
-<li class="nav-item"><a id="contact-tab" class="nav-link" role="tab" href="#contact" data-toggle="tab" aria-controls="contact" aria-selected="false">Tabs 3</a></li>
-</ul>
-<div id="myTabContent" class="tab-content">
-<div id="home" class="tab-pane fade show active" role="tabpanel" aria-labelledby="home-tab">
-<ul class="row">
-<li class="col-lg-3 col-sm-12">
-<div class="card">
-<div class="card-image-header"><img class="w-100" src="http://lorempixel.com/400/200/"></div>
-<div class="card-body"><strong>Text</strong></div>
-</div>
-</li>
-<li class="col-lg-3  col-sm-12">
-<div class="card">
-<div class="card-image-header"><img class="w-100" src="http://lorempixel.com/400/200/"></div>
-<div class="card-body"><strong>Text</strong></div>
-</div>
-</li>
-<li class="col-lg-3  col-sm-12">
-<div class="card">
-<div class="card-image-header"><img class="w-100" src="http://lorempixel.com/400/200/"></div>
-<div class="card-body"><strong>Text</strong></div>
-</div>
-</li>
-<li class="col-lg-3  col-sm-12">
-<div class="card">
-<div class="card-image-header"><img class="w-100" src="http://lorempixel.com/400/200/"></div>
-<div class="card-body"><strong>Text</strong></div>
-</div>
-</li>
+<h2>Tour được quan t&acirc;m</h2>
+{components=posts}limit=6{/components}</div>
+</section>
+<section>
+<div class="container">
+<h2>Điểm đến l&yacute; tưởng</h2>
+{components=posts}limit=6{/components}</div>
+</section>
+<section class="pt-4 pb-4">
+<div class="container">
+<div class="row">
+<div class="col-lg-4 col-sm-12 col-md-12 col-4">
+<h3>Hướng dẫn kh&aacute;ch h&agrave;ng</h3>
+<ul class="list-group list-group-flush">
+<li class="list-group-item">Hướng dẫn mua h&agrave;ng</li>
+<li class="list-group-item">Hướng dẫn thanh to&aacute;n</li>
+<li class="list-group-item">Hướng dẫn vận chuyển</li>
+<li class="list-group-item">Hướng dẫn bảo h&agrave;nh</li>
+<li class="list-group-item">Hướng dẫn đổi trả</li>
 </ul>
 </div>
+<div class="col-lg-4 col-sm-12 col-md-6 col-4">
+<h3>{site_name}</h3>
+<p>{full_address}</p>
+<p>M&atilde; số thuế : {company_license_number}</p>
+<p>Phone : <a href="tel:&lt;?php echo config_item(">{hotline}</a></p>
+<p>Tel : <a href="tel:&lt;?php echo config_item(">{ctyphone}</a></p>
+<p><a href="mailto:{site_email}?subject=Contact">{site_email}</a></p>
 </div>
-</div>
+<div class="col-lg-4 col-sm-12 col-md-6 col-4">
+<h3>Chi nh&aacute;nh HCM</h3>
+<p>{full_address}</p>
+<p>M&atilde; số thuế : {company_license_number}</p>
+<p>Phone : <a href="tel:&lt;?php echo config_item(">{hotline}</a></p>
+<p>Tel : <a href="tel:&lt;?php echo config_item(">{ctyphone}</a></p>
+<p><a href="mailto:{site_email}?subject=Contact">{site_email}</a></p>
 </div>
 </div>
 </div>

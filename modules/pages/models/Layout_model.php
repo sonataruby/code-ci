@@ -99,6 +99,15 @@ class Layout_model extends Model{
 	}
 
 
+	public function delete($id=false){
+		$this->db->where("language", $this->config->item("language"));
+
+		if($this->store_id) $this->db->where("store", $this->store_id);
+		if($id) $this->db->where("layout_id", $id);
+		$this->db->delete($this->table);
+	}
+
+
 	public function windget_save($arv=[], $id=false){
 		if($id){
 			$this->db->update("widgets", $arv,["winget_id" => $id]);

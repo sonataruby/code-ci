@@ -5,10 +5,13 @@ class Pages_model extends Model{
 	private $table = "pages";
 
 	public function create($id=false, $arv=[]){
-		$arv["page_url"] = $this->makeURL($arv["page_name"], $arv["page_url"], $id);
+		$arv["page_url"] = $this->makeURL($arv["page_name"], @$arv["page_url"], $id);
 		if($id){
-			$this->db->update($this->table, $arv,["page_id" => $id]);
+			$this->db->update($this->table, $arv,["page_id" => $id, "store" => $this->store_id]);
 		}else{
+			$arv["language"] = $this->config->item("language");
+			$arv["store"] = $this->store_id;
+			
 			$this->db->insert($this->table, $arv);
 			$id = $this->db->insert_id();
 		}
@@ -27,7 +30,7 @@ class Pages_model extends Model{
 		}
 		$language = ($language ? $language : $this->config->item("language"));
 		$this->db->where("language", $language);
-
+		if($this->store_id) $this->db->where("store", $this->store_id);
 		$this->db->select("page_id as id, page_name as name, page_image as image, page_description as description, page_keyword as keyword, page_layout as layout, page_url as url, page_icoin as icoin, page_tag as tag, page_content as content, show_menu, status, parent_id");
 		$data = $this->db->get($this->table)->row();
 		if(!$data) return;
@@ -41,7 +44,8 @@ class Pages_model extends Model{
 		$language = ($language ? $language : $this->config->item("language"));
 		
 		$this->db->where("language", $language);
-		
+		if($this->store_id) $this->db->where("store", $this->store_id);
+
 		if(isset($arv["in"])){
 			$this->db->where_in("page_id", $arv["in"]);
 		}
@@ -85,4 +89,14 @@ class Pages_model extends Model{
 		return $arv;
 	}
 
+
+	public function delete($id=false){
+		
+		
+		$this->db->where("language", $this->config->item("language"));
+
+		if($this->store_id) $this->db->where("store", $this->store_id);
+		if($id) $this->db->where("page_id", $id);
+		$this->db->delete($this->table);
+	}
 }

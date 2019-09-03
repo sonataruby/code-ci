@@ -15,3 +15,11 @@ body {
 	padding-top:30px;
 	min-height: 300px;
 }
+.breadcrumb{
+	flex-wrap: nowrap;
+	overflow-y: auto;
+}
+.breadcrumb-item{
+	flex-wrap: nowrap;
+	white-space: nowrap;
+}

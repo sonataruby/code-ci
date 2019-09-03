@@ -2,118 +2,25 @@
 <?php echo form_open("",["id" => "savedata","target" => "IF_savedata"]);?>
 <div class="row">
 	<div class="col-lg-9 col-md-12">
+		
+		
+		<div class="border" style="min-height: 70vh;">
+			<div id="content" rows="32" name="content"><?php echo str_replace(['<?php','?>'], ['&lt;?php','?a&gt;'], @$data->content);?></div>
+		</div>
+	</div>
+	<div class="col-lg-3 col-md-12 sticky-top">
 		<div class="hbox border">
 			<?php echo $this->forms->text([
 				"name" => "layout_name",
 				"label" => "Layout Name",
 				"value" => @$data->name
 			],[
-				"requied" => true
+				"requied" => true,
 			]);?>
-			
-		</div>
-		
-
-		<div class="hbox" style="position: relative;">
-			<div>
-				
-
-				<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-				  
-
-				  <div class="btn-group" role="group">
-				    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				      Layout
-				    </button>
-				    <div class="dropdown-menu tools_desktop" aria-labelledby="btnGroupDrop1">
-				      <a class="dropdown-item" href="#">Dropdown link</a>
-				      <a class="dropdown-item" href="#">Dropdown link</a>
-				    </div>
-				  </div>
-				</div>
-
-				<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-				  
-
-				  <div class="btn-group" role="group">
-				    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				      Block
-				    </button>
-				    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-				      <a class="dropdown-item" href="#">Dropdown link</a>
-				      <a class="dropdown-item" href="#">Dropdown link</a>
-				    </div>
-				  </div>
-				</div>
-
-
-				<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-				  
-
-				  <div class="btn-group  dropright" role="group">
-				    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				      Image
-				    </button>
-				    <div class="dropdown-menu dropdownImage" style="max-width:550px; min-width:550px; max-height: 450px; overflow: auto; padding:30px;" aria-labelledby="btnGroupDrop1">
-				      <a class="dropdown-item" href="#">Dropdown link</a>
-				      <a class="dropdown-item" href="#">Dropdown link</a>
-				    </div>
-				  </div>
-				</div>
-
-
-				<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-				  
-
-				  <div class="btn-group" role="group">
-				    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				      Plugin & Wingets
-				    </button>
-				    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-				    	<?php foreach (config_item("plugins") as $key => $value) { ?>
-				    		<a class="dropdown-item"  data-item="text" data-append='[plugin name="<?php echo $key;?>"][/plugin]'><?php echo $value;?></a>
-				    	<?php } ?>
-				      
-				      
-				    </div>
-				  </div>
-				</div>
-				<?php
-					$animated = [
-						"bounceIn","bounceInRight","bounceInLeft","bounceInUp","bounceInDown","fadeIn","growIn","shake","shakeUp","FadeInLeft","fadeInRight","fadeInUp","fadeInDown","rotateIn",
-						"rotateInUpLeft","rotateInDownLeft","rotateInUpRight","rotateInDownRight","rollIn","wiggle","swing","tada","wobble","pulse","lightSpeedInRight","lightSpeedInLeft","flip",
-						"flipInX","flipInY"];
-				?>
-				<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-				  
-
-				  <div class="btn-group" role="group">
-				    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				      Animated
-				    </button>
-				    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1" style="max-width:550px; min-width:550px; max-height: 450px; overflow: auto; padding:30px;">
-				      <?php foreach ($animated as $key => $value) { ?>
-				      	<a class="dropdown-item"  data-item="animated" data-append="<?php echo $value;?>"><?php echo $value;?></a>
-				      <?php } ?>
-				      
-				      
-				    </div>
-				  </div>
-				</div>
-
-				
-
-			</div>
-		</div>
-		<div class="border" style="min-height: 70vh;">
-			<textarea id="textarea" rows="32" class="form-control" name="content"><?php echo @$data->content;?></textarea>
-		</div>
-	</div>
-	<div class="col-lg-3 col-md-12 sticky-top">
-		<div class="hbox border">
+			<br>
 			<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Public</button>
 			<?php if(@$data->id){?>
-				<a href="/pages/layout/builder/<?php echo @$data->id;?>" class="btn btn-warning"><i class="fa fa-save"></i> Design</a>
+				<a href="/pages/layout/builder/<?php echo @$data->id;?>" class="btn btn-warning"><i class="fa fa-save"></i> Design Tools</a>
 			<?php } ?>
 		</div>
 		<div class="">
@@ -167,7 +74,7 @@
 	}
 </style>
 <?php
-addon("addon/codemirror",["target" => "#textarea", "form" => "#savedata", "tools" => "true", "libs" => "default", "tools_desktop" => ".tools_desktop"]);
+addon("addon/editer",["target" => "#content", "form" => "#savedata", "tools" => "true", "libs" => "default", "tools_desktop" => ".tools_desktop"]);
 
 ?>
 

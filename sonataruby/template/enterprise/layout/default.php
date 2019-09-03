@@ -144,24 +144,23 @@
       <div class="aside-content">
         
         <div class="srollView">
-          <ul class="nav flex-column">
+          <ul class="nav flex-column" id="MenuSli">
             <li class="nav-item">
               <a class="nav-link" data-toggle="collapse" href="#Dashboard" role="button" aria-expanded="false" aria-controls="Dashboard"><i class="fab fa-accusoft fa-1x"></i> <span>Dashboard</span></a>
               
               <div id="Dashboard" class="collapse">
                <ul class="list-group list-group-flush" style="line-height: 22px;">
-                <li class="list-group-item"><a class="dropdown-item" href="#"><i class="fa fa-file-word"></i> Categories</a></li>
-                <li class="list-group-item"><a class="dropdown-item" href="#"><i class="fa fa-file-word"></i> Posts</a></li>
-                <li class="list-group-item"><a class="dropdown-item" href="#"><i class="fa fa-file-word"></i> Something else here</a></li>
+                <li class="list-group-item"><a class="nav-link" href="/enterprise"><i class="fa fa-tachometer-alt"></i> <span>Report</span></a></li>
+               
               </ul>
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" data-toggle="collapse" href="#Pages" role="button" aria-expanded="false" aria-controls="Pages"><i class="fa fa-file-word"></i> <span>Trang</span></a>
-              <div id="Pages" class="collapse">
+              <a class="nav-link active" data-toggle="collapse" href="#Pages" role="button" aria-expanded="false"  aria-controls="Pages"><i class="fa fa-file-word"></i> <span>Phân trang</span></a>
+              <div id="Pages" class="collapse" data-parent="#MenuSli">
                  <ul class="list-group list-group-flush">
                     <li class="list-group-item menuHeader">
-                      Trang giao diện <a class="btn btn-primary btn-sm float-right" href="/pages/layout/create" sn-link="true" parent-controller="#pages"><i class="fa fa-plus"></i></a>
+                      Trang giao diện <a class="btn btn-primary btn-sm float-right" href="/pages/layout/create" sn-link="true" parent-controller="#pages"><i class="fa fa-plus text-white"></i></a>
                       
                     </li>
                      <?php
@@ -170,7 +169,7 @@
                         <li class="list-group-item"><a class="nav-link" href="/pages/layout/create/<?php echo $value->id;?>"><i class="fa fa-file-word"></i> <span><?php echo $value->name;?></span></a></li>
                       <?php } ?>
 
-                    <li class="list-group-item menuHeader">Trang nội dung <a class="btn btn-primary btn-sm float-right" href="/pages/enterprise/create" sn-link="true" parent-controller="#pages"><i class="fa fa-plus"></i></a></li>
+                    <li class="list-group-item menuHeader">Trang nội dung <a class="btn btn-primary btn-sm float-right" href="/pages/enterprise/create" sn-link="true" parent-controller="#pages"><i class="fa fa-plus text-white"></i></a></li>
                       <?php
                       $data = get_instance()->pages_model->getList();
                       foreach ($data as $key => $value) { ?>
@@ -183,7 +182,7 @@
             </li>
             <li class="nav-item">
               <a class="nav-link arrow-down" data-toggle="collapse" href="#Posts" role="button" aria-expanded="false" aria-controls="Posts"><i class="fa fa-mail-bulk"></i> <span>Nội dung</span></a>
-              <div id="Posts" class="collapse">
+              <div id="Posts" class="collapse" data-parent="#MenuSli">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item menuHeader">Bài viết </li>
 
@@ -198,36 +197,34 @@
             </li>
             <li class="nav-item">
               <a class="nav-link"data-toggle="collapse" href="#Templates" role="button" aria-expanded="false" aria-controls="Templates"><i class="fa fa-campground"></i> <span>Giao diện</span></a>
-              <div id="Templates" class="collapse">
+              <div id="Templates" class="collapse" data-parent="#MenuSli">
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item menuHeader">Cài đặt</li>
-                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/template/manager" sn-link="true" parent-controller="#templates"><span>Điều chỉnh</span></a>
-                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/template/search" sn-link="true" parent-controller="#templates"><span>Tìm giao diện</span></a>
-                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/template/backups" sn-link="true" parent-controller="#templates"><span>Backup & Upload</span></a>
+                   
+                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/template/manager" sn-link="true" parent-controller="#templates"><i class="fa fa-columns"></i> <span>Cài đặt</span></a>
+                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/template/search" sn-link="true" parent-controller="#templates"><i class="fa fa-search"></i><span>Tìm giao diện</span></a>
+                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/template/backups" sn-link="true" parent-controller="#templates"><i class="fa fa-download"></i> <span>Backup & Upload</span></a>
                     
 
                     <li class="list-group-item menuHeader">Điều chỉnh</li>
-                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/menu/manager" parent-controller="#templates"><span>Quản lý Menu</span></a>
-                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/template/header" sn-link="true" parent-controller="#templates"><span>Header & Footer</span></a>
-                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/template/blocks" parent-controller="#templates"><span>Block Manager</span></a>
-                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/template/css" parent-controller="#templates"><span>Điều chỉnh CSS</span></a>
+                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/menu/manager" parent-controller="#templates"><i class="fa fa-bars"></i> <span>Quản lý Menu</span></a>
+                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/template/header" sn-link="true" parent-controller="#templates"><i class="fa fa-ellipsis-v"></i> <span>Header & Footer</span></a>
+                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/template/blocks" parent-controller="#templates"><i class="fa fa-shapes"></i> <span>Block Manager</span></a>
+                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/template/css" parent-controller="#templates"><i class="fab fa-css3-alt"></i> <span>Điều chỉnh CSS</span></a>
                     
                   </ul>
               </div>
             </li>
-            <li class="nav-item" id="apps">
-              <a class="nav-link" href="/settings/enterprise/addon/manager"><i class="fa fa-sitemap"></i> <span>Ứng dụng</span></a>
-              <div id="multiCollapseExample2" class="slidebar">
-                <div class="menuHeader">
-                  <h4>Ứng dụng</h4>
-                  <p>Menu controller posts</p>
-                </div>
-                <a class="dropdown-item" href="/settings/enterprise/addon/manager" sn-link="true" parent-controller="#apps">Điều chỉnh</a>
-                <a class="dropdown-item" href="/settings/enterprise/addon/search" sn-link="true" parent-controller="#apps">Tìm ứng dụng</a>
-                <a class="dropdown-item" href="/settings/enterprise/addon/backups" sn-link="true" parent-controller="#apps">Backup & Upload</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="/settings/enterprise/addon/plugins" sn-link="true" parent-controller="#apps">Tiện ích mở rộng</a>
-                <a class="dropdown-item" href="/settings/enterprise/builder"  parent-controller="#apps"><i class="fa fa-mobile-alt"></i> Ứng dụng Mobile</a>
+            <li class="nav-item">
+              <a class="nav-link" href="#Apps" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="Apps"><i class="fa fa-sitemap"></i> <span>Ứng dụng</span></a>
+              <div id="Apps" class="collapse" data-parent="#MenuSli">
+                <ul class="list-group list-group-flush">
+                    
+                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/addon/manager" sn-link="true" parent-controller="#apps"><i class="fa fa-cogs"></i> <span>Cài đặt</span></a></li>
+                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/addon/search" sn-link="true" parent-controller="#apps"><i class="fa fa-search"></i> <span>Tìm ứng dụng</span></a></li>
+                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/addon/backups" sn-link="true" parent-controller="#apps"><i class="fa fa-download"></i> <span>Backup & Upload</span></a></li>
+                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/addon/plugins" sn-link="true" parent-controller="#apps"><i class="fa fa-project-diagram"></i> <span>Tiện ích mở rộng</span></a></li>
+                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/builder"  parent-controller="#apps"><i class="fa fa-mobile-alt"></i> <span>Ứng dụng Mobile</span></a></li>
+                </ul>
               </div>
             </li>
 
@@ -239,44 +236,36 @@
               <a class="nav-link" href="/settings/enterprise/tasks"><i class="fa fa-tasks"></i> <span>Task</span></a>
             </li>
 
-            <li class="nav-item" id="settings">
-              <a class="nav-link" href="/settings/enterprise/configs" sn-link="true" parent-controller="#settings"><i class="fa fa-cogs"></i> <span>Cấu hình</span></a>
-              <div id="multiCollapseExample2" class="slidebar">
-                <div class="menuHeader">
-                  <h4>Settings</h4>
-                  <p>Menu controller posts</p>
-                  
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="#Settings" role="button" aria-expanded="false" aria-controls="Settings"><i class="fa fa-cogs"></i> <span>Cấu hình</span></a>
+              
+                <div id="Settings" class="collapse" data-parent="#MenuSli">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item menuHeader">Cài đặt</li>
+                 
+                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/configs/api" sn-link="true" parent-controller="#settings"><i class="fab fa-squarespace"></i> <span>Quản lý API</span></a></li>
+                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/configs" sn-link="true" parent-controller="#settings"><i class="fa fa-cogs"></i> <span>Điều chỉnh chung</span></a></li>
+                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/configs/channels" sn-link="true" parent-controller="#settings"><i class="fa fa-dice-d20"></i> <span>Quản lý Channel</span></a></li>
+                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/configs/urlredirect" sn-link="true" parent-controller="#settings"><i class="fa fa-link"></i> <span>Quản lý URL</span></a></li>
+                    <li class="list-group-item menuHeader">Online / Offline</li>
+                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/configs/maintain" sn-link="true" parent-controller="#settings"><i class="fa fa-tachometer-alt"></i> <span>Maintain</span></a></li>
+                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/configs/page404" sn-link="true" parent-controller="#settings"><i class="fa fa-ambulance"></i> <span>Page 404</span></a></li>
+
+
+                    <li class="list-group-item menuHeader">Tools</li>
+                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/configs/autobots" sn-link="true" parent-controller="#settings"><i class="fa fa-user-astronaut"></i> <span>Thiết lập tự động</span></a></li>
+
+                  </ul>
                 </div>
-                <a class="dropdown-item" href="/settings/enterprise/configs/api" sn-link="true" parent-controller="#settings"><i class="fab fa-squarespace"></i> Quản lý API</a>
-                <a class="dropdown-item" href="/settings/enterprise/configs" sn-link="true" parent-controller="#settings"><i class="fa fa-cogs"></i> Điều chỉnh chung</a>
-                <a class="dropdown-item" href="/settings/enterprise/configs/channels" sn-link="true" parent-controller="#settings"><i class="fa fa-dice-d20"></i> Quản lý Channel</a>
-                <a class="dropdown-item" href="/settings/enterprise/configs/urlredirect" sn-link="true" parent-controller="#settings"><i class="fa fa-link"></i> Quản lý URL</a>
-                <div class="menuHeader">
-                  <h4>Online / Offline</h4>
-                  <p>Menu controller posts</p>
-                </div>
-                <a class="dropdown-item" href="/settings/enterprise/configs/maintain" sn-link="true" parent-controller="#settings"><i class="fa fa-tachometer-alt"></i> Maintain</a>
-                <a class="dropdown-item" href="/settings/enterprise/configs/page404" sn-link="true" parent-controller="#settings"><i class="fa fa-ambulance"></i> Page 404</a>
-
-                
-
-
-              </div>
             </li>
           </ul>
           </div>
           <div class="content-bottom bg-info">
             <ul class="nav flex-column">
-                <li class="nav-item">
-                  <a class="nav-link text-white" href="/home/enterprise"><i class="fa fa-user-circle fa-1x text-white"></i> <span>Profiles</span></a>
-                </li>
+                
 
                 <li class="nav-item">
-                  <a class="nav-link text-white" href="/home/enterprise"><i class="fa fa-key fa-1x text-white"></i> <span>Password</span></a>
-                </li>
-
-                <li class="nav-item">
-                  <a class="nav-link text-white" href="/home/enterprise"><i class="fa fa-lock fa-1x text-white"></i> <span>Profiles</span></a>
+                  <a class="nav-link text-white" href="/home/enterprise"><i class="fa fa-lock fa-1x text-white"></i> <span><?php echo lang("logout");?></span></a>
                 </li>
             </ul>
           </div>

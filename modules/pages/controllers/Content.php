@@ -8,17 +8,23 @@ class Content extends FrontEnd {
 		
 		
 		$data = $this->pages_model->getData($url);
-
-		$offset_layout =  $this->offset_layout($data->layout);
-		if($offset_layout){
-			$view = $offset_layout;
-		}else{
-			$layout = $this->layout_model->getData($data->layout);
-			if($layout){
-
+		$view = "page";
+		if($data){
+			$offset_layout =  $this->offset_layout($data->layout);
+			if($offset_layout){
+				$view = $offset_layout;
 			}else{
-				$view = "page";
+				$layout = $this->layout_model->getData($data->layout);
+				if($layout){
+
+				}
 			}
+		}else{
+			$data = new stdClass;
+			$data->name = "Page 404";
+			$data->description = "";
+			$data->keyword = "";
+			$data->content = "<h1>Page 404</h1><p>Page not exit</p>";
 		}
 		
 

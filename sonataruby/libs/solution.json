@@ -1,0 +1,10 @@
+{"shopping":
+	{"menu":{"\/products/post.html":"S\u1ea3n ph\u1ea9m","page/events.html":"Khuy\u1ebfn m\u00e3i","page/recruitment.html":"Tuy\u1ec3n d\u1ee5ng"},
+	"page":{"events.html":"Khuy\u1ebfn m\u00e3i","recruitment.html":"Tuy\u1ec3n d\u1ee5ng"},
+	"layout":{"home":{"label": "Trang chủ", "filelocal" :"home-shopping"}},
+	"channel":{"products":"S\u1ea3n ph\u1ea9m"}},
+"travel":
+	{"menu":{"\/tour/post.html":"Ch\u01b0\u01a1ng tr\u00ecnh tour","destination/post.html":"\u0110i\u1ec3m \u0111\u1ebfn","page/events.html":"S\u1ef1 ki\u1ec7n","page/recruitment.html":"Tuy\u1ec3n d\u1ee5ng"},
+	"page":{"events.html":"Khuy\u1ebfn m\u00e3i","recruitment.html":"Tuy\u1ec3n d\u1ee5ng"},
+	"layout":{"home":{"label":"Trang chủ","filelocal":"home-travel"}},
+	"channel":{"tour":"Ch\u01b0\u01a1ng tr\u00ecnh tour","destination":"\u0110i\u1ec3m \u0111\u1ebfn"}}}

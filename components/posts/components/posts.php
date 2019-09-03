@@ -1,6 +1,6 @@
 <div class="row">
 	<?php foreach ($data as $key => $value) { ?>
-		<div class="col-lg-3 col-sm-12 mb-3 flex-box" data-animated-action="<?php echo (@$attr["animated"] ? $attr["animated"] : "");?>">
+		<div class="col-xxl-2 col-lg-3 col-md-4 col-sm-6 col-12 mb-3 flex-box" data-animated-action="<?php echo (@$attr["animated"] ? $attr["animated"] : "");?>">
 			<div class="card">
 			  <div class="card-header-top">
 			  <a href="<?php echo post_url($value->url, $value->channel);?>"><?php echo $this->components->image($value->image,["class" => "card-img-top", "alt" => $value->name,"lazy" => @$attr["lazy"]]);?></a>

@@ -155,4 +155,89 @@ class Configs extends Enterprise {
 		}
 		$this->view("page404",["data" => $dataRead]);
 	}
+
+
+	/*
+	Auto Bot
+	*/
+
+	public function autobots(){
+		$this->load->helper('file');
+		$data = ["shopping" => "true", "bds" => "true", "travel" => "true", "aboutproduct" => "true"];
+
+		if($this->isPost()){
+			$solution = $this->input->post("solution");
+			$arv = [];
+			$global = [
+				"menu" => ["/" => "Trang chủ", "page/abouts.html" => "Về chúng tôi", "page/contacts.html" => "Liên hệ"],
+				"page" => ["abouts.html" => ["label" => "Về chúng tôi", "layout" => ""], "contacts.html" => ["label" => "Liên hệ", "layout" => "contact"]]
+			];
+
+			$dataJson = json_decode(read_file(CMS_ROOTPATH . "libs/solution.json"));
+			$arv = [];
+			foreach ($solution as $keyS => $valueS) {
+				if(isset($dataJson->{$valueS})){
+					foreach ($dataJson->{$valueS} as $key => $value) {
+						if(isset($global[$key])){
+							$arv[$key] = array_merge((array) $value, $global[$key]);
+							ksort($arv[$key]);
+						}else{
+							$arv[$key] = (array) $value;
+						}
+						
+					}
+				}
+
+			}
+			
+			$this->installBuilder($arv);
+			
+		}
+		$this->view("autobots",["data" => $data]);
+	}
+
+
+	private function installBuilder($arv=[]){
+
+
+		/*
+		Create Menu
+		*/
+		$i = 0;
+		$this->menu_model->resetMenu();
+		foreach ($arv["menu"] as $key => $value) {
+			$this->menu_model->save(["menu_name" => $value, "menu_link" => $key, "menu_sort" => ($i + 1)]);
+			$i++;
+		}
+
+		/*
+		Create Page
+		*/
+		
+		$this->pages_model->delete();
+		foreach ($arv["page"] as $key => $value) {
+			$url = str_replace('.html', '', $key);
+			$name = $value;
+			$layout = "";
+
+			if(is_array($value)){
+				$name = $value["label"];
+				$layout = $value["layout"];
+			}
+			$this->pages_model->create(false,["page_name" => $name, "page_url" => $url, "page_layout" => $layout]);
+			
+		}
+		/*
+		Create Layout
+		*/
+		
+		$this->layout_model->delete();
+		foreach ($arv["layout"] as $key => $value) {
+			$this->layout_model->create(false,["layout_name" => $value->label, "layout_url" => $key, "layout_content" => read_file(CMS_ROOTPATH . "libs/layout/sample/".$value->filelocal.".php")]);
+		}
+		print_r($arv["layout"]);
+		exit();
+
+
+	}
 }
