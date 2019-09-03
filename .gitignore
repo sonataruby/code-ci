@@ -3,7 +3,7 @@ cache/*
 package-lock.json
 composer.lock
 develop
-vendor
+
 create.sh
 application/config/database.php
 upload/*
