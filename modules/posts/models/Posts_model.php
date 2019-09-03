@@ -268,5 +268,7 @@ class Posts_model extends Model{
 		$this->db->delete($this->postInCatalog, ["post_id" => $id]);
 	}
 
-	
+	public function resetData($channel){
+		$this->db->delete($this->table, ["channel" => $channel, "language" => $this->config->item("language")]);
+	}
 }

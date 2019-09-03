@@ -2,9 +2,19 @@
 	{"menu":{"\/products/post.html":"S\u1ea3n ph\u1ea9m","page/events.html":"Khuy\u1ebfn m\u00e3i","page/recruitment.html":"Tuy\u1ec3n d\u1ee5ng"},
 	"page":{"events.html":"Khuy\u1ebfn m\u00e3i","recruitment.html":"Tuy\u1ec3n d\u1ee5ng"},
 	"layout":{"home":{"label": "Trang chủ", "filelocal" :"home-shopping"}},
-	"channel":{"products":"S\u1ea3n ph\u1ea9m"}},
+	"channel":{"products":{"name":"S\u1ea3n ph\u1ea9m","url" : "products", "layout" : "", "sample" : 10}},
+	"slidebar" : {
+				"rightslide" :  [
+									{"name" : "Category", "content" : "{components=catalog}type=products{/components}", "icon" : ""}, 
+									{"name" : "Support", "content" : "<div class=\"media\"><img src=\"https://image.flaticon.com/icons/svg/236/236832.svg\" class=\"mr-3\" alt=\"...\" style=\"width: 48px;\"><div class=\"media-body\"><h5 class=\"mt-0\">Sales 1</h5>Phone : <a href=\"tel:0986.979.585\">0986.979.585</a></div></div><hr><div class=\"media\"><img src=\"https://image.flaticon.com/icons/svg/236/236825.svg\" class=\"mr-3\" alt=\"...\" style=\"width: 48px;\"><div class=\"media-body\"><h5 class=\"mt-0\">Sales 2</h5>Phone : <a href=\"tel:0939749038\">0939.749.038</a></div></div><hr><div class=\"media\"><img src=\"https://image.flaticon.com/icons/svg/813/813020.svg\" class=\"mr-3\" alt=\"...\" style=\"width: 48px;\"><div class=\"media-body\"><h5 class=\"mt-0\">Sales 3</h5>Phone : <a href=\"tel:0972420023\">0972.420.023</a></div></div><hr><div class=\"media\"><img src=\"https://image.flaticon.com/icons/svg/401/401171.svg\" class=\"mr-3\" alt=\"...\" style=\"width: 48px;\"><div class=\"media-body\"><h5 class=\"mt-0\">Sales 4</h5>Phone : <a href=\"tel:0908141615\">0908.141.615</a></div></div><hr><div class=\"media\"><img src=\"https://image.flaticon.com/icons/svg/554/554857.svg\" class=\"mr-3\" alt=\"...\" style=\"width: 48px;\"><div class=\"media-body\"><h5 class=\"mt-0\">Sales 5</h5>Phone : <a href=\"tel:0938717545\">0938.717.545</a></div></div>", "icon" : ""},
+									{"name" : "Event", "content" : "{components=posts}type=products&limit=5{/components}", "icon" : ""}
+								]
+				
+			}
+},
 "travel":
 	{"menu":{"\/tour/post.html":"Ch\u01b0\u01a1ng tr\u00ecnh tour","destination/post.html":"\u0110i\u1ec3m \u0111\u1ebfn","page/events.html":"S\u1ef1 ki\u1ec7n","page/recruitment.html":"Tuy\u1ec3n d\u1ee5ng"},
 	"page":{"events.html":"Khuy\u1ebfn m\u00e3i","recruitment.html":"Tuy\u1ec3n d\u1ee5ng"},
 	"layout":{"home":{"label":"Trang chủ","filelocal":"home-travel"}},
-	"channel":{"tour":"Ch\u01b0\u01a1ng tr\u00ecnh tour","destination":"\u0110i\u1ec3m \u0111\u1ebfn"}}}
+	"channel":{"tour":{"name":"Ch\u01b0\u01a1ng tr\u00ecnh tour", "url" : "tour", "layout" : ""},"destination":{"name":"\u0110i\u1ec3m \u0111\u1ebfn", "url" : "destination", "layout" : ""}}}
+}

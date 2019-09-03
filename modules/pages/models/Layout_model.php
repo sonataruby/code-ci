@@ -108,6 +108,12 @@ class Layout_model extends Model{
 	}
 
 
+	public function windget_reset($key){
+		$this->db->where("language", $this->config->item("language"));
+		if($this->store_id) $arv["store"] = $this->store_id;
+		$this->db->like("winget_display",$key);
+		$this->db->delete("widgets");
+	}
 	public function windget_save($arv=[], $id=false){
 		if($id){
 			$this->db->update("widgets", $arv,["winget_id" => $id]);

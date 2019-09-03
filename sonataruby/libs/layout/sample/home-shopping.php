@@ -7,7 +7,7 @@
 <section>
 	<div class="container">
 		<h2>Sản phẩm mới</h2>
-		{components=posts}limit=12{/components}
+		{components=posts}limit=12&item=4{/components}
 	</div>
 </section>
 

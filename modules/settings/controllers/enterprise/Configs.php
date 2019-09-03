@@ -235,7 +235,49 @@ class Configs extends Enterprise {
 		foreach ($arv["layout"] as $key => $value) {
 			$this->layout_model->create(false,["layout_name" => $value->label, "layout_url" => $key, "layout_content" => read_file(CMS_ROOTPATH . "libs/layout/sample/".$value->filelocal.".php")]);
 		}
-		print_r($arv["layout"]);
+
+		/*
+		Create Channel
+		*/
+		if(isset($arv["channel"])){
+
+			foreach ($arv["channel"] as $key => $value) {
+				if(isset($value->sample)){
+					$this->posts_model->resetData($key);
+					$this->posts_model->field_excel["channel"] = $key;
+					$this->posts_model->example($value->sample, "posts");
+				}
+			}
+			$json = $this->tojson($arv["channel"], true);
+			$this->settings_model->save(["channel" => $json]);
+		}
+
+
+		/*
+		Create Slidebar
+		*/
+		if(isset($arv["slidebar"])){
+			$data = [];
+
+			foreach ($arv["slidebar"] as $key => $value) {
+				$this->layout_model->windget_reset($key);
+				foreach ($value as $keyW => $valueW) {
+					if(@$valueW->name && @$valueW->content){
+						$data = [];
+						$data["winget_content_as"] = isset($valueW->title) ? 1 : 0;
+						$data["winget_name"] = $valueW->name;
+						//$data["winget_icon"] = $this->input->post("winget_icon");
+						$data["winget_content"] = $valueW->content;
+						$data["winget_display"] = $key;
+						
+						$this->layout_model->windget_save($data);
+					}
+				}
+				
+				
+			}
+		}
+		print_r($data);
 		exit();
 
 

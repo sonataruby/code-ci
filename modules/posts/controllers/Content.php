@@ -50,8 +50,10 @@ class Content extends FrontEnd {
 	}
 
 	public function list($channel){
-		$this->setTitle("All Posts")
+		
+		$title = config_item("channel")->{$channel}->name;
+		$this->setTitle(lang("all").$title)
 			->channel($channel)
-			->view('posts-list',["channel" => $channel]);
+			->view('posts-list',["channel" => $channel, "title" => $title]);
 	}
 }

@@ -86,19 +86,7 @@
             ],["requied" => true,'data-autocomplete' => "true"]);?>
             <hr>
 
-			<?php 
-	
-			echo $this->forms->textarea([
-				"name" => "winget_content",
-				"label" => "Name",
-				"value" => @$content->winget_content
-			],[
-				
-				"group" => 'outline-group',
-				"layout" => "outline",
-				"id" => "code",
-				"label" => false
-			]);?>
+			<div id="winget_content" name="winget_content"><?php echo @$content->winget_content;?><br /></div>
 			</div>
 		</div>
 		<div class="col-3 flex-box">
@@ -183,7 +171,7 @@
         });
     });
 </script>
-<?php addon("addon/editer",["target" => "#code", "inline" => "false" , "height" => "550","form" => "#serialize", "contentChange" => '$.ajax({
+<?php addon("addon/editer",["target" => "#winget_content", "inline" => "false" , "height" => "550","form" => "#serialize", "contentChange" => '$.ajax({
                 url : "/home/dashboard/blockview",
                 type : "post",
                 data : $("form#serialize").serialize(),
