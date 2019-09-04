@@ -24,6 +24,9 @@ string active_type;
 
 int taskActive=0;
 int taskNumber = 1;
+ulong orderTicket;
+int getOrderType;
+         
 //+------------------------------------------------------------------+
 //| Expert initialization function                                   |
 //+------------------------------------------------------------------+
@@ -144,8 +147,8 @@ void OnTick()
       */
       if(TradeBy == "limit"){
          if(Bid > bbUpperH1){
-            ulong orderTicket = OrderGetTicket(0);
-            int getOrderType = OrderGetInteger(ORDER_TYPE);
+            orderTicket = OrderGetTicket(0);
+            getOrderType = OrderGetInteger(ORDER_TYPE);
             if(getOrderType == ORDER_TYPE_BUY_LIMIT){
                trade.OrderDelete(orderTicket);
             }
@@ -169,8 +172,8 @@ void OnTick()
    }
    if(closePrice < bbLowerLast && closePrice1 < bbLowerLast1){
       if(TradeBy == "limit"){
-         ulong orderTicket = OrderGetTicket(0);
-         int getOrderType = OrderGetInteger(ORDER_TYPE);
+         orderTicket = OrderGetTicket(0);
+         getOrderType = OrderGetInteger(ORDER_TYPE);
          if(getOrderType == ORDER_TYPE_SELL_LIMIT){
             trade.OrderDelete(orderTicket);
          }
@@ -229,7 +232,8 @@ void OnTick()
     
     
    Comment("ID : ", active_id, " ", active_type, " : ", active_price, " Profit : ", active_profit, 
-      "\nClose : ", closePrice, " Last Close : ", closePrice1, "BB ", bbMiderLast, "BB Last : ", bbMiderLast1);
+      "\nClose : ", closePrice, " Last Close : ", closePrice1, " BB : ", bbMiderLast, " BB Last : ", bbMiderLast1,
+      "\n Order Ticket : ",orderTicket, " Order Type : ", getOrderType);
   }
 //+------------------------------------------------------------------+
 //| Timer function                                                   |

@@ -1,6 +1,11 @@
 <?php
 if(isset($attr["item"])){
-	$attr_class = "col-xxl-".(12/$attr["item"])." col-lg-".(12/$attr["item"])." col-md-4 col-sm-6 col-12";
+	if($attr["item"] == "5"){
+		$attr_class = "col-lg-five col-md-4 col-sm-6 col-12";
+	}else{
+		$attr_class = "col-xxl-".(12/$attr["item"])." col-lg-".(12/$attr["item"])." col-md-4 col-sm-6 col-12";
+	}
+	
 }else{
 	$attr_class = "col-xxl-2 col-lg-3 col-md-4 col-sm-6 col-12";
 }
