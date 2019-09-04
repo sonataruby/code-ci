@@ -10,7 +10,16 @@
 #include<Trade/PositionInfo.mqh>
 CTrade trade;
 CPositionInfo m_position;
-double Bid, Ask;
+input double TradeSize=0.01;
+input string Trend = "auto";
+input int MoveSize = 200;
+input int LostSize = -100;
+input int FixTrend = 50;
+double Bid, Ask, BidQuery, AskQuery;
+ulong active_id;
+double active_price,active_profit;
+string active_type;
+
 int taskActive=0;
 int taskNumber = 1;
 //+------------------------------------------------------------------+
@@ -46,15 +55,6 @@ void OnTick()
    Ask = NormalizeDouble(SymbolInfoDouble(_Symbol,SYMBOL_ASK),_Digits);
    Bid = NormalizeDouble(SymbolInfoDouble(_Symbol,SYMBOL_BID),_Digits);
    
-   double iMomentumArray[];
-   
-   ArraySetAsSeries(iMomentumArray, true);
-   
-   double Momentum = iMomentum(_Symbol, _Period,8, PRICE_CLOSE);
-   
-   CopyBuffer(Momentum, 0, 0, 3, iMomentumArray);
-   
-   double MomentumLever = NormalizeDouble(iMomentumArray[0],2);
    uint total = PositionsTotal();
    if(taskNumber < total){
       taskNumber = total;
@@ -79,8 +79,17 @@ void OnTick()
    bbLowerH1 = NormalizeDouble(LowerBandArray_h1[0], _Digits);
    bbMiderH1 = NormalizeDouble(MidBandArray_h1[0], _Digits);
    
-   
-   if(Bid > bbUpperH1){
+   if(Trend == "buy"){
+      BidQuery = Bid;
+      AskQuery = Ask - FixTrend;
+   }else if(Trend == "sell"){
+      BidQuery = Bid - FixTrend;
+      AskQuery = Ask;
+   }else{
+      BidQuery = Bid;
+      AskQuery = Ask;
+   }
+   if(BidQuery > bbUpperH1){
       
       if(m_position.SelectByIndex(taskActive)){
          if(m_position.PositionType() == POSITION_TYPE_BUY && m_position.Profit() > 0.5){
@@ -88,11 +97,11 @@ void OnTick()
          }
       }
       if(total < taskNumber){
-         trade.Sell(0.1, NULL, Bid,NULL,bbMiderH1, NULL);
+         trade.Sell(TradeSize, NULL, Bid,NULL,bbMiderH1, NULL);
       }
    }
    
-   if(Ask < bbLowerH1){
+   if(AskQuery < bbLowerH1){
       
       if(m_position.SelectByIndex(taskActive)){
          if(m_position.PositionType() == POSITION_TYPE_SELL && m_position.Profit() > 0.5){
@@ -100,7 +109,7 @@ void OnTick()
          }
       }
       if(total < taskNumber){
-         trade.Buy(0.1, NULL, Ask,NULL,bbMiderH1, NULL);
+         trade.Buy(TradeSize, NULL, Ask,NULL,bbMiderH1, NULL);
       }
    }
    
@@ -110,7 +119,7 @@ void OnTick()
          
             
             
-            if((m_position.PositionType() == POSITION_TYPE_SELL && Ask < m_position.PriceOpen() + (200 * _Point)) || (m_position.PositionType() == POSITION_TYPE_BUY && Bid > m_position.PriceOpen()  - (200 * _Point))){
+            if((m_position.PositionType() == POSITION_TYPE_SELL && Ask < m_position.PriceOpen() + (MoveSize * _Point)) || (m_position.PositionType() == POSITION_TYPE_BUY && Bid > m_position.PriceOpen()  - (MoveSize * _Point))){
                
                   
                   taskNumber = taskNumber - 1;
@@ -123,20 +132,23 @@ void OnTick()
       }
    
    if(m_position.SelectByIndex(taskActive)){
+         if((m_position.PositionType() == POSITION_TYPE_SELL && Ask > m_position.PriceOpen() + (MoveSize * _Point)) || (m_position.PositionType() == POSITION_TYPE_BUY && Bid < m_position.PriceOpen()  - (MoveSize * _Point))){
+            
+               if(taskNumber < 50){
+                  taskNumber = taskNumber + 1;
+                  taskActive = taskActive + 1;
+               }
+            
+         }
          
+         active_id=m_position.Identifier();
+         active_price= m_position.PriceOpen();
+         active_type = m_position.PositionType() == POSITION_TYPE_BUY ? "[BUY]" : "[SELL]";
+         active_profit=m_position.Profit();   
+    }
     
-     
-      if((m_position.PositionType() == POSITION_TYPE_SELL && Ask > m_position.PriceOpen() + (200 * _Point)) || (m_position.PositionType() == POSITION_TYPE_BUY && Bid < m_position.PriceOpen()  - (200 * _Point))){
-         
-            if(taskNumber < 50){
-               taskNumber = taskNumber + 1;
-               taskActive = taskActive + 1;
-            }
-         
-      }
-         
- }
-   Comment("Momentum : ", MomentumLever);
+    
+   Comment("ID : ", active_id, " ", active_type, " : ", active_price, " Profit : ", active_profit);
   }
 //+------------------------------------------------------------------+
 //| Timer function                                                   |
