@@ -26,7 +26,7 @@ int taskActive=0;
 int taskNumber = 1;
 ulong orderTicket;
 int getOrderType;
-         
+double orderPrice;
 //+------------------------------------------------------------------+
 //| Expert initialization function                                   |
 //+------------------------------------------------------------------+
@@ -141,17 +141,42 @@ void OnTick()
          AskQuery = Ask;
       }
    }
+   
+   /*Close Task limit*/
+   if(TradeBy == "limit"){
+      if(OrdersTotal() > 0){
+         if(OrderGetTicket(0) > 0){
+            orderTicket = OrderGetTicket(0);
+            getOrderType = OrderGetInteger(ORDER_TYPE);
+            orderPrice = OrderGetDouble(ORDER_PRICE_OPEN);
+            if(getOrderType == ORDER_TYPE_SELL_LIMIT){
+               if(closePrice < bbMiderH1 ){
+                  trade.OrderDelete(orderTicket);
+               }
+            }
+            
+            if(getOrderType == ORDER_TYPE_BUY_LIMIT){
+               if(closePrice > bbMiderH1 ){
+                  trade.OrderDelete(orderTicket);
+               }
+            }
+            
+         }
+      }else{
+         orderTicket = 0;
+         getOrderType = 0;
+         orderPrice = 0.00;
+      }
+   }
+   
+   
    if(closePrice > bbUpperLast && closePrice1 > bbUpperLast1){
       /*
          Limit Type
       */
       if(TradeBy == "limit"){
          if(Bid > bbUpperH1){
-            orderTicket = OrderGetTicket(0);
-            getOrderType = OrderGetInteger(ORDER_TYPE);
-            if(getOrderType == ORDER_TYPE_BUY_LIMIT){
-               trade.OrderDelete(orderTicket);
-            }
+            
             if(OrdersTotal() == 0 && total < taskNumber){
                trade.SellLimit(TradeSize,BidQuery,NULL,NULL,bbMiderH1,ORDER_TIME_GTC,0,0);
             }
@@ -172,11 +197,7 @@ void OnTick()
    }
    if(closePrice < bbLowerLast && closePrice1 < bbLowerLast1){
       if(TradeBy == "limit"){
-         orderTicket = OrderGetTicket(0);
-         getOrderType = OrderGetInteger(ORDER_TYPE);
-         if(getOrderType == ORDER_TYPE_SELL_LIMIT){
-            trade.OrderDelete(orderTicket);
-         }
+         
             
          if(OrdersTotal() == 0 && total < taskNumber){
             trade.BuyLimit(TradeSize,AskQuery,NULL,NULL,bbMiderH1,ORDER_TIME_GTC,0,0);
@@ -230,10 +251,10 @@ void OnTick()
          active_profit=m_position.Profit();   
     }
     
-    
+   
    Comment("ID : ", active_id, " ", active_type, " : ", active_price, " Profit : ", active_profit, 
       "\nClose : ", closePrice, " Last Close : ", closePrice1, " BB : ", bbMiderLast, " BB Last : ", bbMiderLast1,
-      "\n Order Ticket : ",orderTicket, " Order Type : ", getOrderType);
+      "\nOrder Ticket : ",orderTicket, " Order Type : ", getOrderType, " Order Price : ", orderPrice);
   }
 //+------------------------------------------------------------------+
 //| Timer function                                                   |
