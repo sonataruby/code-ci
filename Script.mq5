@@ -15,6 +15,8 @@ input string Trend = "auto";
 input int MoveSize = 200;
 input int LostSize = -100;
 input int FixTrend = 50;
+input string TradeBy = "market";
+
 double Bid, Ask, BidQuery, AskQuery;
 ulong active_id;
 double active_price,active_profit;
@@ -67,49 +69,127 @@ void OnTick()
    double bbLowerH1;
    double bbMiderH1;
    
+   double bbUpperLast;
+   double bbLowerLast;
+   double bbMiderLast;
+   
+   double bbUpperLast1;
+   double bbLowerLast1;
+   double bbMiderLast1;
+   
+   
+   double bbUpperLast2;
+   double bbLowerLast2;
+   double bbMiderLast2;
+   
+   
    ArraySetAsSeries(UpperBandArray_h1, true);
    ArraySetAsSeries(LowerBandArray_h1, true);
    ArraySetAsSeries(MidBandArray_h1, true);
    int BollingerBandsDefition_h1 = iBands(_Symbol, _Period, 20, 0, 2, PRICE_CLOSE);
-   CopyBuffer(BollingerBandsDefition_h1, 1, 0, 3, UpperBandArray_h1);
-   CopyBuffer(BollingerBandsDefition_h1, 2, 0, 3, LowerBandArray_h1);
-   CopyBuffer(BollingerBandsDefition_h1, 0, 0, 3, MidBandArray_h1);
+   CopyBuffer(BollingerBandsDefition_h1, 1, 0, 4, UpperBandArray_h1);
+   CopyBuffer(BollingerBandsDefition_h1, 2, 0, 4, LowerBandArray_h1);
+   CopyBuffer(BollingerBandsDefition_h1, 0, 0, 4, MidBandArray_h1);
    
    bbUpperH1 = NormalizeDouble(UpperBandArray_h1[0], _Digits);
    bbLowerH1 = NormalizeDouble(LowerBandArray_h1[0], _Digits);
    bbMiderH1 = NormalizeDouble(MidBandArray_h1[0], _Digits);
    
+   bbUpperLast = NormalizeDouble(UpperBandArray_h1[1], _Digits);
+   bbLowerLast = NormalizeDouble(LowerBandArray_h1[1], _Digits);
+   bbMiderLast = NormalizeDouble(MidBandArray_h1[1], _Digits);
+
+   bbUpperLast1 = NormalizeDouble(UpperBandArray_h1[2], _Digits);
+   bbLowerLast1 = NormalizeDouble(LowerBandArray_h1[2], _Digits);
+   bbMiderLast1 = NormalizeDouble(MidBandArray_h1[2], _Digits);
+   
+   bbUpperLast2 = NormalizeDouble(UpperBandArray_h1[3], _Digits);
+   bbLowerLast2 = NormalizeDouble(LowerBandArray_h1[3], _Digits);
+   bbMiderLast2 = NormalizeDouble(MidBandArray_h1[3], _Digits);
+      
+   
+   /*
+   Read Price
+   */
+   MqlRates PriceInfomation[];
+   ArraySetAsSeries(PriceInfomation, true);
+   int Data = CopyRates(_Symbol, _Period, 0, Bars(_Symbol, _Period), PriceInfomation);
+   double closePrice = PriceInfomation[1].close;
+   double closePrice1 = PriceInfomation[2].close;
+   
    if(Trend == "buy"){
       BidQuery = Bid;
-      AskQuery = Ask - FixTrend;
+      AskQuery = Ask - (FixTrend * _Point);
    }else if(Trend == "sell"){
-      BidQuery = Bid - FixTrend;
+      BidQuery = Bid - (FixTrend * _Point);
       AskQuery = Ask;
    }else{
       BidQuery = Bid;
       AskQuery = Ask;
-   }
-   if(BidQuery > bbUpperH1){
       
-      if(m_position.SelectByIndex(taskActive)){
-         if(m_position.PositionType() == POSITION_TYPE_BUY && m_position.Profit() > 0.5){
-            trade.PositionClose(m_position.Ticket());
+      /* Auto Trend */
+      if(bbMiderLast > bbMiderH1){
+         /*Is Down*/
+         BidQuery = Bid;
+         AskQuery = Ask - (FixTrend * _Point);
+      }else if(bbMiderLast < bbMiderH1){
+         /*Is UP*/
+         BidQuery = Bid + (FixTrend * _Point);
+         AskQuery = Ask;
+      }
+   }
+   if(closePrice > bbUpperLast && closePrice1 > bbUpperLast1){
+      /*
+         Limit Type
+      */
+      if(TradeBy == "limit"){
+         if(Bid > bbUpperH1){
+            ulong orderTicket = OrderGetTicket(0);
+            int getOrderType = OrderGetInteger(ORDER_TYPE);
+            if(getOrderType == ORDER_TYPE_BUY_LIMIT){
+               trade.OrderDelete(orderTicket);
+            }
+            if(OrdersTotal() == 0 && total < taskNumber){
+               trade.SellLimit(TradeSize,BidQuery,NULL,NULL,bbMiderH1,ORDER_TIME_GTC,0,0);
+            }
+         }
+      }else if(TradeBy == "market"){
+         if(BidQuery > bbUpperH1){
+            
+            if(m_position.SelectByIndex(taskActive)){
+               if(m_position.PositionType() == POSITION_TYPE_BUY && m_position.Profit() > 0.5){
+                  trade.PositionClose(m_position.Ticket());
+               }
+            }
+            if(total < taskNumber){
+               trade.Sell(TradeSize, NULL, Bid,NULL,bbMiderH1, NULL);
+            }
          }
       }
-      if(total < taskNumber){
-         trade.Sell(TradeSize, NULL, Bid,NULL,bbMiderH1, NULL);
-      }
    }
-   
-   if(AskQuery < bbLowerH1){
-      
-      if(m_position.SelectByIndex(taskActive)){
-         if(m_position.PositionType() == POSITION_TYPE_SELL && m_position.Profit() > 0.5){
-            trade.PositionClose(m_position.Ticket());
+   if(closePrice < bbLowerLast && closePrice1 < bbLowerLast1){
+      if(TradeBy == "limit"){
+         ulong orderTicket = OrderGetTicket(0);
+         int getOrderType = OrderGetInteger(ORDER_TYPE);
+         if(getOrderType == ORDER_TYPE_SELL_LIMIT){
+            trade.OrderDelete(orderTicket);
          }
-      }
-      if(total < taskNumber){
-         trade.Buy(TradeSize, NULL, Ask,NULL,bbMiderH1, NULL);
+            
+         if(OrdersTotal() == 0 && total < taskNumber){
+            trade.BuyLimit(TradeSize,AskQuery,NULL,NULL,bbMiderH1,ORDER_TIME_GTC,0,0);
+         }
+      }else if(TradeBy == "market"){
+         if(AskQuery < bbLowerH1){
+            
+            if(m_position.SelectByIndex(taskActive)){
+               if(m_position.PositionType() == POSITION_TYPE_SELL && m_position.Profit() > 0.5){
+                  trade.PositionClose(m_position.Ticket());
+               }
+            }
+            if(total < taskNumber){
+               trade.Buy(TradeSize, NULL, Ask,NULL,bbMiderH1, NULL);
+            }
+         }
       }
    }
    
@@ -148,7 +228,8 @@ void OnTick()
     }
     
     
-   Comment("ID : ", active_id, " ", active_type, " : ", active_price, " Profit : ", active_profit);
+   Comment("ID : ", active_id, " ", active_type, " : ", active_price, " Profit : ", active_profit, 
+      "\nClose : ", closePrice, " Last Close : ", closePrice1, "BB ", bbMiderLast, "BB Last : ", bbMiderLast1);
   }
 //+------------------------------------------------------------------+
 //| Timer function                                                   |
