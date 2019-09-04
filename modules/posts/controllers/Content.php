@@ -19,6 +19,7 @@ class Content extends FrontEnd {
 		$data = $this->posts_model->getData($url, false, false, true);
 		$catalog = $this->catalog_model->dropdown(false,"ul");
 		
+
 		$this->setTitle($data->name)
 			->setImage($data->image)
 			->setDescription($data->description)
