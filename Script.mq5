@@ -183,12 +183,13 @@ void OnTick()
          }
       }else if(TradeBy == "market"){
          if(BidQuery > bbUpperH1){
-            
+            /*
             if(m_position.SelectByIndex(taskActive)){
                if(m_position.PositionType() == POSITION_TYPE_BUY && m_position.Profit() > 0.5){
                   trade.PositionClose(m_position.Ticket());
                }
             }
+            */
             if(total < taskNumber){
                trade.Sell(TradeSize, NULL, Bid,NULL,bbMiderH1, NULL);
             }
@@ -204,12 +205,13 @@ void OnTick()
          }
       }else if(TradeBy == "market"){
          if(AskQuery < bbLowerH1){
-            
+            /*
             if(m_position.SelectByIndex(taskActive)){
                if(m_position.PositionType() == POSITION_TYPE_SELL && m_position.Profit() > 0.5){
                   trade.PositionClose(m_position.Ticket());
                }
             }
+            */
             if(total < taskNumber){
                trade.Buy(TradeSize, NULL, Ask,NULL,bbMiderH1, NULL);
             }
