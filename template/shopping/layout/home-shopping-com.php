@@ -11,10 +11,10 @@
 	</div>
 </section>
 
-<section>
+<section class="hotcatalog">
 	<div class="container">
 		<h2>Nổi bật nhất</h2>
-		{components=posts}limit=6{/components}
+		{components=catalog}type=products&limit=6{/components}
 	</div>
 </section>
 
@@ -54,3 +54,32 @@
 		</div>
 	</div>
 </section>
+
+<style type="text/css">
+	.hotcatalog{
+		position: relative;
+		display: flex;
+		flex-direction:row;
+	}
+	.hotcatalog ul.list-group{
+		flex-direction:revert;
+		display: block;
+		margin-left: -30px;
+		width: 100%;
+	}
+	.hotcatalog ul li{
+		float: left;
+		width: calc(100%/4);
+		padding: 0;
+		margin: 0;
+		border:0;
+		margin-left: 30px; 
+		margin-bottom: 15px;
+
+	}
+	.hotcatalog ul li a{
+		display: block;
+		border: 1px solid #ddd;
+		padding:7px 15px; 
+	}
+</style>

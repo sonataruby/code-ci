@@ -97,7 +97,7 @@ class Catalog_model extends Model{
 		if($tag == "select"){
 			$data = $this->dropdown_item($dataList, false,$attr);
 		}else if($tag == "ul"){
-			$data = $this->dropdown_item_ul($dataList, false, array_merge(["class" => "catalog-box list-group list-group-flush", "icon" => "fa fa-angle-double-right", "icon_pick" => "fa fa-chevron-right"],$attr));
+			$data = $this->dropdown_item_ul($dataList, false, array_merge(["class" => "catalog-box list-group list-group-flush", "icon" => "fa fa-angle-double-right"],$attr));
 		}else if($tag == "checkbox"){
 			$data = $this->dropdown_item_checkbox($dataList, $attr);
 		}
@@ -125,16 +125,16 @@ class Catalog_model extends Model{
 		if(!$arv) return;
 
 		$icon = isset($attr["icon"]) ? '<i class="'.$attr["icon"].' icon-row"></i> ' : "";
-		$icon_pick = isset($attr["icon_pick"]) ? ' <i class="'.$attr["icon_pick"].' icon-pick"></i>' : "";
+		//$icon_pick = isset($attr["icon_pick"]) ? ' <i class="'.$attr["icon_pick"].' icon-pick"></i>' : "";
 
 		if($icon) unset($attr["icon"]);
-		if($icon_pick) unset($attr["icon_pick"]);
+		//if($icon_pick) unset($attr["icon_pick"]);
 
 		$html = '<ul '._stringify_attributes($attr).'>';
 		foreach ($arv as $key => $value) {
 			
 			
-			$html .= '<li class="'.(@$attr["liclass"] ? @$attr["liclass"] : "list-group-item").'"><a href="'.site_url('catalog/'.$value->url.'.html').'" title="'.$value->name.'">'.$icon.$value->name.$icon_pick.'</a>';
+			$html .= '<li class="'.(@$attr["liclass"] ? @$attr["liclass"] : "list-group-item").'"><a href="'.catalog_url($value->url, $value->channel).'" title="'.$value->name.'">'.$icon.$value->name.'</a>';
 			if(isset($value->item)){
 				$html .= $this->dropdown_item_ul($value->item, $prefix." - ", ["class" => "sub-catalog","liclass" => "list-group-item"]);
 			}
@@ -143,6 +143,8 @@ class Catalog_model extends Model{
 		$html .= '</ul>';
 		return $html;
 	}
+
+	
 
 	private function dropdown_item_checkbox($arv=[], $attr=[]){
 		if(!$arv) return;
