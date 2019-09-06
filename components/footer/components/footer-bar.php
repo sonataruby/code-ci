@@ -1,12 +1,21 @@
 <div>
 	<div class="container">
-		<h4>Email New Laster</h4>
-		<div class="input-group mb-3">
-		  <input type="email" class="form-control" placeholder="Enter Email">
-		  <div class="input-group-append">
-		    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Submit Email</button>
-		  </div>
+		<div class="row">
+			<div class="col-lg-6 col-sm-12">
+				<h4>SUBSCRIBE TO OUR</h4>
+				<h1>NEWSLETTER</h4>
+			</div>
+			<div class="col-lg-6 col-sm-12">
+				<div class="input-group mb-3">
+				  <input type="email" class="form-control" placeholder="Enter Email">
+				  <div class="input-group-append">
+				    <button class="btn btn-outline-secondary" type="button" id="button-addon2">{lang_register}</button>
+				  </div>
+				</div>
+			</div>
 		</div>
+		
+		
 	</div>
 </div>
 <footer class="app-footer">

@@ -26,15 +26,15 @@ class Menu_model extends Model{
 
 	public function getList($parent=0,$language=false){
 		
-		$data = $this->renderItemChild($parent, false, false);
+		$data = $this->renderItemChild($parent, [], false, false);
 		
 		return $data;
 	}
 
 
-	public function getDropdown($parent=0,$language=false){
+	public function getDropdown($parent=0,$arv=[],$language=false){
 		
-		$data = $this->renderItemDropdown($parent, false, false);
+		$data = $this->renderItemDropdown($parent, $arv, false);
 		
 		return $data;
 	}
@@ -52,7 +52,7 @@ class Menu_model extends Model{
 	}
 	
 
-	private function renderItemChild($parent_id, $language=false, $return=true){
+	private function renderItemChild($parent_id, $arv=[], $language=false, $return=true){
 		$language = !$language ? config_item("language") : $language;
 		$this->db->where("parent_id",$parent_id);
 		$this->db->where("language", $language);
@@ -72,7 +72,7 @@ class Menu_model extends Model{
 			$check = $this->db->get_where($this->table, ["parent_id" => $value->id])->num_rows();
 			$arv .= '<li class="dd-item" data-id="'.$value->id.'"><div class="dd-handle">Drag</div><div class="dd-content"><a href="/settings/enterprise/menu/manager?parent='.$value->id.'">'.$value->name.'</a><div class="dd-panel"><a onClick="getCreate('.$value->id.')"><i class="fa fa-plus"></i></a> <a onClick="getEdit('.$value->id.')"><i class="fa fa-edit"></i></a> <a onClick="getDelete('.$value->id.')"><i class="fa fa-trash"></i></a></div></div>';
 			if($check > 0){
-				$arv .= $this->renderItemChild($value->id,false, false);
+				$arv .= $this->renderItemChild($value->id,[],false, false);
 			}
 			$arv .= '</li>';
 		}
@@ -95,11 +95,11 @@ class Menu_model extends Model{
 		return $data;
 	}
 
-	private function renderItemDropdown($parent_id, $language=false, $return=true){
+	private function renderItemDropdown($parent_id, $arv=[],$language=false, $return=true){
 		
 
 		$data = $this->makeData(["parent_id" => $parent_id], $language);
-		$arv = '<ul class="navbar-nav mr-auto">';
+		$arv = '<ul class="'.(@$arv["class"] ? $arv["class"] : "navbar-nav mr-auto").'">';
 		foreach ($data as $key => $value) {
 			
 			$check = $this->db->get_where($this->table, ["parent_id" => $value->id])->num_rows();
@@ -187,7 +187,7 @@ class Menu_model extends Model{
 		$arv = '<ul class="dropdown-menu" aria-labelledby="navbarDropdown">';
 		$catalogInfo = $this->catalog_model->getList();
 		foreach ($catalogInfo as $keyPage => $valuePage) {
-			$arv .= '<li class="dropdown-item"><a href="'.catalog_url($valuePage->url).'">'.$valuePage->name.'</a></li>';
+			$arv .= '<li class="dropdown-item"><a href="'.catalog_url($valuePage->url, $valuePage->channel).'">'.$valuePage->name.'</a></li>';
 		}
 		$arv .= '</ul>';
 		return $arv;

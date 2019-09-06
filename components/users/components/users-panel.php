@@ -1,4 +1,4 @@
-<ul class="navbar-nav form-inline my-2 my-lg-0">
+<ul class="<?php echo (@$attr["class"] ? $attr["class"] : "navbar-nav form-inline my-2 my-lg-0");?>">
   <?php if(isset($data->account_id)){ ?>
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

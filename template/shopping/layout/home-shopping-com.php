@@ -11,10 +11,10 @@
 	</div>
 </section>
 
-<section class="hotcatalog">
+<section class="hotcatalogTabs">
 	<div class="container">
 		<h2>Nổi bật nhất</h2>
-		{components=catalog}type=products&limit=6{/components}
+		{components=catalog}type=products&source=tabs&limit=6{/components}
 	</div>
 </section>
 

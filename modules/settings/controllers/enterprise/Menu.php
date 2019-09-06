@@ -11,7 +11,7 @@ class Menu extends Enterprise {
 	public function manager(){
 		$parent = ($this->input->get("parent") ? intval($this->input->get("parent")) : 0);
 		$this->savejson();
-		$item = $this->menu_model->getList($parent);
+		$item = $this->menu_model->getList($parent); 
 		$id = $this->input->get("id");
 		$data = $this->menu_model->data($id);
 		$this->view("menu",["item" => $item, "data" => $data, "menutagSelect" => $this->menutag(true)]);
