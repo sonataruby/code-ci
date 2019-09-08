@@ -45,7 +45,7 @@
 						<?php
 					}
 				} ?>
-			<th>Create Date</th>
+			<th>Update Date</th>
 
 			<th>View</th>
 			<th>Comments</th>
@@ -74,7 +74,7 @@
 						<?php
 					}
 				} ?>
-				<td><?php echo $value->created_date;?></td>
+				<td><?php echo $value->updated_date;?></td>
 				<td><?php echo $value->views;?></td>
 				<td></td>
 				<td class="text-right">
