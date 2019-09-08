@@ -17,7 +17,7 @@ class Forms{
         'bootstrap4' => [
             // input and textarea and dropdown and multiselect
             'group_class' =>  'form-group',
-            'label_class' =>  'col-md-2 col-sm-12 col-form-label',
+            'label_class' =>  'col-md-3 col-sm-12 col-form-label',
             'input_class' => 'form-control',
             'input_error_class' => 'is-invalid',
             'requried_text' => '<span style="color:red;">(*)</span>',
@@ -381,7 +381,7 @@ class Forms{
     }
     public function renderTemplate($label, $text, $layout=""){
         if($layout == "inline"){
-            return $label.'<div class="col-md-10 col-sm-12">'.$text.'</div>';
+            return $label.'<div class="col-md-9 col-sm-12">'.$text.'</div>';
         }
         return $label. $text;
     }

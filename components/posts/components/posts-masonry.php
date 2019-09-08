@@ -8,9 +8,11 @@
 			  <div class="card-body">
 			    <h5 class="card-title"><a href="<?php echo post_url($value->url, $value->channel);?>"><?php echo $value->name;?></a></h5>
 			   
-			    <p class="card-text">
-			    	<?php echo $value->description;?>
-			    </p>
+			    <?php if(@$value->itemView){
+			   		echo $value->itemView;
+			   	}else{ ?>
+			    <p class="card-text line-3"><?php echo $value->description;?></p>
+			   	<?php } ?>
 			    
 			  </div>
 			</div>

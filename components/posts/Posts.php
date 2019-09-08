@@ -16,6 +16,7 @@ class Posts extends Controller{
 		if(isset($attr["page"]) || isset($attr["pages"])) $attr["pages"] = true;
 
 		$data = $this->posts_model->getList($attr);
+		
 		if(@$attr["pages"])$page = $this->posts_model->pages();
 		return $this->load->view("components/posts{$theme}",["attr" => $attr, "data" => $data, "pages" => $page]);
 	}

@@ -479,3 +479,11 @@ if (! function_exists('vdebug')) {
         }
     }
 }
+
+
+if(!function_exists("moneyFormat")){
+	function moneyFormat($number=""){
+		if(!$number) return $number;
+		return number_format($number, 2, ".", ", ");
+	}
+}

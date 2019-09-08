@@ -38,7 +38,15 @@
 	<table class="table">
 		<thead>
 			<th colspan="2">Name</th>
+			<?php if(is_array(@$data[0]->itemCell)){ 
+					foreach ($data[0]->itemCell as $keyCell => $valueCell) {
+						?>
+						<th><?php echo $keyCell;?></th>
+						<?php
+					}
+				} ?>
 			<th>Create Date</th>
+
 			<th>View</th>
 			<th>Comments</th>
 			<th></th>
@@ -59,6 +67,13 @@
 						<a href="/catalog/<?php echo $valueCat->catalog_url;?>.html" target="_bank"><?php echo $valueCat->catalog_name;?></a>
 						<?php }?></p>
 				</td>
+				<?php if(is_array(@$value->itemCell)){ 
+					foreach ($value->itemCell as $keyCell => $valueCell) {
+						?>
+						<td><?php echo $valueCell;?></td>
+						<?php
+					}
+				} ?>
 				<td><?php echo $value->created_date;?></td>
 				<td><?php echo $value->views;?></td>
 				<td></td>

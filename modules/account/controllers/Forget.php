@@ -15,6 +15,6 @@ class Forget extends FrontEnd {
 				$this->go("account/login");
 			}
 		}
-		return $this->view("fogetpassword");
+		return $this->setTitle('{lang_forget_password}')->view("fogetpassword");
 	}
 }

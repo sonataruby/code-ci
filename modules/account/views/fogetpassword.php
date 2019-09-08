@@ -1,3 +1,8 @@
+<section class="nav-breadcrumb mb-4">
+	<div class="container">
+		<?php echo $this->components->breadcrumb(false,["active" => '{lang_forget_password}']);?>
+	</div>
+</section>
 <section>
 	<div class="container">
 		<div class="row">

@@ -17,11 +17,14 @@ if(isset($attr["item"])){
 			  <div class="card-header-top">
 			  <a href="<?php echo post_url($value->url, $value->channel);?>"><?php echo $this->components->image($value->image,["class" => "card-img-top", "alt" => $value->name,"lazy" => @$attr["lazy"]]);?></a>
 			  </div>
-			  <div class="card-body">
-			    <strong class="card-title"><a href="<?php echo post_url($value->url, $value->channel);?>"><?php echo $value->name;?></a></strong>
-			   
-			    <p class="card-text"><?php echo $value->description;?></p>
-			   
+			  <div class="card-body text">
+			    <strong class="line-2"><a href="<?php echo post_url($value->url, $value->channel);?>"><?php echo $value->name;?></a></strong>
+			   	
+			   	<?php if(@$value->itemView){
+			   		echo $value->itemView;
+			   	}else{ ?>
+			    <p class="card-text line-3"><?php echo $value->description;?></p>
+			   	<?php } ?>
 			  </div>
 			</div>
 		</div>

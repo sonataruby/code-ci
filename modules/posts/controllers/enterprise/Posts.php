@@ -7,6 +7,7 @@ class Posts extends Enterprise {
 	public function __construct()
 	{
 	    parent::__construct();
+
 	    
 	}
 	public function index()
@@ -35,6 +36,7 @@ class Posts extends Enterprise {
 	public function create($id=false){
 		$channel = ($this->input->get("channel") ? $this->input->get("channel") : config_item("default_channel"));
 		$data = $this->posts_model->getData(false, $id);
+
 		if($this->isPost()){
 			$image = new Image;
 			$arv = [];
@@ -46,6 +48,7 @@ class Posts extends Enterprise {
 			$arv["channel"] = ($this->input->post("channel") ? $this->input->post("channel") : config_item("default_channel"));
 
 			$this->posts_model->create($id, $arv, $this->input->post("catalog"));
+
 			if($this->input->post("ref")){
 				$this->go("posts/enterprise/posts?".getRef($this->input->post("ref")));
 			}else{
@@ -63,8 +66,9 @@ class Posts extends Enterprise {
 		
 
 		$catalog = $this->catalog_model->dropdown(["channel" => $channel],false,"checkbox",$catalog_id);
-
-		$this->view('posts-create',["catalog" => $catalog, "data" => $data]);
+		$options = "";
+		if(method_exists($this->posts_model->hookClass, "editControl")) $options = $this->posts_model->hookClass->editControl($data);
+		$this->view('posts-create',["catalog" => $catalog, "data" => $data, "options" => $options]);
 	}
 
 	public function deletepost($id=false){

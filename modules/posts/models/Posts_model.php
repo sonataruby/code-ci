@@ -7,6 +7,7 @@ class Posts_model extends Model{
 	private $table_gallery_image = "gallery_image";
 	private $postInCatalog = "posts_incatalog";
 	
+	public $hookClass = null;
 	function __construct()
 	{
 	    parent::__construct();
@@ -24,13 +25,27 @@ class Posts_model extends Model{
 	    	"account_id" => "athour_id",
 	    	"language" => config_item("language")
 	    ]);
+
+	    $this->setChannelClass();
+	    
 	}
 
+	public function setChannelClass($channels=""){
+		$channel = ($this->input->get("channel") ? $this->input->get("channel") : config_item("default_channel"));
+	    if($channels) $channel = $channels;
+	    $channelClass = "Channel".ucfirst($channel);
+	    if(class_exists($channelClass)){
+	    	$this->hookClass = new $channelClass;
+	    }
+	}
 
 	public function create($id=false, $arv=[], $catalog=[]){
 		$arv["post_url"] = $this->makeURL($arv["post_title"], @$arv["post_url"], $id);
+		$this->setChannelClass(@$arv["channel"]);
 		if($id){
 			$arv["updated_date"] = getDateSQL();
+			if(method_exists($this->hookClass, "update")) $arv = $this->hookClass->update($arv, $id);
+
 			$this->db->update($this->table, $arv,["post_id" => $id]);
 		}else{
 			$arv["created_date"] = getDateSQL();
@@ -39,6 +54,7 @@ class Posts_model extends Model{
 			$arv["account_id"] = is_login();
 			$this->db->insert($this->table, $arv);
 			$id = $this->db->insert_id();
+			if(method_exists($this->hookClass, "create")) $this->hookClass->create($arv, $id);
 		}
 		$this->posts_to_catalog($id, $catalog);
 		return $id;
@@ -84,9 +100,9 @@ class Posts_model extends Model{
 		if($order){
 			$data->order = $this->getList(["limit" => 3, "ingore" => $data->id,"channel" => $data->channel]);
 		}
-
+		$this->setChannelClass(@$data->channel);
 		//$this->dbCache("posts-{$url}-{$id}", $data);
-
+		if(method_exists($this->hookClass, "getData")) $data = $this->hookClass->getData($data);
 		return $data;
 	}
 
@@ -117,7 +133,7 @@ class Posts_model extends Model{
 		
 		
 
-		
+		$this->setChannelClass(@$channel);
 
 		$this->setLimit($limit);
 		$page = $this->input->get("page") ? intval($this->input->get("page")) : 1;
@@ -192,6 +208,9 @@ class Posts_model extends Model{
 		foreach ($data as $key => $value) {
 			$value->catalog = $this->db->select($this->postInCatalog.".post_id, ".$this->postInCatalog.".catalog_id, catalog.catalog_name as catalog_name, catalog.catalog_url as catalog_url, catalog.channel")->join("catalog","catalog.catalog_id=".$this->postInCatalog.".catalog_id","left")->get_where($this->postInCatalog, ["post_id" => $value->id])->result();
 			$value->image = isObject($value->image);
+
+			if(method_exists($this->hookClass, "getData")) $value = $this->hookClass->getData($value);
+
 			$arv[] = $value;
 		}
 

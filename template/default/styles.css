@@ -25,6 +25,9 @@ ul{
 	margin: 0;
 	list-style: none;
 }
+.container{
+	max-width: 1624px;
+}
 .nav-breadcrumb{
 	background-color: rgb(0, 86, 179);
 	color:#FFF;

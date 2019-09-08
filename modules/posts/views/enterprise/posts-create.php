@@ -14,6 +14,7 @@
 				"requied" => true
 			]);?>
 		</div>
+		<?php print_r($options);?>
 		<div class="hbox border" style="min-height: 70vh;">
 			<div id="content" name="content"><?php echo (@$data->content ? @$data->content : '<p>Nhập nội dung bài viết</p>');?></div>
 		</div>

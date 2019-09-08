@@ -67,10 +67,11 @@ $config = config_item("header");
     color:#FFF;
   }
   .nav-breadcrumb{
-    background-color: red;
-    color:#FFF;
+    background-color: #FFF;
+    color:#444;
+    border-bottom: 1px solid #ddd;
   }
   .nav-breadcrumb a{
-    color: #FFF;
+    color: #444;
   }
 </style>

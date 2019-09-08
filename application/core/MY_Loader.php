@@ -54,11 +54,15 @@ class MY_Loader extends MX_Loader {
     }
 
     public function registerView($path){
+        
         $settemplate = CMS_THEMEPATH . TEMPLATE_ACTIVE . DIRECTORY_SEPARATOR;
         if(is_dir($settemplate)) $this->register[$settemplate] = true;
         $this->register[$path . DIRECTORY_SEPARATOR] = true;
         return $this;
     }
+
+    
+    
 
 
     public function getLayoutChannel($channel, $layout){
@@ -180,6 +184,9 @@ class MY_Loader extends MX_Loader {
         return $dataOutput;
     }
 
+    public function testPath(){
+        return $this->_ci_view_paths;
+    }
 
     public function getPlugin($plugin, $options=[], $content=""){
         

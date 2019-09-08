@@ -13,3 +13,4 @@ node_modules_backup
 backup
 template/*
 application/config/database.php
+application/config/database.php
