@@ -17,16 +17,29 @@ input double   TradeSize=0.01;
 
 input int      MoveSize=200;
 input int      SpanceSize=20;
-input int      LostSize=-100;
 input int      ProfitSize=100;
-input string   TradeBy="limit";
+input int      MoveStartSize=50;
+input int      StopLostProfit = -100;
+input string SwitchTrend = "up";
+
+string   TradeBy="limit";
+enum iTradeBy {Limit=0, Markets=1};
+input iTradeBy StartTradeBy=0;
+
 enum iTrend {Auto=0, Buy=1, Sell=2,MinTrend=3};
-input iTrend StartTrend=0;
+input iTrend StartTrend=3;
+
+enum iTrendFream {M1=0, M3=1, M5=2};
+input iTrendFream StartFream=0;
+
+input double   Comisstion=0.1;
 //+------------------------------------------------------------------+
 //| BB Defiend                                  |
 //+------------------------------------------------------------------+
 double bbUpper, bbMinder, bbLower,bbUpperLast, bbMinderLast, bbLowerLast,bbUpperLastTow, bbMinderLastTow, bbLowerLastTow, QueryActive;
 double bbUpper2, bbMinder2, bbLower2,bbUpperLast2, bbMinderLast2, bbLowerLast2,bbUpperLastTow2, bbMinderLastTow2, bbLowerLastTow2;
+double bbUpperH1, bbMinderH1, bbLowerH1,bbUpperLastH1, bbMinderLastH1, bbLowerLastH1,bbUpperLastTowH1, bbMinderLastTowH1, bbLowerLastTowH1;
+double bbUpperH4, bbMinderH4, bbLowerH4,bbUpperLastH4, bbMinderLastH4, bbLowerLastH4,bbUpperLastTowH4, bbMinderLastTowH4, bbLowerLastTowH4;
 
 double SARValue;
 
@@ -44,24 +57,16 @@ double orderPrice;
 
 string Trend="auto";
 int SellTask = 0, BuyTask=0;
+ENUM_TIMEFRAMES TimeFream = 1;
+
+string MagicTrend = "N/A";
+string MagicTrendFocus = "N/A";
 //+------------------------------------------------------------------+
 //| Expert initialization function                                   |
 //+------------------------------------------------------------------+
 int OnInit()
   {
 //--- create timer
-   
-   
-   if(StartTrend == 1){
-      Trend = "buy";
-   }
-   
-   if(StartTrend == 2){
-      Trend = "sell";
-   }
-   if(StartTrend == 3){
-      Trend = "auto";
-   }
    
    EventSetTimer(60);
    
@@ -82,7 +87,8 @@ void OnDeinit(const int reason)
 //+------------------------------------------------------------------+
 void OnTick()
   {
-  
+   
+   InstallINT();
    double AccountBanlance = AccountInfoDouble(ACCOUNT_BALANCE);
    double AccountProfit = AccountInfoDouble(ACCOUNT_PROFIT);
    double AccountEntry = AccountInfoDouble(ACCOUNT_EQUITY);
@@ -105,45 +111,52 @@ void OnTick()
    OrderQuery();
    MutileTask();
    Comment("Balance :", AccountBanlance, " Entry : ", AccountEntry, " Profit : ", AccountProfit,
-   "\nTrend : ",Trend," - Query Singal : ", singal,
+   "\nTimeFream : ",TimeFream, " Trade By : ", TradeBy, " Trend : ",Trend," - Query Singal : ", singal,
+   "\nMagic Trend : ", MagicTrend, " Focus Trend : ", MagicTrendFocus,
    "\nActive Task : ", TaskActive, " Task Number : ", TaskNumber,
    "\nSAR : ", SARValue, " Buy Task : ", BuyTask, " Sell Task : ", SellTask
    );
   }
-//+------------------------------------------------------------------+
-//| Timer function                                                   |
-//+------------------------------------------------------------------+
-void OnTimer()
-  {
-//---
+
+void InstallINT(){
+   if(StartTrend == 1){
+      Trend = "buy";
+   }
    
-  }
-//+------------------------------------------------------------------+
-//| Trade function                                                   |
-//+------------------------------------------------------------------+
-void OnTrade()
-  {
-//---
+   if(StartTrend == 2){
+      Trend = "sell";
+   }
+   if(StartTrend == 3){
+      Trend = "auto";
+   }
    
-  }
-//+------------------------------------------------------------------+
-//| TradeTransaction function                                        |
-//+------------------------------------------------------------------+
-void OnTradeTransaction(const MqlTradeTransaction& trans,
-                        const MqlTradeRequest& request,
-                        const MqlTradeResult& result)
-  {
-//---
+   if(StartFream == 0){
+      TimeFream = PERIOD_M1;
+   }
    
-  }
-//+------------------------------------------------------------------+
+   if(StartFream == 1){
+      TimeFream = PERIOD_M3;
+   }
+   
+   if(StartFream == 2){
+      TimeFream = PERIOD_M5;
+   }
+   
+   if(StartTradeBy == 0){
+      TradeBy = "limit";
+   }
+   if(StartTradeBy == 1){
+      TradeBy = "market";
+   }
+}
+
 
 void ReadBB(){
    double bbArrayUpper[], bbArrayMinder[], bbArrayLower[];
    ArraySetAsSeries(bbArrayUpper, true);
    ArraySetAsSeries(bbArrayMinder, true);
    ArraySetAsSeries(bbArrayLower, true);
-   int BollingerBandsDefition = iBands(_Symbol, _Period, 20, 0, 2, PRICE_CLOSE);
+   int BollingerBandsDefition = iBands(_Symbol, TimeFream, 20, 0, 2, PRICE_CLOSE);
    CopyBuffer(BollingerBandsDefition, 1, 0, 4, bbArrayUpper);
    CopyBuffer(BollingerBandsDefition, 2, 0, 4, bbArrayLower);
    CopyBuffer(BollingerBandsDefition, 0, 0, 4, bbArrayMinder);
@@ -189,10 +202,62 @@ void ReadBB2(){
    
 }
 
+
+void ReadBBH1(){
+   double bbArrayUpper[], bbArrayMinder[], bbArrayLower[];
+   ArraySetAsSeries(bbArrayUpper, true);
+   ArraySetAsSeries(bbArrayMinder, true);
+   ArraySetAsSeries(bbArrayLower, true);
+   int BollingerBandsDefition = iBands(_Symbol, PERIOD_M15, 20, 0, 2, PRICE_CLOSE);
+   CopyBuffer(BollingerBandsDefition, 1, 0, 4, bbArrayUpper);
+   CopyBuffer(BollingerBandsDefition, 2, 0, 4, bbArrayLower);
+   CopyBuffer(BollingerBandsDefition, 0, 0, 4, bbArrayMinder);
+   
+   bbUpperH1 = NormalizeDouble(bbArrayUpper[0], _Digits);
+   bbLowerH1 = NormalizeDouble(bbArrayLower[0], _Digits);
+   bbMinderH1 = NormalizeDouble(bbArrayMinder[0], _Digits);
+   
+   
+   bbUpperLastH1 = NormalizeDouble(bbArrayUpper[1], _Digits);
+   bbLowerLastH1 = NormalizeDouble(bbArrayLower[1], _Digits);
+   bbMinderLastH1 = NormalizeDouble(bbArrayMinder[1], _Digits);
+   
+   bbUpperLastTowH1 = NormalizeDouble(bbArrayUpper[2], _Digits);
+   bbLowerLastTowH1 = NormalizeDouble(bbArrayLower[2], _Digits);
+   bbMinderLastTowH1 = NormalizeDouble(bbArrayMinder[2], _Digits);
+   
+}
+
+
+void ReadBBH4(){
+   double bbArrayUpper[], bbArrayMinder[], bbArrayLower[];
+   ArraySetAsSeries(bbArrayUpper, true);
+   ArraySetAsSeries(bbArrayMinder, true);
+   ArraySetAsSeries(bbArrayLower, true);
+   int BollingerBandsDefition = iBands(_Symbol, PERIOD_M15, 20, 0, 2, PRICE_CLOSE);
+   CopyBuffer(BollingerBandsDefition, 1, 0, 4, bbArrayUpper);
+   CopyBuffer(BollingerBandsDefition, 2, 0, 4, bbArrayLower);
+   CopyBuffer(BollingerBandsDefition, 0, 0, 4, bbArrayMinder);
+   
+   bbUpperH4 = NormalizeDouble(bbArrayUpper[0], _Digits);
+   bbLowerH4 = NormalizeDouble(bbArrayLower[0], _Digits);
+   bbMinderH4 = NormalizeDouble(bbArrayMinder[0], _Digits);
+   
+   
+   bbUpperLastH4 = NormalizeDouble(bbArrayUpper[1], _Digits);
+   bbLowerLastH4 = NormalizeDouble(bbArrayLower[1], _Digits);
+   bbMinderLastH4 = NormalizeDouble(bbArrayMinder[1], _Digits);
+   
+   bbUpperLastTowH4 = NormalizeDouble(bbArrayUpper[2], _Digits);
+   bbLowerLastTowH4 = NormalizeDouble(bbArrayLower[2], _Digits);
+   bbMinderLastTowH4 = NormalizeDouble(bbArrayMinder[2], _Digits);
+   
+}
+
 void ReadSAR(){
    double mSARArray[];
    ArraySetAsSeries(mSARArray, true);
-   int SARDefition = iSAR(_Symbol, _Period,0.02, 0.2);
+   int SARDefition = iSAR(_Symbol, TimeFream,0.02, 0.2);
    CopyBuffer(SARDefition, 0, 0, 3, mSARArray);
    SARValue = NormalizeDouble(mSARArray[0], _Digits);
    
@@ -202,6 +267,7 @@ void ReadSAR(){
 void MakeQuery(){
    if(StartTrend == 0){
       ReadBB2();
+      
       if(Ask > bbMinder2 + (50 * _Point)){
          Trend = "sell";
       }
@@ -209,25 +275,29 @@ void MakeQuery(){
       if(Bid < bbMinder2 - (50 * _Point)){
          Trend = "buy";
       }
+      
+      if(bbMinderLast2 > bbMinder2 && bbMinderLastTow2 > bbMinderLast2){
+         MagicTrend = "startdown"; 
+      }
+      
+      if(bbMinderLastTow2 < bbMinderLast2 && bbMinderLast2 < bbMinder2){
+         MagicTrend = "startup"; 
+      }
+      
    }
    
    if(QueryActive != bbUpperLast){
       
-      /*
-      if(bbMinderLast > bbMinder && bbMinderLastTow > bbMinderLast){
-         singal = "sell"; 
-      }
       
-      if(bbMinderLastTow < bbMinderLast && bbMinderLast < bbMinder){
-         singal = "buy"; 
-      }
-      */
+      
+      
       if(Bid > bbMinder || Ask > bbMinder){
          singal = "sell";
       }
       if(Bid < bbMinder || Ask < bbMinder){
          singal = "buy";
       }
+      
       
       if(OrdersTotal() > 0){
             if(OrderGetTicket(0) > 0){
@@ -253,6 +323,17 @@ void MakeQuery(){
       }
       
       QueryActive = bbUpperLast;
+   }
+   
+   if(MagicTrend != "N/A" && SwitchTrend == "down"){
+      if(MagicTrend == "startup"){
+         singal = "buy";
+         Trend = "buy";
+      }
+      if(MagicTrend == "startdown"){
+         singal = "sell";
+         Trend = "sell";
+      }
    }
    
 }
@@ -291,11 +372,17 @@ void OrderQuery(){
       }
    }
    
+   
+   
    if(TradeBy == "market"){
+      BidQuery = Bid - (SpanceSize * _Point);
+      AskQuery = Ask + (SpanceSize * _Point);
+      
+      
       if(totals < TaskNumber){
          
          if(Trend == "auto" || Trend == "sell"){
-            if(singal == "sell"){
+            if(BidQuery > bbUpper){
                trade.Sell(TradeSize,_Symbol,Bid,0,0,"Markets");
                //trade.Buy(TradeSize,_Symbol,Ask,Ask - (3000 * _Point),Ask + (500 * _Point),"Markets");
             }
@@ -303,7 +390,7 @@ void OrderQuery(){
          
          
          if(Trend == "auto" || Trend == "buy"){
-            if(singal == "buy"){
+            if(AskQuery < bbLower){
                trade.Buy(TradeSize,_Symbol,Ask,0,0,"Markets");
                //trade.Sell(TradeSize,_Symbol,Bid,Bid + (3000 * _Point),Bid - (500 * _Point),"Markets");
             }
@@ -315,8 +402,8 @@ void OrderQuery(){
 void TraiLingStop(){
  BuyTask = 0;
  SellTask = 0;
- double AskStopLost = NormalizeDouble(Ask - 50 * _Point, _Digits);
- double BidStopLost = NormalizeDouble(Bid + 50 * _Point, _Digits);
+ double AskStopLost = NormalizeDouble(Ask - (MoveStartSize * _Point), _Digits);
+ double BidStopLost = NormalizeDouble(Bid + (MoveStartSize * _Point), _Digits);
  
  for(uint i = 0; i<= totals; i++){
    string getSymbol = PositionGetSymbol(i);
@@ -342,7 +429,7 @@ void TraiLingStop(){
       Move SL Buy
       */
       if(CurentType == POSITION_TYPE_BUY){
-         if(CurentStoplost < AskStopLost && CurentProfix > 0){
+         if(CurentStoplost < AskStopLost && CurentProfix > Comisstion){
             double MoveSL = (CurentStoplost + (10*_Point));
             if(CurentStoplost < CurentPrices){
                MoveSL = CurentPrices + (10*_Point); 
@@ -355,7 +442,7 @@ void TraiLingStop(){
       Move SL Sell
       */
       if(CurentType == POSITION_TYPE_SELL){
-         if(CurentStoplost > BidStopLost && CurentProfix > 0){
+         if(CurentStoplost > BidStopLost && CurentProfix > Comisstion){
             double MoveSL = (CurentStoplost - (10*_Point));
             if(CurentStoplost > CurentPrices){
                MoveSL = CurentPrices - (10*_Point); 
@@ -364,9 +451,26 @@ void TraiLingStop(){
             trade.PositionModify(PostionTicket, MoveSL,bbLower2);
          }
       }
-      
-   }
- }
+      if(MagicTrend != MagicTrendFocus){
+         if(MagicTrend == "startup"){
+            //Close All order Sell
+            if(CurentType == POSITION_TYPE_SELL && CurentProfix < StopLostProfit){
+               trade.PositionClose(PostionTicket);
+            }
+         }
+         
+         if(MagicTrend == "startdown"){
+            //Close All order Buy
+            if(CurentType == POSITION_TYPE_BUY && CurentProfix < StopLostProfit){
+               trade.PositionClose(PostionTicket);
+            }
+         }
+         
+         MagicTrendFocus = MagicTrend;
+      }
+   }//end if
+   
+ }// End for
  
 }
 
