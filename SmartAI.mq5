@@ -33,7 +33,7 @@ enum iTrendFream {M1=0, M3=1, M5=2};
 input iTrendFream StartFream=0;
 
 input double   Comisstion=0.1;
-ulong PostionTicket, PostionTicketLast;
+ulong PostionTicketActive, PostionTicketLast;
 //+------------------------------------------------------------------+
 //| BB Defiend                                  |
 //+------------------------------------------------------------------+
@@ -52,7 +52,7 @@ ulong active_id;
 double active_price,active_profit, active_swap;
 string active_type;
 
-ulong orderTicket;
+ulong orderTicket, orderTicketActive;
 int getOrderType;
 double orderPrice;
 
@@ -63,6 +63,7 @@ ENUM_TIMEFRAMES TimeFream = 1;
 string MagicTrend = "N/A";
 string MagicTrendFocus = "N/A";
 string iSymbol;
+int OrderTotal = 0;
 //+------------------------------------------------------------------+
 //| Expert initialization function                                   |
 //+------------------------------------------------------------------+
@@ -70,6 +71,7 @@ int OnInit()
   {
 //--- create timer
    iSymbol = _Symbol;
+   
    EventSetTimer(60);
    
 //---
@@ -89,8 +91,7 @@ void OnDeinit(const int reason)
 //+------------------------------------------------------------------+
 void OnTick()
   {
-   PostionTicket = 0; 
-   PostionTicketLast = 0;
+   
    InstallINT();
    double AccountBanlance = AccountInfoDouble(ACCOUNT_BALANCE);
    double AccountProfit = AccountInfoDouble(ACCOUNT_PROFIT);
@@ -113,14 +114,17 @@ void OnTick()
 //---
    ReadBB();
    ReadSAR();
-   MakeQuery();
+   TraiLingStart();
    TraiLingStop();
    OrderQuery();
    MutileTask();
-   Comment("Symbol : ",iSymbol," TimeFream : ",TimeFream,"\nBalance :", AccountBanlance, " Entry : ", AccountEntry, " Profit : ", AccountProfit,
+   
+         
+   Comment("Symbol : ",iSymbol," TimeFream : ",TimeFream," Version : 1.2.2",
+   "\nBalance :", AccountBanlance, " Entry : ", AccountEntry, " Profit : ", AccountProfit,
    "\nTrade By : ", TradeBy, " Trend : ",Trend," - Query Singal : ", singal,
    "\nMagic Trend : ", MagicTrend, " Focus Trend : ", MagicTrendFocus,
-   "\nTaskActive ID : ", PostionTicket, " Last Task ID : ",PostionTicketLast, " Order Active ID : ", orderTicket,
+   "\nTaskActive ID : ", PostionTicketActive, " Last Task ID : ",PostionTicketLast, " Order Active ID : ", orderTicketActive, " Order Total ", OrderTotal, "Sum Order", OrdersTotal(),
    "\nActive Task : ", TaskActive, " Task Number : ", TaskNumber, " Total : ", totals,
    "\nTrailing Stop: ", MoveStartSize, " Trailing Start : ", SpanceSize,
    "\nSAR : ", SARValue, " Buy Task : ", BuyTask, " Sell Task : ", SellTask
@@ -160,22 +164,31 @@ void InstallINT(){
       TradeBy = "market";
    }
    
-   if(PostionTicketLast == 0 && PostionTicket > 0){
-      PostionTicketLast = PostionTicket;
-   }
+   PostionTicketActive = 0; 
+   PostionTicketLast = 0;
    totals = 0;
+   int ii = 0;
    if(PositionsTotal() > 0){
       for(int i = PositionsTotal() - 1; i >= 0; i--){
          string getSymbol = PositionGetSymbol(i);
          if(iSymbol == getSymbol){
-            if(i == 1){
+            if(ii == 0){
+               PostionTicketActive = PositionGetInteger(POSITION_TICKET);
+            }
+            if(ii == 1){
                PostionTicketLast = PositionGetInteger(POSITION_TICKET);
             }
             totals = totals + 1;
+            ii = ii + 1;
+         }else{
+            ii = 0;
          }
       }
    }
    
+   if(totals == 1){
+      PostionTicketLast = PostionTicketActive;
+   }
    
    if(PostionTicketLast > 0 && m_position.SelectByTicket(PostionTicketLast)){
          
@@ -186,6 +199,16 @@ void InstallINT(){
                TaskActive = TaskActive - 1;
             
          } 
+   }
+   orderTicketActive = 0;
+   OrderTotal = 0;
+   for(int i=OrdersTotal()-1; i >=0; i--){
+      ulong orderTicket2 = OrderGetTicket(i);
+      string getSymbol = OrderGetString(ORDER_SYMBOL);
+      if(orderTicketActive == 0 && iSymbol == getSymbol){
+         orderTicketActive = orderTicket2;
+         OrderTotal = OrderTotal + 1;
+      }
    }
 }
 
@@ -214,6 +237,282 @@ void ReadBB(){
    bbMinderLastTow = NormalizeDouble(bbArrayMinder[2], _Digits);
    
 }
+
+
+
+void ReadSAR(){
+   double mSARArray[];
+   ArraySetAsSeries(mSARArray, true);
+   int SARDefition = iSAR(iSymbol, TimeFream,0.02, 0.2);
+   CopyBuffer(SARDefition, 0, 0, 3, mSARArray);
+   SARValue = NormalizeDouble(mSARArray[0], _Digits);
+   
+}
+
+
+void TraiLingStart(){
+   if(StartTrend == 0){
+      ReadBB2();
+      
+      if(Ask > bbMinder2 + (50 * _Point)){
+         Trend = "sell";
+      }
+      
+      if(Bid < bbMinder2 - (50 * _Point)){
+         Trend = "buy";
+      }
+      
+      if(bbMinderLast2 > bbMinder2 && bbMinderLastTow2 > bbMinderLast2){
+         MagicTrend = "startdown"; 
+      }
+      
+      if(bbMinderLastTow2 < bbMinderLast2 && bbMinderLast2 < bbMinder2){
+         MagicTrend = "startup"; 
+      }
+      
+   }
+   
+   /*
+   Remove Order if Task Not Allow
+   */
+   if(TaskNumber == totals){
+         trade.OrderDelete(orderTicketActive);
+   }
+   
+   orderTicket = 0;
+   getOrderType = 0;
+   orderPrice = 0.00;
+      
+   
+   
+   if(QueryActive != bbUpperLast){
+      
+      
+      
+      
+      if(Bid > bbMinder || Ask > bbMinder){
+         singal = "sell";
+      }
+      if(Bid < bbMinder || Ask < bbMinder){
+         singal = "buy";
+      }
+      
+      
+      
+      
+      BidQuery = bbUpper + (SpanceSize * _Point);
+      AskQuery = bbLower - (SpanceSize * _Point);
+      if(Ask < bbLower){
+         AskQuery = Ask - (SpanceSize * _Point);
+      }
+      
+      if(Bid > bbUpper){
+         BidQuery = Bid + (SpanceSize * _Point);
+      }
+      
+      
+         
+      
+      
+      if(OrderSelect(orderTicketActive)){
+         getOrderType = (int)OrderGetInteger(ORDER_TYPE);
+         orderPrice = OrderGetDouble(ORDER_PRICE_OPEN);
+         if(OrderGetInteger(ORDER_TYPE) == ORDER_TYPE_BUY_LIMIT){
+            if(Ask > bbMinder){
+               trade.OrderDelete(orderTicketActive);
+            }else{
+               trade.OrderModify(orderTicketActive,AskQuery,0,0,ORDER_TIME_GTC,0,0);
+            }
+         }else if(OrderGetInteger(ORDER_TYPE) == ORDER_TYPE_SELL_LIMIT){
+             if(Ask < bbMinder){
+               trade.OrderDelete(orderTicketActive);
+             }else{
+               trade.OrderModify(orderTicketActive,AskQuery,0,0,ORDER_TIME_GTC,0,0);
+             }
+         }
+      }
+      
+      
+      QueryActive = bbUpperLast;
+      
+      
+   }
+   
+   if(MagicTrend != "N/A" && SwitchTrend == "down"){
+      if(MagicTrend == "startup"){
+         singal = "buy";
+         Trend = "buy";
+      }
+      if(MagicTrend == "startdown"){
+         singal = "sell";
+         Trend = "sell";
+      }
+   }
+   
+}
+
+
+void OrderQuery(){
+   
+   BidQuery = Bid + (SpanceSize * _Point);
+   AskQuery = Ask - (SpanceSize * _Point);
+   
+   
+   if(TradeBy == "limit"){
+      BidQuery = bbUpper + (SpanceSize * _Point);
+      AskQuery = bbLower - (SpanceSize * _Point);
+      if(Ask < bbLower){
+         AskQuery = Ask - (SpanceSize * _Point);
+      }
+      
+      if(Bid > bbUpper){
+         BidQuery = Bid + (SpanceSize * _Point);
+      }
+      
+      
+   
+      if(totals < TaskNumber && OrdersTotal() < 5){
+         if(Trend == "auto" || Trend == "sell"){
+            if(singal == "sell" && OrderTotal == 0){
+               trade.SellLimit(TradeSize,BidQuery,NULL,0,0,ORDER_TIME_GTC,0,"Sell Limit");
+               //trade.BuyLimit(TradeSize,AskQuery,NULL,AskQuery - (3000 * _Point),AskQuery + (ProfitSize * _Point),ORDER_TIME_GTC,0,"Buy Limit");
+            }
+         }
+         
+         if(Trend == "auto" || Trend == "buy"){
+            if(singal == "buy" && OrderTotal == 0){
+               trade.BuyLimit(TradeSize,AskQuery,NULL,0,0,ORDER_TIME_GTC,0,"Buy Limit");
+               //trade.SellLimit(TradeSize,BidQuery,NULL,BidQuery + (3000 * _Point),BidQuery - (ProfitSize * _Point),ORDER_TIME_GTC,0,"Sell Limit");
+            }
+         }
+      }
+   }
+   
+   
+   
+   if(TradeBy == "market"){
+      BidQuery = Bid - (SpanceSize * _Point);
+      AskQuery = Ask + (SpanceSize * _Point);
+      
+      
+      if(totals < TaskNumber){
+         
+         if(Trend == "auto" || Trend == "sell"){
+            if(BidQuery > bbUpper){
+               trade.Sell(TradeSize,iSymbol,Bid,0,0,"Markets");
+               //trade.Buy(TradeSize,_Symbol,Ask,Ask - (3000 * _Point),Ask + (500 * _Point),"Markets");
+            }
+         }
+         
+         
+         if(Trend == "auto" || Trend == "buy"){
+            if(AskQuery < bbLower){
+               trade.Buy(TradeSize,iSymbol,Ask,0,0,"Markets");
+               //trade.Sell(TradeSize,_Symbol,Bid,Bid + (3000 * _Point),Bid - (500 * _Point),"Markets");
+            }
+         }
+      }
+   }
+}
+
+void TraiLingStop(){
+ BuyTask = 0;
+ SellTask = 0;
+ double AskStopLost = NormalizeDouble(Ask - (MoveStartSize * _Point), _Digits);
+ double BidStopLost = NormalizeDouble(Bid + (MoveStartSize * _Point), _Digits);
+ 
+ for(int i = 0; i<= (int)PositionsTotal(); i++){
+   string getSymbol = PositionGetSymbol(i);
+   
+   if(iSymbol == getSymbol){
+      ulong PostionTicket = PositionGetInteger(POSITION_TICKET);
+      double CurentStoplost = PositionGetDouble(POSITION_SL);
+      int CurentType = (int)PositionGetInteger(POSITION_TYPE);
+      double CurentProfix = PositionGetDouble(POSITION_PROFIT);
+      double CurentPrices = PositionGetDouble(POSITION_PRICE_OPEN);
+      
+      if(CurentType == POSITION_TYPE_BUY){
+         BuyTask = BuyTask + 1;
+      }
+      
+      if(CurentType == POSITION_TYPE_SELL){
+         SellTask = SellTask + 1;
+      }
+      
+      if(CurentStoplost == 0){
+         CurentStoplost = CurentPrices + (10*_Point);
+      }      
+      /*
+      Move SL Buy
+      */
+      if(CurentType == POSITION_TYPE_BUY){
+         if(CurentStoplost < AskStopLost && CurentProfix > Comisstion){
+            double MoveSL = (CurentStoplost + (10*_Point));
+            if(CurentStoplost < CurentPrices){
+               MoveSL = CurentPrices + (10*_Point); 
+            }
+            trade.PositionModify(PostionTicket, MoveSL,bbUpper2);
+         }
+      }
+      
+      /*
+      Move SL Sell
+      */
+      if(CurentType == POSITION_TYPE_SELL){
+         if(CurentStoplost > BidStopLost && CurentProfix > Comisstion){
+            double MoveSL = (CurentStoplost - (10*_Point));
+            if(CurentStoplost > CurentPrices){
+               MoveSL = CurentPrices - (10*_Point); 
+            }
+            
+            trade.PositionModify(PostionTicket, MoveSL,bbLower2);
+         }
+      }
+      if(MagicTrend != MagicTrendFocus){
+         if(MagicTrend == "startup"){
+            //Close All order Sell
+            if(CurentType == POSITION_TYPE_SELL && CurentProfix < StopLostProfit){
+               trade.PositionClose(PostionTicket);
+            }
+         }
+         
+         if(MagicTrend == "startdown"){
+            //Close All order Buy
+            if(CurentType == POSITION_TYPE_BUY && CurentProfix < StopLostProfit){
+               trade.PositionClose(PostionTicket);
+            }
+         }
+         
+         MagicTrendFocus = MagicTrend;
+      }
+   }//end if
+   
+ }// End for
+ 
+}
+
+
+void MutileTask(){
+   
+   if(m_position.SelectByTicket(PostionTicketActive)){
+         if((m_position.PositionType() == POSITION_TYPE_SELL && Ask > m_position.PriceOpen() + (MoveSize * _Point)) || (m_position.PositionType() == POSITION_TYPE_BUY && Bid < m_position.PriceOpen()  - (MoveSize * _Point))){
+            
+               if(TaskNumber < 50 && TaskNumber == totals){
+                  TaskNumber = TaskNumber + 1;
+                  TaskActive = TaskActive + 1;
+               }
+            
+         }
+         
+         active_id=m_position.Identifier();
+         active_price= m_position.PriceOpen();
+         active_type = m_position.PositionType() == POSITION_TYPE_BUY ? "[BUY]" : "[SELL]";
+         active_profit=m_position.Profit();
+         active_swap = m_position.Swap();
+    }
+    
+}
+
 
 
 void ReadBB2(){
@@ -291,274 +590,4 @@ void ReadBBH4(){
    bbLowerLastTowH4 = NormalizeDouble(bbArrayLower[2], _Digits);
    bbMinderLastTowH4 = NormalizeDouble(bbArrayMinder[2], _Digits);
    
-}
-
-void ReadSAR(){
-   double mSARArray[];
-   ArraySetAsSeries(mSARArray, true);
-   int SARDefition = iSAR(iSymbol, TimeFream,0.02, 0.2);
-   CopyBuffer(SARDefition, 0, 0, 3, mSARArray);
-   SARValue = NormalizeDouble(mSARArray[0], _Digits);
-   
-}
-
-
-void MakeQuery(){
-   if(StartTrend == 0){
-      ReadBB2();
-      
-      if(Ask > bbMinder2 + (50 * _Point)){
-         Trend = "sell";
-      }
-      
-      if(Bid < bbMinder2 - (50 * _Point)){
-         Trend = "buy";
-      }
-      
-      if(bbMinderLast2 > bbMinder2 && bbMinderLastTow2 > bbMinderLast2){
-         MagicTrend = "startdown"; 
-      }
-      
-      if(bbMinderLastTow2 < bbMinderLast2 && bbMinderLast2 < bbMinder2){
-         MagicTrend = "startup"; 
-      }
-      
-   }
-   
-   if(QueryActive != bbUpperLast){
-      
-      
-      
-      
-      if(Bid > bbMinder || Ask > bbMinder){
-         singal = "sell";
-      }
-      if(Bid < bbMinder || Ask < bbMinder){
-         singal = "buy";
-      }
-      
-      
-      orderTicket = 0;
-      getOrderType = 0;
-      orderPrice = 0.00;
-      
-      BidQuery = bbUpper + (SpanceSize * _Point);
-      AskQuery = bbLower - (SpanceSize * _Point);
-      if(Ask < bbLower){
-         AskQuery = Ask - (SpanceSize * _Point);
-      }
-      
-      if(Bid > bbUpper){
-         BidQuery = Bid + (SpanceSize * _Point);
-      }
-      
-      if(OrdersTotal() > 0){
-         for(uint i=OrdersTotal()-1; i <=0; i--){
-            orderTicket = OrderGetTicket(i);
-            if(orderTicket > 0 && iSymbol == OrderGetString(ORDER_SYMBOL)){
-               
-               getOrderType = (int)OrderGetInteger(ORDER_TYPE);
-               orderPrice = OrderGetDouble(ORDER_PRICE_OPEN);
-               if(TaskNumber == totals){
-                  trade.OrderDelete(orderTicket);
-               } 
-               
-               if(getOrderType == ORDER_TYPE_BUY_LIMIT){
-                  if(Ask > bbMinder){
-                     trade.OrderDelete(orderTicket);
-                  }else{
-                     trade.OrderModify(orderTicket,AskQuery,0,0,ORDER_TIME_GTC,0,0);
-                  }
-               }else if(getOrderType == ORDER_TYPE_SELL_LIMIT){
-                   if(Ask < bbMinder){
-                     trade.OrderDelete(orderTicket);
-                   }else{
-                     trade.OrderModify(orderTicket,BidQuery,0,0,ORDER_TIME_GTC,0,0);
-                  }
-               }
-               
-               
-            }else{
-               orderTicket = 0;
-               getOrderType = 0;
-               orderPrice = 0.00;
-            }
-        }
-            
-            
-      }
-      
-      QueryActive = bbUpperLast;
-   }
-   
-   if(MagicTrend != "N/A" && SwitchTrend == "down"){
-      if(MagicTrend == "startup"){
-         singal = "buy";
-         Trend = "buy";
-      }
-      if(MagicTrend == "startdown"){
-         singal = "sell";
-         Trend = "sell";
-      }
-   }
-   
-}
-
-
-void OrderQuery(){
-   
-   BidQuery = Bid + (SpanceSize * _Point);
-   AskQuery = Ask - (SpanceSize * _Point);
-   
-   if(TradeBy == "limit"){
-      BidQuery = bbUpper + (SpanceSize * _Point);
-      AskQuery = bbLower - (SpanceSize * _Point);
-      if(Ask < bbLower){
-         AskQuery = Ask - (SpanceSize * _Point);
-      }
-      
-      if(Bid > bbUpper){
-         BidQuery = Bid + (SpanceSize * _Point);
-      }
-      
-      if(totals < TaskNumber && OrdersTotal() == 0){
-         if(Trend == "auto" || Trend == "sell"){
-            if(singal == "sell"){
-               trade.SellLimit(TradeSize,BidQuery,NULL,0,0,ORDER_TIME_GTC,0,"Sell Limit");
-               //trade.BuyLimit(TradeSize,AskQuery,NULL,AskQuery - (3000 * _Point),AskQuery + (ProfitSize * _Point),ORDER_TIME_GTC,0,"Buy Limit");
-            }
-         }
-         
-         if(Trend == "auto" || Trend == "buy"){
-            if(singal == "buy"){
-               trade.BuyLimit(TradeSize,AskQuery,NULL,0,0,ORDER_TIME_GTC,0,"Buy Limit");
-               //trade.SellLimit(TradeSize,BidQuery,NULL,BidQuery + (3000 * _Point),BidQuery - (ProfitSize * _Point),ORDER_TIME_GTC,0,"Sell Limit");
-            }
-         }
-      }
-   }
-   
-   
-   
-   if(TradeBy == "market"){
-      BidQuery = Bid - (SpanceSize * _Point);
-      AskQuery = Ask + (SpanceSize * _Point);
-      
-      
-      if(totals < TaskNumber){
-         
-         if(Trend == "auto" || Trend == "sell"){
-            if(BidQuery > bbUpper){
-               trade.Sell(TradeSize,iSymbol,Bid,0,0,"Markets");
-               //trade.Buy(TradeSize,_Symbol,Ask,Ask - (3000 * _Point),Ask + (500 * _Point),"Markets");
-            }
-         }
-         
-         
-         if(Trend == "auto" || Trend == "buy"){
-            if(AskQuery < bbLower){
-               trade.Buy(TradeSize,iSymbol,Ask,0,0,"Markets");
-               //trade.Sell(TradeSize,_Symbol,Bid,Bid + (3000 * _Point),Bid - (500 * _Point),"Markets");
-            }
-         }
-      }
-   }
-}
-
-void TraiLingStop(){
- BuyTask = 0;
- SellTask = 0;
- double AskStopLost = NormalizeDouble(Ask - (MoveStartSize * _Point), _Digits);
- double BidStopLost = NormalizeDouble(Bid + (MoveStartSize * _Point), _Digits);
- 
- for(int i = 0; i<= (int)PositionsTotal(); i++){
-   string getSymbol = PositionGetSymbol(i);
-   
-   if(iSymbol == getSymbol){
-      PostionTicket = PositionGetInteger(POSITION_TICKET);
-      double CurentStoplost = PositionGetDouble(POSITION_SL);
-      int CurentType = (int)PositionGetInteger(POSITION_TYPE);
-      double CurentProfix = PositionGetDouble(POSITION_PROFIT);
-      double CurentPrices = PositionGetDouble(POSITION_PRICE_OPEN);
-      
-      if(CurentType == POSITION_TYPE_BUY){
-         BuyTask = BuyTask + 1;
-      }
-      
-      if(CurentType == POSITION_TYPE_SELL){
-         SellTask = SellTask + 1;
-      }
-      
-      if(CurentStoplost == 0){
-         CurentStoplost = CurentPrices + (10*_Point);
-      }      
-      /*
-      Move SL Buy
-      */
-      if(CurentType == POSITION_TYPE_BUY){
-         if(CurentStoplost < AskStopLost && CurentProfix > Comisstion){
-            double MoveSL = (CurentStoplost + (10*_Point));
-            if(CurentStoplost < CurentPrices){
-               MoveSL = CurentPrices + (10*_Point); 
-            }
-            trade.PositionModify(PostionTicket, MoveSL,bbUpper2);
-         }
-      }
-      
-      /*
-      Move SL Sell
-      */
-      if(CurentType == POSITION_TYPE_SELL){
-         if(CurentStoplost > BidStopLost && CurentProfix > Comisstion){
-            double MoveSL = (CurentStoplost - (10*_Point));
-            if(CurentStoplost > CurentPrices){
-               MoveSL = CurentPrices - (10*_Point); 
-            }
-            
-            trade.PositionModify(PostionTicket, MoveSL,bbLower2);
-         }
-      }
-      if(MagicTrend != MagicTrendFocus){
-         if(MagicTrend == "startup"){
-            //Close All order Sell
-            if(CurentType == POSITION_TYPE_SELL && CurentProfix < StopLostProfit){
-               trade.PositionClose(PostionTicket);
-            }
-         }
-         
-         if(MagicTrend == "startdown"){
-            //Close All order Buy
-            if(CurentType == POSITION_TYPE_BUY && CurentProfix < StopLostProfit){
-               trade.PositionClose(PostionTicket);
-            }
-         }
-         
-         MagicTrendFocus = MagicTrend;
-      }
-   }//end if
-   
- }// End for
- 
-}
-
-
-void MutileTask(){
-   
-   if(m_position.SelectByTicket(PostionTicket)){
-         if((m_position.PositionType() == POSITION_TYPE_SELL && Ask > m_position.PriceOpen() + (MoveSize * _Point)) || (m_position.PositionType() == POSITION_TYPE_BUY && Bid < m_position.PriceOpen()  - (MoveSize * _Point))){
-            
-               if(TaskNumber < 50 && TaskNumber == totals){
-                  TaskNumber = TaskNumber + 1;
-                  TaskActive = TaskActive + 1;
-               }
-            
-         }
-         
-         active_id=m_position.Identifier();
-         active_price= m_position.PriceOpen();
-         active_type = m_position.PositionType() == POSITION_TYPE_BUY ? "[BUY]" : "[SELL]";
-         active_profit=m_position.Profit();
-         active_swap = m_position.Swap();
-    }
-    
 }
