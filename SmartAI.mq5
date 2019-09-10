@@ -116,7 +116,7 @@ void OnTick()
    ReadSAR();
    TraiLingStart();
    TraiLingStop();
-   OrderQuery();
+   OrderQuery(OrderTotal);
    MutileTask();
    
          
@@ -190,7 +190,8 @@ void InstallINT(){
       PostionTicketLast = PostionTicketActive;
    }
    
-   if(PostionTicketLast > 0 && m_position.SelectByTicket(PostionTicketLast)){
+   if(m_position.SelectByTicket(PostionTicketActive)){
+         
          
          if((m_position.PositionType() == POSITION_TYPE_SELL && Ask < m_position.PriceOpen() + (MoveSize * _Point)) || (m_position.PositionType() == POSITION_TYPE_BUY && Bid > m_position.PriceOpen()  - (MoveSize * _Point))){
             
@@ -352,7 +353,7 @@ void TraiLingStart(){
 }
 
 
-void OrderQuery(){
+void OrderQuery(int OrderTotalCount=0){
    
    BidQuery = Bid + (SpanceSize * _Point);
    AskQuery = Ask - (SpanceSize * _Point);
@@ -373,14 +374,14 @@ void OrderQuery(){
    
       if(totals < TaskNumber && OrdersTotal() < 5){
          if(Trend == "auto" || Trend == "sell"){
-            if(singal == "sell" && OrderTotal == 0){
+            if(singal == "sell" && OrderTotalCount == 0){
                trade.SellLimit(TradeSize,BidQuery,NULL,0,0,ORDER_TIME_GTC,0,"Sell Limit");
                //trade.BuyLimit(TradeSize,AskQuery,NULL,AskQuery - (3000 * _Point),AskQuery + (ProfitSize * _Point),ORDER_TIME_GTC,0,"Buy Limit");
             }
          }
          
          if(Trend == "auto" || Trend == "buy"){
-            if(singal == "buy" && OrderTotal == 0){
+            if(singal == "buy" && OrderTotalCount == 0){
                trade.BuyLimit(TradeSize,AskQuery,NULL,0,0,ORDER_TIME_GTC,0,"Buy Limit");
                //trade.SellLimit(TradeSize,BidQuery,NULL,BidQuery + (3000 * _Point),BidQuery - (ProfitSize * _Point),ORDER_TIME_GTC,0,"Sell Limit");
             }
@@ -495,14 +496,23 @@ void TraiLingStop(){
 void MutileTask(){
    
    if(m_position.SelectByTicket(PostionTicketActive)){
-         if((m_position.PositionType() == POSITION_TYPE_SELL && Ask > m_position.PriceOpen() + (MoveSize * _Point)) || (m_position.PositionType() == POSITION_TYPE_BUY && Bid < m_position.PriceOpen()  - (MoveSize * _Point))){
-            
+         if(m_position.PositionType() == POSITION_TYPE_SELL){
+            if(Ask > m_position.PriceOpen()  + (MoveSize * _Point)){
                if(TaskNumber < 50 && TaskNumber == totals){
                   TaskNumber = TaskNumber + 1;
                   TaskActive = TaskActive + 1;
                }
-            
+            }
          }
+         if(m_position.PositionType() == POSITION_TYPE_BUY){
+            if(Bid < m_position.PriceOpen()  - (MoveSize * _Point)){
+               if(TaskNumber < 50 && TaskNumber == totals){
+                  TaskNumber = TaskNumber + 1;
+                  TaskActive = TaskActive + 1;
+               }
+            }
+         }
+         
          
          active_id=m_position.Identifier();
          active_price= m_position.PriceOpen();
