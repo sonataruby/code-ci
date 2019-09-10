@@ -89,7 +89,8 @@ void OnDeinit(const int reason)
 //+------------------------------------------------------------------+
 void OnTick()
   {
-   
+   PostionTicket = 0; 
+   PostionTicketLast = 0;
    InstallINT();
    double AccountBanlance = AccountInfoDouble(ACCOUNT_BALANCE);
    double AccountProfit = AccountInfoDouble(ACCOUNT_PROFIT);
