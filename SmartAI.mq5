@@ -32,7 +32,7 @@ input iTrend StartTrend=3;
 enum iTrendFream {M1=0, M3=1, M5=2};
 input iTrendFream StartFream=0;
 
-enum iMode {iAuto=0, iStandard=1};
+enum iMode {iAuto=0, iStandard=1, iNTrend=2};
 input iMode ModeTrade=1;
 
 input double   Comisstion=0.1;
