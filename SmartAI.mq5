@@ -179,12 +179,12 @@ void InstallINT(){
    totals = 0;
    int ii = 0;
    if(PositionsTotal() > 0){
-      for(int i = PositionsTotal() - 1; i >= 0; i--){
+      for(int i = 0; i <= PositionsTotal(); i++){
          string getSymbol = PositionGetSymbol(i);
          if(iSymbol == getSymbol){
-            if(ii == 0){
+            //if(ii == 0){
                PostionTicketActive = PositionGetInteger(POSITION_TICKET);
-            }
+            //}
             if(ii == 1){
                PostionTicketLast = PositionGetInteger(POSITION_TICKET);
             }
@@ -213,7 +213,7 @@ void InstallINT(){
    }
    orderTicketActive = 0;
    OrderTotal = 0;
-   for(int i=OrdersTotal()-1; i >=0; i--){
+   for(int i=0; i <=OrdersTotal(); i++){
       ulong orderTicket2 = OrderGetTicket(i);
       string getSymbol = OrderGetString(ORDER_SYMBOL);
       if(orderTicketActive == 0 && iSymbol == getSymbol){
@@ -369,9 +369,9 @@ void OrderQuery(int OrderTotalCount=0){
    AskQuery = Ask - (SpanceSize * _Point);
    
    if(ModeTrade == 1){
-      if(BuyTask > SellTask){
+      if(BuyTask < SellTask){
          Trend = "buy";
-      }else if(BuyTask < SellTask){
+      }else if(BuyTask > SellTask){
          Trend = "sell";
       }
    }
