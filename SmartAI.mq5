@@ -20,6 +20,7 @@ input int      SpanceSize=20;
 input int      ProfitSize=100;
 input int      MoveStartSize=50;
 input int      StopLostProfit = -100;
+input int      CloseProfit = 0;
 input string SwitchTrend = "up";
 
 string   TradeBy="limit";
@@ -36,6 +37,16 @@ enum iMode {iAuto=0, iStandard=1, iNTrend=2};
 input iMode ModeTrade=1;
 
 input double   Comisstion=0.1;
+
+/*
+Support Big Trend
+*/
+input double   BigTrendSize=0;
+enum iBigTrendFream {BM5=0, BM15=1, BM30=2};
+input iBigTrendFream StartBigFream=0;
+int BigTrendCount = 0;
+
+
 ulong PostionTicketActive, PostionTicketLast;
 //+------------------------------------------------------------------+
 //| BB Defiend                                  |
@@ -44,7 +55,7 @@ double bbUpper, bbMinder, bbLower,bbUpperLast, bbMinderLast, bbLowerLast,bbUpper
 double bbUpper2, bbMinder2, bbLower2,bbUpperLast2, bbMinderLast2, bbLowerLast2,bbUpperLastTow2, bbMinderLastTow2, bbLowerLastTow2;
 double bbUpperH1, bbMinderH1, bbLowerH1,bbUpperLastH1, bbMinderLastH1, bbLowerLastH1,bbUpperLastTowH1, bbMinderLastTowH1, bbLowerLastTowH1;
 double bbUpperH4, bbMinderH4, bbLowerH4,bbUpperLastH4, bbMinderLastH4, bbLowerLastH4,bbUpperLastTowH4, bbMinderLastTowH4, bbLowerLastTowH4;
-
+double bbUpperBig, bbMinderBig, bbLowerBig,bbUpperLastBig, bbMinderLastBig, bbLowerLastBig,bbUpperLastTowBig, bbMinderLastTowBig, bbLowerLastTowBig;
 double SARValue;
 
 double Ask, Bid, AskQuery, BidQuery;
@@ -135,7 +146,8 @@ void OnTick()
    "\nOrder Active ID : ", orderTicketActive, " Order Total ", OrderTotal,
    "\nActive Task : ", TaskActive, " Task Number : ", TaskNumber, " Total : ", totals,
    "\nTrailing Stop: ", MoveStartSize, " Trailing Start : ", SpanceSize,
-   "\nMode : ", (ModeTrade == 0 ? "Auto" : "Standard"), " Buy Task : ", BuyTask, " Sell Task : ", SellTask
+   "\nMode : ", (ModeTrade == 0 ? "Auto" : "Standard"), " Buy Task : ", BuyTask, " Sell Task : ", SellTask,
+   "\nBig Trend : ", (BigTrendSize > TradeSize ? "ON" : "OFF"), " - Big Trend Size : ", BigTrendSize, " Big Trend Status : ", (BigTrendCount == 0 ? "Wait" : "Close")
    );
   }
 
@@ -177,6 +189,7 @@ void InstallINT(){
    PostionTicketActive = 0; 
    PostionTicketLast = 0;
    totals = 0;
+   BigTrendCount = 0;
    int ii = 0;
    if(PositionsTotal() > 0){
       for(int i = 0; i <= PositionsTotal(); i++){
@@ -190,6 +203,9 @@ void InstallINT(){
             }
             totals = totals + 1;
             ii = ii + 1;
+            if(PositionGetDouble(POSITION_VOLUME) == BigTrendSize){
+               BigTrendCount = 1;
+            }
          }else{
             ii = 0;
          }
@@ -298,8 +314,7 @@ void TraiLingStart(){
    
    if(QueryActive != bbUpperLast){
       
-      
-      
+     
       
       if(Bid > bbMinder || Ask > bbMinder){
          singal = "sell";
@@ -396,6 +411,23 @@ void OrderQuery(int OrderTotalCount=0){
       }
    }
    
+   /*
+   Support Big Trend
+   */
+   
+   if(BigTrendSize > TradeSize && BigTrendCount == 0){
+      ReadBBBig();
+      if(Bid > bbUpperBig + (SpanceSize * _Point)){
+         trade.Sell(BigTrendSize,iSymbol,Bid,Bid + (1000 * _Point),Ask - (100* _Point),"Big Trend");
+         BigTrendCount = 1;
+      }
+      if(Ask < bbLowerBig - (SpanceSize * _Point)){
+         trade.Buy(BigTrendSize,iSymbol,Ask,Ask - (1000 * _Point),Bid + (100 * _Point),"Big Trend");
+         BigTrendCount = 1;
+      }
+   }
+   
+   
    if(TradeBy == "limit"){
       BidQuery = bbUpper + (SpanceSize * _Point);
       AskQuery = bbLower - (SpanceSize * _Point);
@@ -461,6 +493,7 @@ void TraiLingStop(){
  double AskStopLost = NormalizeDouble(Ask - (MoveStartSize * _Point), _Digits);
  double BidStopLost = NormalizeDouble(Bid + (MoveStartSize * _Point), _Digits);
  
+ 
  for(int i = 0; i<= (int)PositionsTotal(); i++){
    string getSymbol = PositionGetSymbol(i);
    
@@ -470,6 +503,9 @@ void TraiLingStop(){
       int CurentType = (int)PositionGetInteger(POSITION_TYPE);
       double CurentProfix = PositionGetDouble(POSITION_PROFIT);
       double CurentPrices = PositionGetDouble(POSITION_PRICE_OPEN);
+      double Volume = PositionGetDouble(POSITION_VOLUME);
+      string Comments = PositionGetString(POSITION_COMMENT);
+      
       
       if(CurentType == POSITION_TYPE_BUY){
          BuyTask = BuyTask + 1;
@@ -485,27 +521,42 @@ void TraiLingStop(){
       /*
       Move SL Buy
       */
-      if(CurentType == POSITION_TYPE_BUY){
-         if(CurentStoplost < AskStopLost && CurentProfix > Comisstion){
-            double MoveSL = (CurentStoplost + (10*_Point));
-            if(CurentStoplost < CurentPrices){
-               MoveSL = CurentPrices + (10*_Point); 
-            }
-            trade.PositionModify(PostionTicket, MoveSL,bbUpper2);
+      if(CloseProfit > 0 && CurentProfix > CloseProfit){
+         if(Volume == TradeSize){
+            trade.PositionClose(PostionTicket);
          }
-      }
-      
-      /*
-      Move SL Sell
-      */
-      if(CurentType == POSITION_TYPE_SELL){
-         if(CurentStoplost > BidStopLost && CurentProfix > Comisstion){
-            double MoveSL = (CurentStoplost - (10*_Point));
-            if(CurentStoplost > CurentPrices){
-               MoveSL = CurentPrices - (10*_Point); 
+         if(Volume == BigTrendSize && CurentProfix > (CloseProfit*10)){
+            trade.PositionClose(PostionTicket);
+         }
+      }else{
+         
+         if(Volume == BigTrendSize){
+            AskStopLost = NormalizeDouble(Ask - ((MoveStartSize * 2) * _Point), _Digits);
+            BidStopLost = NormalizeDouble(Bid + ((MoveStartSize * 2) * _Point), _Digits);
+         }
+         
+         if(CurentType == POSITION_TYPE_BUY){
+            if(CurentStoplost < AskStopLost && CurentProfix > Comisstion){
+               double MoveSL = (CurentStoplost + (10*_Point));
+               if(CurentStoplost < CurentPrices){
+                  MoveSL = CurentPrices + (10*_Point); 
+               }
+               trade.PositionModify(PostionTicket, MoveSL,bbUpper2);
             }
-            
-            trade.PositionModify(PostionTicket, MoveSL,bbLower2);
+         }
+         
+         /*
+         Move SL Sell
+         */
+         if(CurentType == POSITION_TYPE_SELL){
+            if(CurentStoplost > BidStopLost && CurentProfix > Comisstion){
+               double MoveSL = (CurentStoplost - (10*_Point));
+               if(CurentStoplost > CurentPrices){
+                  MoveSL = CurentPrices - (10*_Point); 
+               }
+               
+               trade.PositionModify(PostionTicket, MoveSL,bbLower2);
+            }
          }
       }
       if(MagicTrend != MagicTrendFocus){
@@ -568,6 +619,42 @@ void MutileTask(){
     
 }
 
+
+void ReadBBBig(){
+   ENUM_TIMEFRAMES iTime;
+   if(StartBigFream == 0){
+      iTime = PERIOD_M5;
+   }
+   if(StartBigFream == 1){
+      iTime = PERIOD_M15;
+   }
+   
+   if(StartBigFream == 2){
+      iTime = PERIOD_M30;
+   }
+   
+   double bbArrayUpper[], bbArrayMinder[], bbArrayLower[];
+   ArraySetAsSeries(bbArrayUpper, true);
+   ArraySetAsSeries(bbArrayMinder, true);
+   ArraySetAsSeries(bbArrayLower, true);
+   int BollingerBandsDefition = iBands(iSymbol, PERIOD_M15, 20, 0, 2, PRICE_CLOSE);
+   CopyBuffer(BollingerBandsDefition, 1, 0, 4, bbArrayUpper);
+   CopyBuffer(BollingerBandsDefition, 2, 0, 4, bbArrayLower);
+   CopyBuffer(BollingerBandsDefition, 0, 0, 4, bbArrayMinder);
+   
+   bbUpperBig = NormalizeDouble(bbArrayUpper[0], _Digits);
+   bbLowerBig = NormalizeDouble(bbArrayLower[0], _Digits);
+   bbMinderBig = NormalizeDouble(bbArrayMinder[0], _Digits);
+   
+   
+   bbUpperLastBig = NormalizeDouble(bbArrayUpper[1], _Digits);
+   bbLowerLastBig = NormalizeDouble(bbArrayLower[1], _Digits);
+   bbMinderLastBig = NormalizeDouble(bbArrayMinder[1], _Digits);
+   
+   bbUpperLastTowBig = NormalizeDouble(bbArrayUpper[2], _Digits);
+   bbLowerLastTowBig = NormalizeDouble(bbArrayLower[2], _Digits);
+   bbMinderLastTowBig = NormalizeDouble(bbArrayMinder[2], _Digits);
+}
 
 
 void ReadBB2(){
@@ -645,4 +732,15 @@ void ReadBBH4(){
    bbLowerLastTowH4 = NormalizeDouble(bbArrayLower[2], _Digits);
    bbMinderLastTowH4 = NormalizeDouble(bbArrayMinder[2], _Digits);
    
+}
+
+void ReadCmd(){
+   string cookie=NULL, headers;
+   char post[], result[];
+   string url = "http://develop.com";
+   ResetLastError();
+   int res = WebRequest("GET", url, cookie,NULL,500,post, 0, result, headers);
+   if(res == 200){
+      Print("Da nhan duoc",result[0]);
+   }
 }
