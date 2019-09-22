@@ -89,7 +89,24 @@ class Forms{
 
         $help = isset($extract["help"]) ? $extract["help"] : false;
 
-        $input = "";
+        
+        list($value, $hourExtract) = explode(" ", $value);
+
+        list($hourV, $muniesV) = explode(':', $hourExtract);
+
+        $hour = '<select class="form-control" name="'.$name.'_hh" style="max-width:70px;">';
+        for($i = 1; $i<=24; $i++){
+            $hour .= '<option value="'.$i.'" '.($hourV == $i ? "selected" : "").'>'.$i.'</option>';
+        }
+        $hour .= '</select>';
+
+        $munies = '<select class="form-control" name="'.$name.'_mm" style="max-width:70px;">';
+        for($i = 1; $i<=60; $i++){
+            $munies .= '<option value="'.$i.'" '.($muniesV == $i ? "selected" : "").'>'.$i.'</option>';
+        }
+        $munies .= '</select>';
+
+        if(intval($value) == 0) $value = "";
         if(is_array($name)){
             $ii = 0;
             foreach ($name as $keyName => $valueName) {
@@ -104,8 +121,9 @@ class Forms{
             
         }else{
             $extract["id"] = "DatePicker".random_string('alnum', 16);
+
             $input = form_input($name, $value, $extract);
-            $input = '<div class="input-group date" data-provide="datepicker" data-date-autoclose="true">'.$input.'<div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-calendar-alt"></i></span></div></div>';
+            $input = '<div class="input-group date" data-date-format="yyyy-mm-dd" data-provide="datepicker" data-date-autoclose="true">'.$input.'<div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-calendar-alt"></i></span> </div>'.$hour.$munies.'</div>';
         }
         
 
