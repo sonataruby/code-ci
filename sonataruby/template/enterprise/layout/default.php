@@ -65,7 +65,7 @@
         </div>
     </div>
 
-    <header class="fixed-top">
+    <header class="fixed-top border-bottom" style="z-index: 999999999;">
       <nav class="navbar navbar-expand-md navbar-light">
         <div class="logo"><img src="http://gull.ui-lib.com/blue/assets/images/logo.png" style="max-height:calc(var(--header-height) - 10px);"></div>
         <a class="navbar-brand" href="#">Administrator</a>
@@ -184,10 +184,10 @@
               <a class="nav-link arrow-down" data-toggle="collapse" href="#Posts" role="button" aria-expanded="false" aria-controls="Posts"><i class="fa fa-mail-bulk"></i> <span>Nội dung</span></a>
               <div id="Posts" class="collapse" data-parent="#MenuSli">
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item menuHeader">Bài viết </li>
+                    <li class="list-group-item menuHeader">Nội dung </li>
 
                   <li class="list-group-item"><a class="nav-link" href="/posts/enterprise/catalog" sn-link="true" parent-controller="#posts"><i class="fa fa-table"></i> <span>Chuyên mục</span></a></li>
-                  <li class="list-group-item"><a class="nav-link" href="/posts/enterprise/posts" sn-link="true" parent-controller="#posts"><i class="fa fa-clipboard"></i> <span>Bài viết</span></a></li>
+                  <li class="list-group-item"><a class="nav-link" href="/posts/enterprise/posts" sn-link="true" parent-controller="#posts"><i class="fa fa-clipboard"></i> <span>Nội dung</span></a></li>
                   <li class="list-group-item"><a class="nav-link" href="/posts/enterprise/tags" sn-link="true" parent-controller="#posts"><i class="fa fa-tags"></i> <span>Tag's</span></a></li>
                   <li class="list-group-item"><a class="nav-link" href="/posts/enterprise/gallery" sn-link="true" parent-controller="#posts"><i class="fa fa-image"></i> <span>Gallery</span></a></li>
                   <li class="list-group-item"><a class="nav-link" href="/posts/enterprise/video" sn-link="true" parent-controller="#posts"><i class="fa fa-video"></i> <span>Video</span></a></li>
