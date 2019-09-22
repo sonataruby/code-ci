@@ -21,6 +21,7 @@
 	</div>
 	<div class="col-lg-4 col-xl-3 col-sm-12 sticky-top">
 		<div class="hbox border">
+			
 			<button type="submit" class="btn btn-info"><i class="fa fa-save"></i> Public</button>
 			<button type="submit" class="btn btn-warning"><i class="fa fa-save"></i> Draff</button>
 		</div>

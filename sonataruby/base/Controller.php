@@ -11,6 +11,7 @@ use \Sonata\Shortcode;
 use \Sonata\Rest;
 use \Sonata\Components;
 use \Sonata\Security;
+
 class Controller extends MX_Controller {
 
 	public $setLayout = "default";
@@ -24,9 +25,13 @@ class Controller extends MX_Controller {
 			"keyword" => "", 
 			"image" => ""
 		];
-	
+	private $is_load = false;
 	function __construct()
 	{
+		if($this->is_load == true){
+
+			return $this;
+		}
 
 		parent::__construct();
 		
@@ -118,6 +123,7 @@ class Controller extends MX_Controller {
 		$this->posts_model->setStore($this->store_id);
 		$this->gallery_model->setStore($this->store_id);
 		
+		$this->is_load = true;
 		
 	}
 
@@ -159,6 +165,7 @@ class Controller extends MX_Controller {
 		foreach ($this->lang->language as $key => $value) {
 			$data_pate["lang_".$key] = $value;
 		}
+		$data_pate['assets'] = "";
 		
 		if(is_ajax() && $this->allowAjax){
 			$content =  $this->load->view("{$file}",$data,true);
@@ -368,5 +375,6 @@ class Controller extends MX_Controller {
 		}
 		return false;
 	}
+
 
 }

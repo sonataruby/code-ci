@@ -281,7 +281,8 @@
     </section>
     </div>
     
-  
+  <?php libs_url("js/bootstrap-datepicker.js");?>
+  <?php libs_url("css/datepicker.css");?>
   <?php libs_url("js/admin.js");?>
   <?php echo template_url("app.js");?>
 

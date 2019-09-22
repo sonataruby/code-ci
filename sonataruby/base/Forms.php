@@ -36,7 +36,8 @@ class Forms{
     ];
     
     public function __construct() {
-        $this->CI =& get_instance();
+        $this->CI = &get_instance();
+        
         // load codeigniter form helper
         $this->CI->load->helper('form');
         $this->style = $this->theme_templates["bootstrap4"];
@@ -73,10 +74,49 @@ class Forms{
                 $this->group_end($group);
     }
 
-    public function datetime(array $params=[], $extract=[]){
-        $extract["data-provide"] = "datepicker";
-        return $this->text($params, $extract);
+    public function datetime(array $params=[], $extract=[], $append=[]){ 
+        //$extract["data-provide"] = "datepicker";
+        //$extract["data-date-autoclose"] = "true";
 
+        $name = isset($params["name"]) ? $params["name"] : "";
+        $label = isset($params["label"]) ? $params["label"] : "";
+        $value = isset($params["value"]) ? $params["value"] : "";
+
+        
+        $extract = array_merge($extract,["class" => "form-control"]);
+
+        $group = isset($extract["group"]) ? $extract["group"] : false;
+
+        $help = isset($extract["help"]) ? $extract["help"] : false;
+
+        $input = "";
+        if(is_array($name)){
+            $ii = 0;
+            foreach ($name as $keyName => $valueName) {
+               $extract["id"] = "DatePicker".random_string('alnum', 16);
+               $input .= form_input($keyName, $valueName, $extract);
+               if($ii == 0){
+                $input .= '<div class="input-group-prepend"><span class="input-group-text">To</span></div>';
+               }
+               $ii++;
+            }
+            $input = '<div class="input-group input-daterange" data-date-startDate="'.date("d/m/Y h:i").'" data-date-todayHighlight="true" data-provide="datepicker" data-date-autoclose="true">'.$input.'</div>';
+            
+        }else{
+            $extract["id"] = "DatePicker".random_string('alnum', 16);
+            $input = form_input($name, $value, $extract);
+            $input = '<div class="input-group date" data-provide="datepicker" data-date-autoclose="true">'.$input.'<div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-calendar-alt"></i></span></div></div>';
+        }
+        
+
+        $layout = isset($extract["layout"]) ? $extract["layout"] : false;
+        return  $this->group_start($group).
+                $this->renderTemplate($this->label($label, $extract["id"], $extract),$input, $layout).
+                $this->validate($name, $label,$extract).
+                $this->help($help, $extract["id"]).
+                $this->group_end($group);
+
+        
         
     }
 
