@@ -6,7 +6,7 @@ use \Sonata\Image;
 class Profile extends Personal {
 	public function index(){
 		$account_id = $this->session->userdata('logininfo')->account_id;
-		$dataUser = $this->db->get_where("account_info",["account_id" => $account_id])->row();
+		$dataUser = $this->account_model->getInfo($account_id);
 		if($this->isPost()){
 			$image = new Image;
 			$data = $this->input->post("config");

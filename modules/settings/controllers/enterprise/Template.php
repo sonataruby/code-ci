@@ -38,7 +38,7 @@ class Template extends Enterprise {
 	public function search(){
 		
 		
-		$this->view($this->get_views('template-search'));
+		$this->view('template-search');
 	}
 
 	public function searchitem(){

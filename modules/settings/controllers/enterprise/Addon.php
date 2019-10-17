@@ -84,7 +84,7 @@ class Addon extends Enterprise {
 
 
 	public function search(){
-		$this->view($this->get_views('addon-search'));
+		$this->view('addon-search');
 	}
 
 

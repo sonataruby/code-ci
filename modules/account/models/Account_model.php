@@ -2,7 +2,8 @@
 use \Sonata\Model;
 
 class Account_model extends Model{
-	private $table = "account";
+	private $table = "accounts";
+	private $table_info = "accounts_info";
 	public function setAccount($email, $password, $status=0, $type=""){
 		$email = $this->make_email($email);
 		$password = $this->make_password($password);
@@ -24,8 +25,8 @@ class Account_model extends Model{
 		$this->db->where("account_email", $email);
 		$this->db->where("account_password", $password);
 		$this->db->where("status",1);
-		$this->db->join("account_info","account_info.account_id={$this->table}.account_id","left");
-		$this->db->select("{$this->table}.account_id, {$this->table}.network_id, {$this->table}.account_email, {$this->table}.account_type, {$this->table}.status, {$this->table}.is_banned, {$this->table}.banned_reson, account_info.firstname, account_info.lastname, account_info.avatar");
+		$this->db->join($this->table_info,"{$this->table_info}.account_id={$this->table}.account_id","left");
+		$this->db->select("{$this->table}.account_id, {$this->table}.network_id, {$this->table}.account_email, {$this->table}.account_type, {$this->table}.status, {$this->table}.is_banned, {$this->table}.banned_reson, {$this->table_info}.firstname, {$this->table_info}.lastname, {$this->table_info}.avatar");
 		
 		$data = $this->db->get($this->table)->row();
 		
@@ -99,20 +100,20 @@ class Account_model extends Model{
 	Account Info
 	*/
 	public function accountInfo($arv, $account_id){
-		$check = $this->db->get_where("account_info", ["account_id" => $account_id])->row();
+		$check = $this->db->get_where($this->table_info, ["account_id" => $account_id])->row();
 		if(isset($check->account_id)){
 			$data["updated_date"] = getDateSQL();
 			$this->db->update("account_info", $arv,["account_id" => $account_id]);
 		}else{
 			$arv["account_id"] = $account_id;
-			$this->db->insert("account_info", $arv);
+			$this->db->insert($this->table_info, $arv);
 			$account_id = $this->db->insert_id();
 		}
 		return $account_id;
 	}
 
 	public function getInfo($account_id){
-		return $this->db->get_where("account_info", ["account_id" => $account_id])->row();
+		return $this->db->get_where($this->table_info, ["account_id" => $account_id])->row();
 	}
 
 	/*
