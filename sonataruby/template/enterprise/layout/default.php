@@ -151,10 +151,27 @@
               <div id="Dashboard" class="collapse">
                <ul class="list-group list-group-flush" style="line-height: 22px;">
                 <li class="list-group-item"><a class="nav-link" href="/enterprise"><i class="fa fa-tachometer-alt"></i> <span>Report</span></a></li>
-               
+               <li class="list-group-item"><a class="nav-link" href="/enterprise"><i class="fa fa-tachometer-alt"></i> <span>Markettings</span></a></li>
               </ul>
               </div>
             </li>
+
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="#Account" role="button" aria-expanded="false" aria-controls="Account"><i class="fa fa-users fa-1x"></i> <span>Account</span></a>
+              
+              <div id="Account" class="collapse">
+               <ul class="list-group list-group-flush" style="line-height: 22px;">
+                <li class="list-group-item"><a class="nav-link" href="/account/enterprise/profile"><i class="fa fa-tachometer-alt"></i> <span>Profile</span></a></li>
+                <li class="list-group-item"><a class="nav-link" href="/account/enterprise/changepassword"><i class="fa fa-tachometer-alt"></i> <span>Change Password</span></a></li>
+
+                <li class="list-group-item"><a class="nav-link" href="/account/enterprise/manager"><i class="fa fa-tachometer-alt"></i> <span>Account</span></a></li>
+                <li class="list-group-item"><a class="nav-link" href="/account/enterprise/customers"><i class="fa fa-tachometer-alt"></i> <span>Customers</span></a></li>
+              </ul>
+              </div>
+            </li>
+
+           
+
             <li class="nav-item">
               <a class="nav-link active" data-toggle="collapse" href="#Pages" role="button" aria-expanded="false"  aria-controls="Pages"><i class="fa fa-file-word"></i> <span>Phân trang</span></a>
               <div id="Pages" class="collapse" data-parent="#MenuSli">
@@ -228,9 +245,24 @@
               </div>
             </li>
 
+
             <li class="nav-item">
-              <a class="nav-link" href="/settings/enterprise/marketings"><i class="fa fa-poll"></i> <span>Marketings</span></a>
+              <a class="nav-link" href="#Marketings" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="Marketings"><i class="fa fa-poll"></i> <span>Marketings</span></a>
+              <div id="Marketings" class="collapse" data-parent="#MenuSli">
+                <ul class="list-group list-group-flush">
+                    
+                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/addon/manager" sn-link="true" parent-controller="#apps"><i class="fa fa-cogs"></i> <span>Sales</span></a></li>
+                    
+                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/addon/manager" sn-link="true" parent-controller="#apps"><i class="fa fa-cogs"></i> <span>Apps</span></a></li>
+
+                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/addon/manager" sn-link="true" parent-controller="#apps"><i class="fa fa-cogs"></i> <span>ADS</span></a></li>
+
+                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/addon/manager" sn-link="true" parent-controller="#apps"><i class="fa fa-cogs"></i> <span>Report</span></a></li>
+                </ul>
+              </div>
             </li>
+
+           
 
             <li class="nav-item">
               <a class="nav-link" href="/settings/enterprise/tasks"><i class="fa fa-tasks"></i> <span>Task</span></a>
