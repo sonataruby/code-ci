@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 use \Sonata\Task;
 use \Sonata\Image;
-class Facebook extends Task {
+class Autopost extends Task {
 
 	public function __construct()
 	{
@@ -14,8 +14,7 @@ class Facebook extends Task {
 		$arv = [
 			"name" => "Facebook Auto Posts",
 			"version" => "1.2",
-			"author" => "VTB PLUS",
-			"time"	=>	"* * * * *"
+			"author" => "VTB PLUS" 
 		];
 		return $arv;
 	}

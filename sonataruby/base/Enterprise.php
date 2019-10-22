@@ -17,7 +17,7 @@ class Enterprise extends Controller{
 		if(!$this->isEnterprise()){
 			$this->go("access-denied.html?ref=".$this->urlactive());
 		}
-		define("BASE_ENTERPRISE", true);
+		if(!defined("BASE_ENTERPRISE")) define("BASE_ENTERPRISE", true);
 		$this->setTitle("Administrator");
 	}
 
