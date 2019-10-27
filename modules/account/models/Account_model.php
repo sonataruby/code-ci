@@ -4,6 +4,17 @@ use \Sonata\Model;
 class Account_model extends Model{
 	private $table = "accounts";
 	private $table_info = "accounts_info";
+
+	public function getList($search=""){
+
+		$this->db->limit(20);
+		
+		$this->db->join($this->table_info,"{$this->table_info}.account_id={$this->table}.account_id","left");
+		$this->db->select("{$this->table}.account_id, {$this->table}.network_id, {$this->table}.account_email, {$this->table}.account_type, {$this->table}.lastlogin, {$this->table}.status, {$this->table}.is_banned, {$this->table}.banned_reson, {$this->table_info}.*");
+		
+		$data = $this->db->get($this->table)->result();
+		return $data;
+	}
 	public function setAccount($email, $password, $status=0, $type=""){
 		$email = $this->make_email($email);
 		$password = $this->make_password($password);
@@ -21,6 +32,8 @@ class Account_model extends Model{
 	public function setLogin($email, $password){
 		$check = $this->make_email($email);
 		$password = $this->make_password($password);
+
+
 		$this->db->limit(1);
 		$this->db->where("account_email", $email);
 		$this->db->where("account_password", $password);

@@ -10,12 +10,13 @@ class Dashboard extends FrontEnd {
 		if($offset_layout){
 			$view = $offset_layout;
 		}else{
-			$layout = $this->layout_model->getData("home");
+			$layout = $this->layout_model->getData("home-customs");
 			if($layout){
-				$view = "home-customs";
+				$view = "layout/home-customs";
 			}else{
-				$view = "home";
+				$view = "layout/home";
 			}
+
 		}
 		
 		$data = [];
