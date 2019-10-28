@@ -14,7 +14,7 @@
 			?>
 		</select>
 		<div class="input-group-append">
-			<button type="button" class="btn btn-success">Save</button>
+			<button type="submit" class="btn btn-success">Save</button>
 		</div>
 		</div>
 	</div>
