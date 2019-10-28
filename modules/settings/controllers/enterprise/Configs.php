@@ -26,7 +26,11 @@ class Configs extends Enterprise {
 			$this->go("settings/enterprise/configs");
 		}
 		$data = $this->settings_model->getData();
-		$this->view('config',["data" => $data]);
+		$error = null;
+		if(!is_dir(CONFIG_LOCAL)){
+			$error = CONFIG_LOCAL." not create, Goto Hosting Panel create folder {CONFIG_LOCAL} and chmod 0777 before config";
+		}
+		$this->view('config',["data" => $data, "error" => $error]);
 	}
 
 	public function api(){

@@ -1,6 +1,12 @@
 <?php libs_url('js/exif.js',['name' => "Font Icoin Picker"]);?>
 <?php libs_url('js/croppie.js',['name' => "Font Icoin Picker"]);?>
 <?php libs_url('css/croppie.css',['name' => "Font Icoin Picker"]);?>
+
+<?php if($error){ ?>
+	<div class="alert alert-warning" role="alert">
+	  <strong>Error : </strong> <?php echo $error;?>
+	</div>
+<?php } ?>
 <?php echo form_open();?>
 <div class="hbox">
 	<h4>Config system <button type="submit" class="btn btn-primary float-right">Save</button></h4>

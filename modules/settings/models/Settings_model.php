@@ -42,6 +42,9 @@ class Settings_model extends Model{
 
 	public function putDataCache(){
 		$this->load->helper('file');
+		if(!is_dir(CONFIG_LOCAL)){
+			@mkdir(CONFIG_LOCAL,0777, true);
+		}
 		$getData = $this->getData();
 		$data = json_encode($getData);
 		write_file(CONFIG_LOCAL . strtolower(DOMAIN).".json",$data);
