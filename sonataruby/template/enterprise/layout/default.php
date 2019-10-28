@@ -287,7 +287,7 @@
                     <li class="list-group-item menuHeader">Tools</li>
                     <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/configs/autobots" sn-link="true" parent-controller="#settings"><i class="fa fa-user-astronaut"></i> <span>Thiết lập tự động</span></a></li>
 
-                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/configs/language" sn-link="true" parent-controller="#settings"><i class="fa fa-user-astronaut"></i> <span>Ngôn ngữ</span></a></li>
+                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/language" sn-link="true" parent-controller="#settings"><i class="fa fa-language"></i> <span>Ngôn ngữ</span></a></li>
 
                   </ul>
                 </div>

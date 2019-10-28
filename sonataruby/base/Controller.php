@@ -70,9 +70,25 @@ class Controller extends MX_Controller {
 			
 		}
 
+		if(file_exists(CONFIG_LOCAL . "language.json")){
+			$json = (Array)json_decode(file_get_contents(CONFIG_LOCAL ."language.json"));
+			$this->config->set_item("language_list",$json);
+		}
+
+		/*
+		Cache Mutile language
+		*/
+		if($this->input->get("language")){
+			$this->session->set_userdata("language",$this->input->get("language"));
+			header('Location: ' . $_SERVER['HTTP_REFERER']);
+		}
+		if($this->session->userdata('language') && $this->session->userdata('language') != ""){
+			$this->config->set_item("language",$this->session->userdata('language'));
+		}
 
 		$this->config->set_item("default_channel",CHANNEL_DEFAULT);
 		$this->config->set_item("template",'default');
+
 
 		if(file_exists(CONFIG_LOCAL . DOMAIN.".json")){
 			$json = json_decode(file_get_contents(CONFIG_LOCAL . DOMAIN.".json"));
