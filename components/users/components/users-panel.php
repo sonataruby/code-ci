@@ -2,7 +2,7 @@
   <?php foreach ((Array)config_item("language_list") as $key => $value) { 
       if($value->status == 1){
       ?>
-      <li class="nav-item"><a href="?language=<?php echo $value->folder;?>" title="<?php echo $value->name;?>"><?php echo $value->tags;?></a></li>
+      <li class="nav-item"><a href="?language=<?php echo $value->folder;?>" title="<?php echo $value->name;?>" style="border-right: 1px dotted #ddd; padding-right:5px;padding-left:5px;" class="<?php echo (config_item("language") == $value->folder ? "text-danger active-languge" : "");?>"><?php echo $value->tags;?></a> </li>
 
   <?php }
       }
