@@ -1,7 +1,12 @@
 <ul class="<?php echo (@$attr["class"] ? $attr["class"] : "navbar-nav form-inline my-2 my-lg-0");?>">
-  <?php foreach ((Array)config_item("language_list") as $key => $value) { ?>
+  <?php foreach ((Array)config_item("language_list") as $key => $value) { 
+      if($value->status == 1){
+      ?>
       <li class="nav-item"><a href="?language=<?php echo $value->folder;?>" title="<?php echo $value->name;?>"><?php echo $value->tags;?></a></li>
-  <?php } ?>
+
+  <?php }
+      }
+  ?>
   <?php if(isset($data->account_id)){ ?>
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

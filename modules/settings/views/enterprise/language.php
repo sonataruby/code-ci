@@ -16,7 +16,7 @@
 				
 			<tr>
 				<td>
-					<?php echo (@isset($value->name) ? $value->name : ucfirst($value));?>
+					<?php echo (config_item("language") == $value->folder ? "<span style=\"color:red\">(*)</span> " : "");?> <?php echo (@isset($value->name) ? $value->name : ucfirst($value));?>
 				</td>
 				<td><?php echo (@isset($value->folder) ? $value->folder : $value);?></td>
 				<td><?php echo (@isset($value->status) ? $value->status : "Off");?></td>

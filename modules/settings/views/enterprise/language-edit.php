@@ -3,6 +3,20 @@
 </div>
 <div class="hbox">
 	<?php echo form_open();?>
+		<?php if(@$copy){ ?>
+			<div class="form-group row">
+		    <label for="inputEmail3" class="col-sm-2 col-form-label">Source</label>
+		    <div class="col-sm-10">
+		      <input type="text" name="name" readonly class="form-control" value="<?php echo @$copy;?>" id="inputEmail3" placeholder="Language Name">
+		    </div>
+		  </div>
+		  <div class="form-group row">
+		    <label for="inputEmail3" class="col-sm-2 col-form-label">Folder</label>
+		    <div class="col-sm-10">
+		      <input type="text" name="folder" class="form-control" value="<?php echo @$data->folder;?>" id="inputEmail3" placeholder="Folder">
+		    </div>
+		  </div>
+		<?php } ?>
 		  <div class="form-group row">
 		    <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
 		    <div class="col-sm-10">

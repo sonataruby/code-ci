@@ -79,4 +79,33 @@ class Language extends Enterprise {
 
 		$this->view("language-edit", ["data" => @config_item("language_list")[$language]]);
 	}
+
+	public function copy($source=""){
+		if($this->isPost()){
+			$allfile = directory_map(APPPATH. "/language/{$source}", false);
+			$folder = $this->input->post("folder");
+			if(@mkdir(APPPATH. "/language/{$folder}",0777,true)){
+
+				foreach ($allfile as $keyFile => $valueFile) {
+					write_file(APPPATH. "/language/{$folder}/{$valueFile}",file_get_contents(APPPATH. "/language/{$source}/{$valueFile}"));
+				}
+				$file = CONFIG_LOCAL ."language.json";
+
+				$arv = config_item("language_list");
+				$arv[$folder] = new stdClass;
+				$arv[$folder]->name = $this->input->post("name");
+				$arv[$folder]->folder = $folder;
+				$arv[$folder]->flag = $this->input->post("flag");
+				$arv[$folder]->status = $this->input->post("status");
+				$arv[$folder]->tags = $this->input->post("tags");
+				
+				$data = json_encode($arv);
+				write_file($file,$data);
+				$this->flash("success","All Data Save");
+				$this->go("/settings/enterprise/language");
+			}
+			
+		}
+		$this->view("language-edit", ["copy" => $source]);
+	}
 }
