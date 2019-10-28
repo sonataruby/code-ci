@@ -287,20 +287,14 @@
                     <li class="list-group-item menuHeader">Tools</li>
                     <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/configs/autobots" sn-link="true" parent-controller="#settings"><i class="fa fa-user-astronaut"></i> <span>Thiết lập tự động</span></a></li>
 
+                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/configs/language" sn-link="true" parent-controller="#settings"><i class="fa fa-user-astronaut"></i> <span>Ngôn ngữ</span></a></li>
+
                   </ul>
                 </div>
             </li>
           </ul>
           </div>
-          <div class="content-bottom bg-info">
-            <ul class="nav flex-column">
-                
-
-                <li class="nav-item">
-                  <a class="nav-link text-white" href="/home/enterprise"><i class="fa fa-lock fa-1x text-white"></i> <span><?php echo lang("logout");?></span></a>
-                </li>
-            </ul>
-          </div>
+          
 
         </div>
     </section>
