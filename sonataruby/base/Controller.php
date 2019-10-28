@@ -46,7 +46,8 @@ class Controller extends MX_Controller {
 			'pages/pages_model',
 			'posts/catalog_model',
 			'posts/posts_model',
-			'posts/gallery_model'
+			'posts/gallery_model',
+			'markettings/markettings_model'
 		]);
 		
 		$this->domain = strtolower(str_replace(['http://','https://','www.','/'],'', base_url()));

@@ -251,13 +251,15 @@
               <div id="Marketings" class="collapse" data-parent="#MenuSli">
                 <ul class="list-group list-group-flush">
                     
-                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/addon/manager" sn-link="true" parent-controller="#apps"><i class="fa fa-cogs"></i> <span>Sales</span></a></li>
+                    <li class="list-group-item"><a class="nav-link" href="/marketings/enterprise/sales" sn-link="true" parent-controller="#apps"><i class="fa fa-cogs"></i> <span>Sales</span></a></li>
                     
-                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/addon/manager" sn-link="true" parent-controller="#apps"><i class="fa fa-cogs"></i> <span>Apps</span></a></li>
+                    <li class="list-group-item"><a class="nav-link" href="/marketings/enterprise/apps" sn-link="true" parent-controller="#apps"><i class="fa fa-cogs"></i> <span>Apps</span></a></li>
 
-                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/addon/manager" sn-link="true" parent-controller="#apps"><i class="fa fa-cogs"></i> <span>ADS</span></a></li>
+                    <li class="list-group-item"><a class="nav-link" href="/marketings/enterprise/ads" sn-link="true" parent-controller="#apps"><i class="fa fa-cogs"></i> <span>ADS</span></a></li>
 
-                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/addon/manager" sn-link="true" parent-controller="#apps"><i class="fa fa-cogs"></i> <span>Report</span></a></li>
+                    <li class="list-group-item"><a class="nav-link" href="/marketings/enterprise/maillist" sn-link="true" parent-controller="#apps"><i class="fa fa-cogs"></i> <span>Mail List</span></a></li>
+
+                    <li class="list-group-item"><a class="nav-link" href="/marketings/enterprise/report" sn-link="true" parent-controller="#apps"><i class="fa fa-cogs"></i> <span>Report</span></a></li>
                 </ul>
               </div>
             </li>
