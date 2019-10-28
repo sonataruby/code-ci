@@ -37,7 +37,7 @@ class Controller extends MX_Controller {
 		
 		$this->load->helper(['date','cookie','url','form','string','text','html']);
 		$this->load->library(['session','email','user_agent','form_validation']);
-		$this->lang->load("globals");
+		
 		$this->load->model([
 			'settings/menu_model',
 			'settings/settings_model',
@@ -86,6 +86,8 @@ class Controller extends MX_Controller {
 		if($this->session->userdata('language') && $this->session->userdata('language') != ""){
 			$this->config->set_item("language",$this->session->userdata('language'));
 		}
+
+		$this->lang->load("globals");
 
 		$this->config->set_item("default_channel",CHANNEL_DEFAULT);
 		$this->config->set_item("template",'default');
