@@ -48,7 +48,10 @@ class Language extends Enterprise {
 			$arv[] = '$lang = [];';
 			$keys = $this->input->post("keys");
 			$value = $this->input->post("value");
-			$arv[] = '$lang["'.$keys.'"] = "'.$value.'";';
+			foreach ($keys as $key => $values) {
+				$arv[] = '$lang["'.$values.'"] = "'.$value[$key].'";';
+			}
+			
 			$data = implode($arv, "\n");
 			write_file(APPPATH. "/language/{$language}/{$file}",$data);
 			$this->go("settings/enterprise/language/tranlaytion/{$language}/{$file}");
