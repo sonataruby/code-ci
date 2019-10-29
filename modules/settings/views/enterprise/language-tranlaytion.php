@@ -42,7 +42,7 @@
 		</tbody>
 	</table>
 	
-	<h3>Add Language <button class="btn btn-info btn-sm float-right" onClick="addLanguage();">Add</button></h3>
+	<h3>Add Language <button class="btn btn-info btn-sm float-right" type="button" onClick="addLanguage();">Add</button></h3>
 	<table class="table">
 		<thead>
 			<th class="text-right">Key</th>
@@ -60,6 +60,6 @@
 </form>
 <script type="text/javascript">
 	function addLanguage(){
-		$("#addLanguageID").append('<tr><td class="w-25"><input type="text" name="keys[]" readonly class="form-control text-right" value=""></td><td><input type="text" name="value[]" class="form-control" value=""></td><td><a class="btn btn-sm btn-primary" onClick="$(this).parent().parent().remove();">-</a></td></tr>');
+		$("#addLanguageID").append('<tr><td class="w-25"><input type="text" name="keys[]" class="form-control text-right" value=""></td><td><input type="text" name="value[]" class="form-control" value=""></td><td><a class="btn btn-sm btn-primary" onClick="$(this).parent().parent().remove();">-</a></td></tr>');
 	}
 </script>
