@@ -89,6 +89,7 @@ class Layout_model extends Model{
 		}
 		if($id > 0){
 			$this->db->where("layout_id !=",$id);
+			$this->db->where("language",config_item("language"));
 		}
 		$url = url_title(convert_accented_characters($name),"-",true);
 		$this->db->where("layout_url", $url);
