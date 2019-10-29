@@ -18,6 +18,7 @@ Setup Chanel
 $route['(:any)/post/(:any).html'] = 'posts/content/info/$2/$1';
 $route['(:any)/catalog/(:any).html'] = 'posts/content/catalog/$2/$1';
 $route['(:any)/post.html'] = 'posts/content/list/$1';
+$route['(:any).html'] = 'posts/content/list/$1';
 $route['(:any)/catalog.html'] = 'posts/content/catalogList/$1';
 
 $route["access-denied.html"] = 'home/dashboard/accessdenied';
