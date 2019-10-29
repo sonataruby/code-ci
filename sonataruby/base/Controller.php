@@ -203,11 +203,11 @@ class Controller extends MX_Controller {
 	}
 
 	public function offset_layout($file , $target = "layout"){
-		$file_offset = CMS_THEMEPATH . TEMPLATE_ACTIVE . DIRECTORY_SEPARATOR . $target . DIRECTORY_SEPARATOR . $file . "-".str_replace('.','-',DOMAIN).".php";
+		$file_offset = CMS_THEMEPATH . TEMPLATE_ACTIVE . DIRECTORY_SEPARATOR . $target . DIRECTORY_SEPARATOR . $file . "-". config_item("language") . "-".str_replace('.','-',DOMAIN).".php";
 
 		if(file_exists($file_offset)){
 
-			return $target .DIRECTORY_SEPARATOR. $file."-".str_replace('.','-',DOMAIN);
+			return $target .DIRECTORY_SEPARATOR. $file."-". config_item("language")."-".str_replace('.','-',DOMAIN);
 		}
 		return false;
 	}

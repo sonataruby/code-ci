@@ -30,7 +30,7 @@ class Layout_model extends Model{
 		$settemplate = CMS_THEMEPATH . TEMPLATE_ACTIVE . DIRECTORY_SEPARATOR . "layout" . DIRECTORY_SEPARATOR;
 		if(!is_dir($settemplate)) mkdir($settemplate, 0775, true);
 		$data = $this->getData(false, $id);
-		$settemplate .= $data->url."-".str_replace('.','-',DOMAIN).".php";
+		$settemplate .= $data->url."-". config_item("language")."-".str_replace('.','-',DOMAIN).".php";
 		write_file($settemplate, $data->content,'wb');
 
 		
