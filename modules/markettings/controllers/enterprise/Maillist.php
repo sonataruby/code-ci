@@ -7,6 +7,7 @@ class Maillist extends CPEnterprise {
 	public function __construct()
 	{
 	    parent::__construct();
+	    $this->load->libraries(["tools/DomHTML"]);
 	   
 	}
 

@@ -18,10 +18,23 @@
 				"requied" => true,
 			]);?>
 			<br>
+			
+			<div class="input-group mb-3">
+			  <select type="text" class="form-control" id="pagesample">
+			  	<?php foreach ($layout as $key => $value) { ?>
+			  		<option value="<?php echo $value;?>" <?php echo ($this->input->get("loadding") == $value ? "selected" : "");?>><?php echo ucfirst(str_replace('.php', '', $value));?></option>
+			  	<?php }?>
+			  </select>
+			  <div class="input-group-append">
+			    <button class="btn btn-info" type="button" id="button-addon2" onClick="window.location.href='?loadding=' + $('#pagesample').val();">Load Data</button>
+			  </div>
+			</div>
+			<hr>
 			<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Public</button>
 			<?php if(@$data->id){?>
 				<a href="/pages/layout/builder/<?php echo @$data->id;?>" class="btn btn-warning"><i class="fa fa-save"></i> Design Tools</a>
 			<?php } ?>
+			
 		</div>
 		<div class="">
 			<?php echo $this->forms->gallery([

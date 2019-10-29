@@ -8,12 +8,14 @@ class Layout extends CPEnterprise {
 	public function index()
 	{
 		$this->view('welcome_message');
+
 	}
 
 	public function create($id=false){
 		$image = new Image;
 		$data = $this->layout_model->getData(false, $id);
-		
+		$this->load->helper('directory');
+		$dir = directory_map(CMS_THEMEPATH . TEMPLATE_ACTIVE . "/layout/",true);
 		if($this->isPost()){
 			$arv = [
 				"layout_name" => $this->input->post("layout_name"),
@@ -26,8 +28,10 @@ class Layout extends CPEnterprise {
 			$id = $this->layout_model->create($id, $arv);
 			$this->go("/pages/layout/create/{$id}");
 		}
-		
-		$this->view('layout-create',["data" => $data]);
+		if($this->input->get("loadding") && file_exists(CMS_THEMEPATH . TEMPLATE_ACTIVE . "/layout/".$this->input->get("loadding"))){
+			$data->content = file_get_contents(CMS_THEMEPATH . TEMPLATE_ACTIVE . "/layout/".$this->input->get("loadding"));
+		}
+		$this->view('layout-create',["data" => $data, "layout" => $dir]);
 	}
 
 	public function plugins(){
