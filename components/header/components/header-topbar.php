@@ -27,7 +27,7 @@ $config = config_item("header");
     </div>
 </div>
 </header>
-<?php if(@$config->sticky_header == "fixed-top"){
+<?php if(@$config->sticky_header == "fixed-top" && @$config->fixheight == "true"){
 ?>
 <div class="psFixHeight"></div>
 <?php

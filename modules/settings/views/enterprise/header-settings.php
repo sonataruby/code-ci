@@ -48,6 +48,13 @@
 	],["group" => 'row', "layout" => 'inline']);?>
 
 	<?php echo $this->forms->checkbox([
+		"name" => "config[fixheight]",
+		"label" => "Fix Height ",
+		"value" => @$data->scrolmenu,
+		"options" => [["label" => "On/Off", "value" => "true"]]
+	],["group" => 'row', "layout" => 'inline']);?>
+
+	<?php echo $this->forms->checkbox([
 		"name" => "config[scrolmenu]",
 		"label" => "Scrol Menu ",
 		"value" => @$data->scrolmenu,
