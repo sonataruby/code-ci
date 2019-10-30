@@ -2,7 +2,7 @@
   <?php foreach ((Array)config_item("language_list") as $key => $value) { 
       if($value->status == 1){
       ?>
-      <li class="nav-item"><a href="?language=<?php echo $value->folder;?>" title="<?php echo $value->name;?>" style="border-right: 1px dotted #ddd; padding-right:5px;padding-left:5px;" class="<?php echo (config_item("language") == $value->folder ? "text-danger active-languge" : "");?>"><?php echo $value->tags;?></a> </li>
+      <li class="nav-item nav-lang"><a href="?language=<?php echo $value->folder;?>" title="<?php echo $value->name;?>" class="<?php echo (config_item("language") == $value->folder ? "text-danger active-languge" : "");?>"><?php echo $value->tags;?></a> </li>
 
   <?php }
       }
@@ -39,3 +39,17 @@
   </li>
 <?php } ?>
 </ul>
+<style type="text/css">
+  li.nav-lang{
+    margin-right: 5px;
+  }
+  li.nav-lang a{
+    border-right: 1px dotted #ddd; 
+    padding-right:5px;
+   
+  }
+  .navbar-nav .nav-lang:last-child a{
+    
+    border-right-width: 0px !important;
+  }
+</style>

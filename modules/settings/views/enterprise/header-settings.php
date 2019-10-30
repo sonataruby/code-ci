@@ -49,7 +49,7 @@
 
 	<?php echo $this->forms->checkbox([
 		"name" => "config[fixheight]",
-		"label" => "Fix Height ",
+		"label" => "Fix Height Menu Home",
 		"value" => @$data->scrolmenu,
 		"options" => [["label" => "On/Off", "value" => "true"]]
 	],["group" => 'row', "layout" => 'inline']);?>

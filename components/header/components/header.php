@@ -32,10 +32,22 @@ $config = config_item("header");
   .navbar-nav > li > a.nav-link{
     line-height : var(--builder-top-nav);
   }
-  <?php if((@$config->sticky_header == "fixed-top" || @$config->scrolmenu) && @$config->fixheight == "true"){?>
+  <?php 
+  if(is_home()){
+  if((@$config->sticky_header == "fixed-top" || @$config->scrolmenu) && @$config->fixheight == "true"){?>
   body{
     margin-top:var(--builder-top-nav);
   }
-<?php } ?>
+<?php }
+  }else{
+    if((@$config->sticky_header == "fixed-top" || @$config->scrolmenu) && @$config->fixheight == "true"){
+      ?>
+      body{
+        margin-top:var(--builder-top-nav);
+      }
+      <?php
+    }
+  }
+?>
 }
 </style>
