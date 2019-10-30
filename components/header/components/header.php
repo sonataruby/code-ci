@@ -3,7 +3,7 @@ $config = config_item("header");
 ?>
   
 <header class="app-header">
-  <div class="<?php echo @$config->shadown;?> <?php echo @$config->sticky_header;?> <?php echo (@$config->header_color ? $config->header_color : "bg-light");?>" <?php echo @$config->scrolmenu;?> data-active-class="<?php echo @$config->scrolmenu_class;?> animated fixed-top go" data-target="_parent">
+  <div class="<?php echo @$config->shadown;?> <?php echo @$config->sticky_header;?> <?php echo (@$config->header_color && !is_home() ? $config->header_color : "bg-light");?>" <?php echo @$config->scrolmenu;?> data-active-class="<?php echo @$config->scrolmenu_class;?> animated fixed-top go" data-target="_parent">
     <div class="container">
       <nav class="navbar navbar-theme navbar-expand-lg <?php echo (@$config->header_style ? $config->header_style : "navbar-light");?>">
         <button class="navbar-toggler" type="button" data-mobile="left" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
