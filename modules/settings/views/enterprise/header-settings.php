@@ -50,8 +50,22 @@
 	<?php echo $this->forms->checkbox([
 		"name" => "config[fixheight]",
 		"label" => "Fix Height Menu Home",
-		"value" => @$data->scrolmenu,
+		"value" => @$data->fixheight,
 		"options" => [["label" => "On/Off", "value" => "true"]]
+	],["group" => 'row', "layout" => 'inline']);?>
+
+	<?php echo $this->forms->checkbox([
+		"name" => "config[fixheightchild]",
+		"label" => "Fix Height Menu Child Page",
+		"value" => @$data->fixheightchild,
+		"options" => [["label" => "On/Off", "value" => "true"]]
+	],["group" => 'row', "layout" => 'inline']);?>
+
+	<?php echo $this->forms->select([
+		"name" => "config[header_stylechild]",
+		"label" => "Navbar Style Child Page",
+		"value" => @$data->header_stylechild,
+		"options" => ["navbar-light" => "Light", "navbar-dark" => "Dark"]
 	],["group" => 'row', "layout" => 'inline']);?>
 
 	<?php echo $this->forms->checkbox([

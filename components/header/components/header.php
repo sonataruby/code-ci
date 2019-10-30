@@ -5,7 +5,7 @@ $config = config_item("header");
 <header class="app-header">
   <div class="<?php echo @$config->shadown;?> <?php echo @$config->sticky_header;?> <?php echo (@$config->header_color  ? $config->header_color : "bg-light");?>" <?php echo @$config->scrolmenu;?> data-active-class="<?php echo @$config->scrolmenu_class;?> animated fixed-top go" data-target="_parent">
     <div class="container">
-      <nav class="navbar navbar-theme navbar-expand-lg <?php echo (@$config->header_style && !is_home() ? $config->header_style : "navbar-light");?>">
+      <nav class="navbar navbar-theme navbar-expand-lg <?php echo (@$config->header_style || $config->header_stylechild ? (is_home() ? $config->header_style : $config->header_stylechild) : "navbar-light");?>">
         <button class="navbar-toggler" type="button" data-mobile="left" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -33,21 +33,17 @@ $config = config_item("header");
     line-height : var(--builder-top-nav);
   }
   <?php 
-  if(is_home()){
-  if(@$config->sticky_header == "fixed-top" || @$config->scrolmenu){?>
-  body{
-    margin-top:0;
-  }
-<?php }
-  }else{
-    if((@$config->sticky_header == "fixed-top" || @$config->scrolmenu) && @$config->fixheight == "true"){
+  
+  if((@$config->sticky_header == "fixed-top" || @$config->scrolmenu)){
+    if((@$config->fixheight == "true" && is_home()) || (@$config->fixheightchild == "true" && !is_home())){
       ?>
-      body{
-        margin-top:var(--builder-top-nav);
-      }
-      <?php
+        body{
+          margin-top:var(--builder-top-nav);
+        }
+      <?php 
     }
   }
+
+  
 ?>
-}
 </style>
