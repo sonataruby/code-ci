@@ -34,18 +34,20 @@
 		]
 	],["group" => 'row', "layout" => 'inline']);?>
 
-	<?php echo $this->forms->select([
-		"name" => "config[header_style]",
-		"label" => "Navbar Style",
-		"value" => @$data->header_style,
-		"options" => ["navbar-light" => "Light", "navbar-dark" => "Dark"]
-	],["group" => 'row', "layout" => 'inline']);?>
-
 	<?php echo $this->forms->text([
 		"name" => "config[height]",
 		"label" => "Height",
 		"value" => (@$data->height ? @$data->height : "55")
 	],["group" => 'row', "layout" => 'inline']);?>
+	
+	<?php echo $this->forms->select([
+		"name" => "config[header_style]",
+		"label" => "Navbar Style Home",
+		"value" => @$data->header_style,
+		"options" => ["navbar-light" => "Light", "navbar-dark" => "Dark"]
+	],["group" => 'row', "layout" => 'inline']);?>
+
+	
 
 	<?php echo $this->forms->checkbox([
 		"name" => "config[fixheight]",
