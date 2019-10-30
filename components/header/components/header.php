@@ -34,9 +34,9 @@ $config = config_item("header");
   }
   <?php 
   if(is_home()){
-  if((@$config->sticky_header == "fixed-top" || @$config->scrolmenu) && @$config->fixheight == "true"){?>
+  if(@$config->sticky_header == "fixed-top" || @$config->scrolmenu){?>
   body{
-    margin-top:var(--builder-top-nav);
+    margin-top:0;
   }
 <?php }
   }else{
