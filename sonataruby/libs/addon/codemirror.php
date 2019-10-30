@@ -32,6 +32,7 @@
 </script>
 <?php echo libs_url("/js/codemirror.js");?>
 <?php echo libs_url("/js/js/xml.js");?>
+
 <script type="text/javascript">
 	jQuery(document).ready(function(){
 		var _target = document.getElementById("<?php echo str_replace('#','',$target);?>");

@@ -32,8 +32,9 @@
 			<hr>
 			<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Public</button>
 			<?php if(@$data->id){?>
-				<a href="/pages/layout/builder/<?php echo @$data->id;?>" class="btn btn-warning"><i class="fa fa-save"></i> Design Tools</a>
+				<a href="/pages/layout/builder/<?php echo @$data->id;?>" class="btn btn-warning"><i class="fa fa-object-ungroup"></i> Design</a>
 			<?php } ?>
+			<a href="/pages/layout/code/<?php echo @$data->id;?>" class="btn btn-info"><i class="fa fa-code"></i> Code</a>
 			
 		</div>
 		<div class="">
