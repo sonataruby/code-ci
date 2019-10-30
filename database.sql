@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 30, 2019 at 02:04 PM
+-- Generation Time: Oct 30, 2019 at 06:26 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.2.20
 
@@ -118,6 +118,21 @@ CREATE TABLE `comments` (
   `comment_text` text COLLATE utf8_unicode_ci NOT NULL,
   `created_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `components_data`
+--
+
+CREATE TABLE `components_data` (
+  `com_id` bigint(20) NOT NULL,
+  `language` varchar(255) NOT NULL,
+  `components_data` text NOT NULL,
+  `display_datetime` datetime NOT NULL,
+  `hidden_datetime` datetime NOT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -320,7 +335,7 @@ CREATE TABLE `pages_layout` (
 --
 
 INSERT INTO `pages_layout` (`layout_id`, `layout_name`, `layout_image`, `layout_description`, `layout_keyword`, `layout_content`, `layout_url`, `language`, `store`) VALUES
-(1, 'Home', '', '', '', '<header class=\"site-banner banner banner--shape banner--homepage\">\r\n<div class=\"container\">\r\n<div class=\"banner__content\">\r\n<h1 class=\"banner__title text-center\">The Infrastructure Cloud<span class=\"tm-sign\">&trade;</span></h1>\r\n<p class=\"banner__desc text-center\">Easily deploy cloud servers, bare metal, and storage worldwide!</p>\r\n<div class=\"banner__actions\" style=\"width: 70%; margin: auto;\">\r\n<div class=\"row\">\r\n<div class=\"col\">\r\n<div class=\"form-group\"><label class=\"sr-only\" for=\"staticEmail2\">Email</label> <input id=\"staticEmail2\" class=\"form-control form-control-lg\" readonly=\"readonly\" type=\"text\" value=\"email@example.com\" /></div>\r\n</div>\r\n<div class=\"col\">\r\n<div class=\"form-group\"><label class=\"sr-only\" for=\"inputPassword2\">Password</label> <input id=\"inputPassword2\" class=\"form-control form-control-lg\" type=\"password\" placeholder=\"Password\" /></div>\r\n</div>\r\n<div class=\"col\"><button class=\"btn btn-primary btn-lg\" type=\"submit\">Confirm identity</button></div>\r\n</div>\r\n</div>\r\n</div>\r\n<div class=\"banner__background\">&nbsp;</div>\r\n</div>\r\n</header>\r\n<section class=\"section section--homepage-packages p-b-0x\">\r\n<div class=\"container \">\r\n<div class=\"section__content\">\r\n<div class=\"section__packages content-slider content-slider--horizontal is-active\" style=\"visibility: visible;\" data-content-slider=\"\">\r\n<div class=\"row features content-slider__wrapper\">\r\n<div class=\"col-3 content-slider__item content-slider__item--visible content-slider__item--active\">\r\n<div class=\"feature__icon\">&nbsp;</div>\r\n<div class=\"feature__body\">\r\n<h3 class=\"feature__title h5\">Cloud Compute</h3>\r\n<p class=\"feature__desc\">Powerful compute instances with Intel CPUs and 100% SSD storage.</p>\r\n<div class=\"feature__actions\"><span class=\"btn  btn--primary btn--link btn--block\"> Starting at $2.50/mo </span></div>\r\n</div>\r\n</div>\r\n<div class=\"col-3 content-slider__item content-slider__item--visible content-slider__item--next\">\r\n<div class=\"feature__icon\">&nbsp;</div>\r\n<div class=\"feature__body\">\r\n<h3 class=\"feature__title h5\">Bare Metal</h3>\r\n<p class=\"feature__desc\">Fully automated dedicated servers with zero virtualization layer.</p>\r\n<div class=\"feature__actions\"><span class=\"btn  btn--primary btn--link btn--block\"> Starting at $120.00/mo </span></div>\r\n</div>\r\n</div>\r\n<div class=\"col-3 content-slider__item content-slider__item--visible\">\r\n<div class=\"feature__icon\">&nbsp;</div>\r\n<div class=\"feature__body\">\r\n<h3 class=\"feature__title h5\">Block Storage</h3>\r\n<p class=\"feature__desc\">Fast SSD-backed scalable and redundant storage with up to 10TB.</p>\r\n<div class=\"feature__actions\"><span class=\"btn  btn--primary btn--link btn--block\"> Starting at $1.00/mo </span></div>\r\n</div>\r\n</div>\r\n<div class=\"col-3 content-slider__item content-slider__item--visible\">\r\n<div class=\"feature__icon\">&nbsp;</div>\r\n<div class=\"feature__body\">\r\n<h3 class=\"feature__title h5\">Dedicated Cloud</h3>\r\n<p class=\"feature__desc\">Dedicated cloud compute instances without the noisy neighbors.</p>\r\n<div class=\"feature__actions\"><span class=\"btn  btn--primary btn--link btn--block\"> Starting at $60.00/mo </span></div>\r\n</div>\r\n</div>\r\n</div>\r\n<div class=\"swiper-pagination-clickable content-slider-pagination-bullets\" data-slider-pagination=\"\">&nbsp;</div>\r\n</div>\r\n</div>\r\n</div>\r\n</section>', 'home', 'english', 1),
+(1, 'Home', '', '', '', '<header class=\"site-banner banner banner--shape banner--homepage\">\r\n<div class=\"container\">\r\n<div class=\"banner__content\">\r\n<h1 class=\"banner__title text-center\">The Infrastructure Cloud Khoa Ga<span class=\"tm-sign\">™</span></h1>\r\n<p class=\"banner__desc text-center\">Easily deploy cloud servers, bare metal, and storage worldwide!</p>\r\n<div class=\"banner__actions\" style=\"width: 70%; margin: auto;\">\r\n<div class=\"row\">\r\n<div class=\"col\">\r\n<div class=\"form-group\"><label class=\"sr-only\" for=\"staticEmail2\">Email</label> <input id=\"staticEmail2\" class=\"form-control form-control-lg\" readonly=\"readonly\" type=\"text\" value=\"email@example.com\" /></div>\r\n</div>\r\n<div class=\"col\">\r\n<div class=\"form-group\"><label class=\"sr-only\" for=\"inputPassword2\">Password</label> <input id=\"inputPassword2\" class=\"form-control form-control-lg\" type=\"password\" placeholder=\"Password\" /></div>\r\n</div>\r\n<div class=\"col\"><button class=\"btn btn-primary btn-lg\" type=\"submit\">Confirm identity</button></div>\r\n</div>\r\n</div>\r\n</div>\r\n<div class=\"banner__background\"> </div>\r\n</div>\r\n</header>\r\n<section class=\"section section--homepage-packages p-b-0x\">\r\n<div class=\"container \">\r\n<div class=\"section__content\">\r\n<div class=\"section__packages content-slider content-slider--horizontal is-active\" style=\"visibility: visible;\" data-content-slider=\"\">\r\n<div class=\"row features content-slider__wrapper\">\r\n<div class=\"col-3 content-slider__item content-slider__item--visible content-slider__item--active\">\r\n<div class=\"feature__icon\"> </div>\r\n<div class=\"feature__body\">\r\n<h3 class=\"feature__title h5\">Cloud Compute</h3>\r\n<p class=\"feature__desc\">Powerful compute instances with Intel CPUs and 100% SSD storage.</p>\r\n<div class=\"feature__actions\"><span class=\"btn  btn--primary btn--link btn--block\"> Starting at $2.50/mo </span></div>\r\n</div>\r\n</div>\r\n<div class=\"col-3 content-slider__item content-slider__item--visible content-slider__item--next\">\r\n<div class=\"feature__icon\"> </div>\r\n<div class=\"feature__body\">\r\n<h3 class=\"feature__title h5\">Bare Metal</h3>\r\n<p class=\"feature__desc\">Fully automated dedicated servers with zero virtualization layer.</p>\r\n<div class=\"feature__actions\"><span class=\"btn  btn--primary btn--link btn--block\"> Starting at $120.00/mo </span></div>\r\n</div>\r\n</div>\r\n<div class=\"col-3 content-slider__item content-slider__item--visible\">\r\n<div class=\"feature__icon\"> </div>\r\n<div class=\"feature__body\">\r\n<h3 class=\"feature__title h5\">Block Storage</h3>\r\n<p class=\"feature__desc\">Fast SSD-backed scalable and redundant storage with up to 10TB.</p>\r\n<div class=\"feature__actions\"><span class=\"btn  btn--primary btn--link btn--block\"> Starting at $1.00/mo </span></div>\r\n</div>\r\n</div>\r\n<div class=\"col-3 content-slider__item content-slider__item--visible\">\r\n<div class=\"feature__icon\"> </div>\r\n<div class=\"feature__body\">\r\n<h3 class=\"feature__title h5\">Dedicated Cloud</h3>\r\n<p class=\"feature__desc\">Dedicated cloud compute instances without the noisy neighbors.</p>\r\n<div class=\"feature__actions\"><span class=\"btn  btn--primary btn--link btn--block\"> Starting at $60.00/mo </span></div>\r\n</div>\r\n</div>\r\n</div>\r\n<div class=\"swiper-pagination-clickable content-slider-pagination-bullets\" data-slider-pagination=\"\"> </div>\r\n</div>\r\n</div>\r\n</div>\r\n</section>', 'home', 'english', 1),
 (49, 'Trang chủ', '', '', '', '<div class=\"slider\">\n <div class=\"container\">\n   <img src=\"https://lorempixel.com/1600/480/?72572\" class=\"w-100\">\n  </div>\n</div>\n\n<section>\n <div class=\"container\">\n   <h2>Sản phẩm mới</h2>\n   {components=posts}limit=12&item=4{/components}\n  </div>\n</section>\n\n<section>\n <div class=\"container\">\n   <h2>Nổi bật nhất</h2>\n   {components=posts}limit=6{/components}\n  </div>\n</section>\n\n\n<section class=\"pt-4 pb-4\">\n <div class=\"container\">\n   \n    <div class=\"row\">\n     <div class=\"col-lg-4 col-sm-12 col-md-12 col-4\">\n        <h3>Chính sách bán hàng</h3>\n        <ul class=\"list-group list-group-flush\">\n          <li class=\"list-group-item\">Hướng dẫn mua hàng</li>\n         <li class=\"list-group-item\">Hướng dẫn thanh toán</li>\n         <li class=\"list-group-item\">Hướng dẫn vận chuyển</li>\n         <li class=\"list-group-item\">Hướng dẫn bảo hành</li>\n         <li class=\"list-group-item\">Hướng dẫn đổi trả</li>\n        </ul>\n     </div>\n      <div class=\"col-lg-4 col-sm-12 col-md-6 col-4\">\n       <h3>{site_name}</h3>\n        \n        <p><i class=\"fa fa-map\"></i> {full_address}</p>\n       <p><i class=\"fa fa-copyright\"></i> Mã số thuế : {company_license_number}</p>\n        <p><i class=\"fa fa-phone\"></i> Phone : <a href=\"tel:<?php echo config_item(\"hotline\");?>\">{hotline}</a></p>\n       <p><i class=\"fa fa-phone\"></i> Tel : <a href=\"tel:<?php echo config_item(\"ctyphone\");?>\">{ctyphone}</a></p>\n       <p><i class=\"fa fa-envelope\"></i> <a href=\"mailto:{site_email}?subject=Contact\">{site_email}</a></p>\n      </div>\n      <div class=\"col-lg-4 col-sm-12 col-md-6 col-4\">\n       <h3>{site_name}</h3>\n        \n        <p><i class=\"fa fa-map\"></i> {full_address}</p>\n       <p><i class=\"fa fa-copyright\"></i> Mã số thuế : {company_license_number}</p>\n        <p><i class=\"fa fa-phone\"></i> Phone : <a href=\"tel:<?php echo config_item(\"hotline\");?>\">{hotline}</a></p>\n       <p><i class=\"fa fa-phone\"></i> Tel : <a href=\"tel:<?php echo config_item(\"ctyphone\");?>\">{ctyphone}</a></p>\n       <p><i class=\"fa fa-envelope\"></i> <a href=\"mailto:{site_email}?subject=Contact\">{site_email}</a></p>\n      </div>\n    </div>\n  </div>\n</section>', 'home', 'english', 2);
 
 -- --------------------------------------------------------
@@ -614,6 +629,12 @@ ALTER TABLE `comments`
   ADD PRIMARY KEY (`comment_id`);
 
 --
+-- Indexes for table `components_data`
+--
+ALTER TABLE `components_data`
+  ADD PRIMARY KEY (`com_id`);
+
+--
 -- Indexes for table `customers`
 --
 ALTER TABLE `customers`
@@ -730,6 +751,12 @@ ALTER TABLE `catalog`
 --
 ALTER TABLE `comments`
   MODIFY `comment_id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `components_data`
+--
+ALTER TABLE `components_data`
+  MODIFY `com_id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `design_blocks`

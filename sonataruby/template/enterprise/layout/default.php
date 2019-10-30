@@ -209,6 +209,8 @@
                   <li class="list-group-item"><a class="nav-link" href="/posts/enterprise/gallery" sn-link="true" parent-controller="#posts"><i class="fa fa-image"></i> <span>Gallery</span></a></li>
                   <li class="list-group-item"><a class="nav-link" href="/posts/enterprise/video" sn-link="true" parent-controller="#posts"><i class="fa fa-video"></i> <span>Video</span></a></li>
                   <li class="list-group-item menuHeader">Công cụ</li>
+                  <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/components" sn-link="true" parent-controller="#posts"><i class="fa fa-object-group"></i> <span>Components</span></a></li>
+                  
                 </ul>
               </div>
             </li>
