@@ -31,6 +31,7 @@ class Layout extends CPEnterprise {
 		if($this->input->get("loadding") && file_exists(CMS_THEMEPATH . TEMPLATE_ACTIVE . "/layout/".$this->input->get("loadding"))){
 			$data->content = file_get_contents(CMS_THEMEPATH . TEMPLATE_ACTIVE . "/layout/".$this->input->get("loadding"));
 		}
+		
 		$this->view('layout-create',["data" => $data, "layout" => $dir]);
 	}
 

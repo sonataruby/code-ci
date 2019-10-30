@@ -22,7 +22,7 @@ class Dashboard extends FrontEnd {
 		$data = [];
 		$data["site_name"] = $this->config->item("site_name");
 		$data["hotline"] = $this->config->item("hotline");
-
+		
 		
 		$this->view($view,["data" => $data]);
 

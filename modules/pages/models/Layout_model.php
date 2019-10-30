@@ -7,7 +7,19 @@ class Layout_model extends Model{
 	public function create($id=false, $arv=[]){
 		$arv["layout_url"] = $this->makeURL($arv["layout_name"], $arv["layout_url"], $id);
 		if($id){
-			$this->db->update($this->table, $arv,["layout_id" => $id]);
+			$data = $this->getData(false, $id);
+
+			if(!$data){
+
+				$arv["store"] = $this->store_id;
+				$arv["language"] = $this->config->item("language");
+				$this->db->insert($this->table, $arv);
+				$id = $this->db->insert_id();
+
+			}else{
+				$this->db->update($this->table, $arv,["layout_id" => $id]);
+			}
+			
 		}else{
 			$arv["store"] = $this->store_id;
 			$arv["language"] = $this->config->item("language");
@@ -15,6 +27,7 @@ class Layout_model extends Model{
 			$this->db->insert($this->table, $arv);
 			$id = $this->db->insert_id();
 		}
+
 		$this->cacheLayout($id);
 		return $id;
 	}
@@ -30,10 +43,21 @@ class Layout_model extends Model{
 		$settemplate = CMS_THEMEPATH . TEMPLATE_ACTIVE . DIRECTORY_SEPARATOR . "layout" . DIRECTORY_SEPARATOR;
 		if(!is_dir($settemplate)) mkdir($settemplate, 0775, true);
 		$data = $this->getData(false, $id);
-		$settemplate .= $data->url."-". config_item("language")."-".str_replace('.','-',DOMAIN).".php";
+		$file = $data->url."-". config_item("language")."-".str_replace('.','-',DOMAIN).".php";
+		$settemplate .= $file;
 		write_file($settemplate, $data->content,'wb');
-
+		$seo = [];
+		if(file_exists(CONFIG_LOCAL . "seo.json")){
+			$seo = (Array)json_decode(file_get_contents(CONFIG_LOCAL . "seo.json"));
+		}
+		$seo[$file] = [
+			"title" => $data->name,
+			"description" => $data->description,
+			"keyword"	=> $data->keyword,
+			"image"	=> site_url($data->image)
+		];
 		
+		write_file(CONFIG_LOCAL . "seo.json", json_encode($seo),'wb');
 
 	}
 
