@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 23, 2019 at 06:38 PM
+-- Generation Time: Oct 30, 2019 at 02:04 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.2.20
 
@@ -11,16 +11,16 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
--- Database: `raovn`
+-- Database: `phpproject`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `account`
+-- Table structure for table `accounts`
 --
 
-CREATE TABLE `account` (
+CREATE TABLE `accounts` (
   `account_id` bigint(20) NOT NULL,
   `network_id` bigint(20) NOT NULL,
   `account_email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -29,23 +29,25 @@ CREATE TABLE `account` (
   `status` int(1) NOT NULL,
   `is_banned` int(1) NOT NULL,
   `banned_reson` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `created_date` datetime NOT NULL
+  `plan_id` bigint(20) NOT NULL,
+  `created_date` datetime NOT NULL,
+  `lastlogin` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `account`
+-- Dumping data for table `accounts`
 --
 
-INSERT INTO `account` (`account_id`, `network_id`, `account_email`, `account_password`, `account_type`, `status`, `is_banned`, `banned_reson`, `created_date`) VALUES
-(1, 0, 'thietkewebvip@gmail.com', 'a131b831377a7ecb892750b1c2d118aaeca47647', 'enterprise', 1, 0, '', '0000-00-00 00:00:00');
+INSERT INTO `accounts` (`account_id`, `network_id`, `account_email`, `account_password`, `account_type`, `status`, `is_banned`, `banned_reson`, `plan_id`, `created_date`, `lastlogin`) VALUES
+(1, 0, 'thietkewebvip@gmail.com', 'a131b831377a7ecb892750b1c2d118aaeca47647', 'enterprise', 1, 0, '', 0, '0000-00-00 00:00:00', '2019-10-22 19:21:53');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `account_info`
+-- Table structure for table `accounts_info`
 --
 
-CREATE TABLE `account_info` (
+CREATE TABLE `accounts_info` (
   `account_id` bigint(20) NOT NULL,
   `avatar` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `firstname` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
@@ -58,15 +60,16 @@ CREATE TABLE `account_info` (
   `zipcode` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `phone` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `tel` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `brithday` datetime NOT NULL,
   `updated_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `account_info`
+-- Dumping data for table `accounts_info`
 --
 
-INSERT INTO `account_info` (`account_id`, `avatar`, `firstname`, `lastname`, `address`, `address2`, `country`, `region`, `city`, `zipcode`, `phone`, `tel`, `updated_date`) VALUES
-(1, '/upload/avatar/avatar-1.png', 'Vo', 'Khoa', 'C3', '', 'af', 'HCM', '', '', '', '', '0000-00-00 00:00:00');
+INSERT INTO `accounts_info` (`account_id`, `avatar`, `firstname`, `lastname`, `address`, `address2`, `country`, `region`, `city`, `zipcode`, `phone`, `tel`, `brithday`, `updated_date`) VALUES
+(1, '/upload/avatar/avatar-1.png', 'Vo', 'Khoa', 'C3', '', 'af', 'HCM', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -119,6 +122,33 @@ CREATE TABLE `comments` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `customers`
+--
+
+CREATE TABLE `customers` (
+  `customer_id` bigint(20) NOT NULL,
+  `sales_id` bigint(20) NOT NULL,
+  `avatar` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `firstname` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `lastname` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `address` text COLLATE utf8_unicode_ci NOT NULL,
+  `address2` text COLLATE utf8_unicode_ci NOT NULL,
+  `country` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `region` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `city` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `zipcode` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `phone` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `tel` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `brithday` datetime NOT NULL,
+  `notes` text COLLATE utf8_unicode_ci NOT NULL,
+  `social` text COLLATE utf8_unicode_ci NOT NULL,
+  `updated_date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `design_blocks`
 --
 
@@ -147,6 +177,9 @@ INSERT INTO `design_blocks` (`block_id`, `block_name`, `block_content`, `block_k
 CREATE TABLE `email_list` (
   `email_id` bigint(20) NOT NULL,
   `email_address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `phone` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `address` text COLLATE utf8_unicode_ci NOT NULL,
+  `name` text COLLATE utf8_unicode_ci NOT NULL,
   `created` datetime NOT NULL,
   `updated` datetime NOT NULL,
   `tags` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -204,17 +237,14 @@ CREATE TABLE `menu` (
 --
 
 INSERT INTO `menu` (`menu_id`, `parent_id`, `menu_name`, `menu_icon`, `menu_link`, `menu_sort`, `language`, `store`) VALUES
-(16, 0, 'Sản phẩm', 'fas fa-ad', '/products', 2, 'english', 1),
+(16, 0, 'Sản phẩm', '', '/products', 2, 'english', 1),
 (397, 0, 'Trang chủ', 'fas fa-home', '/', 1, 'english', 2),
 (398, 0, 'Sản phẩm', 'fab fa-affiliatetheme', 'allcatalog', 2, 'english', 2),
 (399, 0, 'Về chúng tôi', 'far fa-address-card', 'page/abouts.html', 3, 'english', 2),
 (400, 0, 'Liên hệ', 'fas fa-file-contract', 'page/contacts.html', 4, 'english', 2),
 (401, 0, 'Khuyến mãi', 'fab fa-connectdevelop', 'page/events.html', 5, 'english', 2),
 (402, 0, 'Tuyển dụng', 'fab fa-joget', 'page/recruitment.html', 6, 'english', 2),
-(403, 398, 'Tất cả sản phẩm', '', '/products/post.html', 0, 'english', 2),
-(404, 0, 'Hạ giá', 'fas fa-air-freshener', '', 0, 'english', 1),
-(405, 0, 'Sản phẩm mới', 'fab fa-adn', '', 0, 'english', 1),
-(406, 0, 'Mua theo nhóm', 'fas fa-align-center', '', 0, 'english', 1);
+(403, 398, 'Tất cả sản phẩm', '', '/products/post.html', 0, 'english', 2);
 
 -- --------------------------------------------------------
 
@@ -290,8 +320,8 @@ CREATE TABLE `pages_layout` (
 --
 
 INSERT INTO `pages_layout` (`layout_id`, `layout_name`, `layout_image`, `layout_description`, `layout_keyword`, `layout_content`, `layout_url`, `language`, `store`) VALUES
-(1, 'Home', '', '', '', '', 'home', 'english', 1),
-(49, 'Trang chủ', '', '', '', '<div class=\"slider\">\n <div class=\"container\">\n   <img src=\"https://lorempixel.com/1600/480/?72572\" class=\"w-100\">\n  </div>\n</div>\n\n<section>\n <div class=\"container\">\n   <h2>Sản phẩm mới</h2>\n   {components=posts}limit=12&item=4{/components}\n  </div>\n</section>\n\n<section>\n <div class=\"container\">\n   <h2>Nổi bật nhất</h2>\n   {components=posts}limit=6{/components}\n  </div>\n</section>\n\n\n<section class=\"pt-4 pb-4\">\n <div class=\"container\">\n   \n    <div class=\"row\">\n     <div class=\"col-lg-4 col-sm-12 col-md-12 col-4\">\n        <h3>Chính sách bán hàng</h3>\n        <ul class=\"list-group list-group-flush\">\n          <li class=\"list-group-item\">Hướng dẫn mua hàng</li>\n         <li class=\"list-group-item\">Hướng dẫn thanh toán</li>\n         <li class=\"list-group-item\">Hướng dẫn vận chuyển</li>\n         <li class=\"list-group-item\">Hướng dẫn bảo hành</li>\n         <li class=\"list-group-item\">Hướng dẫn đổi trả</li>\n        </ul>\n     </div>\n      <div class=\"col-lg-4 col-sm-12 col-md-6 col-4\">\n       <h3>{site_name}</h3>\n        \n        <p><i class=\"fa fa-map\"></i> {full_address}</p>\n       <p><i class=\"fa fa-copyright\"></i> Mã số thuế : {company_license_number}</p>\n        <p><i class=\"fa fa-phone\"></i> Phone : <a href=\"tel:<?php echo config_item(\"hotline\");?>\">{hotline}</a></p>\n       <p><i class=\"fa fa-phone\"></i> Tel : <a href=\"tel:<?php echo config_item(\"ctyphone\");?>\">{ctyphone}</a></p>\n       <p><i class=\"fa fa-envelope\"></i> <a href=\"mailto:{site_email}?subject=Contact\">{site_email}</a></p>\n      </div>\n      <div class=\"col-lg-4 col-sm-12 col-md-6 col-4\">\n       <h3>{site_name}</h3>\n        \n        <p><i class=\"fa fa-map\"></i> {full_address}</p>\n       <p><i class=\"fa fa-copyright\"></i> Mã số thuế : {company_license_number}</p>\n        <p><i class=\"fa fa-phone\"></i> Phone : <a href=\"tel:<?php echo config_item(\"hotline\");?>\">{hotline}</a></p>\n       <p><i class=\"fa fa-phone\"></i> Tel : <a href=\"tel:<?php echo config_item(\"ctyphone\");?>\">{ctyphone}</a></p>\n       <p><i class=\"fa fa-envelope\"></i> <a href=\"mailto:{site_email}?subject=Contact\">{site_email}</a></p>\n      </div>\n    </div>\n  </div>\n</section>', 'home', 'english', 1);
+(1, 'Home', '', '', '', '<header class=\"site-banner banner banner--shape banner--homepage\">\r\n<div class=\"container\">\r\n<div class=\"banner__content\">\r\n<h1 class=\"banner__title text-center\">The Infrastructure Cloud<span class=\"tm-sign\">&trade;</span></h1>\r\n<p class=\"banner__desc text-center\">Easily deploy cloud servers, bare metal, and storage worldwide!</p>\r\n<div class=\"banner__actions\" style=\"width: 70%; margin: auto;\">\r\n<div class=\"row\">\r\n<div class=\"col\">\r\n<div class=\"form-group\"><label class=\"sr-only\" for=\"staticEmail2\">Email</label> <input id=\"staticEmail2\" class=\"form-control form-control-lg\" readonly=\"readonly\" type=\"text\" value=\"email@example.com\" /></div>\r\n</div>\r\n<div class=\"col\">\r\n<div class=\"form-group\"><label class=\"sr-only\" for=\"inputPassword2\">Password</label> <input id=\"inputPassword2\" class=\"form-control form-control-lg\" type=\"password\" placeholder=\"Password\" /></div>\r\n</div>\r\n<div class=\"col\"><button class=\"btn btn-primary btn-lg\" type=\"submit\">Confirm identity</button></div>\r\n</div>\r\n</div>\r\n</div>\r\n<div class=\"banner__background\">&nbsp;</div>\r\n</div>\r\n</header>\r\n<section class=\"section section--homepage-packages p-b-0x\">\r\n<div class=\"container \">\r\n<div class=\"section__content\">\r\n<div class=\"section__packages content-slider content-slider--horizontal is-active\" style=\"visibility: visible;\" data-content-slider=\"\">\r\n<div class=\"row features content-slider__wrapper\">\r\n<div class=\"col-3 content-slider__item content-slider__item--visible content-slider__item--active\">\r\n<div class=\"feature__icon\">&nbsp;</div>\r\n<div class=\"feature__body\">\r\n<h3 class=\"feature__title h5\">Cloud Compute</h3>\r\n<p class=\"feature__desc\">Powerful compute instances with Intel CPUs and 100% SSD storage.</p>\r\n<div class=\"feature__actions\"><span class=\"btn  btn--primary btn--link btn--block\"> Starting at $2.50/mo </span></div>\r\n</div>\r\n</div>\r\n<div class=\"col-3 content-slider__item content-slider__item--visible content-slider__item--next\">\r\n<div class=\"feature__icon\">&nbsp;</div>\r\n<div class=\"feature__body\">\r\n<h3 class=\"feature__title h5\">Bare Metal</h3>\r\n<p class=\"feature__desc\">Fully automated dedicated servers with zero virtualization layer.</p>\r\n<div class=\"feature__actions\"><span class=\"btn  btn--primary btn--link btn--block\"> Starting at $120.00/mo </span></div>\r\n</div>\r\n</div>\r\n<div class=\"col-3 content-slider__item content-slider__item--visible\">\r\n<div class=\"feature__icon\">&nbsp;</div>\r\n<div class=\"feature__body\">\r\n<h3 class=\"feature__title h5\">Block Storage</h3>\r\n<p class=\"feature__desc\">Fast SSD-backed scalable and redundant storage with up to 10TB.</p>\r\n<div class=\"feature__actions\"><span class=\"btn  btn--primary btn--link btn--block\"> Starting at $1.00/mo </span></div>\r\n</div>\r\n</div>\r\n<div class=\"col-3 content-slider__item content-slider__item--visible\">\r\n<div class=\"feature__icon\">&nbsp;</div>\r\n<div class=\"feature__body\">\r\n<h3 class=\"feature__title h5\">Dedicated Cloud</h3>\r\n<p class=\"feature__desc\">Dedicated cloud compute instances without the noisy neighbors.</p>\r\n<div class=\"feature__actions\"><span class=\"btn  btn--primary btn--link btn--block\"> Starting at $60.00/mo </span></div>\r\n</div>\r\n</div>\r\n</div>\r\n<div class=\"swiper-pagination-clickable content-slider-pagination-bullets\" data-slider-pagination=\"\">&nbsp;</div>\r\n</div>\r\n</div>\r\n</div>\r\n</section>', 'home', 'english', 1),
+(49, 'Trang chủ', '', '', '', '<div class=\"slider\">\n <div class=\"container\">\n   <img src=\"https://lorempixel.com/1600/480/?72572\" class=\"w-100\">\n  </div>\n</div>\n\n<section>\n <div class=\"container\">\n   <h2>Sản phẩm mới</h2>\n   {components=posts}limit=12&item=4{/components}\n  </div>\n</section>\n\n<section>\n <div class=\"container\">\n   <h2>Nổi bật nhất</h2>\n   {components=posts}limit=6{/components}\n  </div>\n</section>\n\n\n<section class=\"pt-4 pb-4\">\n <div class=\"container\">\n   \n    <div class=\"row\">\n     <div class=\"col-lg-4 col-sm-12 col-md-12 col-4\">\n        <h3>Chính sách bán hàng</h3>\n        <ul class=\"list-group list-group-flush\">\n          <li class=\"list-group-item\">Hướng dẫn mua hàng</li>\n         <li class=\"list-group-item\">Hướng dẫn thanh toán</li>\n         <li class=\"list-group-item\">Hướng dẫn vận chuyển</li>\n         <li class=\"list-group-item\">Hướng dẫn bảo hành</li>\n         <li class=\"list-group-item\">Hướng dẫn đổi trả</li>\n        </ul>\n     </div>\n      <div class=\"col-lg-4 col-sm-12 col-md-6 col-4\">\n       <h3>{site_name}</h3>\n        \n        <p><i class=\"fa fa-map\"></i> {full_address}</p>\n       <p><i class=\"fa fa-copyright\"></i> Mã số thuế : {company_license_number}</p>\n        <p><i class=\"fa fa-phone\"></i> Phone : <a href=\"tel:<?php echo config_item(\"hotline\");?>\">{hotline}</a></p>\n       <p><i class=\"fa fa-phone\"></i> Tel : <a href=\"tel:<?php echo config_item(\"ctyphone\");?>\">{ctyphone}</a></p>\n       <p><i class=\"fa fa-envelope\"></i> <a href=\"mailto:{site_email}?subject=Contact\">{site_email}</a></p>\n      </div>\n      <div class=\"col-lg-4 col-sm-12 col-md-6 col-4\">\n       <h3>{site_name}</h3>\n        \n        <p><i class=\"fa fa-map\"></i> {full_address}</p>\n       <p><i class=\"fa fa-copyright\"></i> Mã số thuế : {company_license_number}</p>\n        <p><i class=\"fa fa-phone\"></i> Phone : <a href=\"tel:<?php echo config_item(\"hotline\");?>\">{hotline}</a></p>\n       <p><i class=\"fa fa-phone\"></i> Tel : <a href=\"tel:<?php echo config_item(\"ctyphone\");?>\">{ctyphone}</a></p>\n       <p><i class=\"fa fa-envelope\"></i> <a href=\"mailto:{site_email}?subject=Contact\">{site_email}</a></p>\n      </div>\n    </div>\n  </div>\n</section>', 'home', 'english', 2);
 
 -- --------------------------------------------------------
 
@@ -355,8 +385,8 @@ INSERT INTO `posts` (`post_id`, `post_title`, `post_image`, `post_url`, `post_co
 (91, 'Deleniti voluptas aliquam expedita nesciunt libero. Quasi culpa quam illum et sunt.', 'https://lorempixel.com/640/320/?61938', 'sed-eaque-ut-non-ut-et-nam-qui-quasi-qui-atque-distinctio-est', 'Dolore nihil perspiciatis quaerat qui soluta rerum odit. Quas quae modi aut iure dolore ducimus. Aperiam autem dignissimos in facere ipsa et. Expedita libero ut maiores optio. Modi natus aut aut. Eum voluptatem aut odio quasi nihil architecto. Quae eos atque sed sint excepturi accusamus dolores. Rerum veniam est est eum reprehenderit placeat. Maiores perferendis et itaque quo. Consequuntur reprehenderit ut accusantium. Eum sed deserunt aperiam quae voluptatem consectetur. Quibusdam ex illo cum earum eum perferendis optio. Rem eius veritatis qui occaecati provident et totam. Aperiam sint facere alias sequi dolorem molestias. At voluptas non quaerat aliquam. Sed placeat consequatur tempora vero consequatur modi. Libero beatae adipisci dolores architecto. Ratione et incidunt eveniet veniam dolores eaque et. Magni dolore qui similique voluptate. Voluptatem autem omnis in ipsa non omnis at velit. Sed rem enim voluptas nisi ipsam eligendi. Odio alias laudantium necessitatibus. Veniam tenetur enim quia cumque officia corrupti. Dolores velit harum quod qui quae unde. Sit esse in similique ipsa repudiandae. Dolorem dicta provident numquam dolores reiciendis dolorem et. Earum velit nostrum molestias cumque. Cum maxime nihil eos sit minima enim. Voluptatem nemo quia neque. Est placeat id corrupti accusantium. Consequatur sit distinctio quo aliquam. Reiciendis rerum consectetur sed eum quo eum nulla. Illo dolorem aliquid rem beatae hic vitae. Ipsam sed qui ratione unde ad rem. Itaque maiores quas iure nemo quasi. Quae rerum voluptas et necessitatibus praesentium ut mollitia. Vel qui sed animi molestias sunt quia. Tempora iure omnis pariatur. Voluptatem assumenda tempora eaque. Ullam molestias quaerat harum quam consequatur. Quia amet occaecati quo neque explicabo sint. Rerum atque explicabo nulla dolores ipsam quia distinctio velit. Optio at non totam hic debitis nemo quo. Similique suscipit et est dolore tempore amet similique non. Non inventore distinctio qui quod aut.', 'Facilis minus deleniti accusamus et dignissimos fugiat aut. Aliquam quia corrupti omnis nemo sed architecto rerum quis.', 'Non, velit, non, officiis, culpa, in, et, et., Soluta, vitae, autem, et, tenetur.', '1974-06-14 04:35:46', '1992-07-19 03:06:26', 'english', 'products', 0, 0, 1),
 (92, 'Vel dolorum repellendus qui nam atque ipsum. Doloremque et deleniti esse.', 'https://lorempixel.com/640/320/?91726', 'vel-dolorum-repellendus-qui-nam-atque-ipsum-doloremque-et-deleniti-esse', '<p>Consequatur officiis laborum non fuga iure eum. Recusandae odio quas laboriosam libero qui consequatur occaecati delectus. Omnis qui reiciendis vel. Sed autem ut quis natus labore officiis corporis. In voluptatem qui quia eos. Accusantium a qui ratione suscipit. Qui est numquam ipsam ipsa autem. Iure eveniet et rem maxime officiis soluta qui sed. Corrupti enim aut qui similique. Eum nemo non enim eos praesentium laborum. Veniam quos sunt consequatur culpa. Voluptas eum fugit earum tempore inventore nostrum. Impedit consequatur illum quam blanditiis aut. Eos tempore blanditiis repudiandae voluptate ut. Eos neque ut minima numquam eos. Placeat sed quibusdam laudantium. Dicta iste dolores sint vitae tenetur eius qui quibusdam. Quod repudiandae beatae repellat et. Omnis libero laudantium et pariatur repudiandae sunt. Numquam odio sit non laborum. Quam eos dolores est ipsum aut harum. Adipisci rem enim facere eligendi. Qui perferendis dolores doloribus perspiciatis enim omnis non rerum. Deserunt eum eligendi accusamus iste. Eligendi debitis reiciendis soluta illo reprehenderit. Enim qui et et. Sunt eum fugit nihil sed quibusdam dicta commodi nesciunt. Cupiditate suscipit aut reiciendis veritatis placeat iusto. Non occaecati est recusandae tempora harum. Nostrum dolores praesentium unde adipisci odit amet culpa id. Cumque beatae reprehenderit veniam et reiciendis quidem. Rerum ex fugit omnis repudiandae qui porro quas. Dolorem quae temporibus excepturi et consequuntur. Aliquam molestiae quia in consequatur. Numquam aut ipsam animi ipsam. Sed sunt laborum ea eum. Impedit occaecati sequi accusantium eum explicabo quisquam quibusdam voluptatem. Mollitia dolorem aut nihil et sequi praesentium nostrum. Corrupti quisquam ipsum repellendus perspiciatis officiis fugiat aut tempore. Dolorum numquam modi vel. Aut impedit blanditiis id molestiae at iure. Et cum suscipit sit aut aut. Error quo illum qui quia.</p>', 'Et exercitationem ab molestiae. Unde modi consequatur est nulla magni et. Ipsum in non cum totam architecto sunt. Et architecto veniam et sed.', 'Rerum, eligendi, rem, voluptates, dolorum., Accusamus, sit, illo, consectetur, quia.', '1998-07-25 01:53:07', '2019-09-05 11:05:26', 'english', 'products', 0, 0, 1),
 (93, 'Dolor repudiandae earum sed et qui. Qui id corporis pariatur reprehenderit eum occaecati fugiat.', 'https://lorempixel.com/640/320/?42225', 'dolor-repudiandae-earum-sed-et-qui-qui-id-corporis-pariatur-reprehenderit-eum-occaecati-fugiat', '<p>Ducimus assumenda aut quo quisquam explicabo accusamus autem suscipit. Ex eius et quia consectetur in. Quam debitis cumque at in eius commodi nesciunt velit. Officiis non consequatur illum quas soluta blanditiis modi. Aut sed asperiores sed est. Ad quasi magni rerum ab sed explicabo. Adipisci qui illum cum. Est aut totam sed earum repudiandae distinctio debitis. Temporibus possimus sed esse nostrum culpa. Quia suscipit quo expedita ipsum et corrupti modi ducimus. Voluptatem velit odio sed. Dignissimos consectetur rerum consequuntur recusandae. Odio vel adipisci provident odio. Necessitatibus eius modi ut velit. Sed qui excepturi ex quae quo. Eveniet esse aliquid aliquam qui distinctio nesciunt. Aut magnam necessitatibus rerum fuga quis quod maxime. Sit distinctio et officia dolor quibusdam. Omnis perferendis explicabo sequi aut aut aut sequi. Modi non dolorem quae. Quia maxime quas natus laboriosam molestiae culpa repellat. Et voluptas corporis sit illo quaerat quia. Veniam asperiores ut nobis eaque facilis. Enim porro veniam ut deleniti eos. Dolorem impedit voluptate error quasi atque consequuntur et nobis. Sint assumenda sit dolore qui ab. Nulla explicabo corrupti cum. Esse sunt ipsum quas voluptatum esse est eos. Temporibus earum laboriosam iure non corrupti laudantium possimus. Similique voluptas minus quia nostrum quos suscipit quos. Soluta nesciunt est et molestiae ad autem. Quos blanditiis et nobis hic repudiandae. Eligendi pariatur labore provident non alias. Hic perspiciatis sed aperiam nulla ut. Praesentium vitae tenetur hic nobis pariatur architecto. Quaerat ut tempora error eum. Ut excepturi quo sit non blanditiis quam incidunt quaerat. Laudantium dolor enim et enim occaecati. Voluptatibus fugit tenetur voluptatem soluta. Aut aut eligendi nam dolorem sit ducimus iste. Harum voluptas dolorem magni amet earum maxime itaque est. Voluptate tenetur et quod est libero ullam.</p>', 'Placeat quasi nihil nostrum adipisci vel ab. Qui veritatis dolorem dolores. Veritatis deserunt placeat quisquam consequatur voluptatum laboriosam sit harum.', 'Et, est, nisi, corrupti, velit, maiores, error, placeat, quasi., Delectus, enim, id, a, aut, dolorem, ullam.', '1980-10-30 01:03:57', '2019-09-05 11:05:04', 'english', 'products', 0, 0, 1),
-(94, 'Apple Seri 8', '/upload/image/5d7487b5ca76f.png', 'apple-seri-8', '<p>Consequuntur quas sunt sunt. Qui in nobis eaque deleniti natus expedita. Sequi a nobis repellendus. Dolor alias expedita quibusdam suscipit rerum dolorum. Dolorum ipsam aperiam occaecati laudantium quis sed ea. Rerum omnis ipsam ad deleniti velit. Minus est aspernatur veniam est placeat similique voluptates et. Nihil soluta similique dolorem eaque. Quam nihil et sit ducimus cumque. Odit voluptatem sit et dicta et dolorem. Repellendus culpa temporibus et animi dolores aspernatur fugiat ratione. Dolorem ut incidunt explicabo perferendis placeat eos mollitia. Tempore facilis repellendus laboriosam fuga accusantium omnis maxime. Necessitatibus doloribus possimus dicta debitis. Qui illum omnis velit alias consequatur voluptas. Culpa quibusdam unde iusto quis sunt aut error. Ipsa id nisi at praesentium ea. Optio alias impedit occaecati inventore. Placeat aut doloremque quasi voluptate aut cumque. Reprehenderit unde sequi iure ut et aspernatur asperiores. Veritatis accusantium modi quod sint laborum commodi non. Facilis maxime incidunt dolor molestias minus. Qui officiis dolorem voluptatem nihil reiciendis similique. Eum rerum eos delectus voluptatum iure voluptatum quia. Et aperiam voluptatem magnam quas. Voluptas repellat voluptatibus et. Numquam vero cum magnam eaque ducimus aliquid. Tenetur labore voluptatem consequatur blanditiis sunt libero culpa. Velit quae sed aperiam minima. Et temporibus veniam quia recusandae qui animi. Et tempora quisquam blanditiis neque id illum. Est error numquam nam. Et qui nostrum aut et quaerat sequi cupiditate. Sunt odit ab accusantium incidunt perferendis rerum. Autem ipsum omnis quia provident sed suscipit. Amet dicta perspiciatis iste iure illo id ratione. Et consectetur sed natus molestiae velit vel est. Libero eos vitae non sed amet iure. Quis fugit eum qui est asperiores officiis. Sit et iure at rem.</p>', 'Maxime amet illo sed corporis. Id ex recusandae animi repudiandae tempore. Sint facere sit aut consequatur ullam. Aut dolores id laboriosam nemo mollitia repudiandae.', 'Quia, eaque, magnam, atque., Sint, culpa, nostrum, voluptatem, quo, et, non, alias.', '1984-09-10 05:18:39', '2019-09-22 02:10:33', 'english', 'products', 0, 0, 1),
-(95, 'Sit sit illum esse. Cupiditate possimus laborum possimus nemo nesciunt.', 'https://lorempixel.com/640/320/?17551', 'sit-sit-illum-esse-cupiditate-possimus-laborum-possimus-nemo-nesciunt', '<p>Occaecati odit pariatur ipsum dolor et molestiae dolorem. Dolores qui vitae facere dignissimos perferendis ducimus dolorum. Perspiciatis ipsum sunt nihil cumque nobis eveniet recusandae et. Quod adipisci dignissimos vel. Incidunt et sit illum numquam voluptatem. Sed in ad nulla est exercitationem maxime maxime. Commodi in asperiores consequatur iure tempore blanditiis. Voluptatem aliquam corrupti voluptatem velit vel. Eum optio ut in sint consequatur blanditiis. Dolor quam accusamus ipsam eius ex voluptas. Illum quam accusantium voluptates labore veritatis. Officia perferendis dolores odio aut at. Consequatur tempore ab debitis perspiciatis non. In cum repudiandae et error. Quis labore veniam voluptatem debitis. Corrupti vero et expedita et iste qui in. Quia quae est nostrum placeat. Dolore ut magni illo sit vitae ad cumque. Voluptates aut ea non harum. Mollitia assumenda quam aperiam blanditiis. Eum fuga esse ducimus et soluta laboriosam ullam hic. Rerum est sint non autem optio. Recusandae ut sed praesentium ut quae. Consectetur ex repudiandae vel commodi excepturi error. Consectetur quia aspernatur quas quis aspernatur beatae. Officiis adipisci repudiandae autem. Optio minima aut vitae. Aut quae voluptas architecto suscipit earum doloribus cumque. Rerum explicabo iste vel atque veniam numquam. Reiciendis et et reiciendis quia. Dignissimos quasi voluptas consequatur aspernatur aspernatur fugiat illum. Et architecto ipsa ut et omnis tempore itaque. Et occaecati et aut dolores. Aspernatur excepturi ratione quia. Nesciunt corrupti voluptatem est eum illum. Et itaque quia molestias delectus rerum sunt. Natus amet et perspiciatis quod voluptas quis. Reprehenderit eligendi nulla ipsam dolorum. Consequuntur optio qui totam non mollitia ut assumenda. Et ipsa recusandae reprehenderit et sint. Sapiente quia fugiat soluta quibusdam cum voluptatum minima.</p>', 'Est modi nihil saepe est qui. Et aut placeat rerum tempora blanditiis ut et. Illum itaque quibusdam optio maiores.', 'Qui, nisi, quia, odio, eligendi, iure, expedita, quaerat, officiis., Inventore, tempore, placeat, nulla, et.', '1986-06-09 03:12:12', '2019-09-08 02:31:06', 'english', 'products', 0, 0, 1);
+(94, 'Qui et doloremque aut odio. Velit fuga fugiat temporibus ut.', '/upload/image/5d712ff4a136d.png', 'qui-et-doloremque-aut-odio-velit-fuga-fugiat-temporibus-ut', '<p>Consequuntur quas sunt sunt. Qui in nobis eaque deleniti natus expedita. Sequi a nobis repellendus. Dolor alias expedita quibusdam suscipit rerum dolorum. Dolorum ipsam aperiam occaecati laudantium quis sed ea. Rerum omnis ipsam ad deleniti velit. Minus est aspernatur veniam est placeat similique voluptates et. Nihil soluta similique dolorem eaque. Quam nihil et sit ducimus cumque. Odit voluptatem sit et dicta et dolorem. Repellendus culpa temporibus et animi dolores aspernatur fugiat ratione. Dolorem ut incidunt explicabo perferendis placeat eos mollitia. Tempore facilis repellendus laboriosam fuga accusantium omnis maxime. Necessitatibus doloribus possimus dicta debitis. Qui illum omnis velit alias consequatur voluptas. Culpa quibusdam unde iusto quis sunt aut error. Ipsa id nisi at praesentium ea. Optio alias impedit occaecati inventore. Placeat aut doloremque quasi voluptate aut cumque. Reprehenderit unde sequi iure ut et aspernatur asperiores. Veritatis accusantium modi quod sint laborum commodi non. Facilis maxime incidunt dolor molestias minus. Qui officiis dolorem voluptatem nihil reiciendis similique. Eum rerum eos delectus voluptatum iure voluptatum quia. Et aperiam voluptatem magnam quas. Voluptas repellat voluptatibus et. Numquam vero cum magnam eaque ducimus aliquid. Tenetur labore voluptatem consequatur blanditiis sunt libero culpa. Velit quae sed aperiam minima. Et temporibus veniam quia recusandae qui animi. Et tempora quisquam blanditiis neque id illum. Est error numquam nam. Et qui nostrum aut et quaerat sequi cupiditate. Sunt odit ab accusantium incidunt perferendis rerum. Autem ipsum omnis quia provident sed suscipit. Amet dicta perspiciatis iste iure illo id ratione. Et consectetur sed natus molestiae velit vel est. Libero eos vitae non sed amet iure. Quis fugit eum qui est asperiores officiis. Sit et iure at rem.</p>', 'Maxime amet illo sed corporis. Id ex recusandae animi repudiandae tempore. Sint facere sit aut consequatur ullam. Aut dolores id laboriosam nemo mollitia repudiandae.', 'Quia, eaque, magnam, atque., Sint, culpa, nostrum, voluptatem, quo, et, non, alias.', '1984-09-10 05:18:39', '2019-09-05 10:55:32', 'english', 'products', 0, 0, 1),
+(95, 'Sit sit illum esse. Cupiditate possimus laborum possimus nemo nesciunt.', 'https://lorempixel.com/640/320/?17551', 'sit-sit-illum-esse-cupiditate-possimus-laborum-possimus-nemo-nesciunt', '<p>Occaecati odit pariatur ipsum dolor et molestiae dolorem. Dolores qui vitae facere dignissimos perferendis ducimus dolorum. Perspiciatis ipsum sunt nihil cumque nobis eveniet recusandae et. Quod adipisci dignissimos vel. Incidunt et sit illum numquam voluptatem. Sed in ad nulla est exercitationem maxime maxime. Commodi in asperiores consequatur iure tempore blanditiis. Voluptatem aliquam corrupti voluptatem velit vel. Eum optio ut in sint consequatur blanditiis. Dolor quam accusamus ipsam eius ex voluptas. Illum quam accusantium voluptates labore veritatis. Officia perferendis dolores odio aut at. Consequatur tempore ab debitis perspiciatis non. In cum repudiandae et error. Quis labore veniam voluptatem debitis. Corrupti vero et expedita et iste qui in. Quia quae est nostrum placeat. Dolore ut magni illo sit vitae ad cumque. Voluptates aut ea non harum. Mollitia assumenda quam aperiam blanditiis. Eum fuga esse ducimus et soluta laboriosam ullam hic. Rerum est sint non autem optio. Recusandae ut sed praesentium ut quae. Consectetur ex repudiandae vel commodi excepturi error. Consectetur quia aspernatur quas quis aspernatur beatae. Officiis adipisci repudiandae autem. Optio minima aut vitae. Aut quae voluptas architecto suscipit earum doloribus cumque. Rerum explicabo iste vel atque veniam numquam. Reiciendis et et reiciendis quia. Dignissimos quasi voluptas consequatur aspernatur aspernatur fugiat illum. Et architecto ipsa ut et omnis tempore itaque. Et occaecati et aut dolores. Aspernatur excepturi ratione quia. Nesciunt corrupti voluptatem est eum illum. Et itaque quia molestias delectus rerum sunt. Natus amet et perspiciatis quod voluptas quis. Reprehenderit eligendi nulla ipsam dolorum. Consequuntur optio qui totam non mollitia ut assumenda. Et ipsa recusandae reprehenderit et sint. Sapiente quia fugiat soluta quibusdam cum voluptatum minima.</p>', 'Est modi nihil saepe est qui. Et aut placeat rerum tempora blanditiis ut et. Illum itaque quibusdam optio maiores.', 'Qui, nisi, quia, odio, eligendi, iure, expedita, quaerat, officiis., Inventore, tempore, placeat, nulla, et.', '1986-06-09 03:12:12', '2019-09-05 10:51:17', 'english', 'products', 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -376,6 +406,7 @@ CREATE TABLE `posts_incatalog` (
 --
 
 INSERT INTO `posts_incatalog` (`incat_id`, `post_id`, `catalog_id`, `created_date`) VALUES
+(1, 95, 1, '0000-00-00 00:00:00'),
 (4, 93, 2, '0000-00-00 00:00:00'),
 (5, 93, 4, '0000-00-00 00:00:00'),
 (6, 92, 1, '0000-00-00 00:00:00'),
@@ -384,39 +415,8 @@ INSERT INTO `posts_incatalog` (`incat_id`, `post_id`, `catalog_id`, `created_dat
 (9, 88, 1, '0000-00-00 00:00:00'),
 (10, 86, 1, '0000-00-00 00:00:00'),
 (11, 87, 1, '0000-00-00 00:00:00'),
-(22, 95, 1, '0000-00-00 00:00:00'),
-(27, 94, 1, '0000-00-00 00:00:00'),
-(28, 94, 2, '0000-00-00 00:00:00');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `products_options`
---
-
-CREATE TABLE `products_options` (
-  `p_id` bigint(20) NOT NULL,
-  `post_id` bigint(20) NOT NULL,
-  `p_prices` float(10,2) NOT NULL,
-  `p_sales_off` int(10) NOT NULL,
-  `p_sku` varchar(255) NOT NULL,
-  `p_brand` varchar(255) NOT NULL,
-  `p_instock` int(10) NOT NULL,
-  `p_vat` varchar(100) NOT NULL,
-  `p_events` varchar(255) NOT NULL,
-  `p_status` int(1) NOT NULL,
-  `p_voucher` varchar(255) NOT NULL,
-  `p_events_start` datetime NOT NULL,
-  `p_events_stop` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `products_options`
---
-
-INSERT INTO `products_options` (`p_id`, `post_id`, `p_prices`, `p_sales_off`, `p_sku`, `p_brand`, `p_instock`, `p_vat`, `p_events`, `p_status`, `p_voucher`, `p_events_start`, `p_events_stop`) VALUES
-(1, 95, 650000.00, 0, 'INF-0012', 'Apple, Samum', 0, '', 'hot,news', 0, '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(2, 94, 150000.00, 0, 'INF-0013', 'Apple', 0, '10%', '', 0, '', '2019-09-13 18:19:00', '2019-09-14 19:01:00');
+(12, 94, 1, '0000-00-00 00:00:00'),
+(13, 94, 2, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -441,7 +441,8 @@ CREATE TABLE `reports` (
 --
 
 INSERT INTO `reports` (`report_id`, `hash`, `report_key`, `report_value`, `report_count`, `report_create`, `report_update`, `store`, `language`) VALUES
-(1, 'b48af28979910507a72300805b16b39786c09205', '', '', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'develop.com', 'english');
+(1, 'b48af28979910507a72300805b16b39786c09205', '', '', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'develop.com', 'english'),
+(2, '76f20bccfe3512339ad2cea01fc1c7809e7d3d15', '', '', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'develop.com', 'english');
 
 -- --------------------------------------------------------
 
@@ -508,29 +509,33 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`config_id`, `config_name`, `config_value`, `language`, `store`, `created_date`, `autoload`) VALUES
-(26, 'navbar_icon', '', 'english', 1, '0000-00-00 00:00:00', 0),
-(27, 'site_navbar', 'RAO.VN', 'english', 1, '0000-00-00 00:00:00', 0),
-(28, 'site_name', 'Mua bán trực tuyến', 'english', 1, '0000-00-00 00:00:00', 0),
-(29, 'site_description', 'Công nghệ ứng dụng blockchian data', 'english', 1, '0000-00-00 00:00:00', 0),
-(30, 'site_keyword', 'buy, sell, blockchian, bigdata, marketings, free tool', 'english', 1, '0000-00-00 00:00:00', 0),
-(31, 'icon', '', 'english', 1, '0000-00-00 00:00:00', 0),
-(32, 'logo', '', 'english', 1, '0000-00-00 00:00:00', 0),
-(33, 'banner', '', 'english', 1, '0000-00-00 00:00:00', 0),
-(34, 'hotline', '0903908078', 'english', 1, '0000-00-00 00:00:00', 0),
-(35, 'site_email', 'thietkewebvip@gmail.com', 'english', 1, '0000-00-00 00:00:00', 0),
-(36, 'ctyphone', '', 'english', 1, '0000-00-00 00:00:00', 0),
-(37, 'company_license_number', '', 'english', 1, '0000-00-00 00:00:00', 0),
-(38, 'firstname', 'Vo', 'english', 1, '0000-00-00 00:00:00', 0),
-(39, 'lastname', 'Khoa', 'english', 1, '0000-00-00 00:00:00', 0),
-(40, 'address', 'C3 CC Khang gia', 'english', 1, '0000-00-00 00:00:00', 0),
-(41, 'address2', '', 'english', 1, '0000-00-00 00:00:00', 0),
-(42, 'country', 'vn', 'english', 1, '0000-00-00 00:00:00', 0),
-(43, 'region', 'HCM', 'english', 1, '0000-00-00 00:00:00', 0),
-(44, 'city', 'HCM', 'english', 1, '0000-00-00 00:00:00', 0),
-(45, 'zipcode', '70000', 'english', 1, '0000-00-00 00:00:00', 0),
-(46, 'header', '{\"sticky_header\":\"\",\"header_color\":\"bg-light\",\"header_style\":\"navbar-light\",\"height\":\"55\",\"scrolmenu\":\"data-scrolmenu\",\"scrolmenu_class\":\"animated bounceDown bg-white\",\"shadown\":\"bg-shadown\",\"header_theme\":\"search\",\"footer_theme\":\"footer\"}', 'english', 1, '0000-00-00 00:00:00', 0),
-(47, 'channel', '{\"products\":{\"name\":\"S\\u1ea3n ph\\u1ea9m\",\"url\":\"products\",\"layout\":\"default\",\"image_size\":\"\",\"options\":\"products\"}}', 'english', 1, '0000-00-00 00:00:00', 0),
-(48, 'default_channel', 'products', 'english', 1, '0000-00-00 00:00:00', 0);
+(1, 'module', '{\"products\":true}', 'english', 2, '0000-00-00 00:00:00', 0),
+(2, 'template', 'shopping', 'english', 2, '0000-00-00 00:00:00', 0),
+(3, 'navbar_icon', '/upload/image/navbar.png', 'english', 2, '0000-00-00 00:00:00', 0),
+(4, 'site_navbar', 'Shopping', 'english', 2, '0000-00-00 00:00:00', 0),
+(5, 'site_name', 'Shopping', 'english', 2, '0000-00-00 00:00:00', 0),
+(6, 'site_description', 'Shopping', 'english', 2, '0000-00-00 00:00:00', 0),
+(7, 'site_keyword', 'Shopping', 'english', 2, '0000-00-00 00:00:00', 0),
+(8, 'icon', '', 'english', 2, '0000-00-00 00:00:00', 0),
+(9, 'logo', '/upload/image/logo.png', 'english', 2, '0000-00-00 00:00:00', 0),
+(10, 'banner', '', 'english', 2, '0000-00-00 00:00:00', 0),
+(11, 'hotline', '0903908078', 'english', 2, '0000-00-00 00:00:00', 0),
+(12, 'site_email', 'contact@gmail.com', 'english', 2, '0000-00-00 00:00:00', 0),
+(13, 'ctyphone', '', 'english', 2, '0000-00-00 00:00:00', 0),
+(14, 'company_license_number', '', 'english', 2, '0000-00-00 00:00:00', 0),
+(15, 'firstname', 'Vo', 'english', 2, '0000-00-00 00:00:00', 0),
+(16, 'lastname', 'Khoa', 'english', 2, '0000-00-00 00:00:00', 0),
+(17, 'address', 'C3', 'english', 2, '0000-00-00 00:00:00', 0),
+(18, 'address2', '', 'english', 2, '0000-00-00 00:00:00', 0),
+(19, 'country', 'vn', 'english', 2, '0000-00-00 00:00:00', 0),
+(20, 'region', 'Tp.HCM', 'english', 2, '0000-00-00 00:00:00', 0),
+(21, 'city', '', 'english', 2, '0000-00-00 00:00:00', 0),
+(22, 'zipcode', '', 'english', 2, '0000-00-00 00:00:00', 0),
+(23, 'channel', '{\"products\":{\"name\":\"S\\u1ea3n ph\\u1ea9m\",\"url\":\"products\",\"layout\":\"\",\"sample\":10}}', 'english', 2, '0000-00-00 00:00:00', 0),
+(24, 'header', '{\"header_color\":\"bg-none\",\"header_style\":\"navbar-light\",\"height\":\"55\",\"scrolmenu_class\":\"animated bounceDown\",\"header_theme\":\"header\",\"footer_theme\":\"bar\"}', 'english', 2, '0000-00-00 00:00:00', 0),
+(25, 'default_channel', 'products', 'english', 2, '0000-00-00 00:00:00', 0),
+(26, 'channel', '{\"products\":{\"name\":\"S\\u1ea3n ph\\u1ea9m\",\"url\":\"products\",\"layout\":\"default\",\"image_size\":\"\",\"options\":\"products\"}}', 'english', 1, '0000-00-00 00:00:00', 0),
+(27, 'header', '{\"sticky_header\":\"fixed-top\",\"header_color\":\"bg-none\",\"header_style\":\"navbar-light\",\"height\":\"55\",\"scrolmenu\":\"data-scrolmenu\",\"scrolmenu_class\":\"animated bounceDown\",\"header_theme\":\"header\",\"footer_theme\":\"footer\"}', 'english', 1, '0000-00-00 00:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -549,7 +554,8 @@ CREATE TABLE `stores` (
 --
 
 INSERT INTO `stores` (`store_id`, `store_domain`, `is_root`) VALUES
-(1, 'rao.vn', 1);
+(1, 'develop.com', 1),
+(2, 'shopping.com', 0);
 
 -- --------------------------------------------------------
 
@@ -576,26 +582,23 @@ CREATE TABLE `widgets` (
 INSERT INTO `widgets` (`winget_id`, `winget_name`, `winget_icon`, `winget_content`, `winget_content_as`, `winget_display`, `winget_sort`, `language`, `store`) VALUES
 (31, 'Category', '', '{components=catalog}type=products{/components}', 0, 'rightslide', 0, 'english', 2),
 (32, 'Support', '', '<div class=\"media\"><img src=\"https://image.flaticon.com/icons/svg/236/236832.svg\" class=\"mr-3\" alt=\"...\" style=\"width: 48px;\"><div class=\"media-body\"><h5 class=\"mt-0\">Sales 1</h5>Phone : <a href=\"tel:0986.979.585\">0986.979.585</a></div></div><hr><div class=\"media\"><img src=\"https://image.flaticon.com/icons/svg/236/236825.svg\" class=\"mr-3\" alt=\"...\" style=\"width: 48px;\"><div class=\"media-body\"><h5 class=\"mt-0\">Sales 2</h5>Phone : <a href=\"tel:0939749038\">0939.749.038</a></div></div><hr><div class=\"media\"><img src=\"https://image.flaticon.com/icons/svg/813/813020.svg\" class=\"mr-3\" alt=\"...\" style=\"width: 48px;\"><div class=\"media-body\"><h5 class=\"mt-0\">Sales 3</h5>Phone : <a href=\"tel:0972420023\">0972.420.023</a></div></div><hr><div class=\"media\"><img src=\"https://image.flaticon.com/icons/svg/401/401171.svg\" class=\"mr-3\" alt=\"...\" style=\"width: 48px;\"><div class=\"media-body\"><h5 class=\"mt-0\">Sales 4</h5>Phone : <a href=\"tel:0908141615\">0908.141.615</a></div></div><hr><div class=\"media\"><img src=\"https://image.flaticon.com/icons/svg/554/554857.svg\" class=\"mr-3\" alt=\"...\" style=\"width: 48px;\"><div class=\"media-body\"><h5 class=\"mt-0\">Sales 5</h5>Phone : <a href=\"tel:0938717545\">0938.717.545</a></div></div>', 0, 'rightslide', 0, 'english', 2),
-(33, 'Event', 'far fa-address-book', '<p>{components=posts}type=products&amp;limit=5&amp;theme=media{/components}</p>', 0, 'rightslide', 0, 'english', 2),
-(34, 'Sales', 'fab fa-adn', '', 0, 'rightslide', 2, 'english', 1),
-(35, 'Shopping Cart', 'fas fa-shopping-basket', '<p>Shopping Item</p>', 0, 'rightslide', 1, 'english', 1),
-(36, 'New Items', '', '<p>{components=posts}type=products&amp;theme=media&amp;limit=5{/components}</p>', 0, 'rightslide', 3, 'english', 1);
+(33, 'Event', 'far fa-address-book', '<p>{components=posts}type=products&amp;limit=5&amp;theme=media{/components}</p>', 0, 'rightslide', 0, 'english', 2);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `account`
+-- Indexes for table `accounts`
 --
-ALTER TABLE `account`
+ALTER TABLE `accounts`
   ADD PRIMARY KEY (`account_id`),
   ADD KEY `network_id` (`network_id`);
 
 --
--- Indexes for table `account_info`
+-- Indexes for table `accounts_info`
 --
-ALTER TABLE `account_info`
+ALTER TABLE `accounts_info`
   ADD PRIMARY KEY (`account_id`);
 
 --
@@ -609,6 +612,12 @@ ALTER TABLE `catalog`
 --
 ALTER TABLE `comments`
   ADD PRIMARY KEY (`comment_id`);
+
+--
+-- Indexes for table `customers`
+--
+ALTER TABLE `customers`
+  ADD PRIMARY KEY (`customer_id`) USING BTREE;
 
 --
 -- Indexes for table `design_blocks`
@@ -665,12 +674,6 @@ ALTER TABLE `posts_incatalog`
   ADD PRIMARY KEY (`incat_id`);
 
 --
--- Indexes for table `products_options`
---
-ALTER TABLE `products_options`
-  ADD PRIMARY KEY (`p_id`);
-
---
 -- Indexes for table `reports`
 --
 ALTER TABLE `reports`
@@ -711,9 +714,9 @@ ALTER TABLE `widgets`
 --
 
 --
--- AUTO_INCREMENT for table `account`
+-- AUTO_INCREMENT for table `accounts`
 --
-ALTER TABLE `account`
+ALTER TABLE `accounts`
   MODIFY `account_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
@@ -756,7 +759,7 @@ ALTER TABLE `gallery_image`
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `menu_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=407;
+  MODIFY `menu_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=404;
 
 --
 -- AUTO_INCREMENT for table `pages`
@@ -780,19 +783,13 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `posts_incatalog`
 --
 ALTER TABLE `posts_incatalog`
-  MODIFY `incat_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
-
---
--- AUTO_INCREMENT for table `products_options`
---
-ALTER TABLE `products_options`
-  MODIFY `p_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `incat_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `reports`
 --
 ALTER TABLE `reports`
-  MODIFY `report_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `report_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `reports_robots`
@@ -810,16 +807,16 @@ ALTER TABLE `reports_views`
 -- AUTO_INCREMENT for table `settings`
 --
 ALTER TABLE `settings`
-  MODIFY `config_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `config_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `stores`
 --
 ALTER TABLE `stores`
-  MODIFY `store_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `store_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `widgets`
 --
 ALTER TABLE `widgets`
-  MODIFY `winget_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `winget_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
