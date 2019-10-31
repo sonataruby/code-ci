@@ -16,6 +16,7 @@ $route['install'] = 'home/install';
 Setup Chanel
 */
 $route['(:any)/post/(:any).html'] = 'posts/content/info/$2/$1';
+$route['(:any)/(:any).html'] = 'posts/content/info/$2/$1';
 $route['(:any)/catalog/(:any).html'] = 'posts/content/catalog/$2/$1';
 $route['(:any)/post.html'] = 'posts/content/list/$1';
 $route['(:any).html'] = 'posts/content/list/$1';
