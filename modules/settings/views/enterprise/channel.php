@@ -100,6 +100,7 @@
 			<th>Layout</th>
 			<th>Image Size</th>
 			<th>Options Post</th>
+			<th>API</th>
 			<th></th>
 		</thead>
 		<tbody>
@@ -112,7 +113,9 @@
 				<td><?php echo $value->layout;?></td>
 				<td><?php echo @$value->image_size;?></td>
 				<td><?php echo @$value->options;?></td>
+				<td>/api/public/app/post/<?php echo $value->url;?></td>
 				<td class="text-right">
+
 					<a href="/settings/enterprise/configs/channels?setdefault=<?php echo $value->url;?>" class="btn btn-sm btn-info">Default</a> 
 					<a href="/settings/enterprise/configs/channels?edit=<?php echo $value->url;?>" class="btn btn-sm btn-info">Edit</a> 
 					<a href="/settings/enterprise/configs/channels?delete=<?php echo $value->url;?>" class="btn btn-sm btn-info">Delete</a></td>
