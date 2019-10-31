@@ -5,7 +5,7 @@
 		
 		
 		<div class="border" style="min-height: 70vh;">
-			<div id="content" rows="32" name="content"><?php echo htmlentities(str_replace(['<?php','?>'], ['&lt;?php','?a&gt;'], @$data->content));?></div>
+			<div id="content" rows="32" name="content"><?php echo str_replace(['<?php','?>'], ['&lt;?php','?a&gt;'], @$data->content);?></div>
 		</div>
 	</div>
 	<div class="col-lg-3 col-md-12 sticky-top">
