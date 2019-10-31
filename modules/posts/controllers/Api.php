@@ -27,8 +27,10 @@ class Api extends Services {
 
 	public function list_get($channel="blogs")
 	{
+		$limit = $this->input->get("limit");
+		$search = $this->input->get("search");
 		$language = ($this->get("language") ? $this->get("language") : $this->config->item("language"));
-		$data = $this->posts_model->getList(["channel" => $channel],$language);
+		$data = $this->posts_model->getList(["channel" => $channel, "limit" => $limit, "search" => $search],$language);
 
 		$this->response(["server" => site_url(),"data" => $data]);
 	}
