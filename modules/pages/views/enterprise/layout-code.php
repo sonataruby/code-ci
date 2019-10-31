@@ -3,7 +3,7 @@
 	<div class="col-lg-9">
 		<div class="hbox">
 			<div class="border ">
-				<textarea id="content" rows="32" class="form-control" name="content"><?php echo @$data->content;?></textarea>
+				<textarea id="content" rows="32" class="form-control" name="content"><?php echo htmlentities(@$data->content);?></textarea>
 			</div>
 		</div>
 	</div>
