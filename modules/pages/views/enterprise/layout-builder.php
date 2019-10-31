@@ -3,6 +3,9 @@
 	.btn-group, .btn-group .btn, .btn-group select, .form-control{
 		border-radius: 0;
 	}
+	#panelRight{
+		display: none;
+	}
 </style>
 <div id="vvveb-builder">
 				<div style="position: relative;">
