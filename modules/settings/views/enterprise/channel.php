@@ -113,7 +113,7 @@
 				<td><?php echo $value->layout;?></td>
 				<td><?php echo @$value->image_size;?></td>
 				<td><?php echo @$value->options;?></td>
-				<td>/api/public/app/post/<?php echo $value->url;?></td>
+				<td>/posts/api/list/<?php echo $value->url;?></td>
 				<td class="text-right">
 
 					<a href="/settings/enterprise/configs/channels?setdefault=<?php echo $value->url;?>" class="btn btn-sm btn-info">Default</a> 
