@@ -118,7 +118,9 @@
 
 					<a href="/settings/enterprise/configs/channels?setdefault=<?php echo $value->url;?>" class="btn btn-sm btn-info">Default</a> 
 					<a href="/settings/enterprise/configs/channels?edit=<?php echo $value->url;?>" class="btn btn-sm btn-info">Edit</a> 
-					<a href="/settings/enterprise/configs/channels?delete=<?php echo $value->url;?>" class="btn btn-sm btn-info">Delete</a></td>
+					<a href="/settings/enterprise/configs/channels?delete=<?php echo $value->url;?>" class="btn btn-sm btn-info">Delete</a>
+					<a href="/settings/enterprise/solution/builder/<?php echo $value->url;?>" class="btn btn-sm btn-info">Builder</a> 
+				</td>
 			</tr>
 	<?php } ?>
 	</tbody>

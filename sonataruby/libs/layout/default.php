@@ -1,5 +1,5 @@
 <!doctype html>
-<html xmlns="http://www.w3.org/1999/xhtml" class="no-js" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" class="no-js" lang="en" ng-app>
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="initial-scale=1,user-scalable=no,width=device-width">
@@ -62,12 +62,14 @@
       </script>
       
       <?php libs_url('js/app.js',['name' => "Bootstrap & Jquery"]);?>
+      <?php libs_url('js/angular.js',['name' => "Angular"]);?>
       <?php libs_url('js/jquery.lazy.js',['name' => "Layzy Loadding & Jquery"]);?>
       <?php echo template_url("styles.css");?>
 </head>
 
 
   <body class="app" itemscope itemtype="http://schema.org/WebPage">
+    
   <div class="wrapper">
     <nav class="mobile-sidebar sidebar-left">
 
@@ -100,7 +102,6 @@
 
   <div class="overlay"></div>
   <?php echo libs_url("css/animate.css");?>
-
   <?php echo libs_url("js/animated.js");?>
   <?php echo template_url("app.js");?>
   

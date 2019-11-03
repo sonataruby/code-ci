@@ -209,8 +209,13 @@
                   <li class="list-group-item"><a class="nav-link" href="/posts/enterprise/gallery" sn-link="true" parent-controller="#posts"><i class="fa fa-image"></i> <span>Gallery</span></a></li>
                   <li class="list-group-item"><a class="nav-link" href="/posts/enterprise/video" sn-link="true" parent-controller="#posts"><i class="fa fa-video"></i> <span>Video</span></a></li>
                   <li class="list-group-item menuHeader">Công cụ</li>
-                  <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/components" sn-link="true" parent-controller="#posts"><i class="fa fa-object-group"></i> <span>Components</span></a></li>
+
                   
+                  
+                  <li class="list-group-item">
+                      <a class="nav-link" href="/settings/enterprise/components" sn-link="true" parent-controller="#posts"><i class="fa fa-object-group"></i> <span>Feed Data</span></a>
+                  </li>
+
                 </ul>
               </div>
             </li>
@@ -279,19 +284,19 @@
                   <ul class="list-group list-group-flush">
                     <li class="list-group-item menuHeader">Cài đặt</li>
                  
-                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/configs/api" sn-link="true" parent-controller="#settings"><i class="fab fa-squarespace"></i> <span>Quản lý API</span></a></li>
-                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/configs" sn-link="true" parent-controller="#settings"><i class="fa fa-cogs"></i> <span>Điều chỉnh chung</span></a></li>
-                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/configs/channels" sn-link="true" parent-controller="#settings"><i class="fa fa-dice-d20"></i> <span>Quản lý Channel</span></a></li>
-                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/configs/urlredirect" sn-link="true" parent-controller="#settings"><i class="fa fa-link"></i> <span>Quản lý URL</span></a></li>
+                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/configs/api"><i class="fab fa-squarespace"></i> <span>Quản lý API</span></a></li>
+                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/configs"><i class="fa fa-cogs"></i> <span>Điều chỉnh chung</span></a></li>
+                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/configs/channels"><i class="fa fa-dice-d20"></i> <span>Quản lý Channel</span></a></li>
+                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/configs/urlredirect"><i class="fa fa-link"></i> <span>Quản lý URL</span></a></li>
                     <li class="list-group-item menuHeader">Online / Offline</li>
-                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/configs/maintain" sn-link="true" parent-controller="#settings"><i class="fa fa-tachometer-alt"></i> <span>Maintain</span></a></li>
-                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/configs/page404" sn-link="true" parent-controller="#settings"><i class="fa fa-ambulance"></i> <span>Page 404</span></a></li>
+                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/configs/maintain"><i class="fa fa-tachometer-alt"></i> <span>Maintain</span></a></li>
+                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/configs/page404"><i class="fa fa-ambulance"></i> <span>Page 404</span></a></li>
 
 
                     <li class="list-group-item menuHeader">Tools</li>
                     <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/configs/autobots" sn-link="true" parent-controller="#settings"><i class="fa fa-user-astronaut"></i> <span>Thiết lập tự động</span></a></li>
 
-                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/language" sn-link="true" parent-controller="#settings"><i class="fa fa-language"></i> <span>Ngôn ngữ</span></a></li>
+                    <li class="list-group-item"><a class="nav-link" href="/settings/enterprise/language"><i class="fa fa-language"></i> <span>Ngôn ngữ</span></a></li>
 
                   </ul>
                 </div>

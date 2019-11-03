@@ -60,7 +60,7 @@ gulp.task('cssmin', function() {
 // Move the javascript files into our /src/js folder
 gulp.task('js', function() {
 
-    gulp.src(['develop/js/*.js','node_modules/socket.io-client/dist/socket.io.js'])
+    gulp.src(['develop/js/*.js','node_modules/socket.io-client/dist/socket.io.js','node_modules/angular/angular.js'])
         .pipe(uglify())
         .pipe(gulp.dest("libs/js"))
         .pipe(browserSync.stream());

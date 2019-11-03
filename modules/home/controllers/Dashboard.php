@@ -14,7 +14,7 @@ class Dashboard extends FrontEnd {
 			if($layout){
 				$view = "layout/home-customs";
 			}else{
-				$view = "layout/home";
+				$view = "home";
 			}
 
 		}
