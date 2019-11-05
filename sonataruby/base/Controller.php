@@ -334,7 +334,7 @@ class Controller extends MX_Controller {
 	}
 
 
-	public function connectapi($server="https://localhost",$user="admin", $pass="1234"){
+	public function connectapi($server="http://localhost",$user="admin", $pass="1234"){
 		$rest = new Rest([
 			"server" => $server,
 			'http_user' => $user,
