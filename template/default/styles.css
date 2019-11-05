@@ -214,6 +214,8 @@ ul{
 .catalog-list-theme a:hover .icon-row{
 	background-color: red;
 }
+
+
 @media (max-width: 580px){
 	.content > .carousel, .masterSlider{
 		margin-left: -15px;
