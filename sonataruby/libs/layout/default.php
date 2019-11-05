@@ -1,5 +1,5 @@
 <!doctype html>
-<html xmlns="http://www.w3.org/1999/xhtml" class="no-js" lang="en" ng-app>
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="en" ng-app>
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="initial-scale=1,user-scalable=no,width=device-width">
